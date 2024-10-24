@@ -1,0 +1,55 @@
+$browser-context: 16;
+
+@function rem($pixels, $context: $browser-context) {
+    $remSize: calc($pixels / $context);
+    @return #{$remSize}rem;
+}
+
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-desktop-large: 1280px;
+
+@mixin min-width($breakpoint) {
+    @if ($breakpoint == mobile) {
+        @media (min-width: $breakpoint-mobile) {
+            @content;
+        }
+    } @else if ($breakpoint == tablet) {
+        @media (min-width: $breakpoint-tablet) {
+            @content;
+        }
+    } @else if ($breakpoint == desktop) {
+        @media (min-width: $breakpoint-desktop) {
+            @content;
+        }
+    } @else if ($breakpoint == desktop-large) {
+        @media (min-width: $breakpoint-desktop-large) {
+            @content;
+        }
+    } @else {
+        @error "UNKNOWN MEDIA BREAKPOINT #{$breakpoint}";
+    }
+}
+
+@mixin max-width($breakpoint) {
+    @if ($breakpoint == mobile) {
+        @media (max-width: $breakpoint-mobile) {
+            @content;
+        }
+    } @else if ($breakpoint == tablet) {
+        @media (max-width: $breakpoint-tablet) {
+            @content;
+        }
+    } @else if ($breakpoint == desktop) {
+        @media (max-width: $breakpoint-desktop) {
+            @content;
+        }
+    } @else if ($breakpoint == desktop-large) {
+        @media (max-width: $breakpoint-desktop-large) {
+            @content;
+        }
+    } @else {
+        @error "UNKNOWN MEDIA BREAKPOINT #{$breakpoint}";
+    }
+}

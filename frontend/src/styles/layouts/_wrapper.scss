@@ -1,0 +1,35 @@
+@use '@tcf/styles/utilities/mixins' as *;
+
+.wrapper {
+
+    &__body{
+        overflow-x: hidden;
+    }
+
+    &__content {
+        &--gradient {
+            padding-top: rem(57);
+        }
+    }
+
+    &__section {
+        z-index: 1;
+    }
+
+    main {
+        padding: rem(24);
+        background-color: var(--bg-page-color);
+        height: 100%;
+        box-sizing: border-box;
+
+        .toasts {
+            --sidebar-factor: 1;
+            @include min-width(desktop) {
+                left: calc(var(--sidebar-factor) * var(--sibebar-width) + rem(20));
+            }
+            &.fix-left {
+                left: 0;
+            }
+        }
+    }
+}
