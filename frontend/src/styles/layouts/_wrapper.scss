@@ -1,5 +1,9 @@
 @use '@tcf/styles/utilities/mixins' as *;
 
+body {
+    background-color: var(--bg-page-color);
+}
+
 .wrapper {
 
     &__body{

@@ -5,7 +5,7 @@
 
 <div class="wrapper">
 	<div class="wrapper__body">
-		<main role="main" id="contenu-site">
+		<main id="contenu-site">
 			<slot />
 		</main>
 	</div>
