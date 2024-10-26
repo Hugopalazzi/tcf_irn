@@ -2,6 +2,12 @@
 @use './utilities/mixins';
 
 
+// Base
+@use './base/fonts';
+@use './base/reset';
+@use './base/typography';
+
+
 // Layout
 // -------------------------------------
 @use 'layouts/wrapper';

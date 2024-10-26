@@ -1,0 +1,11 @@
+@use '@tcf/styles/utilities/mixins' as *;
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-size: var(--text-base);
+    line-height: rem(24);
+    font-family: var(--font-primary);
+    background-color: var(--white);
+}
