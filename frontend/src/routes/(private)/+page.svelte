@@ -47,13 +47,11 @@
 			<div class="options-list-wrapper" use:melt={$menu}>
 				{#each meltOptions as item}
 					<div
-						class="multi-select-option checkbox"
+						class="multi-select-option"
 						use:melt={$option({ value: item.value, label: item.label })}
 					>
 						<button class="select-option-text">
-							<p class="select-text">
-								{item.label}
-							</p>
+							{item.label}
 						</button>
 					</div>
 				{/each}
@@ -106,6 +104,8 @@
 					line-clamp: 1;
 					overflow: hidden;
 					text-align: left;
+					font-weight: 600;
+
 				}
 			}
 		}
@@ -118,5 +118,24 @@
 			0 rem(1) rem(3) 0 rgb(0 0 0 / 0.1),
 			0 rem(1) rem(2) rem(-1) rgb(0 0 0 / 0.1);
 		border-radius: rem(8);
+
+		.multi-select-option {
+			display: flex;
+			padding: rem(10);
+			background-color: white;
+			font-size: rem(16);
+			border-radius: rem(8);
+			.select-option-text {
+				display: inline-flex;
+				align-items: center;
+				gap: rem(8);
+				font-size: rem(14);
+				padding: 0;
+				border: 0;
+				background-color: var(--white);
+				font-weight: 600;
+
+			}
+		}
 	}
 </style>
