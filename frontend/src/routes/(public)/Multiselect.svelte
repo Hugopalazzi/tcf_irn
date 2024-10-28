@@ -63,13 +63,15 @@
 		box-shadow:
 			0 1px 3px 0 rgba(0, 0, 0, 0.1),
 			0 1px 2px 0 rgba(0, 0, 0, 0.06);
-			margin-bottom: rem(16);
+		margin-bottom: rem(4);
 
 		.selected-language {
 			max-width: rem(400);
 			overflow: hidden;
 			text-align: left;
 			font-weight: 600;
+			padding-left: rem(4);
+
 		}
 	}
 
