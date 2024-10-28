@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { createSelect, melt } from '@melt-ui/svelte';
-	import { Check, ChevronDown, ChevronUp, Icon } from 'svelte-hero-icons';
-	import { fade } from 'svelte/transition';
+	import { ChevronDown, ChevronUp, Icon } from 'svelte-hero-icons';
 
 	interface MultiSelectOption {
 		value: string;
@@ -10,12 +9,13 @@
 
 	const meltOptions: MultiSelectOption[] = [
 		{ label: 'English', value: 'eng' },
+		{ label: 'Sri lankais', value: 'sri' },
 		{ label: 'Français', value: 'fr' }
 	];
 
 	const {
 		elements: { trigger, menu, option },
-		states: { selectedLabel, open, selected }
+		states: { open, selected }
 	} = createSelect<string>({
 		forceVisible: true,
 		positioning: {
@@ -89,8 +89,7 @@
 				align-items: center;
 				border-radius: 0.5rem;
 				height: 2.5rem;
-				background-color: #ffffff;
-				transition-property: opacity;
+				background-color: var(--white);
 				transition-duration: 300ms;
 				box-shadow:
 					0 1px 3px 0 rgba(0, 0, 0, 0.1),
@@ -98,14 +97,9 @@
 
 				.selected-language {
 					max-width: rem(400);
-					display: -webkit-box;
-					-webkit-box-orient: vertical;
-					-webkit-line-clamp: 1;
-					line-clamp: 1;
 					overflow: hidden;
 					text-align: left;
 					font-weight: 600;
-
 				}
 			}
 		}
@@ -122,9 +116,21 @@
 		.multi-select-option {
 			display: flex;
 			padding: rem(10);
-			background-color: white;
+			background-color: var(--white);
 			font-size: rem(16);
-			border-radius: rem(8);
+
+			&:first-child {
+				border-radius: rem(8) rem(8) 0 0;
+			}
+
+			&:last-child {
+				border-radius: 0 0 rem(8) rem(8);
+			}
+
+			&[data-highlighted] {
+				background-color: var(--secondary-200);
+			}
+
 			.select-option-text {
 				display: inline-flex;
 				align-items: center;
@@ -132,9 +138,8 @@
 				font-size: rem(14);
 				padding: 0;
 				border: 0;
-				background-color: var(--white);
+				background-color: inherit;
 				font-weight: 600;
-
 			}
 		}
 	}
