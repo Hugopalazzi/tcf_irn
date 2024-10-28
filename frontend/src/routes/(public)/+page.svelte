@@ -1,31 +1,6 @@
 <script lang="ts">
-	import { createSelect, melt } from '@melt-ui/svelte';
-	import { ChevronDown, ChevronUp, Icon } from 'svelte-hero-icons';
+	import { Envelope, Icon } from 'svelte-hero-icons';
 	import Multiselect from './Multiselect.svelte';
-
-	interface MultiSelectOption {
-		value: string;
-		label: string;
-	}
-
-	const meltOptions: MultiSelectOption[] = [
-		{ label: 'English', value: 'eng' },
-		{ label: 'Sri lankais', value: 'sri' },
-		{ label: 'Français', value: 'fr' }
-	];
-
-	const {
-		elements: { trigger, menu, option },
-		states: { open, selected }
-	} = createSelect<string>({
-		forceVisible: true,
-		positioning: {
-			placement: 'bottom',
-			fitViewport: true,
-			sameWidth: true
-		},
-		defaultSelected: { label: 'English', value: 'eng' }
-	});
 </script>
 
 <div class="page-container">
@@ -35,6 +10,10 @@
 	</div>
 	<div class="right-size">
 		<Multiselect />
+
+		<button class= 'btn btn-primary btn-icon'>
+			<Icon src={Envelope} size="18" />Create an account
+		</button>
 	</div>
 </div>
 
