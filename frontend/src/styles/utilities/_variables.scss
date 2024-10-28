@@ -4,9 +4,13 @@
     /* background color of the pages*/
     --bg-page-color: #181A20;
 
-    --label-color:#9D9D9D;
+    --label-color: #9D9D9D;
 
-    /* colors */
+    /* purle color */
+    --light-purple: #bc7ae2;
+    --dark-purple: #580488;
+
+    /* colors
     --primary-50: #ebfcfd;
     --primary-100: #9adcdf;
     --primary-200: #68cacf;
@@ -70,16 +74,26 @@
     /* colors */
 
     /* font-size */
-    --text-xs: 0.75rem; /* 12px */
-    --text-sm: 0.875rem; /* 14px */
-    --text-base: 1rem; /* 16px */
-    --text-lg: 1.125rem; /* 18px */
-    --text-xl: 1.25rem; /* 20px */
-    --text-2xl: 1.5rem; /* 24px */
-    --text-3xl: 1.875rem; /* 30px */
-    --text-4xl: 2.25rem; /* 36px */
-    --text-5xl: 3rem; /* 48px */
-    --text-6xl: 4rem; /* 64px */
+    --text-xs: 0.75rem;
+    /* 12px */
+    --text-sm: 0.875rem;
+    /* 14px */
+    --text-base: 1rem;
+    /* 16px */
+    --text-lg: 1.125rem;
+    /* 18px */
+    --text-xl: 1.25rem;
+    /* 20px */
+    --text-2xl: 1.5rem;
+    /* 24px */
+    --text-3xl: 1.875rem;
+    /* 30px */
+    --text-4xl: 2.25rem;
+    /* 36px */
+    --text-5xl: 3rem;
+    /* 48px */
+    --text-6xl: 4rem;
+    /* 64px */
     /* font-size */
 
     /* shadow */
@@ -98,4 +112,3 @@
     --btn-radius: 8px;
     // end btn
 }
-
