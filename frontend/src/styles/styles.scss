@@ -8,10 +8,10 @@
 @use './base/typography';
 
 // Components
-
 @use './components/buttons';
 
 
 // Layout
 // -------------------------------------
 @use 'layouts/wrapper';
+@use 'layouts/layout';

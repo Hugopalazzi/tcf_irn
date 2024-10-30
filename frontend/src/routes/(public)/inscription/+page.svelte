@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { Envelope, Icon } from 'svelte-hero-icons';
-	import Multiselect from './Multiselect.svelte';
-	import GoogleIcon from './GoogleIcon.svelte';
 </script>
 
 <div class="page-container">
@@ -10,16 +8,13 @@
 		<h2>Apprenez le francais en vous amusant avec Mystory.</h2>
 	</div>
 	<div class="right-size">
-		<Multiselect />
 
 		<button class="btn btn-primary btn-icon">
 			<Icon src={Envelope} size="18" />Create an account
 		</button>
 
 		<div class="two-button">
-			<button class="btn btn-secondary btn-icon"> <GoogleIcon /></button>
 			<button class="btn btn-secondary"> <span>Login</span></button>
 		</div>
 	</div>
 </div>
-
