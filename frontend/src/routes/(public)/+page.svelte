@@ -2,6 +2,7 @@
 	import { Envelope, Icon } from 'svelte-hero-icons';
 	import Multiselect from './Multiselect.svelte';
 	import GoogleIcon from './GoogleIcon.svelte';
+	import { goto } from '$app/navigation';
 </script>
 
 <div class="page-container">
@@ -12,7 +13,7 @@
 	<div class="right-size">
 		<Multiselect />
 
-		<button class="btn btn-primary btn-icon">
+		<button on:click={()=>{goto('/inscription')}} class="btn btn-primary btn-icon">
 			<Icon src={Envelope} size="18" />Create an account
 		</button>
 

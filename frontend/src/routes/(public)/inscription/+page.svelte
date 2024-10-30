@@ -8,6 +8,7 @@
 		<h2>Apprenez le francais en vous amusant avec Mystory.</h2>
 	</div>
 	<div class="right-size">
+	<h1>Register</h1>
 
 		<button class="btn btn-primary btn-icon">
 			<Icon src={Envelope} size="18" />Create an account
