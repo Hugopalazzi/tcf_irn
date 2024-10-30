@@ -7,5 +7,6 @@ body {
     font-size: var(--text-base);
     line-height: rem(24);
     font-family: var(--font-primary);
-    background-color: var(--white);
+    background-color: var(--bg-page-color);
+    background-size: cover;
 }

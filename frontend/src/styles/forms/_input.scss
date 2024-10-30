@@ -1,0 +1,136 @@
+@use '@tcf/styles/utilities/mixins' as *;
+
+// input general style
+
+.input-wrapper {
+    margin-bottom: rem(16);
+}
+
+.error {
+    color: var(--red-500);
+    font-size: var(--text-sm);
+}
+
+label,
+.label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--label-color);
+    text-transform: uppercase;
+    line-height: rem(20);
+    margin-bottom: rem(4);
+    display: block;
+
+
+
+    &.optional-field,
+    &.required-field {
+        display: flex;
+        justify-content: space-between;
+
+        span {
+            font-style: italic;
+        }
+    }
+}
+
+input,
+.input {
+    background-color: transparent;
+    color: var(--white);
+    font-size: var(--text-base);
+    font-family: var(--openSans);
+    letter-spacing: 0;
+    line-height: rem(24);
+    padding: rem(8) 0;
+    border: 0 ;
+    border-bottom: rem(2) solid var(--correct-input);
+    border-radius: var(--radius-base);
+    display: block;
+    min-width: rem(300);
+
+
+    &.error {
+        color: var(--red-500);
+        border: rem(2) solid var(--red-500);
+        font-size: var(--text-base);
+    }
+
+    &:focus-visible {
+        outline: none;
+        border: none;
+    }
+
+    
+
+    &:disabled {
+        color: var(--secondary-700);
+        background-color: var(--secondary-50);
+        cursor: not-allowed;
+    }
+
+    &::placeholder {
+        color: var(--secondary-500);
+    }
+
+    &[aria-invalid='true'] {
+        outline: rem(2) solid var(--red-500);
+        border: rem(1) solid transparent;
+    }
+
+    &[type='date']:invalid::-webkit-datetime-edit {
+        color: var(--secondary-700);
+    }
+}
+
+// input + icons
+
+.input-icons {
+    display: flex;
+    place-items: center;
+    width: 100%;
+    position: relative;
+
+    i {
+        position: absolute;
+        left: rem(11);
+    }
+
+    input {
+        padding-left: rem(40);
+    }
+
+    // input search bar
+    &--search {
+        i {
+            color: var(--secondary-500);
+        }
+    }
+
+    &--cross {
+        i {
+            left: rem(2);
+            color: var(--secondary-700);
+        }
+    }
+}
+
+.searchBar-wrapper {
+    margin-bottom: rem(8);
+
+    .search-input {
+        width: 100%;
+        border-radius: rem(20);
+    }
+}
+
+// uploaded area
+.upload-area.error {
+    outline: rem(2) solid var(--red-500);
+}
+
+// input search cross icon hover
+input[type='search']::-webkit-search-decoration:hover,
+input[type='search']::-webkit-search-cancel-button:hover {
+    cursor: pointer;
+}

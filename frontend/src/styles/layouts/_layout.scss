@@ -1,7 +1,7 @@
 @use '@tcf/styles/utilities/mixins' as *;
 
 .page-container {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,6 +15,9 @@
     }
 
     .right-size {
+        .title {
+            margin-bottom: rem(16);
+        }
         border: rem(1) solid var(--dark-purple);
         border-radius: rem(16);
         padding: rem(20);
