@@ -1,4 +1,5 @@
 <script lang="ts">
+	import FormError from '@tcf/lib/FormError.svelte';
 	import BackButton from '@tcf/lib/widgets/BackButton.svelte';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema.js';
 	import { userAccountSchema } from '@tcf/models/forms/userSchema';
@@ -35,30 +36,57 @@
 		<BackButton />
 		<h1 class="title">Register</h1>
 
-		<div class="input-wrapper">
-			<label for="email"> Your email </label>
-			<input id="email" name="email" placeholder="john.doe@mail.com" />
-		</div>
-		<div class="input-wrapper">
-			<label for="username"> Your username </label>
-			<input id="username" name="username" placeholder="johndoe" />
-		</div>
-		<div class="input-wrapper">
-			<label for="password"> Set password </label>
-			<input type="password" id="password" name="password" placeholder="New password" />
-		</div>
-		<div class="input-wrapper">
-			<label for="passwordConfirmation"> Password confirmation </label>
-			<input
-				type="password"
-				id="passwordConfirmation"
-				name="passwordCconfirmation"
-				placeholder="Password confirmation"
-			/>
-		</div>
+		<form method="POST" autocomplete="off" use:enhance>
+			<div class="input-wrapper">
+				<label for="email"> Your email </label>
+				<input
+					bind:value={$form.email}
+					class:error={!!$errors?.email}
+					id="email"
+					name="email"
+					placeholder="john.doe@mail.com"
+				/>
+				<FormError errors={$errors?.email} />
+			</div>
+			<div class="input-wrapper">
+				<label for="username"> Your username </label>
+				<input
+					bind:value={$form.username}
+					class:error={!!$errors?.username}
+					id="username"
+					name="username"
+					placeholder="johndoe"
+				/>
+				<FormError errors={$errors?.username} />
+			</div>
+			<div class="input-wrapper">
+				<label for="password"> Set password </label>
+				<input
+					bind:value={$form.password}
+					type="password"
+					id="password"
+					name="password"
+					placeholder="New password"
+					class:error={!!$errors?.password}
+				/>
+				<FormError errors={$errors?.password} />
+			</div>
+			<div class="input-wrapper">
+				<label for="passwordConfirmation"> Password confirmation </label>
+				<input
+					bind:value={$form.passwordConfirmation}
+					class:error={!!$errors?.passwordConfirmation}
+					type="password"
+					id="passwordConfirmation"
+					name="passwordCconfirmation"
+					placeholder="Confirm your password"
+				/>
+				<FormError errors={$errors?.passwordConfirmation} />
+			</div>
 
-		<button class="btn btn-primary btn-icon">
-			<Icon src={Envelope} size="18" />Sign Up
-		</button>
+			<button class="btn btn-primary btn-icon">
+				<Icon src={Envelope} size="18" />Sign Up
+			</button>
+		</form>
 	</div>
 </div>

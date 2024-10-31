@@ -6,9 +6,11 @@
     margin-bottom: rem(16);
 }
 
-.error {
+.error-message {
     color: var(--red-500);
     font-size: var(--text-sm);
+    white-space: pre-line;
+    line-height: normal !important;
 }
 
 label,
@@ -18,7 +20,6 @@ label,
     color: var(--label-color);
     text-transform: uppercase;
     line-height: rem(20);
-    margin-bottom: rem(4);
     display: block;
 
 
@@ -51,8 +52,7 @@ input,
 
 
     &.error {
-        color: var(--red-500);
-        border: rem(2) solid var(--red-500);
+        border-bottom: rem(2) solid var(--red-500);
         font-size: var(--text-base);
     }
 

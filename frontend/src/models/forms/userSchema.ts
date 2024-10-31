@@ -8,11 +8,11 @@ export const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$
 
 export const userAccountSchema = z.object({
     username: z.string().min(1),
-    emailPro: requiredEmailSchema,
+    email: requiredEmailSchema,
     password: z
         .string()
-        .min(8)
-        .regex(passwordRegex, 'The password must contain 1 uppercase, 1 lowercase, 1 number, and 1 special character.'),
+        .min(8,'The password must contain at least 8 characters')
+        .regex(passwordRegex, 'The password must contain 1 uppercase, \n 1 lowercase, 1 number, and 1 special character.'),
     passwordConfirmation: z.string().min(8),
 }).superRefine(({ passwordConfirmation, password }, ctx) => {
     if (passwordConfirmation !== password) {
