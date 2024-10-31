@@ -43,7 +43,7 @@ input,
     letter-spacing: 0;
     line-height: rem(24);
     padding: rem(8) 0;
-    border: 0 ;
+    border: 0;
     border-bottom: rem(2) solid var(--correct-input);
     border-radius: var(--radius-base);
     display: block;
@@ -58,10 +58,10 @@ input,
 
     &:focus-visible {
         outline: none;
-        border: none;
+        border-bottom: rem(2) solid var(--cyan-500);
     }
 
-    
+
 
     &:disabled {
         color: var(--secondary-700);

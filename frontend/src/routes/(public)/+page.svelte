@@ -19,7 +19,7 @@
 
 		<div class="two-button">
 			<button class="btn btn-secondary btn-icon"> <GoogleIcon /></button>
-			<button class="btn btn-secondary"> <span>Login</span></button>
+			<button  on:click={()=>{goto('/login')}}  class="btn btn-secondary"> <span>Login</span></button>
 		</div>
 	</div>
 </div>
