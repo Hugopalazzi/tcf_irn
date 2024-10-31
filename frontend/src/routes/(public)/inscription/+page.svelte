@@ -1,6 +1,29 @@
 <script lang="ts">
 	import BackButton from '@tcf/lib/widgets/BackButton.svelte';
+	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema.js';
+	import { userAccountSchema } from '@tcf/models/forms/userSchema';
+	import { addErrorToast, addSuccessToast } from '@tcf/toast/toast.service.js';
 	import { Envelope, Icon } from 'svelte-hero-icons';
+	import { superForm } from 'sveltekit-superforms';
+	import { zod } from 'sveltekit-superforms/adapters';
+
+	export let data;
+
+	const supForm = superForm(data.form, {
+		validators: zod(userAccountSchema),
+		...superFormDefaultConfig,
+		resetForm: true,
+		onResult({ result }) {
+			if (result.type === 'success') {
+				addSuccessToast(
+					`Nous avons bien reçu votre demande. Nous répondrons dans les plus brefs délais.`
+				);
+			} else if (result.type === 'error') {
+				addErrorToast();
+			}
+		}
+	});
+	const { form, enhance, submitting, errors } = supForm;
 </script>
 
 <div class="page-container">
