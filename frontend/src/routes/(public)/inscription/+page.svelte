@@ -25,11 +25,11 @@
 			<input type="password" id="password" name="password" placeholder="New password" />
 		</div>
 		<div class="input-wrapper">
-			<label for="password-confirmation"> Password confirmation </label>
+			<label for="passwordConfirmation"> Password confirmation </label>
 			<input
 				type="password"
-				id="password-confirmation"
-				name="password-confirmation"
+				id="passwordConfirmation"
+				name="passwordCconfirmation"
 				placeholder="Password confirmation"
 			/>
 		</div>
