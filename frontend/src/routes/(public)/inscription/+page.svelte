@@ -5,11 +5,11 @@
 
 <div class="page-container">
 	<div class="left-size">
-		<BackButton />
 		<img class="logo" src="/assets/images/logo_my_story.png" alt="My story" />
 		<h2>Apprenez le francais en vous amusant avec Mystory.</h2>
 	</div>
 	<div class="right-size">
+		<BackButton />
 		<h1 class="title">Register</h1>
 
 		<div class="input-wrapper">

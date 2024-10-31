@@ -37,8 +37,7 @@
 
 
     &:hover {
-        color: var(--white);
-        opacity: 90%;
+        transform: scale(1.02); 
     }
 
     &:focus {
@@ -67,8 +66,8 @@
     color: var(--white);
 
     &:hover {
-        background-color: var(--light-grey);
-        border: rem(1) solid var(--secondary-100);
+        transform: scale(1.02); 
+
     }
 
     &:disabled {
@@ -79,17 +78,20 @@
 
     &:focus {
         background-color: transparent;
-        border: rem(1) solid var(--primary-200);
+        border: rem(1) solid var(--secondary-200);
     }
 }
 
 .btn-tertiary {
     background-color: transparent;
     border: rem(1) solid transparent;
-    color: var(--primary-600);
+    color: var(--white);
+    width: auto;
+    border-radius: rem(8);
 
     &:hover {
-        background-color: var(--secondary-100);
+        transform: scale(1.02); 
+        font-weight: 600;
     }
 
     &:disabled {
@@ -97,7 +99,7 @@
     }
 
     &:focus {
-        border: rem(1) solid var(--primary-200);
+        font-weight: 600;
     }
 }
 

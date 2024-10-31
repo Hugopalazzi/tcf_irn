@@ -6,7 +6,7 @@
 	export let forcedUrl = '';
 </script>
 
-<div class="button-return">
+<div>
 	<button
 		type="button"
 		role="link"
@@ -25,10 +25,6 @@
 </div>
 
 <style lang="scss">
-	.button-return {
-		margin-bottom: rem(8);
-	}
-
 	.btn {
 		box-shadow: unset;
 	}
