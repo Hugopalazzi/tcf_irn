@@ -6,18 +6,17 @@
     align-items: center;
     justify-content: center;
     gap: rem(100);
+
     .left-size {
         max-width: rem(320);
         right: rem(80);
+
         img {
             width: 100%;
         }
     }
 
     .right-size {
-        .title {
-            margin-bottom: rem(16);
-        }
         border: rem(1) solid var(--dark-purple);
         border-radius: rem(16);
         padding: rem(20);
@@ -25,6 +24,11 @@
         flex-direction: column;
         gap: rem(12);
         background-image: linear-gradient(to bottom right, var(--dark-purple), var(--light-purple));
+
+        .title {
+            margin-bottom: rem(16);
+        }
+
         .two-button {
             display: flex;
             gap: rem(4);

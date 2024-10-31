@@ -1,14 +1,16 @@
 <script lang="ts">
+	import BackButton from '@tcf/lib/widgets/BackButton.svelte';
 	import { Envelope, Icon } from 'svelte-hero-icons';
 </script>
 
 <div class="page-container">
 	<div class="left-size">
+		<BackButton />
 		<img class="logo" src="/assets/images/logo_my_story.png" alt="My story" />
 		<h2>Apprenez le francais en vous amusant avec Mystory.</h2>
 	</div>
 	<div class="right-size">
-		<h1 class ='title'>Register</h1>
+		<h1 class="title">Register</h1>
 
 		<div class="input-wrapper">
 			<label for="email"> Your email </label>
