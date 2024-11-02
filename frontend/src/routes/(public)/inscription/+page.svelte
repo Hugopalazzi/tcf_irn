@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import FormError from '@tcf/lib/FormError.svelte';
 	import BackButton from '@tcf/lib/widgets/BackButton.svelte';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema.js';
@@ -14,13 +15,16 @@
 		validators: zod(userAccountSchema),
 		...superFormDefaultConfig,
 		resetForm: true,
-		onResult({ result }) {
+
+		async onResult({ result }) {
 			if (result.type === 'success') {
-				addSuccessToast(
-					`Nous avons bien reçu votre demande. Nous répondrons dans les plus brefs délais.`
-				);
+				await goto(`/`).then(() => addSuccessToast(`Votre compte a bien été créé.`));
 			} else if (result.type === 'error') {
-				addErrorToast();
+				if (result.error?.message) {
+					addErrorToast(result.error.message);
+				} else {
+					addErrorToast();
+				}
 			}
 		}
 	});
@@ -86,7 +90,7 @@
 				/>
 			</div>
 
-			<button class="btn btn-primary btn-icon">
+			<button type="submit" class="btn btn-primary btn-icon">
 				<Icon src={Envelope} size="18" />Sign Up
 			</button>
 		</form>
