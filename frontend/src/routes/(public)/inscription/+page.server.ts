@@ -12,7 +12,6 @@ export const load = async () => {
 };
 export const actions = {
     default: async ({ request }) => {
-        console.log('actionnn');
         const formData = await request.formData();
         const providentForm = await superValidate(formData, zod(userCreationAccountSchema));
         throw await RepositoryError.fromHttpResponse(new Response, `Impossible d'enregistrer le contrat.`);

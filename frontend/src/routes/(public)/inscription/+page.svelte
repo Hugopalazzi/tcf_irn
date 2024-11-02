@@ -17,7 +17,6 @@
 		resetForm: true,
 
 		async onResult({ result }) {
-			console.log("fafazf", result)
 			if (result.type === 'success') {
 				await goto(`/`).then(() => addSuccessToast(`Votre compte a bien été créé.`));
 			} else if (result.type === 'error') {
