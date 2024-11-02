@@ -81,7 +81,9 @@
 					name="passwordCconfirmation"
 					placeholder="Confirm your password"
 				/>
-				<FormError errors={$errors?.passwordConfirmation} />
+				<FormError
+					errors={!$form?.passwordConfirmation ? $errors?.passwordConfirmation : $errors?._errors}
+				/>
 			</div>
 
 			<button class="btn btn-primary btn-icon">

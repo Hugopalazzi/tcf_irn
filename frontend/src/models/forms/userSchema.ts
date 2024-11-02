@@ -12,14 +12,13 @@ export const userAccountSchema = z.object({
     password: z
         .string()
         .min(8,'The password must contain at least 8 characters')
-        .regex(passwordRegex, 'The password must contain 1 uppercase, \n 1 lowercase, 1 number, and 1 special character.'),
-    passwordConfirmation: z.string().min(8),
+        .regex(passwordRegex, 'The password must contain 1 uppercase, 1 lowercase, 1 number, and 1 special character.'),
+    passwordConfirmation: z.string().min(1, 'Field must not be empty'),
 }).superRefine(({ passwordConfirmation, password }, ctx) => {
     if (passwordConfirmation !== password) {
         ctx.addIssue({
-            code: "custom",
+            code: z.ZodIssueCode.custom,
             message: "The passwords did not match",
-            path: ['confirmPassword']
         });
     }
 });
