@@ -1,4 +1,5 @@
 import { userAccountSchema } from '@tcf/models/forms/userSchema';
+import { RepositoryError } from '@tcf/repositories/repository-error.js';
 import { zod } from 'sveltekit-superforms/adapters';
 import { superValidate } from 'sveltekit-superforms/client';
 
@@ -9,30 +10,13 @@ export const load = async () => {
         form
     };
 };
+export const actions = {
+    default: async ({ request }) => {
+        console.log('actionnn');
+        const formData = await request.formData();
+        const providentForm = await superValidate(formData, zod(userAccountSchema));
+        throw await RepositoryError.fromHttpResponse(new Response, `Impossible d'enregistrer le contrat.`);
 
-// export const actions = {
-//     default: async ({ request, locals }) => {
-//         const requestFormData = await request.formData();
-//         const superForm = await superValidate(requestFormData, zod(contactSchema));
-
-//         const { contactRepository } = locals.pmServices;
-
-//         const superFormData = superForm.data;
-//         const formData = new FormData();
-//         const contactForm: PmContactRequest = {
-//             idPersonneMorale: superFormData.idPersonneMorale,
-//             codeObjetDemande: superFormData.codeObjetDemande,
-//             message: superFormData.message
-//         };
-
-//         if (superFormData.resiliation) {
-//             contactForm.resiliation = superFormData.resiliation;
-//         }
-
-//         formData.append('contactForm', JSON.stringify(contactForm));
-
-//         requestFormData.getAll('fichiers').forEach((file) => formData.append('fichiers', file));
-
-//         await contactRepository.importGed(formData);
-//     }
-// };
+        return providentForm
+    }
+}
