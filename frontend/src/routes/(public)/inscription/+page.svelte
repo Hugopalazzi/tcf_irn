@@ -3,7 +3,7 @@
 	import FormError from '@tcf/lib/FormError.svelte';
 	import BackButton from '@tcf/lib/widgets/BackButton.svelte';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema.js';
-	import { userAccountSchema } from '@tcf/models/forms/userSchema';
+	import { userCreationAccountSchema } from '@tcf/models/forms/userSchema';
 	import { addErrorToast, addSuccessToast } from '@tcf/toast/toast.service.js';
 	import { Envelope, Icon } from 'svelte-hero-icons';
 	import { superForm } from 'sveltekit-superforms';
@@ -12,7 +12,7 @@
 	export let data;
 
 	const supForm = superForm(data.form, {
-		validators: zod(userAccountSchema),
+		validators: zod(userCreationAccountSchema),
 		...superFormDefaultConfig,
 		resetForm: true,
 
