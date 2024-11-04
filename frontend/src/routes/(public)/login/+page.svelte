@@ -38,7 +38,7 @@
 	</div>
 	<div class="right-size">
 		<BackButton />
-		<h1 class="title">Login</h1>
+		<h5 class="title">Login</h5>
 
 		<form method="POST" autocomplete="off" use:enhance>
 			<div class="input-wrapper">

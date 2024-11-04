@@ -12,26 +12,32 @@
 
 	<a href="mon-compte"><Icon src={User} size="18" /></a>
 </div>
-<slot />
+<div >
+	<slot />
+</div>
 
 <style lang="scss">
 	.topnav {
 		display: flex;
 		flex-direction: column-reverse;
-		margin: 0 rem(50);
 		overflow: hidden;
+		margin-bottom: rem(16);
 
 		a {
 			float: left;
 			text-align: center;
 			align-self: center;
-            line-height: normal;
+			line-height: normal;
 			padding: rem(4) rem(8);
 			margin: 0 rem(6);
 			margin-bottom: rem(10);
 			&:hover {
 				font-weight: 600;
 			}
+		}
+
+		a.active {
+			border-bottom: rem(3) solid var(--correct-input);
 		}
 
 		.left-links {
@@ -51,11 +57,8 @@
 		}
 	}
 
+	
 	:global(.topnav a svg:hover) {
 		zoom: 1.1;
-	}
-
-	.topnav a.active {
-		border-bottom: rem(3) solid var(--correct-input);
 	}
 </style>

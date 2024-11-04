@@ -42,19 +42,19 @@ p {
 
 
 h1 {
-    font-size: var(--text-2xl);
-    line-height: rem(36);
+    font-size: var(--text-6xl);
+    line-height: rem(72);
 }
 
-// h2 {
-//     font-size: var(--text-5xl);
-//     line-height: rem(56);
-// }
+h2 {
+    font-size: var(--text-5xl);
+    line-height: rem(56);
+}
 
-// h3 {
-//     font-size: var(--text-4xl);
-//     line-height: rem(40);
-// }
+h3 {
+    font-size: var(--text-4xl);
+    line-height: rem(40);
+}
 
 // h4 {
 //     font-size: var(--text-3xl);
@@ -63,10 +63,10 @@ h1 {
 //     font-weight: var(--bold);
 // }
 
-// h5 {
-//     font-size: var(--text-2xl);
-//     line-height: rem(32);
-// }
+h5 {
+    font-size: var(--text-2xl);
+    line-height: rem(32);
+}
 
 // h6 {
 //     font-size: var(--text-xl);
