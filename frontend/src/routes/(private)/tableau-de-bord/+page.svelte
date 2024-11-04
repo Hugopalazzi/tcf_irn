@@ -12,7 +12,9 @@
 
 	.centered-content {
 		justify-self: center;
-		background-color: #262A34;
+		background-color: #262a34;
+		padding: rem(12);
+        border-radius: rem(20);
 
 		.graph-title {
 			color: #5e6272;
