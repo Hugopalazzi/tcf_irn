@@ -34,7 +34,7 @@
 <div class="page-container">
 	<div class="left-size">
 		<img class="logo" src="/assets/images/logo_my_story.png" alt="My story" />
-		<h2>Apprenez le francais en vous amusant avec Mystory.</h2>
+		<h5>Apprenez le francais en vous amusant avec Mystory.</h5>
 	</div>
 	<div class="right-size">
 		<BackButton />
