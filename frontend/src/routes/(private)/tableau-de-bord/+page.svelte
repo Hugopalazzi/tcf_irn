@@ -22,7 +22,7 @@
 </script>
 
 <h1>Dashboard</h1>
-<h3>Hello, Aryan 👋​</h3>
+<h3 class="sub-title">Hello, Aryan 👋​</h3>
 <div class="graph-title-wrapper">
 	<span class="graph-title">Tests Completed In Past 7 Days </span>
 	<div class="centered-graph">
@@ -34,6 +34,11 @@
 	h1 {
 		margin-bottom: rem(8);
 	}
+
+	.sub-title {
+		margin-bottom: rem(12);
+	}
+	
 	.graph-title-wrapper {
 		display: grid;
 		gap: rem(16);
