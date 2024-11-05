@@ -19,21 +19,21 @@
 				data: listeningComprehensionData,
 				borderWidth: 0,
 				backgroundColor: '#FBA3FF',
-				borderRadius: 2
+				borderRadius: 16
 			},
 			{
 				label: 'Compréhension orale',
 				data: oralComprehensionData,
 				borderWidth: 0,
 				backgroundColor: '#7269E3',
-				borderRadius: 2
+				borderRadius: 16
 			},
 			{
 				label: 'Expression écrite',
 				data: writtenExpressionData,
 				borderWidth: 0,
 				backgroundColor: '#A06AF9',
-				borderRadius: 2
+				borderRadius: 16
 			}
 		]
 	};
@@ -89,10 +89,11 @@
 <style lang="scss">
 	.bar {
 		border: none;
-		max-width: rem(1200);
+		max-width: rem(1000);
 		min-width: rem(400);
 		min-height: rem(350);
 		width: 100%;
+		
 		@include min-width(desktop) {
 			justify-content: center;
 			padding: 0 rem(72);

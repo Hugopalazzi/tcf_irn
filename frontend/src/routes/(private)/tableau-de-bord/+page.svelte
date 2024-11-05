@@ -4,7 +4,7 @@
 	const mockBar: { libelle: string; valeur: string[] }[] = [
 		{
 			libelle: 'Dates',
-			valeur: ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+			valeur: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
 		},
 		{
 			libelle: 'LC',
@@ -23,24 +23,42 @@
 
 <h1>Dashboard</h1>
 <h3>Hello, Aryan 👋​</h3>
-<div class="centered-content">
+<div class="graph-title-wrapper">
 	<span class="graph-title">Tests Completed In Past 7 Days </span>
-	<Bar dataSet={mockBar} />
+	<div class="centered-graph">
+		<Bar dataSet={mockBar} />
+	</div>
 </div>
 
 <style lang="scss">
 	h1 {
 		margin-bottom: rem(8);
 	}
-
-	.centered-content {
-		justify-self: center;
-		background-color: #262a34;
-		padding: rem(12);
+	.graph-title-wrapper {
+		display: grid;
+		gap: rem(16);
+		background-color: var(--bg-card-grey);
 		border-radius: rem(20);
+		padding: rem(16) rem(24);
+		justify-items: center;
+		font-weight: 600;
 
 		.graph-title {
-			color: #5e6272;
+			padding-bottom: rem(8);
+			color: var(--title-card-grey);
+		}
+
+		.centered-graph {
+			display: flex;
+			width: 100%;
+			overflow-x: auto;
+			overflow-y: hidden;
+			white-space: nowrap;
+		}
+
+		@include min-width(desktop-large) {
+			justify-self: center;
+			min-width: rem(1100);
 		}
 	}
 </style>
