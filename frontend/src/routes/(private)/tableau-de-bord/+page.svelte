@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { BookOpen, ChatBubbleBottomCenterText, Icon, SpeakerWave } from 'svelte-hero-icons';
 	import Bar from './Bar.svelte';
 
 	const mockBar: { libelle: string; valeur: string[] }[] = [
@@ -22,7 +23,21 @@
 </script>
 
 <h1>Dashboard</h1>
-<h3 class="sub-title">Hello, Aryan 👋​</h3>
+<h3 class="welcome-msg">Hello, Aryan 👋​</h3>
+<div class="cards-wrapper">
+	<a href="comprehension-orale" class="card">
+		<h6>Listening comprehension</h6>
+		<Icon src={SpeakerWave} size="20" />
+	</a>
+	<a href="comprension-ecrite" class="card">
+		<p>Written comprehension</p>
+		<Icon src={BookOpen} size="20" />
+	</a>
+	<a href="expression-ecrite" class="card">
+		<p>Written expression</p>
+		<Icon src={ChatBubbleBottomCenterText} size="20" />
+	</a>
+</div>
 <div class="graph-title-wrapper">
 	<span class="graph-title">Tests Completed In Past 7 Days </span>
 	<div class="centered-graph">
@@ -35,10 +50,26 @@
 		margin-bottom: rem(8);
 	}
 
-	.sub-title {
+	.welcome-msg {
 		margin-bottom: rem(12);
 	}
-	
+
+	.cards-wrapper {
+		display: flex;
+		gap: rem(20);
+		justify-content: center;
+		margin-bottom: rem(12);
+
+		.card {
+			display: flex;
+			align-items: center;
+			gap: rem(8);
+			padding: rem(12) rem(20);
+			border: 1px solid var(--button-primary-color);
+			border-radius: rem(12);
+		}
+	}
+
 	.graph-title-wrapper {
 		display: grid;
 		gap: rem(16);

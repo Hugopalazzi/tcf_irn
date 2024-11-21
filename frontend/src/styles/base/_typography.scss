@@ -33,7 +33,8 @@ h3,
 h4,
 h5,
 h6,
-p {
+p,
+span {
     padding: 0;
     margin: 0;
     color: var(--white);
@@ -56,22 +57,22 @@ h3 {
     line-height: rem(40);
 }
 
-// h4 {
-//     font-size: var(--text-3xl);
-//     line-height: rem(36);
-//     font-family: var(--clanOT);
-//     font-weight: var(--bold);
-// }
+h4 {
+    font-size: var(--text-3xl);
+    line-height: rem(36);
+    font-family: var(--clanOT);
+    font-weight: var(--bold);
+}
 
 h5 {
     font-size: var(--text-2xl);
     line-height: rem(32);
 }
 
-// h6 {
-//     font-size: var(--text-xl);
-//     line-height: rem(28);
-// }
+h6 {
+    font-size: var(--text-xl);
+    line-height: rem(28);
+}
 
 // p {
 //     margin: 0;
