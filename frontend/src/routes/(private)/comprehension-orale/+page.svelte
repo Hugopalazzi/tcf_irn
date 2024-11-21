@@ -1,45 +1,63 @@
 <script>
 	import { Icon, SpeakerWave } from 'svelte-hero-icons';
+	import ProgressBar from './ProgressBar.svelte';
 </script>
 
 <h1>List of sets</h1>
 
 <div class="sets-list">
 	<div class="set-card">
-		<h2>Set 1</h2>
+		<h2>Set 1 <Icon src={SpeakerWave} size="32" /></h2>
 		<span class="exam-type"> Written comprehension</span>
-		<div>Progress bar</div>
+		<ProgressBar goodAnwser={18} />
 	</div>
 	<div class="set-card">
-		<h2>Set 2</h2>
+		<h2>
+			Set 2
+			<Icon src={SpeakerWave} size="32" />
+		</h2>
 		<span class="exam-type"> Written comprehension</span>
-		<div>Progress bar</div>
+		<ProgressBar goodAnwser={16} />
 	</div>
 	<div class="set-card">
-		<h2>Set 3</h2>
+		<h2>
+			Set 3
+			<Icon src={SpeakerWave} size="32" />
+		</h2>
 		<span class="exam-type"> Written comprehension</span>
-		<div>Progress bar</div>
+		<ProgressBar goodAnwser={15} />
 	</div>
 	<div class="set-card">
-		<h2>Set 4</h2>
+		<h2>
+			Set 4
+			<Icon src={SpeakerWave} size="32" />
+		</h2>
 		<span class="exam-type"> Written comprehension</span>
-		<div>Progress bar</div>
+		<ProgressBar goodAnwser={11} />
 	</div>
 	<div class="set-card">
-		<h2>Set 5</h2>
+		<h2>
+			Set 5
+			<Icon src={SpeakerWave} size="32" />
+		</h2>
 		<span class="exam-type"> Written comprehension</span>
-		<div>Progress bar</div>
+		<ProgressBar goodAnwser={7} />
 	</div>
 	<div class="set-card">
-		<h2>Set 6</h2>
+		<h2>
+			Set 6
+			<Icon src={SpeakerWave} size="32" />
+		</h2>
 		<span class="exam-type"> Written comprehension</span>
-		<div>Progress bar</div>
+		<ProgressBar goodAnwser={4} />
 	</div>
 	<div class="set-card">
-		<Icon src={SpeakerWave} size="18" />
-		<h2>Set 7</h2>
+		<h2>
+			Set 7
+			<Icon src={SpeakerWave} size="32" />
+		</h2>
 		<span class="exam-type"> Written comprehension</span>
-		<div>Progress bar</div>
+		<ProgressBar goodAnwser={2} />
 	</div>
 </div>
 
