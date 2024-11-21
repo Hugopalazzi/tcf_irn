@@ -9,7 +9,7 @@
 	<div class="set-card">
 		<h2>Set 1 <Icon src={SpeakerWave} size="32" /></h2>
 		<span class="exam-type"> Written comprehension</span>
-		<ProgressBar goodAnwser={18} />
+		<ProgressBar goodAnwser={20} />
 	</div>
 	<div class="set-card">
 		<h2>
