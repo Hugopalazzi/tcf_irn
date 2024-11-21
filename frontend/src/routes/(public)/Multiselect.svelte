@@ -66,6 +66,7 @@
 		margin-bottom: rem(4);
 
 		.selected-language {
+			color:black;
 			max-width: rem(400);
 			overflow: hidden;
 			text-align: left;
