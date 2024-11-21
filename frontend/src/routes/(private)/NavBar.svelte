@@ -4,7 +4,7 @@
 
 <div class="topnav">
 	<div class="left-links">
-		<a class="active" href="#home">Home</a>
+		<a class="active" href="tableau-de-bord">Home</a>
 		<a href="comprehension-orale">Listening comprehension</a>
 		<a href="comprension-ecrite">Written comprehension</a>
 		<a href="expression-ecrite">Written expression</a>
