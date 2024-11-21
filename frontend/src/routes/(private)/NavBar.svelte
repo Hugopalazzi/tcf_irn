@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { Icon, User } from 'svelte-hero-icons';
 </script>
 
@@ -11,9 +11,6 @@
 	</div>
 
 	<a href="mon-compte"><Icon src={User} size="18" /></a>
-</div>
-<div >
-	<slot />
 </div>
 
 <style lang="scss">

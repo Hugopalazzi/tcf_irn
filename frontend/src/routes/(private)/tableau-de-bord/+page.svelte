@@ -23,18 +23,18 @@
 </script>
 
 <h1>Dashboard</h1>
-<h3 class="welcome-msg">Hello, Aryan 👋​</h3>
+<h2 class="welcome-msg">Hello, Aryan 👋​</h2>
 <div class="cards-wrapper">
 	<a href="comprehension-orale" class="card">
-		<h6>Listening comprehension</h6>
+		<h5>Listening comprehension</h5>
 		<Icon src={SpeakerWave} size="20" />
 	</a>
 	<a href="comprension-ecrite" class="card">
-		<p>Written comprehension</p>
+		<h3>Written comprehension</h3>
 		<Icon src={BookOpen} size="20" />
 	</a>
 	<a href="expression-ecrite" class="card">
-		<p>Written expression</p>
+		<h3>Written expression</h3>
 		<Icon src={ChatBubbleBottomCenterText} size="20" />
 	</a>
 </div>
