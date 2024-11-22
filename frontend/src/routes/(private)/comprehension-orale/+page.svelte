@@ -6,59 +6,59 @@
 <h1>List of sets</h1>
 
 <div class="sets-list">
-	<div class="set-card">
+	<a class="set-card" href = "/comprehension-orale/1">
 		<h2>Set 1 <Icon src={SpeakerWave} size="32" /></h2>
 		<span class="exam-type"> Written comprehension</span>
 		<ProgressBar goodAnwser={20} />
-	</div>
-	<div class="set-card">
+	</a>
+	<a class="set-card" href = "/comprehension-orale/2">
 		<h2>
 			Set 2
 			<Icon src={SpeakerWave} size="32" />
 		</h2>
 		<span class="exam-type"> Written comprehension</span>
 		<ProgressBar goodAnwser={16} />
-	</div>
-	<div class="set-card">
+	</a>
+	<a class="set-card" href = "/comprehension-orale/3">
 		<h2>
 			Set 3
 			<Icon src={SpeakerWave} size="32" />
 		</h2>
 		<span class="exam-type"> Written comprehension</span>
 		<ProgressBar goodAnwser={15} />
-	</div>
-	<div class="set-card">
+	</a>
+	<a class="set-card" href = "/comprehension-orale/4">
 		<h2>
 			Set 4
 			<Icon src={SpeakerWave} size="32" />
 		</h2>
 		<span class="exam-type"> Written comprehension</span>
 		<ProgressBar goodAnwser={11} />
-	</div>
-	<div class="set-card">
+	</a>
+	<a class="set-card" href = "/comprehension-orale/5">
 		<h2>
 			Set 5
 			<Icon src={SpeakerWave} size="32" />
 		</h2>
 		<span class="exam-type"> Written comprehension</span>
 		<ProgressBar goodAnwser={7} />
-	</div>
-	<div class="set-card">
+	</a>
+	<a class="set-card" href = "/comprehension-orale/6">
 		<h2>
 			Set 6
 			<Icon src={SpeakerWave} size="32" />
 		</h2>
 		<span class="exam-type"> Written comprehension</span>
 		<ProgressBar goodAnwser={4} />
-	</div>
-	<div class="set-card">
+	</a>
+	<a class="set-card" href = "/comprehension-orale/7">
 		<h2>
 			Set 7
 			<Icon src={SpeakerWave} size="32" />
 		</h2>
 		<span class="exam-type"> Written comprehension</span>
 		<ProgressBar goodAnwser={2} />
-	</div>
+	</a>
 </div>
 
 <style lang="scss">
@@ -70,7 +70,7 @@
 		.set-card {
 			background-color: var(--bg-card-grey);
 			border-radius: rem(12);
-			padding: rem(12);
+			padding: rem(24);
 
 			.exam-type {
 				color: var(--title-card-grey);

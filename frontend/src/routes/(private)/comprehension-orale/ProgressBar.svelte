@@ -11,7 +11,7 @@
 		style="width: {(100 * (goodAnwser ?? 0)) / 20}%; "
 		class="progress-bar"
 		class:low={goodAnwser <= 7}
-		class:medium={goodAnwser <= 13}
+		class:medium={goodAnwser <= 13 && goodAnwser > 7}
 		class:good={goodAnwser > 13}
 	></div>
 	<span class="progress-text">{goodAnwser}/20</span>
@@ -23,6 +23,8 @@
 		grid-template-columns: 1fr auto;
 		align-items: center;
 		gap: rem(8);
+		margin-top: rem(4);
+
 		.progress-bar {
 			height: rem(12);
 			border-radius: rem(12);
