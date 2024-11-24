@@ -2,12 +2,14 @@
 	import BackButton from '@tcf/lib/widgets/BackButton.svelte';
 	import type { PageData } from './$types';
 	import MeltProgressBar from '$lib/widgets/MeltProgressBar.svelte';
-    import { superForm } from 'sveltekit-superforms/client';
+	import { superForm } from 'sveltekit-superforms/client';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
 	import { listeningComprehensionSchema } from '@tcf/models/forms/mcqSchema';
 	import { zod } from 'sveltekit-superforms/adapters';
 
 	const { data }: { data: PageData } = $props();
+
+	let index = 0;
 
 	const suprForm = superForm(data.form, {
 		validators: zod(listeningComprehensionSchema),
@@ -28,6 +30,8 @@
 		}
 	});
 	const { form, errors, enhance, isTainted, submitting } = suprForm;
+
+	let selectedResponse = $state(null);
 </script>
 
 <div class="container">
@@ -46,34 +50,29 @@
 
 		<div class="radios">
 			<form enctype="multipart/form-data" method="POST" autocomplete="off" use:enhance>
-				<span class="question">Quel est la couleur qui était question 4 ?</span>
+				<span class="question">{data.exam[index].question}</span>
 				<div class="options">
-					<div class="radio">
-						<label for="response1"
-							><input type="radio" id="response1" value={1} />
-							<span>test</span>
-						</label>
-					</div>
-					<div class="radio">
-						<label for="response2"
-							><input type="radio" id="response2" value={2} />
-							<span>test</span>
-						</label>
-					</div>
-					<div class="radio">
-						<label for="response3"
-							><input type="radio" id="response3" value={3} />
-							<span>test</span>
-						</label>
-					</div>
-					<div class="radio">
-						<label for="response4"
-							><input type="radio" id="response4" value={4} />
-							<span>test</span>
-						</label>
-					</div>
+					{#each data.exam[index].responses as responseChoice, responseIndex}
+						<div class="radio">
+							<label for="response{responseIndex}"
+								><input
+									type="radio"
+									id="response{responseIndex}"
+									value={responseIndex}
+									bind:group={selectedResponse}
+								/>
+								<span>{responseChoice} {responseIndex}</span>
+							</label>
+						</div>
+					{/each}
 				</div>
 			</form>
+		</div>
+
+		<div class="bottom-card-buttons">
+			<button class="btn btn-tertiary">Skip</button>
+			<span class="question-count">2/20</span>
+			<button class="btn btn-primary btn-small">Next</button>
 		</div>
 	</div>
 </div>
@@ -119,11 +118,27 @@
 				}
 			}
 
-			.exam-wrapper {
-				.question {
-					font-size: var(--text-xl);
-					font-weight: 600;
+			// .exam-wrapper {
+			// 	.question {
+			// 		font-size: var(--text-xl);
+			// 		font-weight: 600;
+			// 	}
+			// }
+
+			.bottom-card-buttons {
+				margin: rem(48) rem(32) 0 rem(32);
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				.question-count{
+					background-color: var(--correct-input); 
+					padding:rem(4) rem(12);
+					border-radius: rem(24);
+					color: #000;
+					font-weight:600
 				}
+
 			}
 		}
 	}

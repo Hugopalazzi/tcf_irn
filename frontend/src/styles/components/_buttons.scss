@@ -5,7 +5,7 @@
 .btn {
     font-family: var(--clanOT);
     font-weight: var(--medium);
-    font-size: var(--text-sm);
+    font-size: var(--text-lg);
     letter-spacing: 0;
     text-align: center;
     appearance: none;
@@ -123,6 +123,13 @@
     &:focus {
         font-weight: 600;
     }
+}
+
+.btn-small {
+    width: auto;
+    height: auto;
+    padding: rem(12) rem(24);
+    border-radius: rem(24);
 }
 
 .btn-danger {
