@@ -2,32 +2,32 @@
 	import BackButton from '@tcf/lib/widgets/BackButton.svelte';
 	import type { PageData } from './$types';
 	import MeltProgressBar from '$lib/widgets/MeltProgressBar.svelte';
-	import { superForm } from 'sveltekit-superforms';
+    import { superForm } from 'sveltekit-superforms/client';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
 	import { listeningComprehensionSchema } from '@tcf/models/forms/mcqSchema';
 	import { zod } from 'sveltekit-superforms/adapters';
 
 	const { data }: { data: PageData } = $props();
 
-	
-    const suprForm = superForm(data.form, {
-        validators: zod(listeningComprehensionSchema),
-        ...superFormDefaultConfig,
-        resetForm: true,
-   
-        async onResult({ result }) {
-            // if (result.type === 'success') {
-            //     await goto('.').then(() => addSuccessToast(`L'action "${$form.title}" a bien été créé.`));
-            // }
-        },
-        onError({ result }) {
-            // if (result.error.message) {
-            //     addErrorToast(result.error.message);
-            // } else {
-            //     addErrorToast();
-            // }
-        }
-    });
+	const suprForm = superForm(data.form, {
+		validators: zod(listeningComprehensionSchema),
+		...superFormDefaultConfig,
+		resetForm: true,
+
+		async onResult({ result }) {
+			// if (result.type === 'success') {
+			//     await goto('.').then(() => addSuccessToast(`L'action "${$form.title}" a bien été créé.`));
+			// }
+		},
+		onError({ result }) {
+			// if (result.error.message) {
+			//     addErrorToast(result.error.message);
+			// } else {
+			//     addErrorToast();
+			// }
+		}
+	});
+	const { form, errors, enhance, isTainted, submitting } = suprForm;
 </script>
 
 <div class="container">
@@ -45,33 +45,35 @@
 		</div>
 
 		<div class="radios">
-			<span class="question">Quel est la couleur qui était question 4 ?</span>
-			<div class="options">
-				<div class="radio">
-					<label for="response1"
-						><input type="radio" id="response1" value={1} />
-						<span>test</span>
-					</label>
+			<form enctype="multipart/form-data" method="POST" autocomplete="off" use:enhance>
+				<span class="question">Quel est la couleur qui était question 4 ?</span>
+				<div class="options">
+					<div class="radio">
+						<label for="response1"
+							><input type="radio" id="response1" value={1} />
+							<span>test</span>
+						</label>
+					</div>
+					<div class="radio">
+						<label for="response2"
+							><input type="radio" id="response2" value={2} />
+							<span>test</span>
+						</label>
+					</div>
+					<div class="radio">
+						<label for="response3"
+							><input type="radio" id="response3" value={3} />
+							<span>test</span>
+						</label>
+					</div>
+					<div class="radio">
+						<label for="response4"
+							><input type="radio" id="response4" value={4} />
+							<span>test</span>
+						</label>
+					</div>
 				</div>
-				<div class="radio">
-					<label for="response2"
-						><input type="radio" id="response2" value={2} />
-						<span>test</span>
-					</label>
-				</div>
-				<div class="radio">
-					<label for="response3"
-						><input type="radio" id="response3" value={3} />
-						<span>test</span>
-					</label>
-				</div>
-				<div class="radio">
-					<label for="response4"
-						><input type="radio" id="response4" value={4} />
-						<span>test</span>
-					</label>
-				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 </div>

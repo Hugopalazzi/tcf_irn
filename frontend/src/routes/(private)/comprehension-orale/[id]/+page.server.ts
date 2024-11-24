@@ -7,6 +7,10 @@ export const load = async ({ params }) => {
     const title = ` Module ${params.id}`
 
     const form = await superValidate(zod(listeningComprehensionSchema));
+
+    const exam = [{
+        audio: "/filepath",
+    }]
     return {
         form,
         title
