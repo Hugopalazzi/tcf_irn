@@ -1,10 +1,33 @@
 <script lang="ts">
 	import BackButton from '@tcf/lib/widgets/BackButton.svelte';
 	import type { PageData } from './$types';
-	import MeltProgressBar from './MeltProgressBar.svelte';
-	import { formFieldProxy } from 'sveltekit-superforms';
+	import MeltProgressBar from '$lib/widgets/MeltProgressBar.svelte';
+	import { superForm } from 'sveltekit-superforms';
+	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
+	import { listeningComprehensionSchema } from '@tcf/models/forms/mcqSchema';
+	import { zod } from 'sveltekit-superforms/adapters';
 
 	const { data }: { data: PageData } = $props();
+
+	
+    const suprForm = superForm(data.form, {
+        validators: zod(listeningComprehensionSchema),
+        ...superFormDefaultConfig,
+        resetForm: true,
+   
+        async onResult({ result }) {
+            // if (result.type === 'success') {
+            //     await goto('.').then(() => addSuccessToast(`L'action "${$form.title}" a bien été créé.`));
+            // }
+        },
+        onError({ result }) {
+            // if (result.error.message) {
+            //     addErrorToast(result.error.message);
+            // } else {
+            //     addErrorToast();
+            // }
+        }
+    });
 </script>
 
 <div class="container">
