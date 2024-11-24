@@ -14,12 +14,8 @@
 <div class="wrapper">
 	<div class="wrapper__body">
 		<main id="contenu-site">
-			<div>
-				<NavBar />
-			</div>
-			<div>
-				{@render children?.()}
-			</div>
+			<NavBar />
+			{@render children?.()}
 		</main>
 	</div>
 </div>

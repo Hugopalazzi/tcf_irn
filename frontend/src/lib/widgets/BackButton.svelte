@@ -2,8 +2,13 @@
 	import { ArrowLeft, Icon } from 'svelte-hero-icons';
 	import { historyManager } from '$lib/widgets/history.store';
 
-	export let fallbackUrl = '..';
-	export let forcedUrl = '';
+	interface Props {
+		fallbackUrl?: string;
+		forcedUrl?: string;
+		displayText?: boolean;
+	}
+
+	let { fallbackUrl = '..', forcedUrl = '', displayText = false }: Props = $props();
 </script>
 
 <div>
@@ -16,8 +21,10 @@
 	>
 		<slot>
 			<div class="default">
-				<Icon src={ArrowLeft} size="18" />
-				<span>Retour</span>
+				<Icon src={ArrowLeft} size="32" />
+				{#if displayText}
+					<span>Retour</span>
+				{/if}
 				<span class="sr-only">à la page précédente</span>
 			</div>
 		</slot>

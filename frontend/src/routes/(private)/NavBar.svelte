@@ -4,10 +4,10 @@
 
 <div class="topnav">
 	<div class="left-links">
-		<a class="active" href="tableau-de-bord">Home</a>
-		<a href="comprehension-orale">Listening comprehension</a>
-		<a href="comprension-ecrite">Written comprehension</a>
-		<a href="expression-ecrite">Written expression</a>
+		<a class="active" href="/tableau-de-bord">Home</a>
+		<a href="/comprehension-orale">Listening comprehension</a>
+		<a href="/comprension-ecrite">Written comprehension</a>
+		<a href="/expression-ecrite">Written expression</a>
 	</div>
 
 	<a href="mon-compte"><Icon src={User} size="18" /></a>

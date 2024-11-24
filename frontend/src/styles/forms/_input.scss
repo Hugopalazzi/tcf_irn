@@ -18,11 +18,12 @@ label,
     font-size: var(--text-sm);
     font-weight: 600;
     color: var(--label-color);
-    text-transform: uppercase;
     line-height: rem(20);
     display: block;
 
-
+    &.uppercase{
+        text-transform: uppercase;
+    }
 
     &.optional-field,
     &.required-field {

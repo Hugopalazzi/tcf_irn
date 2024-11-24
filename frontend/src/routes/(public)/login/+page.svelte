@@ -42,7 +42,7 @@
 
 		<form method="POST" autocomplete="off" use:enhance>
 			<div class="input-wrapper">
-				<label for="email"> Your email </label>
+				<label class="uppercase" for="email"> Your email </label>
 				<input
 					bind:value={$form.email}
 					class:error={!!$errors?.email}
@@ -53,7 +53,7 @@
 				<FormError errors={$errors?.email} />
 			</div>
 			<div class="input-wrapper">
-				<label for="password"> Your password </label>
+				<label class="uppercase" for="password"> Your password </label>
 				<input
 					bind:value={$form.password}
 					class:error={!!$errors?.password}
