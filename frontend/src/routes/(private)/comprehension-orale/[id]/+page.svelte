@@ -6,6 +6,8 @@
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
 	import { listeningComprehensionSchema } from '@tcf/models/forms/mcqSchema';
 	import { zod } from 'sveltekit-superforms/adapters';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 
 	const { data }: { data: PageData } = $props();
 
@@ -17,9 +19,9 @@
 		resetForm: true,
 
 		async onResult({ result }) {
-			// if (result.type === 'success') {
-			//     await goto('.').then(() => addSuccessToast(`L'action "${$form.title}" a bien été créé.`));
-			// }
+			if (result.type === 'success') {
+				await goto(`${$page.url.pathname}/recapitulatif`);
+			}
 		},
 		onError({ result }) {
 			// if (result.error.message) {
@@ -34,9 +36,12 @@
 
 	function goToNextQuestion() {
 		$form.userResponses.push(selectedResponse);
-		console.log($form)
-		index += 1;
-		selectedResponse = null;
+		$form.userResponses = $form.userResponses;
+
+		if (index+1 < data.exam.length) {
+			index += 1;
+			selectedResponse = null;
+		}
 	}
 </script>
 
@@ -54,32 +59,45 @@
 			<div class="tips-wrapper"><button class="btn btn-quaternary">Tips</button></div>
 		</div>
 
-		<div class="radios">
-			<form enctype="multipart/form-data" method="POST" autocomplete="off" use:enhance>
+		<form enctype="multipart/form-data" method="POST" autocomplete="off" use:enhance>
+			<div class="radios">
 				<span class="question">{data.exam[index].question}</span>
 				<div class="options">
 					{#each data.exam[index].responses as responseChoice, responseIndex}
 						<div class="radio">
-							<label for="response{responseIndex}"
+							<label for="userResponses[{responseIndex}]"
 								><input
-									type="radio"
-									id="response{responseIndex}"
-									value={responseIndex}
 									bind:group={selectedResponse}
+									type="radio"
+									id="userResponses[{responseIndex}]"
+									name="userResponses[{responseIndex}]"
+									value={responseIndex}
 								/>
 								<span>{responseChoice} {responseIndex}</span>
 							</label>
 						</div>
 					{/each}
 				</div>
-			</form>
-		</div>
+			</div>
 
-		<div class="bottom-card-buttons">
-			<button onclick={goToNextQuestion} class="btn btn-tertiary">Skip</button>
-			<span class="question-count">2/20</span>
-			<button onclick={goToNextQuestion} class="btn btn-primary btn-small">Next</button>
-		</div>
+			<div class="bottom-card-buttons">
+				{#if index + 1 === data.exam.length}
+					<button type="submit" class="btn btn-tertiary">Skip</button>
+				{:else}
+					<button onclick={goToNextQuestion} class="btn btn-tertiary">Skip</button>
+				{/if}
+				<span class="question-count">{index + 1}/{data.exam.length}</span>
+				{#if index + 1 === data.exam.length}
+					<button type="submit" onclick={goToNextQuestion} class="btn btn-primary btn-small"
+						>Submit</button
+					>
+				{:else}
+					<button type="button" onclick={goToNextQuestion} class="btn btn-primary btn-small"
+						>Next</button
+					>
+				{/if}
+			</div>
+		</form>
 	</div>
 </div>
 

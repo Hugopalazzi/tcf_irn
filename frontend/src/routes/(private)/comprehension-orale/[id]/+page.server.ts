@@ -21,10 +21,30 @@ export const load = async ({ params }) => {
         audio: "/src/static/audio/test",
         question: "Comment tu t'appel ?",
         responses: ["Jean", "Malouche", "Cor", "Hugo"]
+    },
+    {
+        audio: "/src/static/audio/test",
+        question: "cc tu t'appel ?",
+        responses: ["c", "Malouche", "Cor", "Hugo"]
     }]
     return {
         form,
         title,
         exam
     };
+};
+
+
+export const actions = {
+    default: async ({ request, locals }) => {
+        const requestFormData = await request.formData();
+        const superForm = await superValidate(requestFormData, zod(listeningComprehensionSchema));
+
+        return {
+            form: superForm,
+            success: true,
+            status: 200,
+            statusText: 'Out Of Apples',
+        }
+    }
 };
