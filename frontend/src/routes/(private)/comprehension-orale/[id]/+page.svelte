@@ -9,7 +9,7 @@
 
 	const { data }: { data: PageData } = $props();
 
-	let index = 0;
+	let index = $state(0);
 
 	const suprForm = superForm(data.form, {
 		validators: zod(listeningComprehensionSchema),
@@ -30,8 +30,14 @@
 		}
 	});
 	const { form, errors, enhance, isTainted, submitting } = suprForm;
-
 	let selectedResponse = $state(null);
+
+	function goToNextQuestion() {
+		$form.userResponses.push(selectedResponse);
+		console.log($form)
+		index += 1;
+		selectedResponse = null;
+	}
 </script>
 
 <div class="container">
@@ -70,9 +76,9 @@
 		</div>
 
 		<div class="bottom-card-buttons">
-			<button class="btn btn-tertiary">Skip</button>
+			<button onclick={goToNextQuestion} class="btn btn-tertiary">Skip</button>
 			<span class="question-count">2/20</span>
-			<button class="btn btn-primary btn-small">Next</button>
+			<button onclick={goToNextQuestion} class="btn btn-primary btn-small">Next</button>
 		</div>
 	</div>
 </div>
@@ -118,27 +124,19 @@
 				}
 			}
 
-			// .exam-wrapper {
-			// 	.question {
-			// 		font-size: var(--text-xl);
-			// 		font-weight: 600;
-			// 	}
-			// }
-
 			.bottom-card-buttons {
 				margin: rem(48) rem(32) 0 rem(32);
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
 
-				.question-count{
-					background-color: var(--correct-input); 
-					padding:rem(4) rem(12);
+				.question-count {
+					background-color: var(--correct-input);
+					padding: rem(4) rem(12);
 					border-radius: rem(24);
 					color: #000;
-					font-weight:600
+					font-weight: 600;
 				}
-
 			}
 		}
 	}
