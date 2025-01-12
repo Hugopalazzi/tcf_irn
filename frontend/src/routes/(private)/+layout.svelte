@@ -8,7 +8,7 @@
 		children?: Snippet;
 	}
 
-	let { data, children }: Props = $props();
+	let { children }: Props = $props();
 </script>
 
 <div class="wrapper">
