@@ -1,13 +1,13 @@
 <script lang="ts">
-	import BackButton from '@tcf/lib/widgets/BackButton.svelte';
+	import BackButton from '@tcf/lib/components/BackButton.svelte';
 	import type { PageData } from './$types';
-	import MeltProgressBar from '$lib/widgets/MeltProgressBar.svelte';
+	import MeltProgressBar from '@tcf/lib/components/MeltProgressBar.svelte';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
 	import { listeningComprehensionSchema } from '@tcf/models/forms/mcqSchema';
 	import { zod } from 'sveltekit-superforms/adapters';
 	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 
 	const { data }: { data: PageData } = $props();
 

@@ -4,7 +4,7 @@ export const load = async ({ locals }) => {
     const session = await locals.auth();
 
     if (session) {
-        redirect(301, '/tableau-de-bord')
+       redirect(302, '/dashboard');
     }
 
     return { session };

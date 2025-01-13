@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ArrowLeft, Icon } from 'svelte-hero-icons';
-	import { historyManager } from '$lib/widgets/history.store';
+	import { historyManager } from '@tcf/lib/components/history.store';
 
 	interface Props {
 		fallbackUrl?: string;

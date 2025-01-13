@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import FormError from '@tcf/lib/FormError.svelte';
-	import BackButton from '@tcf/lib/widgets/BackButton.svelte';
+	import BackButton from '@tcf/lib/components/BackButton.svelte';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
 	import { userLoginSchema } from '@tcf/models/forms/userSchema';
 	import { addErrorToast } from '@tcf/toast/toast.service';
@@ -18,7 +18,7 @@
 
 		async onResult({ result }) {
 			if (result.type === 'success') {
-				await goto(`/tableau-de-bord`);
+				await goto(`/dashboard`);
 			} else if (result.type === 'error') {
 				if (result.error?.message) {
 					addErrorToast(result.error.message);

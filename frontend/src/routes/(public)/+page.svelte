@@ -27,7 +27,7 @@
 		<button on:click={() => signOut()}>signout</button>
 
 		<div class="two-button">
-			<button on:click={() => signIn()}>google</button>
+			<button on:click={() => signIn('google')}>google</button>
 			<!-- <form class="auth-form" method="post" action="?/OAuth2">
 				<div>
 					<button class="btn-auth"  type="submit">

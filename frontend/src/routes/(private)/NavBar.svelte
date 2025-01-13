@@ -10,7 +10,7 @@
 		<a href="/comprension-ecrite">Written comprehension</a>
 		<a href="/expression-ecrite">Written expression</a>
 	</div>
-	<button on:click={() => signOut()}>signout</button>
+	<button on:click={async () => await signOut()}>signout</button>
 
 	<a href="mon-compte"><Icon src={User} size="18" /></a>
 </div>
@@ -56,7 +56,6 @@
 		}
 	}
 
-	
 	:global(.topnav a svg:hover) {
 		zoom: 1.1;
 	}
