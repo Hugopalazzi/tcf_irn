@@ -5,6 +5,11 @@
 	import { goto } from '$app/navigation';
 	import { signIn, signOut } from '@auth/sveltekit/client';
 	import { page } from '$app/state';
+
+
+	const {data} = $props();
+
+	$inspect(data.userProfile )
 </script>
 
 <div class="page-container">
