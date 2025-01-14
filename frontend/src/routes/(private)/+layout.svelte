@@ -12,10 +12,8 @@
 </script>
 
 <div class="wrapper">
-	<div class="wrapper__body">
-		<main id="contenu-site">
-			<NavBar />
-			{@render children?.()}
-		</main>
-	</div>
+	<main>
+		<NavBar />
+		{@render children?.()}
+	</main>
 </div>
