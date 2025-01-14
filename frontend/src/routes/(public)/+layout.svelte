@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { invalidate } from '$app/navigation';
 	import '@tcf/styles/styles.scss';
 	import ToastHolder from '@tcf/toast/ToastHolder.svelte';
+
+	let { data, children } = $props();
 </script>
 
 <div class="wrapper">
@@ -11,7 +14,7 @@
 					<ToastHolder />
 				</div>
 			</div>
-			<slot />
+			{@render children()}
 		</main>
 	</div>
 </div>

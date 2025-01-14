@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ArrowLeft, Icon } from 'svelte-hero-icons';
-	import { historyManager } from '@tcf/lib/components/history.store';
+	import { goto } from '$app/navigation';
 
 	interface Props {
 		fallbackUrl?: string;
@@ -15,19 +15,17 @@
 	<button
 		type="button"
 		role="link"
-		on:click={() => $historyManager.back(forcedUrl || fallbackUrl)}
+		on:click={() => goto(forcedUrl ?? fallbackUrl)}
 		title="Retour à la page précédente"
 		class="btn btn-tertiary"
 	>
-		<slot>
-			<div class="default">
-				<Icon src={ArrowLeft} size="32" />
-				{#if displayText}
-					<span>Retour</span>
-				{/if}
-				<span class="sr-only">à la page précédente</span>
-			</div>
-		</slot>
+		<div class="default">
+			<Icon src={ArrowLeft} size="32" />
+			{#if displayText}
+				<span>Retour</span>
+			{/if}
+			<span class="sr-only">à la page précédente</span>
+		</div>
 	</button>
 </div>
 

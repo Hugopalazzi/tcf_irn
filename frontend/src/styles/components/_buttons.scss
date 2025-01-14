@@ -62,8 +62,11 @@
     border: rem(1) solid var(--white);
     color: var(--secondary-900);
     box-shadow: var(--shadow-sm);
+    align-content: center;
     border-radius: rem(16);
     color: var(--white);
+    width: 100%;
+
 
     &:hover {
         transform: scale(1.02);
