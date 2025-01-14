@@ -5,16 +5,13 @@ declare global {
     // interface Error {}
     interface Locals {
       supabase: SupabaseClient
-      safeGetSession: () => Promise<{ session: Session | null; user: User | null }>
-      session: Session | null
+      safeGetUser: () => Promise<{ user: User | null }>
       user: User | null
     }
-    interface PageData {
-      session: Session | null
-    }
+    
     // interface PageState {}
     // interface Platform {}
   }
 }
 
-export {}
+export { }

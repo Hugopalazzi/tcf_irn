@@ -1,21 +1,9 @@
-// import { redirect } from "@sveltejs/kit";
-
-// export const load = async ({ locals }) => {
-//     const session = await locals.auth();
-
-//     if (session) {
-//        redirect(302, '/dashboard');
-//     }
-
-//     return { session };
-// }
-
 import type { LayoutServerLoad } from './$types'
 
-export const load: LayoutServerLoad = async ({ locals: { safeGetSession }, cookies }) => {
-  const { session } = await safeGetSession()
+export const load: LayoutServerLoad = async ({ locals: { safeGetUser }, cookies }) => {
+  const { user } = await safeGetUser()
   return {
-    session,
+    user,
     cookies: cookies.getAll(),
   }
 }

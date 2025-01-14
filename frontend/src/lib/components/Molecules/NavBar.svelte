@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { signOut } from '@auth/sveltekit/client';
 	import { Icon, User } from 'svelte-hero-icons';
 </script>
 
@@ -10,8 +9,7 @@
 		<a href="/comprension-ecrite">Written comprehension</a>
 		<a href="/expression-ecrite">Written expression</a>
 	</div>
-	<button on:click={async () => await signOut()}>signout</button>
-
+	<a href="/logout"> Logout </a>
 	<a href="mon-compte"><Icon src={User} size="18" /></a>
 </div>
 

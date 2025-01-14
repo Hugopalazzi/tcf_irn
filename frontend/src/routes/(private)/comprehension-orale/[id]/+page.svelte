@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
-	import MeltProgressBar from '$lib/widgets/MeltProgressBar.svelte';
-	import BackButton from '@tcf/lib/widgets/BackButton.svelte';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
 	import { listeningComprehensionSchema } from '@tcf/models/forms/mcqSchema';
 	import { zod } from 'sveltekit-superforms/adapters';
 	import { superForm } from 'sveltekit-superforms/client';
 	import type { PageData } from './$types';
+	import BackButton from '@tcf/lib/components/Atoms/BackButton.svelte';
+	import MeltProgressBar from '@tcf/lib/components/Molecules/MeltProgressBar.svelte';
+	import { page } from '$app/state';
 
 	const { data }: { data: PageData } = $props();
 
@@ -20,7 +20,7 @@
 
 		async onResult({ result }) {
 			if (result.type === 'success') {
-				await goto(`${$page.url.pathname}/recapitulatif`);
+				await goto(`${page.url.pathname}/recapitulatif`);
 			}
 		},
 		onError({ result }) {

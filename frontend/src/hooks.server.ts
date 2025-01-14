@@ -27,28 +27,18 @@ const supabase: Handle = async ({ event, resolve }) => {
   })
 
   /**
-   * Unlike `supabase.auth.getSession()`, which returns the session _without_
-   * validating the JWT, this function also calls `getUser()` to validate the
-   * JWT before returning the session.
+   * This function calls `getUser()` to validate the JWT before returning the user.
    */
-  event.locals.safeGetSession = async () => {
-    const {
-      data: { session },
-    } = await event.locals.supabase.auth.getSession()
-    if (!session) {
-      return { session: null, user: null }
-    }
-
+  event.locals.safeGetUser = async () => {
     const {
       data: { user },
       error,
     } = await event.locals.supabase.auth.getUser()
     if (error) {
       // JWT validation has failed
-      return { session: null, user: null }
+      return { user: null }
     }
-
-    return { session, user }
+    return { user }
   }
 
   return resolve(event, {
@@ -63,35 +53,23 @@ const supabase: Handle = async ({ event, resolve }) => {
 }
 
 const authGuard: Handle = async ({ event, resolve }) => {
-  const { session, user } = await event.locals.safeGetSession()
-  event.locals.session = session
+  const { user } = await event.locals.safeGetUser()
   event.locals.user = user
+  const url = event.url.pathname;
 
-  if (!event.locals.session && event.url.pathname.startsWith('/private')) {
-    redirect(303, '/auth')
+  const allowedPublicRoutes = ['/auth/login/google', '/auth/callback', '/inscription', '/login', '/'];
+  const allowedPrivateRoutes = ['/dashboard', '/comprehension-orale', '/comprehension-ecrite', '/expression-ecrite', '/logout'];
+
+  if (!user && !allowedPublicRoutes.includes(url)) {
+    redirect(303, '/')
   }
+  const isDynamicRouteAllowed = allowedPrivateRoutes.some((prefix) => url.startsWith(prefix));
 
-  if (event.locals.session && event.url.pathname === '/auth') {
-    redirect(303, '/private')
+  if (user && !isDynamicRouteAllowed) {
+    redirect(303, '/dashboard')
   }
 
   return resolve(event)
 }
 
 export const handle: Handle = sequence(supabase, authGuard)
-
-// import type { Handle } from "@sveltejs/kit";
-// import { sequence } from "@sveltejs/kit/hooks";
-// import { buildAuthentification } from "@tcf/sso.server";
-
-// const handleRouteAccess: Handle = async ({ event, resolve }) => {
-//     if (event.route.id === 'login' || event.route.id === 'inscription') {
-//         resolve(event)
-//     }
-//     // const session = await event.locals?.auth();
-
-//     return resolve(event)
-// }
-
-
-// export const handle: Handle = sequence(handleRouteAccess, buildAuthentification)
