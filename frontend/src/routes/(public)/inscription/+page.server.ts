@@ -21,12 +21,16 @@ export const actions = {
 			return fail(400, { form });
 		}
 
+		const {
+			data: { email, password, username }
+		} = form;
+
 		await locals.supabase.auth.signUp({
-			email: form.data.email,
-			password: form.data.password,
+			email: email,
+			password: password,
 			options: {
 				data: {
-					name: form.data.username
+					name: username
 				}
 			}
 		});
