@@ -65,14 +65,13 @@
 				<div class="options">
 					{#each data.exam[index].responses as responseChoice, responseIndex}
 						<div class="radio">
-							<label for="userResponses[{responseIndex}]"
-								><input
+							<label for="userResponses[{responseIndex}]"></label>
+								<input
 									bind:group={selectedResponse}
 									type="radio"
 									id="userResponses[{responseIndex}]"
 									name="userResponses[{responseIndex}]"
-									value={responseIndex}
-								/>
+									value={responseIndex} />
 								<span>{responseChoice} {responseIndex}</span>
 							</label>
 						</div>
@@ -88,13 +87,9 @@
 				{/if}
 				<span class="question-count">{index + 1}/{data.exam.length}</span>
 				{#if index + 1 === data.exam.length}
-					<button type="submit" onclick={goToNextQuestion} class="btn btn-primary btn-small"
-						>Submit</button
-					>
+					<button type="submit" onclick={goToNextQuestion} class="btn btn-primary btn-small">Submit</button>
 				{:else}
-					<button type="button" onclick={goToNextQuestion} class="btn btn-primary btn-small"
-						>Next</button
-					>
+					<button type="button" onclick={goToNextQuestion} class="btn btn-primary btn-small">Next</button>
 				{/if}
 			</div>
 		</form>

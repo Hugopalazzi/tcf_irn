@@ -42,52 +42,36 @@
 
 		<form method="POST" autocomplete="off" use:enhance>
 			<div class="input-wrapper">
-				<label class="uppercase" for="email"> Your email </label>
-				<input
-					bind:value={$form.email}
-					class:error={!!$errors?.email}
-					id="email"
-					name="email"
-					placeholder="john.doe@mail.com"
-				/>
+				<label class="uppercase" for="email">Your email</label>
+				<input bind:value={$form.email} class:error={!!$errors?.email} id="email" name="email" placeholder="john.doe@mail.com" />
 				<FormError errors={$errors?.email} />
 			</div>
 			<div class="input-wrapper">
-				<label class="uppercase" for="username"> Your username </label>
-				<input
-					bind:value={$form.username}
-					class:error={!!$errors?.username}
-					id="username"
-					name="username"
-					placeholder="johndoe"
-				/>
+				<label class="uppercase" for="username">Your username</label>
+				<input bind:value={$form.username} class:error={!!$errors?.username} id="username" name="username" placeholder="johndoe" />
 				<FormError errors={$errors?.username} />
 			</div>
 			<div class="input-wrapper">
-				<label class="uppercase" for="password"> Set password </label>
+				<label class="uppercase" for="password">Set password</label>
 				<input
 					bind:value={$form.password}
 					type="password"
 					id="password"
 					name="password"
 					placeholder="New password"
-					class:error={!!$errors?.password}
-				/>
+					class:error={!!$errors?.password} />
 				<FormError errors={$errors?.password} />
 			</div>
 			<div class="input-wrapper">
-				<label class="uppercase" for="passwordConfirmation"> Password confirmation </label>
+				<label class="uppercase" for="passwordConfirmation">Password confirmation</label>
 				<input
 					bind:value={$form.passwordConfirmation}
 					class:error={!!$errors?.passwordConfirmation}
 					type="password"
 					id="passwordConfirmation"
 					name="passwordCconfirmation"
-					placeholder="Confirm your password"
-				/>
-				<FormError
-					errors={!$form?.passwordConfirmation ? $errors?.passwordConfirmation : $errors?._errors}
-				/>
+					placeholder="Confirm your password" />
+				<FormError errors={!$form?.passwordConfirmation ? $errors?.passwordConfirmation : $errors?._errors} />
 			</div>
 
 			<button type="submit" class="btn btn-primary btn-icon">

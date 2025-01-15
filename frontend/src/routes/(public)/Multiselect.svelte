@@ -66,13 +66,12 @@
 		margin-bottom: rem(4);
 
 		.selected-language {
-			color:black;
+			color: black;
 			max-width: rem(400);
 			overflow: hidden;
 			text-align: left;
 			font-weight: 600;
 			padding-left: rem(4);
-
 		}
 	}
 

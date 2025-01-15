@@ -1,125 +1,125 @@
 @use '@tcf/styles/utilities/mixins' as *;
 
 :root {
-    /* background color of the pages*/
-    --bg-page-color: #181A20;
-    --bg-card-grey: #262a34;
+	/* background color of the pages*/
+	--bg-page-color: #181a20;
+	--bg-card-grey: #262a34;
 
-    --title-card-grey: #5e6272;
-    --var-grey-200: #3A3F4B;
+	--title-card-grey: #5e6272;
+	--var-grey-200: #3a3f4b;
 
-    --label-color: #9D9D9D;
+	--label-color: #9d9d9d;
 
-    /* purle color */
-    --light-purple: #bc7ae2;
-    --dark-purple: #580488;
+	/* purle color */
+	--light-purple: #bc7ae2;
+	--dark-purple: #580488;
 
-    /* input */
-    --correct-input: #A5F59C;
-    --radio-checked: #0AA461;
+	/* input */
+	--correct-input: #a5f59c;
+	--radio-checked: #0aa461;
 
-    /* button color */
-    --button-primary-color: #246BFD;
+	/* button color */
+	--button-primary-color: #246bfd;
 
-    /* colors */
-    --primary-50: #ebfcfd;
-    --primary-100: #9adcdf;
-    --primary-200: #68cacf;
-    --primary-500: #03a7af;
-    --primary-600: #02757a;
-    --primary-700: #025458;
+	/* colors */
+	--primary-50: #ebfcfd;
+	--primary-100: #9adcdf;
+	--primary-200: #68cacf;
+	--primary-500: #03a7af;
+	--primary-600: #02757a;
+	--primary-700: #025458;
 
-    --secondary-50: #fbfcfc;
-    --secondary-100: #f8f9f9;
-    --secondary-200: #e9eced;
-    --secondary-500: #c4c9cb;
-    --secondary-700: #6d7071;
-    --secondary-800: #414343;
-    --secondary-900: #161616;
+	--secondary-50: #fbfcfc;
+	--secondary-100: #f8f9f9;
+	--secondary-200: #e9eced;
+	--secondary-500: #c4c9cb;
+	--secondary-700: #6d7071;
+	--secondary-800: #414343;
+	--secondary-900: #161616;
 
-    --warning-100: #fff3e3;
-    --warning-500: #ff9000;
+	--warning-100: #fff3e3;
+	--warning-500: #ff9000;
 
-    --success-100: #f3f8e6;
-    --success-300: #b7d768;
-    --success-500: #72ba00;
+	--success-100: #f3f8e6;
+	--success-300: #b7d768;
+	--success-500: #72ba00;
 
-    --error-100: #d73d3d;
-    --error-500: #d73d3d;
+	--error-100: #d73d3d;
+	--error-500: #d73d3d;
 
-    --disabled: var(--secondary-700);
+	--disabled: var(--secondary-700);
 
-    --white: #fff;
-    --grey: #e9eced;
-    --light-grey: #e1e5e7;
-    --cyan-50: #e8f6fa;
-    --cyan-100: #d0edf5;
-    --cyan-200: #a8dfeb;
-    --cyan-500: #64b8c7;
-    --emerald-50: #e6f5eb;
-    --emerald-100: #d0ebdA;
-    --emerald-200: #b8e1c7;
-    --emerald-500: #7bb792;
-    --yellow-50: #fbf4ea;
-    --yellow-100: #fdead0;
-    --yellow-200: #fedebb;
-    --yellow-500: #e3b47b;
-    --red-50: #fae8e8;
-    --red-200: #f58f8f;
-    --red-500: #d73d3d;
-    --red-600: #a73030;
-    --purple-100: #ede9fe;
-    --purple-200: #baa4ce;
-    --sky-200: #98add1;
-    --rose-200: #f7c1c3;
+	--white: #fff;
+	--grey: #e9eced;
+	--light-grey: #e1e5e7;
+	--cyan-50: #e8f6fa;
+	--cyan-100: #d0edf5;
+	--cyan-200: #a8dfeb;
+	--cyan-500: #64b8c7;
+	--emerald-50: #e6f5eb;
+	--emerald-100: #d0ebda;
+	--emerald-200: #b8e1c7;
+	--emerald-500: #7bb792;
+	--yellow-50: #fbf4ea;
+	--yellow-100: #fdead0;
+	--yellow-200: #fedebb;
+	--yellow-500: #e3b47b;
+	--red-50: #fae8e8;
+	--red-200: #f58f8f;
+	--red-500: #d73d3d;
+	--red-600: #a73030;
+	--purple-100: #ede9fe;
+	--purple-200: #baa4ce;
+	--sky-200: #98add1;
+	--rose-200: #f7c1c3;
 
-    --font-primary: 'PPMori-Regular', sans-serif;
+	--font-primary: 'PPMori-Regular', sans-serif;
 
-    --font-secondary: 'ClanOT-NarrowNews', sans-serif;
-    --font-secondary-bold: 'ClanOT-NarrowBold', sans-serif;
+	--font-secondary: 'ClanOT-NarrowNews', sans-serif;
+	--font-secondary-bold: 'ClanOT-NarrowBold', sans-serif;
 
-    --font-narrow-medium: 'ClanOT-NarrowMedium', sans-serif;
+	--font-narrow-medium: 'ClanOT-NarrowMedium', sans-serif;
 
-    --header-height: 4rem;
-    --sibebar-width: 20rem;
-    /* colors */
+	--header-height: 4rem;
+	--sibebar-width: 20rem;
+	/* colors */
 
-    /* font-size */
-    --text-xs: 0.75rem;
-    /* 12px */
-    --text-sm: 0.875rem;
-    /* 14px */
-    --text-base: 1rem;
-    /* 16px */
-    --text-lg: 1.125rem;
-    /* 18px */
-    --text-xl: 1.25rem;
-    /* 20px */
-    --text-2xl: 1.5rem;
-    /* 24px */
-    --text-3xl: 1.5rem;
-    /* 30px */
-    --text-4xl: 1.5rem;
-    /* 36px */
-    --text-5xl: 2.25rem;
-    /* 48px */
-    --text-6xl: 4rem;
-    /* 64px */
-    /* font-size */
+	/* font-size */
+	--text-xs: 0.75rem;
+	/* 12px */
+	--text-sm: 0.875rem;
+	/* 14px */
+	--text-base: 1rem;
+	/* 16px */
+	--text-lg: 1.125rem;
+	/* 18px */
+	--text-xl: 1.25rem;
+	/* 20px */
+	--text-2xl: 1.5rem;
+	/* 24px */
+	--text-3xl: 1.5rem;
+	/* 30px */
+	--text-4xl: 1.5rem;
+	/* 36px */
+	--text-5xl: 2.25rem;
+	/* 48px */
+	--text-6xl: 4rem;
+	/* 64px */
+	/* font-size */
 
-    /* shadow */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-base: 0 0 10px 0 rgba(0, 0, 0, 0.05);
-    /* shadow */
+	/* shadow */
+	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	--shadow-md: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+	--shadow-base: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+	/* shadow */
 
-    /* borders */
-    --border-sm: 2px solid var(--primary-600);
-    --border-md: 2px solid var(--primary-200);
-    --border-base: 2px solid #e5e5e5;
-    /* borders */
+	/* borders */
+	--border-sm: 2px solid var(--primary-600);
+	--border-md: 2px solid var(--primary-200);
+	--border-base: 2px solid #e5e5e5;
+	/* borders */
 
-    // btn
-    --btn-radius: 8px;
-    // end btn
+	// btn
+	--btn-radius: 8px;
+	// end btn
 }

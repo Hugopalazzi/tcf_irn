@@ -42,31 +42,18 @@
 
 		<form method="POST" autocomplete="off" use:enhance>
 			<div class="input-wrapper">
-				<label class="uppercase" for="email"> Your email </label>
-				<input
-					bind:value={$form.email}
-					class:error={!!$errors?.email}
-					id="email"
-					name="email"
-					placeholder="john.doe@mail.com"
-				/>
+				<label class="uppercase" for="email">Your email</label>
+				<input bind:value={$form.email} class:error={!!$errors?.email} id="email" name="email" placeholder="john.doe@mail.com" />
 				<FormError errors={$errors?.email} />
 			</div>
 			<div class="input-wrapper">
-				<label class="uppercase" for="password"> Your password </label>
-				<input
-					bind:value={$form.password}
-					class:error={!!$errors?.password}
-					type="password"
-					id="password"
-					name="password"
-					placeholder="password"
-				/>
+				<label class="uppercase" for="password">Your password</label>
+				<input bind:value={$form.password} class:error={!!$errors?.password} type="password" id="password" name="password" placeholder="password" />
 				<FormError errors={$errors?.password} />
 			</div>
 
 			<div class="link-button-wrapper">
-				<a href="forgot-password"> Forgot your password ?</a>
+				<a href="forgot-password">Forgot your password ?</a>
 				<button class="btn btn-primary btn-icon" type="submit">
 					<Icon src={Envelope} size="18" />Log in
 				</button>

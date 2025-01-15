@@ -3,17 +3,17 @@ import { zod } from 'sveltekit-superforms/adapters';
 import { superValidate } from 'sveltekit-superforms/client';
 
 export const load = async () => {
-    const form = await superValidate(zod(userLoginSchema));
+	const form = await superValidate(zod(userLoginSchema));
 
-    return {
-        form
-    };
+	return {
+		form
+	};
 };
 export const actions = {
-    default: async ({ request }) => {
-        const formData = await request.formData();
-        const loginForm = await superValidate(formData, zod(userLoginSchema));
+	default: async ({ request }) => {
+		const formData = await request.formData();
+		const loginForm = await superValidate(formData, zod(userLoginSchema));
 
-        return loginForm
-    }
-}
+		return loginForm;
+	}
+};

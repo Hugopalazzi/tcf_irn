@@ -1,31 +1,9 @@
 @use '@tcf/styles/utilities/mixins' as *;
 
 a {
-    text-decoration: none;
-    color: var(--white);
-
+	text-decoration: none;
+	color: var(--white);
 }
-
-
-
-// .emphasis {
-//     color: var(--secondary-700);
-//     margin-block: unset;
-//     margin-inline: unset;
-//     font-size: var(--text-sm);
-
-//     a {
-//         text-decoration: underline;
-//     }
-// }
-
-// hr {
-//     border-top: rem(1) solid var(--secondary-200);
-//     border-width: rem(1) 0 0 0;
-//     margin: 0;
-// }
-
-// DSG
 
 h1,
 h2,
@@ -35,54 +13,39 @@ h5,
 h6,
 p,
 span {
-    padding: 0;
-    margin: 0;
-    color: var(--white);
-    letter-spacing: 0;
+	padding: 0;
+	margin: 0;
+	color: var(--white);
+	letter-spacing: 0;
 }
 
-
 h1 {
-    font-size: var(--text-6xl);
-    line-height: rem(72);
+	font-size: var(--text-6xl);
+	line-height: rem(72);
 }
 
 h2 {
-    font-size: var(--text-5xl);
-    line-height: rem(56);
+	font-size: var(--text-5xl);
+	line-height: rem(56);
 }
 
 h3 {
-    font-size: var(--text-4xl);
-    line-height: rem(40);
+	font-size: var(--text-4xl);
+	line-height: rem(40);
 }
 
 h4 {
-    font-size: var(--text-3xl);
-    line-height: rem(36);
-    font-weight: var(--bold);
+	font-size: var(--text-3xl);
+	line-height: rem(36);
+	font-weight: var(--bold);
 }
 
 h5 {
-    font-size: var(--text-2xl);
-    line-height: rem(32);
+	font-size: var(--text-2xl);
+	line-height: rem(32);
 }
 
 h6 {
-    font-size: var(--text-xl);
-    line-height: rem(28);
+	font-size: var(--text-xl);
+	line-height: rem(28);
 }
-
-// p {
-//     margin: 0;
-
-//     a {
-//         text-decoration: underline;
-//     }
-// }
-
-// .secondary-700 {
-//     color: var(--secondary-700);
-// }
-
-// end DSG
