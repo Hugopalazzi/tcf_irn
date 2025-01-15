@@ -39,7 +39,7 @@
 	</a>
 </div>
 <div class="graph-title-wrapper">
-	<span class="graph-title">Tests Completed In Past 7 Days </span>
+	<span class="graph-title">Tests Completed In Past 7 Days</span>
 	<div class="centered-graph">
 		<Bar dataSet={mockBar} />
 	</div>

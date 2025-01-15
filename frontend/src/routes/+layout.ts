@@ -8,4 +8,4 @@ export const load: LayoutLoad = async () => {
 		locale.set(window.navigator.language);
 	}
 	await waitLocale();
-}
+};

@@ -16,22 +16,20 @@
 			onclick={() => {
 				goto('/inscription');
 			}}
-			class="btn btn-primary btn-icon"
-		>
+			class="btn btn-primary btn-icon">
 			<Icon src={Envelope} size="18" />Create an account
 		</button>
 
 		<div class="two-button">
-			<a class="btn btn-secondary" href="/auth/login/google"> <GoogleIcon /> </a>
+			<a class="btn btn-secondary" href="/auth/login/google"><GoogleIcon /></a>
 
 			<button
 				onclick={() => {
 					goto('/login');
 				}}
-				class="btn btn-secondary"
-			>
-				<span>Login</span></button
-			>
+				class="btn btn-secondary">
+				<span>Login</span>
+			</button>
 		</div>
 	</div>
 </div>

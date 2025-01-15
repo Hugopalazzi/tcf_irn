@@ -9,7 +9,7 @@
 		<a href="/comprension-ecrite">Written comprehension</a>
 		<a href="/expression-ecrite">Written expression</a>
 	</div>
-	<a href="/logout"> Logout </a>
+	<a href="/logout">Logout</a>
 	<a href="mon-compte"><Icon src={User} size="18" /></a>
 </div>
 

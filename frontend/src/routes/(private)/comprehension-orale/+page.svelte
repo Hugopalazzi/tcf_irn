@@ -6,57 +6,57 @@
 <h1>List of sets</h1>
 
 <div class="sets-list">
-	<a class="set-card" href = "/comprehension-orale/1">
+	<a class="set-card" href="/comprehension-orale/1">
 		<h2>Set 1 <Icon src={SpeakerWave} size="32" /></h2>
-		<span class="exam-type"> Written comprehension</span>
+		<span class="exam-type">Written comprehension</span>
 		<ProgressBar goodAnwser={20} />
 	</a>
-	<a class="set-card" href = "/comprehension-orale/2">
+	<a class="set-card" href="/comprehension-orale/2">
 		<h2>
 			Set 2
 			<Icon src={SpeakerWave} size="32" />
 		</h2>
-		<span class="exam-type"> Written comprehension</span>
+		<span class="exam-type">Written comprehension</span>
 		<ProgressBar goodAnwser={16} />
 	</a>
-	<a class="set-card" href = "/comprehension-orale/3">
+	<a class="set-card" href="/comprehension-orale/3">
 		<h2>
 			Set 3
 			<Icon src={SpeakerWave} size="32" />
 		</h2>
-		<span class="exam-type"> Written comprehension</span>
+		<span class="exam-type">Written comprehension</span>
 		<ProgressBar goodAnwser={15} />
 	</a>
-	<a class="set-card" href = "/comprehension-orale/4">
+	<a class="set-card" href="/comprehension-orale/4">
 		<h2>
 			Set 4
 			<Icon src={SpeakerWave} size="32" />
 		</h2>
-		<span class="exam-type"> Written comprehension</span>
+		<span class="exam-type">Written comprehension</span>
 		<ProgressBar goodAnwser={11} />
 	</a>
-	<a class="set-card" href = "/comprehension-orale/5">
+	<a class="set-card" href="/comprehension-orale/5">
 		<h2>
 			Set 5
 			<Icon src={SpeakerWave} size="32" />
 		</h2>
-		<span class="exam-type"> Written comprehension</span>
+		<span class="exam-type">Written comprehension</span>
 		<ProgressBar goodAnwser={7} />
 	</a>
-	<a class="set-card" href = "/comprehension-orale/6">
+	<a class="set-card" href="/comprehension-orale/6">
 		<h2>
 			Set 6
 			<Icon src={SpeakerWave} size="32" />
 		</h2>
-		<span class="exam-type"> Written comprehension</span>
+		<span class="exam-type">Written comprehension</span>
 		<ProgressBar goodAnwser={4} />
 	</a>
-	<a class="set-card" href = "/comprehension-orale/7">
+	<a class="set-card" href="/comprehension-orale/7">
 		<h2>
 			Set 7
 			<Icon src={SpeakerWave} size="32" />
 		</h2>
-		<span class="exam-type"> Written comprehension</span>
+		<span class="exam-type">Written comprehension</span>
 		<ProgressBar goodAnwser={2} />
 	</a>
 </div>

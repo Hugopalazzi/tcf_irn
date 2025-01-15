@@ -93,7 +93,7 @@
 		min-width: rem(400);
 		min-height: rem(350);
 		width: 100%;
-		
+
 		@include min-width(desktop) {
 			justify-content: center;
 			padding: 0 rem(72);

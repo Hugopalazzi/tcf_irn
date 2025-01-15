@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { invalidate } from '$app/navigation';
 	import '@tcf/styles/styles.scss';
 	import ToastHolder from '@tcf/toast/ToastHolder.svelte';
 
-	let { data, children } = $props();
+	let { children } = $props();
 </script>
 
 <div class="wrapper">
