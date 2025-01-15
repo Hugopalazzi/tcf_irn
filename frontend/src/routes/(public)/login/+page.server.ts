@@ -10,9 +10,14 @@ export const load = async () => {
 	};
 };
 export const actions = {
-	default: async ({ request }) => {
+	default: async ({ request, locals }) => {
 		const formData = await request.formData();
 		const loginForm = await superValidate(formData, zod(userLoginSchema));
+
+		await locals.supabase.auth.signInWithPassword({
+			email: loginForm.data.email,
+			password: loginForm.data.password,
+		});
 
 		return loginForm;
 	}
