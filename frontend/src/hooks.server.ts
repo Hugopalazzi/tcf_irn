@@ -1,8 +1,9 @@
-import { createServerClient } from '@supabase/ssr'
-import { type Handle, redirect } from '@sveltejs/kit'
-import { sequence } from '@sveltejs/kit/hooks'
+import { createServerClient } from '@supabase/ssr';
+import { type Handle, redirect } from '@sveltejs/kit';
+import { sequence } from '@sveltejs/kit/hooks';
 
-import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public'
+import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
+import { locale } from 'svelte-i18n';
 
 const supabase: Handle = async ({ event, resolve }) => {
   /**
@@ -53,8 +54,8 @@ const supabase: Handle = async ({ event, resolve }) => {
 }
 
 const authGuard: Handle = async ({ event, resolve }) => {
-  const { user } = await event.locals.safeGetUser()
-  event.locals.user = user
+  const { user } = await event.locals.safeGetUser();
+  event.locals.user = user;
   const url = event.url.pathname;
 
   const allowedPublicRoutes = ['/auth/login/google', '/auth/callback', '/inscription', '/login', '/'];
@@ -66,10 +67,19 @@ const authGuard: Handle = async ({ event, resolve }) => {
   const isDynamicRouteAllowed = allowedPrivateRoutes.some((prefix) => url.startsWith(prefix));
 
   if (user && !isDynamicRouteAllowed) {
-    redirect(303, '/dashboard')
+    redirect(303, '/dashboard');
   }
 
   return resolve(event)
 }
 
-export const handle: Handle = sequence(supabase, authGuard)
+
+const translationHandle: Handle = async ({ event, resolve }) => {
+  const lang = event.request.headers.get('accept-language')?.split(',')[0];
+	if (lang) {
+		locale.set(lang);
+	}
+	return resolve(event);
+}
+
+export const handle: Handle = sequence(supabase, authGuard, translationHandle);
