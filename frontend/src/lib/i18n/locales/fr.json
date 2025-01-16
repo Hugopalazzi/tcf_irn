@@ -1,3 +1,11 @@
 {
-	"translation": "francais"
+	"translation": "francais",
+
+	"loginErrors": {
+		"emailAddressInvalid": "L'adresse e-mail que vous avez saisie n'est pas valide.",
+		"emailAddressNotAuthorized": "L'adresse e-mail saisie n'est pas autorisée à accéder à ce site.",
+		"emailNotConfirmed": "Votre adresse e-mail n'a pas encore été confirmée. Veuillez vérifier votre boîte de réception et cliquer sur le lien de confirmation.",
+		"invalidCredentials": "Les informations d'identification que vous avez fournies sont incorrectes.",
+		"defaultLoginError": "Erreur inconnue. Réessayez ou contactez le support."
+	}
 }

@@ -1,6 +1,7 @@
 import { userLoginSchema } from '@tcf/models/forms/userSchema';
+import { message } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
-import { superValidate } from 'sveltekit-superforms/client';
+import { fail, superValidate } from 'sveltekit-superforms/client';
 
 export const load = async () => {
 	const form = await superValidate(zod(userLoginSchema));
@@ -12,13 +13,22 @@ export const load = async () => {
 export const actions = {
 	default: async ({ request, locals }) => {
 		const formData = await request.formData();
-		const loginForm = await superValidate(formData, zod(userLoginSchema));
+		const form = await superValidate(formData, zod(userLoginSchema));
 
-		await locals.supabase.auth.signInWithPassword({
-			email: loginForm.data.email,
-			password: loginForm.data.password,
+		if (!form.valid) {
+			return fail(400, { form });
+		}
+
+		const { error } = await locals.supabase.auth.signInWithPassword({
+			email: form.data.email,
+			password: form.data.password
 		});
 
-		return loginForm;
+		if (error && error.status) {
+			const { status, code } = error;
+			return fail(status, { form, code });
+		} else {
+			return message(form, 'Connexion au compte réussi');
+		}
 	}
 };

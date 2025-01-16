@@ -2,9 +2,9 @@
 	import { goto } from '$app/navigation';
 	import BackButton from '@tcf/lib/components/Atoms/BackButton.svelte';
 	import FormError from '@tcf/lib/components/Atoms/FormError.svelte';
+	import { addErrorToast, addSuccessToast } from '@tcf/lib/helpers/toastHelper.js';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema.js';
 	import { userCreationAccountSchema } from '@tcf/models/forms/userSchema';
-	import { addErrorToast, addSuccessToast } from '@tcf/toast/toast.service.js';
 	import { Envelope, Icon } from 'svelte-hero-icons';
 	import { superForm } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
