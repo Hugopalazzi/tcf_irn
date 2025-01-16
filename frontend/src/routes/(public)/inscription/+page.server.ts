@@ -25,16 +25,31 @@ export const actions = {
 			data: { email, password, username }
 		} = form;
 
-		await locals.supabase.auth.signUp({
-			email: email,
-			password: password,
-			options: {
-				data: {
-					name: username
-				}
-			}
-		});
+		try {
+			const { data: isEmailExist } = await locals.supabase.rpc('is_email_exist', { emailuser: email });
 
-		return message(form, 'Création du compte réussis');
+			if (isEmailExist) {
+				return fail(409, { form, code: 'email_exists' });
+			}
+
+			const { error } = await locals.supabase.auth.signUp({
+				email: email,
+				password: password,
+				options: {
+					data: {
+						name: username
+					}
+				}
+			});
+
+			if (error && error.status) {
+				const { status, code } = error;
+				return fail(status, { form, code });
+			} else {
+				return message(form, 'Création du compte réussi');
+			}
+		} catch (error) {
+			console.error(error);
+		}
 	}
 };

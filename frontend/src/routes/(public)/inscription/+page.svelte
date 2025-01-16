@@ -6,6 +6,7 @@
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema.js';
 	import { userCreationAccountSchema } from '@tcf/models/forms/userSchema';
 	import { Envelope, Icon } from 'svelte-hero-icons';
+	import { _ } from 'svelte-i18n';
 	import { superForm } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
 
@@ -18,13 +19,31 @@
 
 		async onResult({ result }) {
 			if (result.type === 'success') {
-				await goto(`/`).then(() => addSuccessToast(`Votre compte a bien été créé.`));
-			} else if (result.type === 'error') {
-				if (result.error?.message) {
-					addErrorToast(result.error.message);
-				} else {
-					addErrorToast();
+				await goto(`/`).then(() => addSuccessToast($_('signUp.success'), 'top-center'));
+			} else if (result.type === 'failure') {
+				const { data } = result;
+				let message = '';
+				switch (data?.code) {
+					case 'signup_disabled':
+						message = $_('signUpErrors.signupDisabled');
+						break;
+					case 'email_address_invalid':
+						message = $_('signUpErrors.emailAddressInvalid');
+						break;
+					case 'email_address_not_authorized':
+						message = $_('signUpErrors.emailAddressNotAuthorized');
+						break;
+					case 'email_provider_disabled':
+						message = $_('signUpErrors.emailProviderDisabled');
+						break;
+					case 'email_exists':
+						message = $_('signUpErrors.emailExists');
+						break;
+					default:
+						message = $_('defaultError');
+						break;
 				}
+				addErrorToast(message);
 			}
 		}
 	});

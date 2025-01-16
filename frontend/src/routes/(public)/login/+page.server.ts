@@ -10,6 +10,7 @@ export const load = async () => {
 		form
 	};
 };
+
 export const actions = {
 	default: async ({ request, locals }) => {
 		const formData = await request.formData();

@@ -1,13 +1,13 @@
-import toast from 'svelte-french-toast';
+import toast, { type ToastPosition } from 'svelte-french-toast';
 
-export const addSuccessToast = (message: string): void => {
+export const addSuccessToast = (message: string, position: ToastPosition = 'top-right'): void => {
 	toast.success(message, {
-		position: 'top-right'
+		position
 	});
 };
 
 export const addErrorToast = (message?: string): void => {
 	toast.error(message ?? 'Une erreur est survenue. Veuillez contacter votre administrateur', {
-		position: 'top-right',
+		position: 'top-right'
 	});
 };
