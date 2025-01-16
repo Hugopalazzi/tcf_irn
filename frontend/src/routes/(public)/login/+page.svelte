@@ -26,20 +26,20 @@
 				let message = '';
 
 				switch (data?.code) {
-					case 'email_address_invalid':
-						message = $_('loginErrors.emailAddressInvalid');
-						break;
-					case 'email_address_not_authorized':
-						message = $_('loginErrors.emailAddressNotAuthorized');
-						break;
 					case 'email_not_confirmed':
 						message = $_('loginErrors.emailNotConfirmed');
 						break;
 					case 'invalid_credentials':
 						message = $_('loginErrors.invalidCredentials');
 						break;
+					case 'user_not_found':
+						message = $_('loginErrors.userNotFound');
+						break;
+					case 'user_banned':
+						message = $_('loginErrors.userBanned');
+						break;
 					default:
-						message = $_('loginErrors.defaultLoginError');
+						message = $_('defaultError');
 						break;
 				}
 				addErrorToast(message);

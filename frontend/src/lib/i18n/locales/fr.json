@@ -1,11 +1,19 @@
 {
-	"translation": "francais",
-
+	"signUp": {
+		"success": "Votre compte a bien été créé. Veuillez verifier votre adresse mail"
+	},
+	"defaultError": "Erreur inconnue. Réessayez ou contactez le support.",
 	"loginErrors": {
+		"invalidCredentials": "L'adresse email et/ou le mot de passe sont incorrectes.",
+		"emailNotConfirmed": "Votre adresse e-mail n'a pas encore été confirmée. Veuillez vérifier votre boîte de réception et cliquer sur le lien de confirmation.",
+		"userNotFound": "Aucun utilisateur correspondant n'a été trouvé.",
+		"userBanned": "PERMA BAN APEX."
+	},
+	"signUpErrors": {
+		"signupDisabled": "Les inscriptions sont désactivées pour le moment.",
 		"emailAddressInvalid": "L'adresse e-mail que vous avez saisie n'est pas valide.",
 		"emailAddressNotAuthorized": "L'adresse e-mail saisie n'est pas autorisée à accéder à ce site.",
-		"emailNotConfirmed": "Votre adresse e-mail n'a pas encore été confirmée. Veuillez vérifier votre boîte de réception et cliquer sur le lien de confirmation.",
-		"invalidCredentials": "Les informations d'identification que vous avez fournies sont incorrectes.",
-		"defaultLoginError": "Erreur inconnue. Réessayez ou contactez le support."
+		"emailProviderDisabled": "Les inscriptions avec une adresse e-mail sont désactivées.",
+		"emailExists": "Cette adresse e-mail est déjà utilisée, essayez de vous connecter"
 	}
 }
