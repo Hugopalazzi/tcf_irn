@@ -21,15 +21,6 @@
 		height: 100%;
 		box-sizing: border-box;
 
-		.toasts {
-			--sidebar-factor: 1;
-			@include min-width(desktop) {
-				left: calc(var(--sidebar-factor) * var(--sibebar-width) + rem(20));
-			}
-			&.fix-left {
-				left: 0;
-			}
-		}
 		@include min-width(tablet) {
 			padding: rem(24) rem(74);
 		}

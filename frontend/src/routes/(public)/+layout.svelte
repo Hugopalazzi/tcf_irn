@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '@tcf/styles/styles.scss';
-	import ToastHolder from '@tcf/toast/ToastHolder.svelte';
+	import { Toaster } from 'svelte-french-toast';
 
 	let { children } = $props();
 </script>
@@ -8,11 +8,7 @@
 <div class="wrapper">
 	<div class="wrapper__body">
 		<main id="contenu-site">
-			<div class="toast-container">
-				<div class="toasts">
-					<ToastHolder />
-				</div>
-			</div>
+			<Toaster />
 			{@render children()}
 		</main>
 	</div>
@@ -29,16 +25,5 @@
 		padding: rem(24);
 		height: 100%;
 		box-sizing: border-box;
-
-		.toast-container {
-			position: relative;
-		}
-
-		.toasts {
-			top: rem(-40);
-			position: absolute;
-			z-index: 1;
-			width: 100%;
-		}
 	}
 </style>

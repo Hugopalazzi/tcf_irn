@@ -4,10 +4,11 @@
 	import BackButton from '@tcf/lib/components/Atoms/BackButton.svelte';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
 	import { userLoginSchema } from '@tcf/models/forms/userSchema';
-	import { addErrorToast } from '@tcf/toast/toast.service';
 	import { Envelope, Icon } from 'svelte-hero-icons';
 	import { superForm } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
+	import { addErrorToast } from '@tcf/lib/helpers/toastHelper.js';
+	import { _ } from 'svelte-i18n';
 
 	export let data;
 
@@ -17,14 +18,31 @@
 		resetForm: true,
 
 		async onResult({ result }) {
-			if (result.type === 'success') {
+			const { type } = result;
+			if (type === 'success') {
 				await goto(`/dashboard`);
-			} else if (result.type === 'error') {
-				if (result.error?.message) {
-					addErrorToast(result.error.message);
-				} else {
-					addErrorToast();
+			} else if (type === 'failure') {
+				const { data } = result;
+				let message = '';
+
+				switch (data?.code) {
+					case 'email_address_invalid':
+						message = $_('loginErrors.emailAddressInvalid');
+						break;
+					case 'email_address_not_authorized':
+						message = $_('loginErrors.emailAddressNotAuthorized');
+						break;
+					case 'email_not_confirmed':
+						message = $_('loginErrors.emailNotConfirmed');
+						break;
+					case 'invalid_credentials':
+						message = $_('loginErrors.invalidCredentials');
+						break;
+					default:
+						message = $_('loginErrors.defaultLoginError');
+						break;
 				}
+				addErrorToast(message);
 			}
 		}
 	});

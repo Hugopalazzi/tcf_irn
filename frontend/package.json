@@ -45,6 +45,7 @@
 		"chart.js": "^4.4.6",
 		"dotenv": "^16.4.7",
 		"google-auth-library": "^9.15.0",
+		"svelte-french-toast": "^1.2.0",
 		"svelte-hero-icons": "^5.2.0",
 		"svelte-i18n": "^4.0.1",
 		"sveltekit-superforms": "^2.20.1",

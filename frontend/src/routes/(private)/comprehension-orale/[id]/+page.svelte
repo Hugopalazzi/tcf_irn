@@ -8,6 +8,7 @@
 	import BackButton from '@tcf/lib/components/Atoms/BackButton.svelte';
 	import MeltProgressBar from '@tcf/lib/components/Molecules/MeltProgressBar.svelte';
 	import { page } from '$app/state';
+	import { addErrorToast } from '@tcf/lib/helpers/toastHelper';
 
 	const { data }: { data: PageData } = $props();
 
@@ -24,11 +25,11 @@
 			}
 		},
 		onError({ result }) {
-			// if (result.error.message) {
-			//     addErrorToast(result.error.message);
-			// } else {
-			//     addErrorToast();
-			// }
+			if (result.error.message) {
+			    addErrorToast(result.error.message);
+			} else {
+			    addErrorToast();
+			}
 		}
 	});
 	const { form, enhance } = suprForm;
