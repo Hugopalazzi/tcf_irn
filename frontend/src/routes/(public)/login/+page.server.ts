@@ -24,8 +24,9 @@ export const actions = {
 			password: form.data.password
 		});
 
-		if (error && error.status && typeof error.status) {
-			return fail(error.status, { form, code: error.code });
+		if (error && error.status) {
+			const { status, code } = error;
+			return fail(status, { form, code });
 		} else {
 			return message(form, 'Connexion au compte réussi');
 		}

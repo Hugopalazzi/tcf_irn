@@ -24,12 +24,12 @@
 				await goto(`${page.url.pathname}/recapitulatif`);
 			}
 		},
-		onError({ result }) {
-			if (result.error.message) {
-			    addErrorToast(result.error.message);
-			} else {
-			    addErrorToast();
+		onError({
+			result: {
+				error: { message }
 			}
+		}) {
+			addErrorToast(message);
 		}
 	});
 	const { form, enhance } = suprForm;
@@ -66,7 +66,7 @@
 				<div class="options">
 					{#each data.exam[index].responses as responseChoice, responseIndex}
 						<div class="radio">
-							<label for="userResponses[{responseIndex}]"></label>
+							<label for="userResponses[{responseIndex}]">
 								<input
 									bind:group={selectedResponse}
 									type="radio"
