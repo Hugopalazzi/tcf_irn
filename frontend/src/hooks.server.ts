@@ -58,8 +58,15 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	event.locals.user = user;
 	const url = event.url.pathname;
 
-	const allowedPublicRoutes = ['/auth/login/google', '/auth/callback', '/inscription', '/login', '/', '/confirmation-email'];
-	const allowedPrivateRoutes = ['/dashboard', '/comprehension-orale', '/comprehension-ecrite', '/expression-ecrite', '/logout', '/confirmation-email'];
+	const allowedPublicRoutes = ['/auth/login/google', '/auth/callback', '/inscription', '/login', '/', '/confirmation-email', '/mot-de-passe-oublie'];
+	const allowedPrivateRoutes = [
+		'/dashboard',
+		'/comprehension-orale',
+		'/comprehension-ecrite',
+		'/expression-ecrite',
+		'/logout',
+		'/confirmation-email'
+	];
 
 	if (!user && !allowedPublicRoutes.includes(url)) {
 		redirect(303, '/');

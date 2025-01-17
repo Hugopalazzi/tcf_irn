@@ -28,3 +28,7 @@ export const userLoginSchema = z.object({
 	email: requiredEmailSchema,
 	password: z.string().min(1, 'Field must not be empty')
 });
+
+export const userForgotPasswordSchema = z.object({
+	email: requiredEmailSchema
+});

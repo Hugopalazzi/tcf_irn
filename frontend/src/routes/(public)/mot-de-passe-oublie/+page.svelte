@@ -1,26 +1,28 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import FormError from '@tcf/lib/components/Atoms/FormError.svelte';
 	import BackButton from '@tcf/lib/components/Atoms/BackButton.svelte';
+	import FormError from '@tcf/lib/components/Atoms/FormError.svelte';
+	import { addErrorToast } from '@tcf/lib/helpers/toastHelper';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
-	import { userLoginSchema } from '@tcf/models/forms/userSchema';
+	import { userForgotPasswordSchema } from '@tcf/models/forms/userSchema';
 	import { Envelope, Icon } from 'svelte-hero-icons';
+	import { _ } from 'svelte-i18n';
 	import { superForm } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
-	import { addErrorToast } from '@tcf/lib/helpers/toastHelper.js';
-	import { _ } from 'svelte-i18n';
+	import type { PageData } from './$types';
+	import PasswordResetEmail from '@tcf/lib/components/Molecules/PasswordResetEmail.svelte';
 
-	export let data;
+	const { data }: { data: PageData } = $props();
+	let emailSent = $state(false);
 
 	const supForm = superForm(data.form, {
-		validators: zod(userLoginSchema),
+		validators: zod(userForgotPasswordSchema),
 		...superFormDefaultConfig,
-		resetForm: true,
 
 		async onResult({ result }) {
 			const { type } = result;
 			if (type === 'success') {
-				await goto(`/dashboard`);
+				emailSent = true;
 			} else if (type === 'failure') {
 				const { data } = result;
 				let message = '';
@@ -56,35 +58,24 @@
 	</div>
 	<div class="right-size">
 		<BackButton />
-		<h5 class="title">Login</h5>
+		{#if !emailSent}
+			<h5 class="title">Mot de passe oublié</h5>
 
-		<form method="POST" autocomplete="off" use:enhance>
-			<div class="input-wrapper">
-				<label class="uppercase" for="email">Your email</label>
-				<input bind:value={$form.email} class:error={!!$errors?.email} id="email" name="email" placeholder="john.doe@mail.com" />
-				<FormError errors={$errors?.email} />
-			</div>
-			<div class="input-wrapper">
-				<label class="uppercase" for="password">Your password</label>
-				<input bind:value={$form.password} class:error={!!$errors?.password} type="password" id="password" name="password" placeholder="password" />
-				<FormError errors={$errors?.password} />
-			</div>
+			<form method="POST" autocomplete="off" use:enhance>
+				<div class="input-wrapper">
+					<label class="uppercase" for="email">Your email</label>
+					<input bind:value={$form.email} class:error={!!$errors?.email} id="email" name="email" placeholder="john.doe@mail.com" />
+					<FormError errors={$errors?.email} />
+				</div>
 
-			<div class="link-button-wrapper">
-				<a href="/mot-de-passe-oublie">Forgot your password ?</a>
-				<button class="btn btn-primary btn-icon" type="submit">
-					<Icon src={Envelope} size="18" />Log in
-				</button>
-			</div>
-		</form>
+				<div class="link-button-wrapper">
+					<button class="btn btn-primary btn-icon" type="submit">
+						<Icon src={Envelope} size="18" />Recevoir un email
+					</button>
+				</div>
+			</form>
+		{:else}
+			<PasswordResetEmail email={$form.email} />
+		{/if}
 	</div>
 </div>
-
-<style lang="scss">
-	.link-button-wrapper {
-		display: flex;
-		flex-direction: column;
-		place-items: center;
-		gap: rem(4);
-	}
-</style>
