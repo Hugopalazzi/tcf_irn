@@ -27,7 +27,7 @@ export const actions = {
 		}
 
 		const { error } = await locals.supabase.auth.resetPasswordForEmail(form.data.email, {
-			redirectTo: `http://${url.host}/modifier-mot-de-passe`
+			redirectTo: `${url.protocol}//${url.host}/modifier-mot-de-passe`
 		});
 
 
