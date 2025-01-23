@@ -32,9 +32,6 @@
 					case 'email_not_confirmed':
 						message = $_('loginErrors.emailNotConfirmed');
 						break;
-					case 'invalid_credentials':
-						message = $_('loginErrors.invalidCredentials');
-						break;
 					case 'user_not_found':
 						message = $_('loginErrors.userNotFound');
 						break;
