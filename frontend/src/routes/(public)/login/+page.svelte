@@ -3,12 +3,13 @@
 	import FormError from '@tcf/lib/components/Atoms/FormError.svelte';
 	import BackButton from '@tcf/lib/components/Atoms/BackButton.svelte';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
-	import { userLoginSchema } from '@tcf/models/forms/userSchema';
+	import { emailSchema, userLoginSchema } from '@tcf/models/forms/userSchema';
 	import { Envelope, Icon } from 'svelte-hero-icons';
 	import { superForm } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
 	import { addErrorToast } from '@tcf/lib/helpers/toastHelper.js';
 	import { _ } from 'svelte-i18n';
+	import { userEmail } from '@tcf/lib/stores/loginEmailStore.js';
 
 	export let data;
 
@@ -47,6 +48,14 @@
 		}
 	});
 	const { form, enhance, errors } = supForm;
+
+	const onForgotPasswordClick = () => {
+		try {
+			const { email } = $form;
+			emailSchema.parse(email);
+			userEmail.set($form.email);
+		} catch {}
+	};
 </script>
 
 <div class="page-container">
@@ -71,7 +80,13 @@
 			</div>
 
 			<div class="link-button-wrapper">
-				<a href="/mot-de-passe-oublie">Forgot your password ?</a>
+				<a
+					href="/mot-de-passe-oublie"
+					onclick={() => {
+						onForgotPasswordClick();
+					}}>
+					Forgot your password ?
+				</a>
 				<button class="btn btn-primary btn-icon" type="submit">
 					<Icon src={Envelope} size="18" />Log in
 				</button>

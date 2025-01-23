@@ -1,14 +1,13 @@
 import { z } from 'zod';
 
 const emailErrorMessage = 'Veuillez saisir un e-mail valide.';
-const emailSchema = z.string().email(emailErrorMessage);
-export const requiredEmailSchema = emailSchema.min(1);
+export const emailSchema = z.string().email(emailErrorMessage);
 
 export const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;
 export const userCreationAccountSchema = z
 	.object({
 		username: z.string().min(1),
-		email: requiredEmailSchema,
+		email: emailSchema,
 		password: z
 			.string()
 			.min(8, 'The password must contain at least 8 characters')
@@ -25,10 +24,10 @@ export const userCreationAccountSchema = z
 	});
 
 export const userLoginSchema = z.object({
-	email: requiredEmailSchema,
+	email: emailSchema,
 	password: z.string().min(1, 'Field must not be empty')
 });
 
 export const userForgotPasswordSchema = z.object({
-	email: requiredEmailSchema
+	email: emailSchema
 });

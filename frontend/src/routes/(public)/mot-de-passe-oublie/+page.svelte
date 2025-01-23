@@ -11,6 +11,7 @@
 	import { zod } from 'sveltekit-superforms/adapters';
 	import type { PageData } from './$types';
 	import PasswordResetEmail from '@tcf/lib/components/Molecules/PasswordResetEmail.svelte';
+	import { userEmail } from '@tcf/lib/stores/loginEmailStore';
 
 	const { data }: { data: PageData } = $props();
 	let emailSent = $state(false);
@@ -49,6 +50,7 @@
 		}
 	});
 	const { form, enhance, errors } = supForm;
+	$form.email = $userEmail;
 </script>
 
 <div class="page-container">
