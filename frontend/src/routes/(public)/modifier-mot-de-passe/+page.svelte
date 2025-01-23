@@ -23,30 +23,35 @@
 				await goto(`/dashboard`).then(() => addSuccessToast($_('signUp.success'), 'top-center'));
 			} else if (type === 'failure') {
 				const { data } = result;
-				let message = '';
-
-				switch (data?.code) {
-					case 'email_not_confirmed':
-						message = $_('loginErrors.emailNotConfirmed');
-						break;
-					case 'user_not_found':
-						message = $_('loginErrors.userNotFound');
-						break;
-					case 'user_banned':
-						message = $_('loginErrors.userBanned');
-						break;
-					case 'over_request_rate_limit':
-						message = $_('loginErrors.overRequestRateLimit');
-						break;
-					default:
-						message = $_('commonErrors.defaultError');
-						break;
+				const isFormValid = (await validateForm()).valid;
+				if (isFormValid) {
+					let message = '';
+					switch (data?.code) {
+						case 'reauthentication_needed':
+							message = $_('resetPasswordErrors.reauthenticationNeeded');
+							break;
+						case 'same_password':
+							message = $_('resetPasswordErrors.samePassword');
+							break;
+						case 'weak_password':
+							message = $_('resetPasswordErrors.weakPassword');
+							break;
+						case 'session_expired':
+							message = $_('commonErrors.sessionExpired');
+							break;
+						case 'over_request_rate_limit':
+							message = $_('commonErrors.overRequestRateLimit');
+							break;
+						default:
+							message = $_('commonErrors.defaultError');
+							break;
+					}
+					addErrorToast(message);
 				}
-				addErrorToast(message);
 			}
 		}
 	});
-	const { form, enhance, errors } = supForm;
+	const { form, enhance, errors, validateForm } = supForm;
 </script>
 
 <div class="page-container">

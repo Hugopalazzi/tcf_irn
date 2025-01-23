@@ -40,7 +40,7 @@
 						message = $_('signUpErrors.emailExists');
 						break;
 					case 'over_request_rate_limit':
-						message = $_('loginErrors.overRequestRateLimit');
+						message = $_('commonErrors.overRequestRateLimit');
 						break;
 					default:
 						message = $_('commonErrors.defaultError');
