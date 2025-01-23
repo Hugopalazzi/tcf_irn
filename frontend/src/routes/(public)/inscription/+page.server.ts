@@ -12,7 +12,7 @@ export const load = async () => {
 };
 
 export const actions = {
-	default: async ({ request, locals }) => {
+	default: async ({ request, locals, url }) => {
 		const formData = await request.formData();
 
 		const form = await superValidate(formData, zod(userCreationAccountSchema));
@@ -38,7 +38,8 @@ export const actions = {
 				options: {
 					data: {
 						name: username
-					}
+					},
+					emailRedirectTo: `${url.protocol}//${url.host}/confirmation-email`
 				}
 			});
 
