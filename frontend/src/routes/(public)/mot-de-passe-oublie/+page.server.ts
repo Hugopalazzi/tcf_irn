@@ -35,7 +35,7 @@ export const actions = {
 			const { status, code } = error;
 			return fail(status, { form, code });
 		} else {
-			return message(form, 'Un lien vous a été envoyé pour réinitialiser votre email');
+			return message(form, 'Un lien vous a été envoyé pour réinitialiser votre mot de passe');
 		}
 	}
 };

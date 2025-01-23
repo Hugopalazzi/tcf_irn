@@ -39,8 +39,11 @@
 					case 'user_banned':
 						message = $_('loginErrors.userBanned');
 						break;
+					case 'over_request_rate_limit':
+						message = $_('loginErrors.overRequestRateLimit');
+						break;
 					default:
-						message = $_('defaultError');
+						message = $_('commonErrors.defaultError');
 						break;
 				}
 				addErrorToast(message);

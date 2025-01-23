@@ -2,7 +2,10 @@
 	"signUp": {
 		"success": "Votre compte a bien été créé. Veuillez verifier votre adresse mail"
 	},
-	"defaultError": "Erreur inconnue. Réessayez ou contactez le support.",
+	"commonErrors":{
+		"defaultError": "Erreur inconnue. Réessayez ou contactez le support.",
+		"overRequestRateLimit":"Vous avez envoyé trop de demandes. Veuillez patienter et réessayer plus tard."
+	},
 	"loginErrors": {
 		"invalidCredentials": "L'adresse email et/ou le mot de passe sont incorrectes.",
 		"emailNotConfirmed": "Votre adresse e-mail n'a pas encore été confirmée. Veuillez vérifier votre boîte de réception et cliquer sur le lien de confirmation.",
@@ -15,5 +18,8 @@
 		"emailAddressNotAuthorized": "L'adresse e-mail saisie n'est pas autorisée à accéder à ce site.",
 		"emailProviderDisabled": "Les inscriptions avec une adresse e-mail sont désactivées.",
 		"emailExists": "Cette adresse e-mail est déjà utilisée, essayez de vous connecter"
+	},
+	"resetPasswordErrors" : {
+		"weak_password": "Le nouveau mot de passe n'est pas assez sécurisé."
 	}
 }

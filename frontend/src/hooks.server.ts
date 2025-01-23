@@ -74,7 +74,8 @@ const authGuard: Handle = async ({ event, resolve }) => {
 		'/comprehension-ecrite',
 		'/expression-ecrite',
 		'/logout',
-		'/confirmation-email'
+		'/confirmation-email',
+		'/modifier-mot-de-passe'
 	];
 
 	if (!user && !allowedPublicRoutes.includes(url)) {
