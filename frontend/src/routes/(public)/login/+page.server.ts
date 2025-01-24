@@ -1,5 +1,5 @@
 import { userLoginSchema } from '@tcf/models/forms/userSchema';
-import { message } from 'sveltekit-superforms';
+import { UserService } from '@tcf/services/supabase/user.service.js';
 import { zod } from 'sveltekit-superforms/adapters';
 import { fail, superValidate } from 'sveltekit-superforms/client';
 
@@ -20,16 +20,7 @@ export const actions = {
 			return fail(400, { form });
 		}
 
-		const { error } = await locals.supabase.auth.signInWithPassword({
-			email: form.data.email,
-			password: form.data.password
-		});
-
-		if (error && error.status) {
-			const { status, code } = error;
-			return fail(status, { form, code });
-		} else {
-			return message(form, 'Connexion au compte réussi');
-		}
+		const userService = new UserService(locals.supabase);
+		return await userService.login(form);
 	}
 };
