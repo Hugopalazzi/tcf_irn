@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { UserLoginForm, UserModifyPasswordForm } from '@tcf/models/forms/userSchema';
+import type { UserLoginForm, UserSignUpForm, UserModifyPasswordForm } from '@tcf/models/forms/userSchema';
 import { fail, message } from 'sveltekit-superforms/client';
 
 export class UserService {
@@ -20,6 +20,43 @@ export class UserService {
 		}
 
 		return message(form, 'Connexion au compte réussi.');
+	};
+
+	signUp = async (form: UserSignUpForm, url: URL) => {
+		if (!form.valid) {
+			return fail(400, { form });
+		}
+
+		const {
+			data: { email, password, username }
+		} = form;
+		try {
+			const { data: isEmailExist } = await this.supabaseClient.rpc('is_email_exist', { emailuser: email });
+
+			if (isEmailExist) {
+				return fail(409, { form, code: 'email_exists' });
+			}
+
+			const { error } = await this.supabaseClient.auth.signUp({
+				email: email,
+				password: password,
+				options: {
+					data: {
+						name: username
+					},
+					emailRedirectTo: `${url.protocol}//${url.host}/confirmation-email`
+				}
+			});
+
+			if (error && error.status) {
+				const { status, code } = error;
+				return fail(status, { form, code });
+			} else {
+				return message(form, 'Création du compte réussi.');
+			}
+		} catch (error) {
+			return fail(500, { form, error: 'Une erreur interne inconnue est survenue.' });
+		}
 	};
 
 	modifyPassword = async (form: UserModifyPasswordForm) => {

@@ -23,6 +23,7 @@ export const userCreationAccountSchema = z
 			});
 		}
 	});
+export type UserSignUpForm = SuperValidated<z.infer<typeof userCreationAccountSchema>>;
 
 export const userLoginSchema = z.object({
 	email: emailSchema,
