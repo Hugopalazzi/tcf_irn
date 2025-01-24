@@ -4,6 +4,7 @@ import { fail, message } from 'sveltekit-superforms/client';
 
 export class UserService {
 	constructor(private supabaseClient: SupabaseClient) { }
+	
 	login = async (form: UserLoginForm) => {
 		if (!form.valid) {
 			return fail(400, { form });
