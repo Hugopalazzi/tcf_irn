@@ -1,3 +1,4 @@
+import type { SuperValidated } from 'sveltekit-superforms';
 import { z } from 'zod';
 
 const emailErrorMessage = 'Veuillez saisir un e-mail valide.';
@@ -27,6 +28,7 @@ export const userLoginSchema = z.object({
 	email: emailSchema,
 	password: z.string().min(1, 'Field must not be empty')
 });
+export type UserLoginForm = SuperValidated<z.infer<typeof userLoginSchema>>;
 
 export const userForgotPasswordSchema = z.object({
 	email: emailSchema
