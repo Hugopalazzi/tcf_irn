@@ -1,3 +1,4 @@
+import type { Actions } from '@sveltejs/kit';
 import { userLoginSchema } from '@tcf/models/forms/userSchema';
 import { UserService } from '@tcf/services/supabase/user.service.js';
 import { zod } from 'sveltekit-superforms/adapters';
@@ -11,7 +12,7 @@ export const load = async () => {
 	};
 };
 
-export const actions = {
+export const actions: Actions = {
 	default: async ({ request, locals }) => {
 		const formData = await request.formData();
 		const form = await superValidate(formData, zod(userLoginSchema));

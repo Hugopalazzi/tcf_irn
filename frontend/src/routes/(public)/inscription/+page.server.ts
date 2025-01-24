@@ -2,7 +2,7 @@ import { userCreationAccountSchema } from '@tcf/models/forms/userSchema';
 import { zod } from 'sveltekit-superforms/adapters';
 import { superValidate } from 'sveltekit-superforms/client';
 import { message } from 'sveltekit-superforms';
-import { fail } from '@sveltejs/kit';
+import { fail, type Actions } from '@sveltejs/kit';
 
 export const load = async () => {
 	const form = await superValidate(zod(userCreationAccountSchema));
@@ -11,7 +11,7 @@ export const load = async () => {
 	};
 };
 
-export const actions = {
+export const actions: Actions = {
 	default: async ({ request, locals, url }) => {
 		const formData = await request.formData();
 

@@ -1,3 +1,4 @@
+import type { Actions } from '@sveltejs/kit';
 import { listeningComprehensionSchema } from '@tcf/models/forms/mcqSchema.js';
 import { zod } from 'sveltekit-superforms/adapters';
 import { superValidate } from 'sveltekit-superforms/client';
@@ -35,7 +36,7 @@ export const load = async ({ params }) => {
 	};
 };
 
-export const actions = {
+export const actions: Actions = {
 	default: async ({ request }) => {
 		const requestFormData = await request.formData();
 		const superForm = await superValidate(requestFormData, zod(listeningComprehensionSchema));
