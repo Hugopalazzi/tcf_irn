@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { BookOpen, ChatBubbleBottomCenterText, Icon, SpeakerWave } from 'svelte-hero-icons';
 	import Bar from './Bar.svelte';
+	import { Elements, LinkAuthenticationElement, PaymentElement } from 'svelte-stripe';
+	import { PUBLIC_STRIPE_KEY } from '$env/static/public';
+	import { onMount } from 'svelte';
+	import { loadStripe, type Stripe } from '@stripe/stripe-js';
 
 	const mockBar: { libelle: string; valeur: string[] }[] = [
 		{
@@ -37,6 +41,7 @@
 		<h3>Written expression</h3>
 		<Icon src={ChatBubbleBottomCenterText} size="20" />
 	</a>
+	<a href="paiement">payement page</a>
 </div>
 <div class="graph-title-wrapper">
 	<span class="graph-title">Tests Completed In Past 7 Days</span>
