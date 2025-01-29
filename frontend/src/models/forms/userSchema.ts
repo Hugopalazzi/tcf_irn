@@ -51,3 +51,5 @@ export const userResetPasswordSchema = z
 			});
 		}
 	});
+
+export type UserModifyPasswordForm = SuperValidated<z.infer<typeof userResetPasswordSchema>>;

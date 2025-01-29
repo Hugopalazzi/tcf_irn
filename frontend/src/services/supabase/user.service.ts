@@ -1,9 +1,10 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { UserLoginForm, UserSignUpForm } from '@tcf/models/forms/userSchema';
+import type { UserLoginForm, UserSignUpForm, UserModifyPasswordForm } from '@tcf/models/forms/userSchema';
 import { fail, message } from 'sveltekit-superforms/client';
 
 export class UserService {
-	constructor(private supabaseClient: SupabaseClient) {}
+	constructor(private supabaseClient: SupabaseClient) { }
+	
 	login = async (form: UserLoginForm) => {
 		if (!form.valid) {
 			return fail(400, { form });
@@ -56,5 +57,26 @@ export class UserService {
 		} catch (error) {
 			return fail(500, { form, error: 'Une erreur interne inconnue est survenue.' });
 		}
+	};
+
+	modifyPassword = async (form: UserModifyPasswordForm) => {
+		if (!form.valid) {
+			return fail(400, { form });
+		}
+
+		const {
+			data: { user },
+			error
+		} = await this.supabaseClient.auth.updateUser({ password: form.data.password });
+		if (error && error.status) {
+			const { status, code } = error;
+			if (!user) {
+				return fail(status, { form, code: 'session_expired' });
+			}
+			return fail(status, { form, code });
+		} else {
+			return message(form, 'Votre mot de passe a été correctement mis à jour.');
+		}
+
 	};
 }

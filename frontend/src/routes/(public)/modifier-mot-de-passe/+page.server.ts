@@ -1,5 +1,7 @@
+import type { Actions } from '@sveltejs/kit';
 import { getParamValue } from '@tcf/lib/helpers/urlHelper';
 import { userResetPasswordSchema } from '@tcf/models/forms/userSchema';
+import { UserService } from '@tcf/services/supabase/user.service';
 import { message } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import { fail, superValidate } from 'sveltekit-superforms/client';
@@ -15,31 +17,11 @@ export const load = async ({ locals, url }) => {
 	};
 };
 
-export const actions = {
+export const actions: Actions = {
 	default: async ({ request, locals }) => {
 		const formData = await request.formData();
 		const form = await superValidate(formData, zod(userResetPasswordSchema));
-
-		if (!form.valid) {
-			return fail(400, { form });
-		}
-
-		try {
-			const {
-				data: { user },
-				error
-			} = await locals.supabase.auth.updateUser({ password: form.data.password });
-			if (error && error.status) {
-				const { status, code } = error;
-				if (!user) {
-					return fail(status, { form, code: 'session_expired' });
-				}
-				return fail(status, { form, code });
-			} else {
-				return message(form, 'Votre mot de passe a été correctement mis à jour.');
-			}
-		} catch (error) {
-			return fail(500);
-		}
+		const userService = new UserService(locals.supabase);
+		return await userService.modifyPassword(form);
 	}
 };
