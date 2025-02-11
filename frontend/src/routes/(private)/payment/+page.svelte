@@ -1,5 +1,4 @@
 <script>
-
 	export let data;
 	let loading = false;
 
@@ -15,7 +14,6 @@
 		const { url } = await res.json();
 		window.location.href = url; // Redirect to stripe checkout
 	}
-
 </script>
 
 <button on:click={subscribe} disabled={loading}>
