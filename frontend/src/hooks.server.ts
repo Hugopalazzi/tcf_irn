@@ -66,7 +66,11 @@ const authGuard: Handle = async ({ event, resolve }) => {
 		'/',
 		'/confirmation-email',
 		'/mot-de-passe-oublie',
-		'/modifier-mot-de-passe'
+		'/modifier-mot-de-passe',
+		'/api/create-subscription-session',
+		'/api/create-stripe-customer',
+		'/api/user-status',
+		'/api/webhook'
 	];
 	const allowedPrivateRoutes = [
 		'/dashboard',
@@ -75,7 +79,12 @@ const authGuard: Handle = async ({ event, resolve }) => {
 		'/expression-ecrite',
 		'/logout',
 		'/confirmation-email',
-		'/modifier-mot-de-passe'
+		'/modifier-mot-de-passe',
+		'/payment',
+		'/api/create-subscription-session',
+		'/api/create-stripe-customer',
+		'/api/user-status',
+		'/api/webhook'
 	];
 
 	if (!user && !allowedPublicRoutes.includes(url)) {
