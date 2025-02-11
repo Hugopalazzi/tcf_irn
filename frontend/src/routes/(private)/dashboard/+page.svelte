@@ -37,6 +37,9 @@
 		<h3>Written expression</h3>
 		<Icon src={ChatBubbleBottomCenterText} size="20" />
 	</a>
+	
+	<!-- https://dashboard.stripe.com/test/payment-links -->
+	<a href="payment" class="card">Acheter la formation</a>
 </div>
 <div class="graph-title-wrapper">
 	<span class="graph-title">Tests Completed In Past 7 Days</span>
