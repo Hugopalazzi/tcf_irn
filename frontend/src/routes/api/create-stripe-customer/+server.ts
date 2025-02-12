@@ -1,21 +1,39 @@
-import Stripe from 'stripe';
-import { json } from '@sveltejs/kit';
-import { createClient } from '@supabase/supabase-js';
-import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
-import { SECRET_STRIPE_KEY } from '$env/static/private';
+import { json, type RequestHandler } from '@sveltejs/kit';
+import { stripeClient } from '@tcf/lib/configs/stripe.config';
+import { errorLogger } from '@tcf/lib/helpers/errorHelper';
+import { supabaseClient } from '@tcf/lib/configs/supabase.config';
 
-// TODO : Remove supabase and stripe
-const supabase = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY);
-const stripe = new Stripe(SECRET_STRIPE_KEY);
+export const POST: RequestHandler = async ({ request }) => {
+	try {
+		// Ensure request has a body before parsing
+		if (!request.body) {
+			throw new Error('Request body is empty');
+		}
 
-export async function POST({ request }) {
-	const { user_id, email } = await request.json();
+		let requestData: { user_id?: string; email?: string };
+		try {
+			requestData = await request.json();
+		} catch {
+			throw new Error('Invalid JSON payload');
+		}
 
-	// Create a Stripe customer
-	const customer = await stripe.customers.create({ email });
+		const { user_id, email } = requestData;
+		if (!user_id || !email) {
+			throw new Error('Missing required fields: user_id or email');
+		}
 
-	// Save stripe_customer_id on Supabase
-	await supabase.from('user_payments').insert({ user_id, stripe_customer_id: customer.id, subscription_status: 'inactive' });
+		// Create a Stripe customer
+		const customer = await stripeClient.customers.create({ email });
 
-	return json({ stripe_customer_id: customer.id });
-}
+		// Save stripe_customer_id in Supabase
+		await supabaseClient
+			.from('user_payments')
+			.insert({ user_id, stripe_customer_id: customer.id, subscription_status: 'inactive' });
+
+		return json({ stripe_customer_id: customer.id });
+	} catch (error) {
+		const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+		errorLogger(400, `Error handling create stripe customer: ${errorMessage}`);
+		return json({ error: errorMessage }, { status: 400 });
+	}
+};

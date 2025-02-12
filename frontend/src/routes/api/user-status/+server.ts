@@ -1,22 +1,45 @@
-import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
-import { createClient } from '@supabase/supabase-js';
-import { error, json } from '@sveltejs/kit';
+import { json, type RequestHandler } from '@sveltejs/kit';
+import { supabaseClient } from '@tcf/lib/configs/supabase.config';
+import { errorLogger } from '@tcf/lib/helpers/errorHelper';
 
-// TODO : Remove supabase and stripe
-const supabase = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY);
+export const GET: RequestHandler = async ({ request }) => {
+	try {
+		// Get Authorization token from headers
+		const token = request.headers.get('Authorization');
 
-export async function GET({ request }) {
-	const token = request.headers.get('Authorization');
-	if (!token) {
-		return error(401, 'No token found');
+		if (!token) {
+			throw new Error('No token found');
+		}
+
+		// Ensure the token starts with 'Bearer ' and extract the token part
+		const tokenParts = token.split(' ');
+		if (tokenParts.length !== 2 || tokenParts[0] !== 'Bearer') {
+			throw new Error('Invalid token format');
+		}
+
+		const actualToken = tokenParts[1]; // The token part after 'Bearer'
+		// Get user from Supabase auth
+		const { data: authData, error: authError } = await supabaseClient.auth.getUser(actualToken);
+
+		if (authError || !authData?.user) {
+			throw new Error('Invalid or expired token');
+		}
+
+		// Get user payment status
+		const { data: paymentData, error: paymentError } = await supabaseClient
+			.from('user_payments')
+			.select('subscription_status')
+			.eq('user_id', authData.user.id)
+			.single();
+
+		if (paymentError) {
+			throw new Error('Failed to fetch payment data from user');
+		}
+
+		return json({ hasPaid: paymentData?.subscription_status === 'active' });
+	} catch (err) {
+		const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+		errorLogger(400, `Error handling user status : ${errorMessage}`);
+		return json({ error: errorMessage }, { status: 400 });
 	}
-	const {
-		data: { user }
-	} = await supabase.auth.getUser(token);
-
-	if (!user) return json({ hasPaid: false });
-
-	const { data } = await supabase.from('user_payments').select('subscription_status').eq('user_id', user.id).single();
-
-	return json({ hasPaid: data?.subscription_status === 'active' });
-}
+};
