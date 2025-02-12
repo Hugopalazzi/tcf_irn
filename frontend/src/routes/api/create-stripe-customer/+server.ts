@@ -1,21 +1,25 @@
-import Stripe from 'stripe';
 import { json } from '@sveltejs/kit';
-import { createClient } from '@supabase/supabase-js';
-import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
-import { SECRET_STRIPE_KEY } from '$env/static/private';
-
-// TODO : Remove supabase and stripe
-const supabase = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY);
-const stripe = new Stripe(SECRET_STRIPE_KEY);
+import { stripeClient } from '@tcf/lib/configs/stripe.config'
+import { errorLogger } from '@tcf/lib/helpers/errorHelper';
+import { supabaseClient } from '@tcf/lib/configs/supabase.config';
 
 export async function POST({ request }) {
 	const { user_id, email } = await request.json();
-
+	if (!user_id || !email) {
+		errorLogger(400, 'Error handling create stripe customer : no email or user id found.');
+		return json({ error: 'Error handling create stripe customer : no sig or body found.' }, { status: 400 });
+	}
 	// Create a Stripe customer
-	const customer = await stripe.customers.create({ email });
+	try {
+		const customer = await stripeClient.customers.create({ email });
 
-	// Save stripe_customer_id on Supabase
-	await supabase.from('user_payments').insert({ user_id, stripe_customer_id: customer.id, subscription_status: 'inactive' });
+		// Save stripe_customer_id on Supabase
+		await supabaseClient.from('user_payments').insert({ user_id, stripe_customer_id: customer.id, subscription_status: 'inactive' });
 
-	return json({ stripe_customer_id: customer.id });
+		return json({ stripe_customer_id: customer.id });
+	} catch (error) {
+		errorLogger(500, `Error handling create stripe customer:', ${error}`);
+		return json({ error: 'Internal Server Error' }, { status: 500 });
+	}
+
 }

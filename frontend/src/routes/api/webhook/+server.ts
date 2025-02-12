@@ -1,13 +1,9 @@
 import { json } from '@sveltejs/kit';
 import Stripe from 'stripe';
-import { createClient } from '@supabase/supabase-js';
-import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL, PUBLIC_STRIPE_WEBHOOK_API_SECRET } from '$env/static/public';
-import { SECRET_STRIPE_KEY } from '$env/static/private';
+import { PUBLIC_STRIPE_WEBHOOK_API_SECRET } from '$env/static/public';
 import { errorLogger } from '@tcf/lib/helpers/errorHelper';
-
-// TODO : Remove supabase and stripe
-const supabase = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY);
-const stripe = new Stripe(SECRET_STRIPE_KEY);
+import { stripeClient } from '@tcf/lib/configs/stripe.config';
+import { supabaseClient } from '@tcf/lib/configs/supabase.config';
 
 export async function POST({ request }) {
 	try {
@@ -18,7 +14,7 @@ export async function POST({ request }) {
 			return json({ error: 'Error handling webhook: no sig or body found.' }, { status: 400 });
 		}
 
-		const event: Stripe.Event = stripe.webhooks.constructEvent(rawBody, sig, PUBLIC_STRIPE_WEBHOOK_API_SECRET);
+		const event: Stripe.Event = stripeClient.webhooks.constructEvent(rawBody, sig, PUBLIC_STRIPE_WEBHOOK_API_SECRET);
 
 		if (!event?.data?.object) {
 			errorLogger(400, 'Error handling webhook: No event data object.');
@@ -36,11 +32,11 @@ export async function POST({ request }) {
 
 		switch (event.type) {
 			case 'payment_intent.succeeded':
-				await supabase.from('user_payments').update({ subscription_status: 'active' }).eq('stripe_customer_id', stripeCustomerId);
+				await supabaseClient.from('user_payments').update({ subscription_status: 'active' }).eq('stripe_customer_id', stripeCustomerId);
 				break;
 
 			case 'customer.subscription.deleted': // Example: Handle subscription cancellation
-				await supabase.from('user_payments').update({ subscription_status: 'canceled' }).eq('stripe_customer_id', stripeCustomerId);
+				await supabaseClient.from('user_payments').update({ subscription_status: 'canceled' }).eq('stripe_customer_id', stripeCustomerId);
 				break;
 
 			default:

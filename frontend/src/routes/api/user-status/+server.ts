@@ -1,9 +1,6 @@
-import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
-import { createClient } from '@supabase/supabase-js';
 import { error, json } from '@sveltejs/kit';
+import { supabaseClient } from '@tcf/lib/configs/supabase.config';
 
-// TODO : Remove supabase and stripe
-const supabase = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY);
 
 export async function GET({ request }) {
 	const token = request.headers.get('Authorization');
@@ -12,7 +9,7 @@ export async function GET({ request }) {
 	}
 	const {
 		data: { user }
-	} = await supabase.auth.getUser(token);
+	} = await supabaseClient.auth.getUser(token);
 
 	if (!user) return json({ hasPaid: false });
 
