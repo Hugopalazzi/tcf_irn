@@ -1,19 +1,37 @@
-import { error, json } from '@sveltejs/kit';
+import { json, error, type RequestHandler } from '@sveltejs/kit';
 import { supabaseClient } from '@tcf/lib/configs/supabase.config';
+import { errorLogger } from '@tcf/lib/helpers/errorHelper';
 
+export const GET: RequestHandler = async ({ request }) => {
+	try {
+		// Get Authorization token from headers
+		const token = request.headers.get('Authorization');
+		if (!token) {
+			throw new Error('No token found');
+		}
 
-export async function GET({ request }) {
-	const token = request.headers.get('Authorization');
-	if (!token) {
-		return error(401, 'No token found');
+		// Get user from Supabase auth
+		const { data: authData, error: authError } = await supabaseClient.auth.getUser(token);
+
+		if (authError || !authData?.user) {
+			throw new Error('Invalid or expired token');
+		}
+
+		// Get user payment status
+		const { data: paymentData, error: paymentError } = await supabaseClient
+			.from('user_payments')
+			.select('subscription_status')
+			.eq('user_id', authData.user.id)
+			.single();
+
+		if (paymentError) {
+			throw new Error('Failed to fetch payment data');
+		}
+
+		return json({ hasPaid: paymentData?.subscription_status === 'active' });
+	} catch (err) {
+		const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+		errorLogger(400, `Error handling user status : ${errorMessage}`);
+		return json({ error: errorMessage }, { status: 400 });
 	}
-	const {
-		data: { user }
-	} = await supabaseClient.auth.getUser(token);
-
-	if (!user) return json({ hasPaid: false });
-
-	const { data } = await supabase.from('user_payments').select('subscription_status').eq('user_id', user.id).single();
-
-	return json({ hasPaid: data?.subscription_status === 'active' });
-}
+};
