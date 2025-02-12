@@ -42,6 +42,7 @@
 		"@auth/sveltekit": "^1.7.4",
 		"@supabase/ssr": "^0.5.2",
 		"@supabase/supabase-js": "^2.47.12",
+		"@sveltejs/adapter-vercel": "5.6.1",
 		"chart.js": "^4.4.6",
 		"dotenv": "^16.4.7",
 		"google-auth-library": "^9.15.0",
