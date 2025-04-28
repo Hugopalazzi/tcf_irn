@@ -2,15 +2,27 @@
 
 // btn general
 .btn {
+	display: flex;
+	align-items: center;
 	font-family: var(--clanOT);
 	font-weight: var(--medium);
 	font-size: var(--text-lg);
 	letter-spacing: 0;
 	text-align: center;
+	gap: rem(12);
 	appearance: none;
 	cursor: pointer;
-	justify-content: center;
-	height: rem(32);
+	padding: rem(12) rem(20);
+
+	span {
+		font-weight: 600;
+	}
+}
+
+.btn-rounded {
+	background-color: var(--white);
+	border-radius: rem(32);
+	padding: rem(14);
 }
 
 .btn-size-large {
@@ -30,13 +42,9 @@
 
 .btn-primary {
 	color: var(--white);
-	background-color: var(--button-primary-color);
-	border-radius: rem(16);
+	background-color: var(--primary-100);
+	border-radius: rem(32);
 	justify-content: center;
-
-	&:hover {
-		transform: scale(1.02);
-	}
 
 	&:focus {
 		color: var(--white);
@@ -55,19 +63,20 @@
 	}
 }
 
+.btn.active {
+	background-color: var(--secondary-color);
+	color: var(--primary-color);
+}
+
 .btn-secondary {
 	background-color: transparent;
 	border: rem(1) solid var(--white);
-	color: var(--secondary-900);
+	color: var(--secondary-color);
 	box-shadow: var(--shadow-sm);
 	align-content: center;
 	border-radius: rem(16);
 	color: var(--white);
 	width: 100%;
-
-	&:hover {
-		transform: scale(1.02);
-	}
 
 	&:disabled {
 		background-color: transparent;
@@ -89,7 +98,6 @@
 	border-radius: rem(8);
 
 	&:hover {
-		transform: scale(1.02);
 		font-weight: 600;
 	}
 
@@ -107,7 +115,6 @@
 	border: rem(2) solid var(--correct-input);
 
 	&:hover {
-		transform: scale(1.02);
 		font-weight: 600;
 	}
 
