@@ -1,3 +1,7 @@
 {
-	"translation": "anglais"
+	"translation": "anglais",
+	"navBar": {
+		"exams": "Exam",
+		"profile": "My profile"
+	}
 }
