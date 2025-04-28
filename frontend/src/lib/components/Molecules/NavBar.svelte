@@ -55,7 +55,6 @@
 				justify-content: space-between;
 				border-bottom: rem(1.5) solid var(--secondary-500);
 				flex-direction: row;
-				justify-content: space-between;
 			}
 		}
 
@@ -69,9 +68,6 @@
 				flex-direction: row;
 
 				gap: rem(12);
-			}
-			@include min-width(tablet) {
-				flex-direction: row;
 			}
 		}
 
