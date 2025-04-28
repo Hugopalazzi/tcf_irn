@@ -1,60 +1,90 @@
 <script lang="ts">
-	import { Icon, User } from 'svelte-hero-icons';
+	import { createBEM } from '@tcf/lib/helpers/bemHelper';
+	import { _ } from 'svelte-i18n';
+	import DashboardIcon from '../Icons/DashboardIcon.svelte';
+	import ExamsIcon from '../Icons/ExamsIcon.svelte';
+	import LeaderboardIcon from '../Icons/LeaderboardIcon.svelte';
+	import PttNavIcon from '../Icons/PttNavIcon.svelte';
+	import SubscribeIcon from '../Icons/SubscribeIcon.svelte';
+	import PeopleIcon from '../Icons/PeopleIcon.svelte';
+
+	const bem = createBEM('topnav');
 </script>
 
-<div class="topnav">
-	<div class="left-links">
-		<a class="active" href="/dashboard">Home</a>
-		<a href="/comprehension-orale">Listening comprehension</a>
-		<a href="/comprension-ecrite">Written comprehension</a>
-		<a href="/expression-ecrite">Written expression</a>
+<div class={bem('container')}>
+	<div class={bem('left')}>
+		<PttNavIcon />
+		<div class={bem('vertical-bar')}></div>
+		<div class={bem('left-buttons-container')}>
+			<a href="/dashboard" class="btn btn-primary active">
+				<DashboardIcon />
+				<span>Dashboard</span>
+			</a>
+			<a href="/exams" class="btn btn-primary">
+				<ExamsIcon />
+				<span>{$_('navBar.exams')}</span>
+			</a>
+			<a href="/leaderboard" class="btn btn-primary">
+				<LeaderboardIcon />
+				<span>Leaderboard</span>
+			</a>
+			<a href="/profile" class="btn btn-primary">
+				<PeopleIcon />
+				<span>{$_('navBar.profile')}</span>
+			</a>
+		</div>
 	</div>
-	<a href="/logout">Logout</a>
-	<a href="mon-compte"><Icon src={User} size="18" /></a>
+	<div class={bem('right')}>
+		<a class="btn btn-rounded">
+			<SubscribeIcon />
+		</a>
+	</div>
 </div>
 
 <style lang="scss">
 	.topnav {
-		display: flex;
-		flex-direction: column-reverse;
-		overflow: hidden;
-		margin-bottom: rem(16);
+		&__container {
+			display: flex;
+			align-items: center;
+			overflow: hidden;
+			margin-bottom: rem(16);
+			background-color: var(--primary-color);
+			padding: rem(16);
 
-		a {
-			float: left;
-			text-align: center;
-			align-self: center;
-			line-height: normal;
-			padding: rem(4) rem(8);
-			margin: 0 rem(6);
-			margin-bottom: rem(10);
-			&:hover {
-				font-weight: 600;
+			@include min-width(tablet) {
+				justify-content: space-between;
+				border-bottom: rem(1.5) solid var(--secondary-500);
+				flex-direction: row;
+				justify-content: space-between;
 			}
 		}
 
-		a.active {
-			border-bottom: rem(3) solid var(--correct-input);
-		}
-
-		.left-links {
+		&__left {
 			display: flex;
-			flex-direction: column;
+			gap: rem(32);
+			flex-direction: row;
 
+			&-buttons-container {
+				display: flex;
+				flex-direction: row;
+
+				gap: rem(12);
+			}
 			@include min-width(tablet) {
 				flex-direction: row;
 			}
 		}
 
-		@include min-width(tablet) {
-			justify-content: space-between;
-			border-bottom: rem(1.5) solid var(--secondary-500);
-			flex-direction: row;
-			justify-content: space-between;
-		}
-	}
+		&__right {
+			display: flex;
+			gap: rem(12);
 
-	:global(.topnav a svg:hover) {
-		zoom: 1.1;
+			.btn-rounded button {
+				padding: 0;
+			}
+		}
+		&__vertical-bar {
+			border-right: 1px solid white;
+		}
 	}
 </style>
