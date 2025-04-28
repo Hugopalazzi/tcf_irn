@@ -7,8 +7,14 @@
 	import PttNavIcon from '../Icons/PttNavIcon.svelte';
 	import SubscribeIcon from '../Icons/SubscribeIcon.svelte';
 	import PeopleIcon from '../Icons/PeopleIcon.svelte';
+	import DashboardButton from '../Atoms/DashboardButton.svelte';
+	import { page } from '$app/state';
 
 	const bem = createBEM('topnav');
+
+	function getIconColor(btnUrl: string): string {
+		return page.url.pathname.startsWith(btnUrl) ? '#000' : '#fff';
+	}
 </script>
 
 <div class={bem('container')}>
@@ -16,22 +22,22 @@
 		<PttNavIcon />
 		<div class={bem('vertical-bar')}></div>
 		<div class={bem('left-buttons-container')}>
-			<a href="/dashboard" class="btn btn-primary active">
-				<DashboardIcon />
-				<span>Dashboard</span>
-			</a>
-			<a href="/exams" class="btn btn-primary">
-				<ExamsIcon />
-				<span>{$_('navBar.exams')}</span>
-			</a>
-			<a href="/leaderboard" class="btn btn-primary">
-				<LeaderboardIcon />
-				<span>Leaderboard</span>
-			</a>
-			<a href="/profile" class="btn btn-primary">
-				<PeopleIcon />
-				<span>{$_('navBar.profile')}</span>
-			</a>
+			<DashboardButton href="/dashboard">
+				<DashboardIcon color={getIconColor('/dashboard')} />
+				<span class={bem('btn-title')}>Dashboard</span>
+			</DashboardButton>
+			<DashboardButton href="/exams">
+				<ExamsIcon color={getIconColor('/exams')} />
+				<span class={bem('btn-title')}>{$_('navBar.exams')}</span>
+			</DashboardButton>
+			<DashboardButton href="/leaderboard">
+				<LeaderboardIcon color={getIconColor('/leaderboard')} />
+				<span class={bem('btn-title')}>Leaderboard</span>
+			</DashboardButton>
+			<DashboardButton href="/profile">
+				<PeopleIcon color={getIconColor('/profile')} />
+				<span class={bem('btn-title')}>{$_('navBar.profile')}</span>
+			</DashboardButton>
 		</div>
 	</div>
 	<div class={bem('right')}>
@@ -81,6 +87,13 @@
 		}
 		&__vertical-bar {
 			border-right: 1px solid white;
+		}
+		&__btn-title {
+			color: rgba(255, 255, 255, 0.7);
+			font-size: rem(14);
+			font-style: normal;
+			font-weight: 600;
+			line-height: rem(20);
 		}
 	}
 </style>

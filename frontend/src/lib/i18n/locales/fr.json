@@ -26,7 +26,7 @@
 		"samePassword": "Le nouveau mot de passe est identique à l'ancien."
 	},
 	"navBar": {
-		"exams": "Examen",
-		"profile": "Mon profile"
+		"exams": "Examens",
+		"profile": "Mon profil"
 	}
 }
