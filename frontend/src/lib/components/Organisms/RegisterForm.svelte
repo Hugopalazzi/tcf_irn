@@ -18,12 +18,12 @@
 
 <form method="POST" class={bem('container')} autocomplete="off" use:enhance>
 	<InputTextWrapperForm
-		inputId="email"
-		name="email"
-		placeholder={$_('form.email.placeholder')}
-		bindedValue={$form.email}
-		bindedError={$errors?.email}
-		autocomplete="email" />
+    inputId="email"
+    name="email"
+	placeholder={$_('form.email.placeholder')}
+    bind:bindedValue={$form.email}
+    bindedError={$errors?.email}
+    autocomplete="email" />
 	<!-- <div class={bem('input-wrapper')}>
 		<label class={bem('label')} for="email">{$_('form.email.label')}</label>
 		<input

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { _ } from 'svelte-i18n';
-	import type { SuperForm } from 'sveltekit-superforms';
 	import type { Snippet } from 'svelte';
 
 	const bem = createBEM('authentification-card');

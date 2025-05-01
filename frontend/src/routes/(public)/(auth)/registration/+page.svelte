@@ -51,7 +51,7 @@
 	});
 </script>
 
-<AuthenticationCard {supForm}><RegisterForm {supForm} /></AuthenticationCard>
+<AuthenticationCard><RegisterForm {supForm} /></AuthenticationCard>
 
 <!-- <div class="right-size">
 		<BackButton />

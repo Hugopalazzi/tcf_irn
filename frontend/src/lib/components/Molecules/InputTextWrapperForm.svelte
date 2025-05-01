@@ -15,12 +15,12 @@
 		autocomplete?: FullAutoFill;
 	}
 
-	let { bindedValue, bindedError, inputId, name, placeholder, autocomplete }: Props = $props();
+	let { bindedValue = $bindable(''), bindedError, inputId, name, placeholder, autocomplete }: Props = $props();
 	const bem = createBEM('input-text-wrapper-form');
 </script>
 
 <div class={bem()}>
-    {bindedError}
+	{bindedError}
 	<label class={bem('label')} for={inputId}>{$_('form.email.label')}</label>
 	<input class={bem('input')} bind:value={bindedValue} class:error={!!bindedError} id={inputId} {name} {placeholder} {autocomplete} />
 	<FormError errors={bindedError} />
