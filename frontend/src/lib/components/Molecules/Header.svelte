@@ -34,7 +34,7 @@
 			{#each links as { href, icon: Icon, labelKey, path }}
 				<HeaderLink {href}>
 					<Icon color={getIconColor(path)} />
-					<span class={bem('btn-title')}>
+					<span class={bem('link-label')}>
 						{$_(labelKey)}
 					</span>
 				</HeaderLink>
@@ -82,7 +82,7 @@
 		&__vertical-bar {
 			border-right: 1px solid white;
 		}
-		&__btn-title {
+		&__link-label {
 			color: rgba(255, 255, 255, 0.7);
 			font-size: rem(14);
 			font-style: normal;
