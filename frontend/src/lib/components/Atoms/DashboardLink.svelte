@@ -11,7 +11,7 @@
 	let { href = '', children }: Props = $props();
 </script>
 
-<a {href} class="btn btn-primary" class:active={page.url.pathname.startsWith(href)}>
+<a {href} class="btn btn-primary" class:active={page.url.href.startsWith(href)}>
 	{@render children()}
 </a>
 

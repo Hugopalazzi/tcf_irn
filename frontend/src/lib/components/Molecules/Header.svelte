@@ -7,48 +7,49 @@
 	import PttNavIcon from '../Icons/PttNavIcon.svelte';
 	import SubscribeIcon from '../Icons/SubscribeIcon.svelte';
 	import PeopleIcon from '../Icons/PeopleIcon.svelte';
-	import DashboardButton from '../Atoms/DashboardButton.svelte';
+	import DashboardLink from '../Atoms/DashboardLink.svelte';
 	import { page } from '$app/state';
+	import { PUBLIC_BASE_URL } from '$env/static/public';
 
-	const bem = createBEM('topnav');
+	const bem = createBEM('header');
 
-	function getIconColor(btnUrl: string): string {
-		return page.url.pathname.startsWith(btnUrl) ? '#000' : '#fff';
-	}
+	const getIconColor = (url: string) => {
+		return page.url.pathname.startsWith(url) ? '#000' : '#fff';
+	};
+
+	const links = [
+		{ href: `${PUBLIC_BASE_URL}/dashboard`, icon: DashboardIcon, labelKey: 'header.dashboard', path: '/dashboard' },
+		{ href: `${PUBLIC_BASE_URL}/exams`, icon: ExamsIcon, labelKey: 'header.exams', path: '/exams' },
+		{ href: `${PUBLIC_BASE_URL}/leaderboard`, icon: LeaderboardIcon, labelKey: 'header.leaderboard', path: '/leaderboard' },
+		{ href: `${PUBLIC_BASE_URL}/profile`, icon: PeopleIcon, labelKey: 'header.profile', path: '/profile' }
+	];
 </script>
 
-<div class={bem('container')}>
+<header class={bem('container')}>
 	<div class={bem('left')}>
 		<PttNavIcon />
 		<div class={bem('vertical-bar')}></div>
+
 		<div class={bem('left-buttons-container')}>
-			<DashboardButton href="/dashboard">
-				<DashboardIcon color={getIconColor('/dashboard')} />
-				<span class={bem('btn-title')}>Dashboard</span>
-			</DashboardButton>
-			<DashboardButton href="/exams">
-				<ExamsIcon color={getIconColor('/exams')} />
-				<span class={bem('btn-title')}>{$_('navBar.exams')}</span>
-			</DashboardButton>
-			<DashboardButton href="/leaderboard">
-				<LeaderboardIcon color={getIconColor('/leaderboard')} />
-				<span class={bem('btn-title')}>Leaderboard</span>
-			</DashboardButton>
-			<DashboardButton href="/profile">
-				<PeopleIcon color={getIconColor('/profile')} />
-				<span class={bem('btn-title')}>{$_('navBar.profile')}</span>
-			</DashboardButton>
+			{#each links as { href, icon: Icon, labelKey, path }}
+				<DashboardLink {href}>
+					<Icon color={getIconColor(path)} />
+					<span class={bem('btn-title')}>
+						{$_(labelKey)}
+					</span>
+				</DashboardLink>
+			{/each}
 		</div>
 	</div>
 	<div class={bem('right')}>
-		<a class="btn btn-rounded">
+		<a href='{PUBLIC_BASE_URL}/subscribe' class="btn btn-rounded">
 			<SubscribeIcon />
 		</a>
 	</div>
-</div>
+</header>
 
 <style lang="scss">
-	.topnav {
+	.header {
 		&__container {
 			display: flex;
 			align-items: center;
@@ -80,10 +81,6 @@
 		&__right {
 			display: flex;
 			gap: rem(12);
-
-			.btn-rounded button {
-				padding: 0;
-			}
 		}
 		&__vertical-bar {
 			border-right: 1px solid white;
