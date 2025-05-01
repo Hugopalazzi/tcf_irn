@@ -2,7 +2,7 @@
 	import '@tcf/styles/styles.scss';
 	import type { LayoutData } from './$types';
 	import type { Snippet } from 'svelte';
-	import NavBar from '../../lib/components/Molecules/NavBar.svelte';
+	import Header from '$lib/components/Molecules/Header.svelte';
 
 	interface Props {
 		data: LayoutData;
@@ -14,7 +14,7 @@
 
 <div class="wrapper">
 	<main>
-		<NavBar />
+		<Header />
 		{@render children?.()}
 	</main>
 </div>
