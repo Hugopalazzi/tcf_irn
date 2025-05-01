@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import '@tcf/styles/styles.scss';
 	import type { Snippet } from 'svelte';
 
 	interface Props {
