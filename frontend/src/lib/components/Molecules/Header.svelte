@@ -42,7 +42,7 @@
 		</div>
 	</div>
 	<div class={bem('right')}>
-		<a href="{PUBLIC_BASE_URL}/subscribe" class="btn btn-rounded">
+		<a href="{PUBLIC_BASE_URL}/subscribe" class={bem('link-rounded')}>
 			<SubscribeIcon />
 		</a>
 	</div>
@@ -88,6 +88,12 @@
 			font-style: normal;
 			font-weight: 600;
 			line-height: rem(20);
+		}
+		&__link-rounded {
+			display: flex;
+			background-color: var(--white);
+			border-radius: rem(32);
+			padding: rem(14);
 		}
 	}
 </style>
