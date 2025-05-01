@@ -36,11 +36,6 @@
 		border-radius: rem(32);
 		justify-content: center;
 
-		&[target='_blank']:focus {
-			color: var(--white);
-			outline: var(--outline-externe);
-		}
-
 		&__active {
 			background-color: var(--secondary-color);
 			:global(span) {
