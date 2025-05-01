@@ -1,16 +1,15 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import BackButton from '@tcf/lib/components/Atoms/BackButton.svelte';
-	import FormError from '@tcf/lib/components/Atoms/FormError.svelte';
+	import AuthenticationCard from '@tcf/lib/components/Organisms/AuthenticationCard.svelte';
+	import RegisterForm from '@tcf/lib/components/Organisms/RegisterForm.svelte';
 	import { addErrorToast, addSuccessToast } from '@tcf/lib/helpers/toastHelper.js';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema.js';
 	import { userCreationAccountSchema } from '@tcf/models/forms/userSchema';
-	import { Envelope, Icon } from 'svelte-hero-icons';
 	import { _ } from 'svelte-i18n';
 	import { superForm } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
 
-	export let data;
+	const { data } = $props();
 
 	const supForm = superForm(data.form, {
 		validators: zod(userCreationAccountSchema),
@@ -50,15 +49,11 @@
 			}
 		}
 	});
-	const { form, enhance, errors } = supForm;
 </script>
 
-<div class="page-container">
-	<div class="left-size">
-		<img class="logo" src="/assets/images/logo_my_story.png" alt="My story" />
-		<h5>Apprenez le francais en vous amusant avec Mystory.</h5>
-	</div>
-	<div class="right-size">
+<AuthenticationCard {supForm}><RegisterForm {supForm} /></AuthenticationCard>
+
+<!-- <div class="right-size">
 		<BackButton />
 		<h5 class="title">Register</h5>
 
@@ -100,5 +95,4 @@
 				<Icon src={Envelope} size="18" />Sign Up
 			</button>
 		</form>
-	</div>
-</div>
+	</div> -->

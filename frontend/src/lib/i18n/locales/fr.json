@@ -52,5 +52,31 @@
 				"url": "/writing-exams"
 			}
 		}
+	},
+	"presentationCard": {
+		"badge": "Votre clé du succès en français !",
+		"welcome": "Bienvenue sur ",
+		"brand": "Passe ton TEF",
+		"description": "The interactive and fun platform designed to help you succeed in your French exam (TEF). Benefit from intensive practice in listening comprehension, reading comprehension, and written expression, with instant corrections and detailed progress tracking.",
+		"informationBadges": {
+			"comprehensiveExams": {
+				"title": "Préparation à l'examen complet :",
+				"description": "Pratiquez toutes les sections du TEF avec de vraies questions d'examen et des commentaires instantanés."
+			},
+			"gamifiedLearning": {
+				"title": "Progrès gamifiés :",
+				"description": "Suivez vos progrès et célébrez les étapes importantes à mesure que vous vous améliorez."
+			},
+			"corrections": {
+				"title": "Corrections instantanées :",
+				"description": "Recevez des commentaires immédiats pour vous aider à apprendre plus rapidement."
+			}
+		}
+	},
+	"authentificationCard": {
+		"title": "Créer un compte ou se connecter",
+		"description": "Entrez vos informations pour vous connectez"
+	},
+	"form": {
 	}
 }

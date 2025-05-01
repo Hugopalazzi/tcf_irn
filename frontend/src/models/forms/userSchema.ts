@@ -4,7 +4,7 @@ import { z } from 'zod';
 const emailErrorMessage = 'Veuillez saisir un e-mail valide.';
 export const emailSchema = z.string().email(emailErrorMessage);
 
-export const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;
+export const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};':"\\|,.<>/?]).{8,}$/;
 export const userCreationAccountSchema = z
 	.object({
 		username: z.string().min(1),
