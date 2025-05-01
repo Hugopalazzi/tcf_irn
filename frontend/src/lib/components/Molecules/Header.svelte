@@ -42,7 +42,7 @@
 		</div>
 	</div>
 	<div class={bem('right')}>
-		<a href='{PUBLIC_BASE_URL}/subscribe' class="btn btn-rounded">
+		<a href="{PUBLIC_BASE_URL}/subscribe" class="btn btn-rounded">
 			<SubscribeIcon />
 		</a>
 	</div>
@@ -57,12 +57,9 @@
 			margin-bottom: rem(16);
 			background-color: var(--primary-color);
 			padding: rem(16);
-
-			@include min-width(tablet) {
-				justify-content: space-between;
-				border-bottom: rem(1.5) solid var(--secondary-500);
-				flex-direction: row;
-			}
+			justify-content: space-between;
+			border-bottom: rem(1.5) solid var(--secondary-500);
+			flex-direction: row;
 		}
 
 		&__left {
