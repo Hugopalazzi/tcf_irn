@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { _ } from 'svelte-i18n';
-	import DashboardIcon from '../Icons/DashboardIcon.svelte';
-	import ExamsIcon from '../Icons/ExamsIcon.svelte';
-	import LeaderboardIcon from '../Icons/LeaderboardIcon.svelte';
-	import PttNavIcon from '../Icons/PttNavIcon.svelte';
-	import SubscribeIcon from '../Icons/SubscribeIcon.svelte';
-	import PeopleIcon from '../Icons/PeopleIcon.svelte';
-	import DashboardLink from '../Atoms/DashboardLink.svelte';
+	import DashboardIcon from '$lib/components/Icons/DashboardIcon.svelte';
+	import ExamsIcon from '$lib/components/Icons/ExamsIcon.svelte';
+	import LeaderboardIcon from '$lib/components/Icons/LeaderboardIcon.svelte';
+	import PttNavIcon from '$lib/components/Icons/PttNavIcon.svelte';
+	import SubscribeIcon from '$lib/components/Icons/SubscribeIcon.svelte';
+	import PeopleIcon from '$lib/components/Icons/PeopleIcon.svelte';
+	import HeaderLink from '$lib/components/Atoms/HeaderLink.svelte';
 	import { page } from '$app/state';
 	import { PUBLIC_BASE_URL } from '$env/static/public';
 
@@ -32,12 +32,12 @@
 
 		<div class={bem('left-buttons-container')}>
 			{#each links as { href, icon: Icon, labelKey, path }}
-				<DashboardLink {href}>
+				<HeaderLink {href}>
 					<Icon color={getIconColor(path)} />
 					<span class={bem('btn-title')}>
 						{$_(labelKey)}
 					</span>
-				</DashboardLink>
+				</HeaderLink>
 			{/each}
 		</div>
 	</div>
