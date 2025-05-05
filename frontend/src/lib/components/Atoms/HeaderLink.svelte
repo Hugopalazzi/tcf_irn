@@ -1,20 +1,24 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import type { Snippet } from 'svelte';
 
 	interface Props {
 		href: string;
+		label: string;
+		isActive: boolean;
 		children: Snippet;
 	}
 
 	const bem = createBEM('header-link');
 
-	let { href = '', children }: Props = $props();
+	let { href, label, isActive, children }: Props = $props();
 </script>
 
-<a {href} class={`${bem()} ${page.url.href.startsWith(href) ? bem('active') : ''}`}>
+<a {href} class={bem('', { active: isActive })}>
 	{@render children()}
+	<span class={bem.mix('link-label')}>
+		{label}
+	</span>
 </a>
 
 <style lang="scss">
@@ -35,7 +39,7 @@
 		border-radius: rem(32);
 		justify-content: center;
 
-		&__active {
+		&--active {
 			background-color: var(--secondary-color);
 			:global(span) {
 				color: black;

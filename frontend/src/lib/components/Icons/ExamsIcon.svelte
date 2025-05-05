@@ -3,7 +3,7 @@
 		color?: string;
 	}
 
-	let { color = '#fff' }: Props = $props();
+	const { color = '#fff' }: Props = $props();
 </script>
 
 

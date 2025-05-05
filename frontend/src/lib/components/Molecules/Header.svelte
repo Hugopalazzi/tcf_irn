@@ -13,15 +13,15 @@
 
 	const bem = createBEM('header');
 
-	const getIconColor = (url: string) => {
-		return page.url.pathname.startsWith(url) ? '#000' : '#fff';
+	const getIconColor = (isActive: boolean) => {
+		return isActive ? '#000' : '#fff';
 	};
 
 	const links = [
-		{ href: `${PUBLIC_BASE_URL}/dashboard`, icon: DashboardIcon, labelKey: 'header.dashboard', path: '/dashboard' },
-		{ href: `${PUBLIC_BASE_URL}/exams`, icon: ExamsIcon, labelKey: 'header.exams', path: '/exams' },
-		{ href: `${PUBLIC_BASE_URL}/leaderboard`, icon: LeaderboardIcon, labelKey: 'header.leaderboard', path: '/leaderboard' },
-		{ href: `${PUBLIC_BASE_URL}/profile`, icon: PeopleIcon, labelKey: 'header.profile', path: '/profile' }
+		{ icon: DashboardIcon, labelKey: 'header.dashboard', path: '/dashboard' },
+		{ icon: ExamsIcon, labelKey: 'header.exams', path: '/exams' },
+		{ icon: LeaderboardIcon, labelKey: 'header.leaderboard', path: '/leaderboard' },
+		{ icon: PeopleIcon, labelKey: 'header.profile', path: '/profile' }
 	];
 </script>
 
@@ -31,12 +31,10 @@
 		<div class={bem('vertical-bar')}></div>
 
 		<div class={bem('left-buttons-container')}>
-			{#each links as { href, icon: Icon, labelKey, path }}
-				<HeaderLink {href}>
-					<Icon color={getIconColor(path)} />
-					<span class={bem('link-label')}>
-						{$_(labelKey)}
-					</span>
+			{#each links as { icon: Icon, labelKey, path }}
+				{@const isActive = page.url.pathname.startsWith(path)}
+				<HeaderLink href={`${PUBLIC_BASE_URL}${path}`} {isActive} label={$_(labelKey)}>
+					<Icon color={getIconColor(isActive)} />
 				</HeaderLink>
 			{/each}
 		</div>
