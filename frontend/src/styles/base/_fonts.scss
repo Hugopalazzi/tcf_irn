@@ -1,7 +1,62 @@
 @font-face {
-	font-family: 'PPMori-Regular';
-	src: url('/assets/fonts/PPMori-Regular.otf') format('otf');
-	font-weight: normal;
+	font-family: 'SF Pro Display';
+	src: url('/fonts/sf-pro-display-black-italic.otf') format('opentype');
+	font-weight: 900;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'SF Pro Display';
+	src: url('/fonts/sf-pro-display-bold.otf') format('opentype');
+	font-weight: 700;
 	font-style: normal;
-	font-display: swap;
+}
+
+@font-face {
+	font-family: 'SF Pro Display';
+	src: url('/fonts/sf-pro-display-heavy-italic.otf') format('opentype');
+	font-weight: 800;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'SF Pro Display';
+	src: url('/fonts/sf-pro-display-light-italic.otf') format('opentype');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'SF Pro Display';
+	src: url('/fonts/sf-pro-display-medium.otf') format('opentype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'SF Pro Display';
+	src: url('/fonts/sf-pro-display-regular.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'SF Pro Display';
+	src: url('/fonts/sf-pro-display-semibold-italic.otf') format('opentype');
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'SF Pro Display';
+	src: url('/fonts/sf-pro-display-thin-italic.otf') format('opentype');
+	font-weight: 100;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'SF Pro Display';
+	src: url('/fonts/sf-pro-display-ultralight-italic.otf') format('opentype');
+	font-weight: 200;
+	font-style: italic;
 }
