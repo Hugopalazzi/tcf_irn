@@ -11,7 +11,7 @@
 
 	const bem = createBEM('header-link');
 
-	let { href, label, isActive, children }: Props = $props();
+	const { href, label, isActive, children }: Props = $props();
 </script>
 
 <a {href} class={bem('', { active: isActive })}>
