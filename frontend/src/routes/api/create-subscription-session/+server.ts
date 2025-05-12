@@ -1,8 +1,8 @@
 import { json, type RequestHandler } from '@sveltejs/kit';
-import { BASE_URL } from '$env/static/private';
 import { stripeClient } from '@tcf/lib/configs/stripe.config';
 import { supabaseClient } from '@tcf/lib/configs/supabase.config';
 import { errorLogger } from '@tcf/lib/helpers/errorHelper';
+import { PUBLIC_BASE_URL } from '$env/static/public';
 
 export const POST: RequestHandler = async ({ request }) => {
 	try {
@@ -40,8 +40,8 @@ export const POST: RequestHandler = async ({ request }) => {
 			customer: data.stripe_customer_id, // Ensure the customer ID is linked to the user
 			line_items: [{ price: 'price_1QpZtI2KtLRJi0s0QsR6MFhY', quantity: 1 }],
 			mode: 'subscription',
-			success_url: `${BASE_URL}/payment?session_id={CHECKOUT_SESSION_ID}`,
-			cancel_url: `${BASE_URL}/payment`
+			success_url: `${PUBLIC_BASE_URL}/payment?session_id={CHECKOUT_SESSION_ID}`,
+			cancel_url: `${PUBLIC_BASE_URL}/payment`
 		});
 
 		return json({ url: session.url });

@@ -4,12 +4,12 @@ import { sveltekit } from '@sveltejs/kit/vite';
 export default defineConfig({
 	plugins: [sveltekit()],
 	css: {
-        preprocessorOptions: {
-            scss: {
-                additionalData: `@use '@tcf/styles/utilities/mixins' as *;`,
-            },
-        },
-    },
+		preprocessorOptions: {
+			scss: {
+				additionalData: "@use '@tcf/styles/utilities/mixins' as *; @use '@tcf/styles/utilities/variable' as *;"
+			}
+		}
+	},
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
 	}

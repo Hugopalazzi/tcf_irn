@@ -24,5 +24,12 @@
 		"weakPassword": "Le nouveau mot de passe n'est pas assez sécurisé.",
 		"reauthenticationNeeded": "Vous devez vous reconnecter pour changer votre mot de passe.",
 		"samePassword": "Le nouveau mot de passe est identique à l'ancien."
+	},
+	"header": {
+		"dashboard": "Dashboard",
+		"exams": "Examens",
+		"leaderboard": "Leaderboard",
+		"profile": "Mon profil",
+		"subscribe": "Lien vers le changement d'offre tarifaire"
 	}
 }

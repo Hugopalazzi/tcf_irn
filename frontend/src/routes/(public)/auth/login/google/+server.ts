@@ -1,10 +1,11 @@
+import { PUBLIC_BASE_URL } from '$env/static/public';
 import { redirect } from '@sveltejs/kit';
 
-export const GET = async ({ locals: { supabase }, url }) => {
+export const GET = async ({ locals: { supabase } }) => {
 	const { data } = await supabase.auth.signInWithOAuth({
 		provider: 'google',
 		options: {
-			redirectTo: `${url.origin}/auth/callback`
+			redirectTo: `${PUBLIC_BASE_URL}/auth/callback`
 		}
 	});
 
