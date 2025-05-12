@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import ArrowRightIcon from '../Icons/ArrowRightIcon.svelte';
+	import ArrowRightIcon from '@tcf/lib/components/Icons/ArrowRightIcon.svelte';
 
 	interface Props {
 		links: Array<{ label: string; href: string }>;
 	}
-	let { links }: Props = $props();
+	const { links }: Props = $props();
 
 	const bem = createBEM('breadcrumb');
 </script>
