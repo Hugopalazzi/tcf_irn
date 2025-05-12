@@ -1,46 +1,18 @@
 <script lang="ts">
-	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { _ } from 'svelte-i18n';
-	import DashboardIcon from '$lib/components/Icons/DashboardIcon.svelte';
-	import ExamsIcon from '$lib/components/Icons/ExamsIcon.svelte';
-	import LeaderboardIcon from '$lib/components/Icons/LeaderboardIcon.svelte';
-	import PttNavIcon from '$lib/components/Icons/PttNavIcon.svelte';
-	import SubscribeIcon from '$lib/components/Icons/SubscribeIcon.svelte';
-	import PeopleIcon from '$lib/components/Icons/PeopleIcon.svelte';
-	import HeaderLink from '$lib/components/Atoms/HeaderLink.svelte';
-	import { page } from '$app/state';
 	import { PUBLIC_BASE_URL } from '$env/static/public';
+	import SubscribeIcon from '$lib/components/Icons/SubscribeIcon.svelte';
+	import { createBEM } from '@tcf/lib/helpers/bemHelper';
+	import HeaderNavBar from './HeaderNavBar.svelte';
+	import { _ } from 'svelte-i18n';
 
 	const bem = createBEM('header');
-
-	const getIconColor = (isActive: boolean) => {
-		return isActive ? '#000' : '#fff';
-	};
-
-	const links = [
-		{ icon: DashboardIcon, labelKey: 'header.dashboard', path: '/dashboard' },
-		{ icon: ExamsIcon, labelKey: 'header.exams', path: '/exams' },
-		{ icon: LeaderboardIcon, labelKey: 'header.leaderboard', path: '/leaderboard' },
-		{ icon: PeopleIcon, labelKey: 'header.profile', path: '/profile' }
-	];
 </script>
 
 <header class={bem('container')}>
-	<div class={bem('left')}>
-		<PttNavIcon />
-		<div class={bem('vertical-bar')}></div>
+	<HeaderNavBar />
 
-		<div class={bem('left-buttons-container')}>
-			{#each links as { icon: Icon, labelKey, path }}
-				{@const isActive = page.url.pathname.startsWith(path)}
-				<HeaderLink href={`${PUBLIC_BASE_URL}${path}`} {isActive} label={$_(labelKey)}>
-					<Icon color={getIconColor(isActive)} />
-				</HeaderLink>
-			{/each}
-		</div>
-	</div>
-	<div class={bem('right')}>
-		<a href="{PUBLIC_BASE_URL}/subscribe" class={bem('link-rounded')}>
+	<div class={bem('subscribe-icon')}>
+		<a href="{PUBLIC_BASE_URL}/subscribe" class={bem('link-rounded')} aria-label={$_('header.subscribe')}>
 			<SubscribeIcon />
 		</a>
 	</div>
@@ -53,45 +25,23 @@
 			align-items: center;
 			overflow: hidden;
 			margin-bottom: rem(16);
-			background-color: var(--primary-color);
+			background-color: $primary-color;
 			padding: rem(16);
 			justify-content: space-between;
 			border-bottom: rem(1.5) solid var(--secondary-500);
 			flex-direction: row;
 		}
 
-		&__left {
-			display: flex;
-			gap: rem(32);
-			flex-direction: row;
-
-			&-buttons-container {
-				display: flex;
-				flex-direction: row;
-
-				gap: rem(12);
-			}
-		}
-
-		&__right {
+		&__subscribe-icon {
 			display: flex;
 			gap: rem(12);
 		}
-		&__vertical-bar {
-			border-right: 1px solid white;
-		}
-		&__link-label {
-			color: rgba(255, 255, 255, 0.7);
-			font-size: rem(14);
-			font-style: normal;
-			font-weight: 600;
-			line-height: rem(20);
-		}
+
 		&__link-rounded {
-			display: flex;
 			background-color: var(--white);
 			border-radius: rem(32);
 			padding: rem(14);
+			display: flex;
 		}
 	}
 </style>

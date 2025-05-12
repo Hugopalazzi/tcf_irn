@@ -25,7 +25,6 @@
 	.header-link {
 		display: flex;
 		align-items: center;
-		font-family: var(--clanOT);
 		font-weight: var(--medium);
 		font-size: var(--text-lg);
 		letter-spacing: 0;
