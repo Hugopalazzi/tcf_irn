@@ -8,47 +8,48 @@
 	const { links }: Props = $props();
 
 	const bem = createBEM('breadcrumb');
+
+	const linksLength = links.length;
 </script>
 
-<div class={bem("container")}>
-	{#each links as link, i}
-		<div class={bem("item")}>
+<div class={bem('container')}>
+	{#each links as { href, label }, i}
+		<div class={bem('item')}>
 			{#if i > 0}
 				<ArrowRightIcon />
 			{/if}
-			<a class={bem('link', { last: i === links.length - 1 })} href={link.href} aria-current={i === links.length - 1 ? 'page' : undefined}>
-				{link.label}
+			<a class={bem('link', { last: i === linksLength - 1 })} {href} aria-current={i === linksLength - 1 ? 'page' : undefined}>
+				{label}
 			</a>
 		</div>
 	{/each}
 </div>
 
 <style lang="scss">
-    .breadcrumb {
-        &__container {
-            display: flex;
-            align-items: center;
-            gap: rem(8);
-        }
+	.breadcrumb {
+		&__container {
+			display: flex;
+			align-items: center;
+			gap: rem(8);
+		}
 
-        &__item {
-            display: flex;
-            align-items: center;
-            gap: rem(8);
-        }
+		&__item {
+			display: flex;
+			align-items: center;
+			gap: rem(8);
+		}
 
-        &__link {
-            color: rgba(0, 0, 0, 0.50);
-            text-decoration: none;
-            font-weight: 400;
-            line-height: rem(20);
-            font-size: rem(14);
+		&__link {
+			color: rgba(0, 0, 0, 0.5);
+			text-decoration: none;
+			font-weight: 400;
+			line-height: rem(20);
+			font-size: rem(14);
 
-            &--last {
-                color: #000;
-                font-weight: 700;
-
-            }
-        }
-    }       
+			&--last {
+				color: #000;
+				font-weight: 700;
+			}
+		}
+	}
 </style>
