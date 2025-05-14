@@ -13,7 +13,8 @@ export const userCreationAccountSchema = z
 			.string()
 			.min(8, 'The password must contain at least 8 characters')
 			.regex(passwordRegex, 'The password must contain 1 uppercase, 1 lowercase, 1 number.'),
-		passwordConfirmation: z.string().min(1, 'Field must not be empty')
+		passwordConfirmation: z.string().min(1, 'Field must not be empty'),
+		agreeTerms: z.boolean().default(false)
 	})
 	.superRefine(({ passwordConfirmation, password }, ctx) => {
 		if (passwordConfirmation !== password) {

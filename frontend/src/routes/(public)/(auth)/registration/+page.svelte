@@ -20,6 +20,9 @@
 			if (result.type === 'success') {
 				await goto(`/`).then(() => addSuccessToast($_('signUp.success'), 'top-center'));
 			} else if (result.type === 'failure') {
+				if (result?.data?.form.valid === false) {
+					return;
+				}
 				const { data } = result;
 				let message = '';
 				switch (data?.code) {

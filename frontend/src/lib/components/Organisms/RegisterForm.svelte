@@ -4,6 +4,7 @@
 	import type { SuperForm } from 'sveltekit-superforms';
 	import FormError from '@tcf/lib/components/Atoms/FormError.svelte';
 	import InputTextWrapperForm from '../Molecules/InputTextWrapperForm.svelte';
+	import CheckboxInput from '../Molecules/CheckboxInput.svelte';
 
 	interface Props {
 		supForm: SuperForm<any>;
@@ -16,26 +17,17 @@
 	const bem = createBEM('form');
 </script>
 
+<div class={bem('form-container')}>
+	<span class={bem('form-title')}>{$_('form.registration.title')}</span>
+</div>
 <form method="POST" class={bem('container')} autocomplete="off" use:enhance>
 	<InputTextWrapperForm
-    inputId="email"
-    name="email"
-	placeholder={$_('form.email.placeholder')}
-    bind:bindedValue={$form.email}
-    bindedError={$errors?.email}
-    autocomplete="email" />
-	<!-- <div class={bem('input-wrapper')}>
-		<label class={bem('label')} for="email">{$_('form.email.label')}</label>
-		<input
-			class={bem('input')}
-			bind:value={$form.email}
-			class:error={!!$errors?.email}
-			id="email"
-			name="email"
-			placeholder={$_('form.email.placeholder')}
-			autocomplete="email" />
-		<FormError errors={$errors?.email} />
-	</div> -->
+		inputId="email"
+		name="email"
+		placeholder={$_('form.email.placeholder')}
+		bind:bindedValue={$form.email}
+		bindedError={$errors?.email}
+		autocomplete="email" />
 	<div class={bem('input-wrapper')}>
 		<label class={bem('label')} for="username">{$_('form.username.label')}</label>
 		<input
@@ -72,11 +64,32 @@
 			placeholder={$_('form.passwordConfirmation.placeholder')} />
 		<FormError errors={!$form?.passwordConfirmation ? $errors?.passwordConfirmation : $errors?._errors} />
 	</div>
-	<button type="submit" class="btn btn-primary btn-icon">Register</button>
+	<CheckboxInput
+		inputId="agreeTerms"
+		name="agreeTerms"
+		label={$_('form.agreeTerms.label')}
+		placeholder={$_('form.agreeTerms.placeholder')}
+		bind:checked={$form.agreeTerms}
+		bindedError={$errors?.agreeTerms} />
+	<button type="submit" class="btn btn-primary btn-icon">{$_('register')}</button>
 </form>
 
 <style lang="scss">
 	.form {
+		&__form-container {
+			display: flex;
+			flex-direction: column;
+			gap: rem(24);
+		}
+
+		&__form-title {
+			color: #000;
+			text-align: center;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 16px;
+		}
 		&__container {
 			display: flex;
 			flex-direction: column;

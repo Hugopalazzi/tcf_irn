@@ -77,6 +77,28 @@
 		"title": "Créer un compte ou se connecter",
 		"description": "Entrez vos informations pour vous connectez"
 	},
+	"or": "ou",
+	"register": "Créer un compte",
 	"form": {
+		"registration": {
+			"title": "Créer un compte via email"
+		},
+		"email": {
+			"label": "Email",
+			"placeholder": "andreblick@gmail.com"
+		},
+		"username": {
+			"label": "Nom d'utilisateur",
+			"placeholder": "Andre Blick"
+		},
+		"password": {
+			"label": "Mot de passe",
+			"placeholder": "••••••••"
+		},
+		"passwordConfirmation": {
+			"label": "Confirmez votre mot de passe",
+			"placeholder": "••••••••"
+		},
+		"agreeTerms": { "label": "J'accepte les termes et conditions et la politique de confidentialité" }
 	}
 }

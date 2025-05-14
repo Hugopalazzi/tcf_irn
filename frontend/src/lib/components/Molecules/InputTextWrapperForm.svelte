@@ -3,8 +3,6 @@
 	import { _ } from 'svelte-i18n';
 	import FormError from '@tcf/lib/components/Atoms/FormError.svelte';
 	import type { FullAutoFill } from 'svelte/elements';
-	import type { ValidationErrors } from 'sveltekit-superforms';
-	import type { SuperFormErrors } from 'sveltekit-superforms/client';
 
 	interface Props {
 		inputId: string;
@@ -20,7 +18,6 @@
 </script>
 
 <div class={bem()}>
-	{bindedError}
 	<label class={bem('label')} for={inputId}>{$_('form.email.label')}</label>
 	<input class={bem('input')} bind:value={bindedValue} class:error={!!bindedError} id={inputId} {name} {placeholder} {autocomplete} />
 	<FormError errors={bindedError} />

@@ -6,7 +6,7 @@
 	const bem = createBEM('authentification-card');
 
 	interface Props {
-		children?: Snippet;			
+		children?: Snippet;
 	}
 
 	let { children }: Props = $props();
@@ -35,11 +35,8 @@
 	</button>
 	<div class={bem('condition')}>
 		<div class={bem('line')}></div>
-		<span class={bem('or')}>or</span>
+		<span class={bem('or')}>{$_('or')}</span>
 		<div class={bem('line')}></div>
-	</div>
-	<div class={bem('form-container')}>
-		<span>Se connecter via email</span>
 	</div>
 	{@render children?.()}
 </div>
@@ -54,7 +51,7 @@
 			padding: 42px;
 			gap: rem(32);
 			border-radius: 20px;
-			background: #FFF;
+			background: #fff;
 			box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.06);
 		}
 
@@ -114,12 +111,6 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-		}
-
-		&__form-container {
-			display: flex;
-			flex-direction: column;
-			gap: rem(24);
 		}
 	}
 </style>
