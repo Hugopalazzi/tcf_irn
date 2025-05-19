@@ -22,7 +22,7 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			align-items: flex-start;
+			align-items: center;
 			gap: rem(4);
 		}
 	}
