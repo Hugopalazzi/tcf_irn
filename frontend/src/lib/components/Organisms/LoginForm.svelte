@@ -2,7 +2,7 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { _ } from 'svelte-i18n';
 	import type { SuperForm } from 'sveltekit-superforms';
-	import FormError from '../Atoms/FormError.svelte';
+	import FormError from '@tcf/lib/components/Atoms/FormError.svelte';
 
 	interface Props {
 		supForm: SuperForm<any>;

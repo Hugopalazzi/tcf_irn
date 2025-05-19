@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
+	import { mergeClassNames } from '@tcf/lib/helpers/mergeClassNames';
 	import type { Component } from 'svelte';
 	import type { AriaAttributes, AriaRole } from 'svelte/elements';
 
@@ -18,10 +19,11 @@
 		icon?: Component;
 		role?: AriaRole;
 		ariaAttributes?: AriaAttributes;
+		extraClass?: string;
 		disabled?: boolean;
 	};
 
-	const { color, ariaAttributes, label, onClick, icon, role, disabled }: Props = $props();
+	const { color, ariaAttributes, label, onClick, icon, role, extraClass, disabled }: Props = $props();
 
 	const onKeyDown = (event: KeyboardEvent) => {
 		if (event.code === 'Space' && role === 'link') {
@@ -31,7 +33,13 @@
 	const bem = createBEM('button');
 </script>
 
-<button class={bem('', { color })} role={role ?? 'button'} {...ariaAttributes} onclick={onClick} onkeydown={onKeyDown} {disabled}>
+<button
+	class={mergeClassNames(bem('', { color }), extraClass)}
+	role={role ?? 'button'}
+	{...ariaAttributes}
+	onclick={onClick}
+	onkeydown={onKeyDown}
+	{disabled}>
 	{#if icon}
 		{icon}
 	{/if}
@@ -48,26 +56,26 @@
 		align-items: center;
 		gap: rem(8);
 		display: flex;
-        background-color: none;
-        font-size: rem(14);
-        font-weight: 700;
-        line-height: rem(20);
+		background-color: none;
+		font-size: rem(14);
+		font-weight: 700;
+		line-height: rem(20);
 
-        &--color{
-            &_primary{
-                background-color: #1E0C5B;
-                color: #FFFFFF;
-            }
+		&--color {
+			&_primary {
+				background-color: #1e0c5b;
+				color: #ffffff;
+			}
 
-            &_secondary{
-                background-color: #E9E7EF;
-                color: #1E0C5B;
-            }
+			&_secondary {
+				background-color: #e9e7ef;
+				color: #1e0c5b;
+			}
 
-            &_error{
-                background-color: #F14336;
-                color: #FFFFFF;
-            }
-        }
+			&_error {
+				background-color: #f14336;
+				color: #ffffff;
+			}
+		}
 	}
 </style>

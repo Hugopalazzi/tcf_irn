@@ -7,19 +7,28 @@
 	interface Props {
 		inputId: string;
 		name: string;
+		label:string;
 		placeholder: string;
 		bindedValue: string;
 		bindedError: any;
 		autocomplete?: FullAutoFill;
 	}
 
-	let { bindedValue = $bindable(''), bindedError, inputId, name, placeholder, autocomplete }: Props = $props();
+	let { bindedValue = $bindable(''), bindedError, label, inputId, name, placeholder, autocomplete }: Props = $props();
 	const bem = createBEM('input-text-wrapper-form');
 </script>
 
 <div class={bem()}>
-	<label class={bem('label')} for={inputId}>{$_('form.email.label')}</label>
-	<input class={bem('input')} bind:value={bindedValue} class:error={!!bindedError} id={inputId} {name} {placeholder} {autocomplete} />
+	<label class={bem('label')} for={inputId}>{label}</label>
+	<input
+		class={bem('input')}
+		bind:value={bindedValue}
+		class:error={!!bindedError}
+		id={inputId}
+		{name}
+		{placeholder}
+		{autocomplete}
+		aria-invalid={!!bindedError} />
 	<FormError errors={bindedError} />
 </div>
 
@@ -53,10 +62,6 @@
 			font-weight: 500;
 			line-height: rem(16);
 			letter-spacing: 0.36px;
-		}
-
-		input.error {
-			border-color: red;
 		}
 	}
 </style>

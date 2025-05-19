@@ -7,7 +7,7 @@
 	}
 	const bem = createBEM('information-badge');
 
-	let { title, description }: Props = $props();
+	const { title, description }: Props = $props();
 </script>
 
 <div class={bem('container')}>

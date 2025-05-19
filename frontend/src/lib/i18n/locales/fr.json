@@ -75,7 +75,8 @@
 	},
 	"authentificationCard": {
 		"title": "Créer un compte ou se connecter",
-		"description": "Entrez vos informations pour vous connectez"
+		"description": "Entrez vos informations pour vous connectez",
+		"ariaGoogleIcon": "Connexion avec Google"
 	},
 	"or": "ou",
 	"register": "Créer un compte",
@@ -85,7 +86,8 @@
 		},
 		"email": {
 			"label": "Email",
-			"placeholder": "andreblick@gmail.com"
+			"placeholder": "andreblick@gmail.com",
+			"error": "Veuillez saisir un e-mail valide"
 		},
 		"username": {
 			"label": "Nom d'utilisateur",
@@ -93,11 +95,15 @@
 		},
 		"password": {
 			"label": "Mot de passe",
-			"placeholder": "••••••••"
+			"placeholder": "••••••••",
+			"minError": "Votre mot de passe doit au minimum contenir 8 caractères",
+			"regexError": "Votre mot de passe doit contenir : 1 majuscule, 1 minuscule, 1 nombre et un caractère spécial",
+			"differentError": "Les mots de passe ne correspondent pas. Veuillez réessayer"
 		},
 		"passwordConfirmation": {
 			"label": "Confirmez votre mot de passe",
-			"placeholder": "••••••••"
+			"placeholder": "••••••••",
+			"error": "Ce champs est requis"
 		},
 		"agreeTerms": { "label": "J'accepte les termes et conditions et la politique de confidentialité" }
 	}

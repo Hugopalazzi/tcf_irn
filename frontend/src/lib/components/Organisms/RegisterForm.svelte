@@ -2,9 +2,10 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { _ } from 'svelte-i18n';
 	import type { SuperForm } from 'sveltekit-superforms';
-	import FormError from '@tcf/lib/components/Atoms/FormError.svelte';
-	import InputTextWrapperForm from '../Molecules/InputTextWrapperForm.svelte';
-	import CheckboxInput from '../Molecules/CheckboxInput.svelte';
+	import InputTextWrapperForm from '@tcf/lib/components/Molecules/InputTextWrapperForm.svelte';
+	import CheckboxInput from '@tcf/lib/components/Molecules/CheckboxInput.svelte';
+	import Button from '@tcf/lib/components/Atoms/Button.svelte';
+	import FormError from '../Atoms/FormError.svelte';
 
 	interface Props {
 		supForm: SuperForm<any>;
@@ -24,22 +25,21 @@
 	<InputTextWrapperForm
 		inputId="email"
 		name="email"
+		label={$_('form.email.label')}
 		placeholder={$_('form.email.placeholder')}
 		bind:bindedValue={$form.email}
 		bindedError={$errors?.email}
 		autocomplete="email" />
-	<div class={bem('input-wrapper')}>
-		<label class={bem('label')} for="username">{$_('form.username.label')}</label>
-		<input
-			class={bem('input')}
-			bind:value={$form.username}
-			class:error={!!$errors?.username}
-			id="username"
-			name="username"
-			placeholder={$_('form.username.placeholder')}
-			autocomplete="username" />
-		<FormError errors={$errors?.username} />
-	</div>
+
+	<InputTextWrapperForm
+		inputId="username"
+		name="username"
+		label={$_('form.username.label')}
+		placeholder={$_('form.username.placeholder')}
+		bind:bindedValue={$form.username}
+		bindedError={$errors?.username}
+		autocomplete="username" />
+		
 	<div class={bem('input-wrapper')}>
 		<label class={bem('label')} for="password">{$_('form.password.label')}</label>
 		<input
@@ -49,6 +49,7 @@
 			id="password"
 			name="password"
 			placeholder={$_('form.password.placeholder')}
+			autocomplete="new-password"
 			class:error={!!$errors?.password} />
 		<FormError errors={$errors?.password} />
 	</div>
@@ -61,9 +62,11 @@
 			type="password"
 			id="passwordConfirmation"
 			name="passwordConfirmation"
-			placeholder={$_('form.passwordConfirmation.placeholder')} />
+			placeholder={$_('form.passwordConfirmation.placeholder')} 
+			autocomplete="new-password" />
 		<FormError errors={!$form?.passwordConfirmation ? $errors?.passwordConfirmation : $errors?._errors} />
 	</div>
+	
 	<CheckboxInput
 		inputId="agreeTerms"
 		name="agreeTerms"
@@ -71,7 +74,8 @@
 		placeholder={$_('form.agreeTerms.placeholder')}
 		bind:checked={$form.agreeTerms}
 		bindedError={$errors?.agreeTerms} />
-	<button type="submit" class="btn btn-primary btn-icon">{$_('register')}</button>
+
+	<Button onClick={() => {}} extraClass="centered-submit-button" color="primary" label={$_('register')}></Button>
 </form>
 
 <style lang="scss">
@@ -126,10 +130,6 @@
 			font-weight: 500;
 			line-height: rem(16);
 			letter-spacing: 0.36px;
-		}
-
-		&__input-wrapper input.error {
-			border-color: red;
 		}
 	}
 </style>

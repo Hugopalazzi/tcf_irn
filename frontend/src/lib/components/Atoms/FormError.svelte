@@ -8,7 +8,7 @@
 
 <style lang="scss">
 	.error-message {
-		color: red;
+		color: $cancel;
 		font-size: rem(10);
 	}
 </style>

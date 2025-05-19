@@ -15,46 +15,44 @@
 	}
 
 	let { inputId, label, checked = $bindable(false), bindedError, name, placeholder, autocomplete }: Props = $props();
-	const bem = createBEM('input-text-wrapper-form');
+	const bem = createBEM('checkbox');
 </script>
 
-<div class={bem()}>
-	<label class="checkbox">
-		<input value={checked} type="checkbox" class="checkbox" class:error={!!bindedError} id={inputId} {name} {placeholder} {autocomplete} />
-		<span class="checkbox-value">
-			{label}
-		</span>
-	</label>
-	<FormError errors={bindedError} />
-</div>
+<label for={inputId}>
+	<input value={checked} type="checkbox" class={bem('input')} class:error={!!bindedError} id={inputId} {name} {placeholder} {autocomplete} />
+	<span class={bem('text')}>
+		{label}
+	</span>
+</label>
+<FormError errors={bindedError} />
 
 <style lang="scss">
 	.checkbox {
-		input[type='checkbox'] {
+		&__input {
 			opacity: 0;
 			height: 0;
 			width: 0;
 
 			&:checked + span::before {
-				border: rem(1) solid var(--primary-100);
+				border: rem(1) solid $primary-100;
 				background-color: $primary-color;
 			}
 			&:checked + span::after {
 				content: '';
 			}
 			&:focus + span::before {
-				outline: var(--primary-100) solid rem(2);
+				outline: $primary-100 solid rem(2);
 				outline-offset: rem(2);
 			}
 			&:disabled {
-				color: var(--secondary-700);
+				color: $secondary-700;
 			}
 			&:disabled + span::before {
-				border: rem(1) solid var(--secondary-500);
-				background-color: var(--light-grey);
+				border: rem(1) solid $secondary-500;
+				background-color: $light-grey;
 			}
 		}
-		span.checkbox-value {
+		&__text {
 			$checkbox-height: rem(16);
 			position: relative;
 			padding-left: rem(23);

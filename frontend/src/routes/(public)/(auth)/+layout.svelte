@@ -5,7 +5,7 @@
 	import '@tcf/styles/styles.scss';
 	const bem = createBEM('auth-page');
 
-	let { children } = $props();
+	const { children } = $props();
 </script>
 
 <div class={bem('container')}>
