@@ -31,5 +31,26 @@
 		"leaderboard": "Leaderboard",
 		"profile": "Mon profil",
 		"subscribe": "Lien vers le changement d'offre tarifaire"
+	},
+	"dashboard": {
+		"title": "Dashboard",
+		"description": "Prêt à continuer votre chemin vers la maitrise du français ?",
+		"cardLinks": {
+			"listeningExams": {
+				"title": "Compréhension orale",
+				"description": "Commencez à pratiquer votre compréhension orale.",
+				"url": "/listening-exams"
+			},
+			"readingExams": {
+				"title": "Compréhension écrite",
+				"description": "Commencez à pratiquer votre compréhension écrite.",
+				"url": "/reading-exams"
+			},
+			"writingExams": {
+				"title": "Expression écrite",
+				"description": "Commencez à pratiquer votre expression écrite.",
+				"url": "/writing-exams"
+			}
+		}
 	}
 }

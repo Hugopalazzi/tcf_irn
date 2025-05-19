@@ -1,6 +1,35 @@
 <script lang="ts">
+	import ListeningIcon from '@tcf/lib/components/Icons/ListeningIcon.svelte';
+	import ReadingIcon from '@tcf/lib/components/Icons/ReadingIcon.svelte';
+	import WritingIcon from '@tcf/lib/components/Icons/WritingIcon.svelte';
+	import TitleWithDescription from '@tcf/lib/components/Molecules/TitleWithDescription.svelte';
+	import LinkCards from '@tcf/lib/components/Organisms/LinkCards.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
+	import { _ } from 'svelte-i18n';
+	import { PUBLIC_BASE_URL } from '$env/static/public';
+
 	const bem = createBEM('dashboard');
+
+	const cardLinks = [
+		{
+			url: `${PUBLIC_BASE_URL}${$_('dashboard.cardLinks.listeningExams.url')}`,
+			title: $_('dashboard.cardLinks.listeningExams.title'),
+			description: $_('dashboard.cardLinks.listeningExams.description'),
+			Icon: ListeningIcon
+		},
+		{
+			url: `${PUBLIC_BASE_URL}${$_('dashboard.cardLinks.readingExams.url')}`,
+			title: $_('dashboard.cardLinks.readingExams.title'),
+			description: $_('dashboard.cardLinks.readingExams.description'),
+			Icon: ReadingIcon
+		},
+		{
+			url: `${PUBLIC_BASE_URL}${$_('dashboard.cardLinks.writingExams.url')}`,
+			title: $_('dashboard.cardLinks.writingExams.title'),
+			description: $_('dashboard.cardLinks.writingExams.description'),
+			Icon: WritingIcon
+		}
+	];
 </script>
 
 <div class={bem('container')}>
@@ -8,17 +37,18 @@
 		<img src="/assets/images/user-profile.jpg" class={bem('user-profile-image')} alt="user profile" />
 		<p class={bem('welcome-label')}>Welcome back, John!</p>
 	</div>
-	<h1>daiujhfdhauz
-
-	</h1>
-	<span>
-		faàjuhfoaz
-	</span>
+	<TitleWithDescription title={$_('dashboard.title')} description={$_('dashboard.description')} />
+	<LinkCards links={cardLinks} />
 </div>
 
 <style lang="scss">
 	.dashboard {
 		&__container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 16px;
+			padding: 16px 0;
 		}
 
 		&__welcome-card {
@@ -39,7 +69,7 @@
 			line-height: 24px;
 		}
 
-		&__user-profile-image{
+		&__user-profile-image {
 			border-radius: 46px;
 			width: 46px;
 			height: 46px;

@@ -3,16 +3,16 @@
 	import type { Component } from 'svelte';
 	import ChevronRightIcon from '../Icons/ChevronRightIcon.svelte';
 
-	type Props = {
+	export type LinkCardElementProps = {
 		url: string;
 		title: string;
 		description: string;
 		Icon?: Component<any>;
 	};
 
-	const { url, title, description, Icon }: Props = $props();
+	const { url, title, description, Icon }: LinkCardElementProps = $props();
 	const uuid = $props.id();
-	const bem = createBEM('action-card');
+	const bem = createBEM('link-card');
 </script>
 
 <a href={url} aria-describedby={uuid} class={bem('container')}>
@@ -29,7 +29,7 @@
 </a>
 
 <style lang="scss">
-	.action-card {
+	.link-card {
 		&__container {
 			display: flex;
 			padding: rem(8) rem(20) rem(8) rem(8);
@@ -38,6 +38,7 @@
 			flex: 1 0 0;
 			border-radius: rem(20);
 			background: #a3e7fc;
+			justify-content: space-between;
 		}
 
 		&__sub-container {
@@ -69,6 +70,7 @@
 			font-weight: 700;
 			line-height: rem(16);
 			align-self: stretch;
+			margin: 0;
 		}
 
 		&__description {
@@ -77,11 +79,12 @@
 			font-weight: 500;
 			line-height: rem(16);
 			align-self: stretch;
+			margin: 0;
 		}
 	}
 
 	@media (min-width: $breakpoint-desktop) {
-		.action-card {
+		.link-card {
 			&__container {
 				padding: rem(16) rem(20) rem(16) rem(16);
 				gap: rem(16);
