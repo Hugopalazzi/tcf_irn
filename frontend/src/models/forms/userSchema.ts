@@ -9,10 +9,10 @@ export const emailSchema = z.string().email(emailErrorMessage);
 export const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
 export const userCreationAccountSchema = z
 	.object({
-		username: z.string().min(1),
+		username: z.string().min(1, get(_)('form.error.common.notEmpty')),
 		email: emailSchema,
 		password: z.string().min(8, get(_)('form.password.minError')).regex(passwordRegex, get(_)('form.password.regexError')),
-		passwordConfirmation: z.string().min(1, get(_)('form.passwordConfirmation.error')),
+		passwordConfirmation: z.string().min(1, get(_)('form.error.common.notEmpty')),
 		agreeTerms: z.boolean().refine((value) => value, { message: get(_)('form.error.common.agreeTerms') })
 	})
 	.superRefine(({ passwordConfirmation, password }, ctx) => {
