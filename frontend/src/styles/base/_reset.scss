@@ -21,7 +21,18 @@ p {
 	margin: 0;
 }
 
+button {
+	border: none;
+	padding: none;
+	background-color: transparent;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
 a {
 	text-decoration: none;
 	color: inherit;
+	cursor: pointer;
 }

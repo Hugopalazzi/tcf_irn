@@ -1,0 +1,33 @@
+@use '@tcf/styles/utilities/mixins' as *;
+
+.input-wrapper-form {
+	display: flex;
+	flex-direction: column;
+	gap: rem(4);
+	border: 1px solid #dcdcdc;
+	border-radius: rem(12);
+	padding: rem(12) rem(16);
+
+	&__input {
+		border: none;
+		color: #000;
+		font-size: rem(14);
+		font-style: normal;
+		font-weight: 500;
+		line-height: rem(20);
+
+		&:focus-visible {
+			outline: none;
+			border-bottom: 1px solid #000000;
+		}
+	}
+
+	&__label {
+		color: #808990;
+		font-size: rem(12);
+		font-style: normal;
+		font-weight: 500;
+		line-height: rem(16);
+		letter-spacing: 0.36px;
+	}
+}

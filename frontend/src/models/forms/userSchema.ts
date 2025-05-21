@@ -1,7 +1,7 @@
-import type { SuperValidated } from 'sveltekit-superforms';
-import { z } from 'zod';
 import { _ } from 'svelte-i18n';
 import { get } from 'svelte/store';
+import { type SuperValidated } from 'sveltekit-superforms';
+import { z } from 'zod';
 
 const emailErrorMessage = get(_)('form.email.error');
 export const emailSchema = z.string().email(emailErrorMessage);
@@ -9,17 +9,17 @@ export const emailSchema = z.string().email(emailErrorMessage);
 export const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
 export const userCreationAccountSchema = z
 	.object({
-		username: z.string().min(1),
+		username: z.string().min(1, get(_)('form.error.common.notEmpty')),
 		email: emailSchema,
 		password: z.string().min(8, get(_)('form.password.minError')).regex(passwordRegex, get(_)('form.password.regexError')),
-		passwordConfirmation: z.string().min(1, get(_)('form.passwordConfirmation.error')),
-		agreeTerms: z.boolean().default(false)
+		passwordConfirmation: z.string().min(1, get(_)('form.error.common.notEmpty')),
+		agreeTerms: z.boolean().refine((value) => value, { message: get(_)('form.error.common.agreeTerms') })
 	})
 	.superRefine(({ passwordConfirmation, password }, ctx) => {
 		if (passwordConfirmation !== password) {
 			ctx.addIssue({
 				code: z.ZodIssueCode.custom,
-				message: get(_)('differentError')
+				message: get(_)('form.password.differentError')
 			});
 		}
 	});
@@ -27,7 +27,7 @@ export type UserSignUpForm = SuperValidated<z.infer<typeof userCreationAccountSc
 
 export const userLoginSchema = z.object({
 	email: emailSchema,
-	password: z.string().min(1, 'Field must not be empty')
+	password: z.string().min(1, get(_)('form.error.common.notEmpty'))
 });
 export type UserLoginForm = SuperValidated<z.infer<typeof userLoginSchema>>;
 

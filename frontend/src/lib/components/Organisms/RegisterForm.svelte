@@ -1,19 +1,19 @@
 <script lang="ts">
+	import Button from '@tcf/lib/components/Atoms/Button.svelte';
+	import CheckboxInput from '@tcf/lib/components/Molecules/CheckboxInput.svelte';
+	import InputPassword from '@tcf/lib/components/Molecules/InputPassword.svelte';
+	import InputTextWrapperForm from '@tcf/lib/components/Molecules/InputTextWrapperForm.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { _ } from 'svelte-i18n';
 	import type { SuperForm } from 'sveltekit-superforms';
-	import InputTextWrapperForm from '@tcf/lib/components/Molecules/InputTextWrapperForm.svelte';
-	import CheckboxInput from '@tcf/lib/components/Molecules/CheckboxInput.svelte';
-	import Button from '@tcf/lib/components/Atoms/Button.svelte';
-	import FormError from '../Atoms/FormError.svelte';
 
 	interface Props {
 		supForm: SuperForm<any>;
 	}
 
-	let { supForm }: Props = $props();
+	const { supForm }: Props = $props();
 
-	const { form, enhance, errors } = supForm;
+	const { form, enhance, errors, submitting } = supForm;
 
 	const bem = createBEM('form');
 </script>
@@ -39,34 +39,25 @@
 		bind:bindedValue={$form.username}
 		bindedError={$errors?.username}
 		autocomplete="username" />
-		
-	<div class={bem('input-wrapper')}>
-		<label class={bem('label')} for="password">{$_('form.password.label')}</label>
-		<input
-			class={bem('input')}
-			bind:value={$form.password}
-			type="password"
-			id="password"
-			name="password"
-			placeholder={$_('form.password.placeholder')}
-			autocomplete="new-password"
-			class:error={!!$errors?.password} />
-		<FormError errors={$errors?.password} />
-	</div>
-	<div class={bem('input-wrapper')}>
-		<label class={bem('label')} for="passwordConfirmation">{$_('form.passwordConfirmation.label')}</label>
-		<input
-			class={bem('input')}
-			bind:value={$form.passwordConfirmation}
-			class:error={!!$errors?.passwordConfirmation}
-			type="password"
-			id="passwordConfirmation"
-			name="passwordConfirmation"
-			placeholder={$_('form.passwordConfirmation.placeholder')} 
-			autocomplete="new-password" />
-		<FormError errors={!$form?.passwordConfirmation ? $errors?.passwordConfirmation : $errors?._errors} />
-	</div>
-	
+
+	<InputPassword
+		inputId="password"
+		name="password"
+		label={$_('form.password.label')}
+		placeholder={$_('form.password.placeholder')}
+		bind:bindedValue={$form.password}
+		bindedError={$errors?.password}
+		autocomplete="new-password" />
+
+	<InputPassword
+		inputId="passwordConfirmation"
+		name="passwordConfirmation"
+		label={$_('form.passwordConfirmation.label')}
+		placeholder={$_('form.passwordConfirmation.placeholder')}
+		bind:bindedValue={$form.passwordConfirmation}
+		bindedError={!$form?.passwordConfirmation ? $errors?.passwordConfirmation : $errors?._errors}
+		autocomplete="new-password" />
+
 	<CheckboxInput
 		inputId="agreeTerms"
 		name="agreeTerms"
@@ -75,61 +66,15 @@
 		bind:checked={$form.agreeTerms}
 		bindedError={$errors?.agreeTerms} />
 
-	<Button onClick={() => {}} extraClass="centered-submit-button" color="primary" label={$_('register')}></Button>
+	<Button
+		onClick={() => {}}
+		extraClass="centered-submit-button"
+		color="primary"
+		label={$_('register')}
+		disabled={$submitting}
+		bind:submitting={$submitting}></Button>
+	<span class={bem('redirect-label')}>
+		{$_('form.registration.redirectLoginLabel')}
+		<a href={$_('form.registration.loginLink')} class={bem('redirect-link')}>{$_('form.registration.redirectLoginLink')}</a>
+	</span>
 </form>
-
-<style lang="scss">
-	.form {
-		&__form-container {
-			display: flex;
-			flex-direction: column;
-			gap: rem(24);
-		}
-
-		&__form-title {
-			color: #000;
-			text-align: center;
-			font-size: 14px;
-			font-style: normal;
-			font-weight: 700;
-			line-height: 16px;
-		}
-		&__container {
-			display: flex;
-			flex-direction: column;
-			gap: rem(24);
-		}
-
-		&__input-wrapper {
-			display: flex;
-			flex-direction: column;
-			gap: rem(4);
-			border: 1px solid #dcdcdc;
-			border-radius: rem(12);
-			padding: rem(12) rem(16);
-		}
-
-		&__input {
-			border: none;
-			color: #000;
-			font-size: rem(14);
-			font-style: normal;
-			font-weight: 500;
-			line-height: rem(20);
-
-			&:focus-visible {
-				outline: none;
-				border-bottom: 1px solid #000000;
-			}
-		}
-
-		&__label {
-			color: #808990;
-			font-size: rem(12);
-			font-style: normal;
-			font-weight: 500;
-			line-height: rem(16);
-			letter-spacing: 0.36px;
-		}
-	}
-</style>

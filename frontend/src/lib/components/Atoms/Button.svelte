@@ -3,6 +3,7 @@
 	import { mergeClassNames } from '@tcf/lib/helpers/mergeClassNames';
 	import type { Component } from 'svelte';
 	import type { AriaAttributes, AriaRole } from 'svelte/elements';
+	import LoadingIcon from '@tcf/lib/components/Icons/LoadingIcon.svelte';
 
 	const ColorsEnum = {
 		PRIMARY: 'primary',
@@ -15,6 +16,7 @@
 	type Props = {
 		onClick: () => void;
 		color: ColorType;
+		submitting?: boolean;
 		label?: string;
 		icon?: Component;
 		role?: AriaRole;
@@ -23,7 +25,7 @@
 		disabled?: boolean;
 	};
 
-	const { color, ariaAttributes, label, onClick, icon, role, extraClass, disabled }: Props = $props();
+	const { color, submitting = $bindable(false), ariaAttributes, label, onClick, icon, role, extraClass, disabled }: Props = $props();
 
 	const onKeyDown = (event: KeyboardEvent) => {
 		if (event.code === 'Space' && role === 'link') {
@@ -44,7 +46,10 @@
 		{icon}
 	{/if}
 	{#if label}
-		<span>{label}</span>
+		<span class={bem('label')}>
+			{#if submitting}<LoadingIcon spinning={true} />{/if}
+			{label}
+		</span>
 	{/if}
 </button>
 
@@ -76,6 +81,17 @@
 				background-color: #f14336;
 				color: #ffffff;
 			}
+		}
+
+		&:disabled {
+			background-color: #f1f1f1;
+			color: gray; //TODO: waiting for color code from designer
+		}
+
+		&__label {
+			display: flex;
+			place-items: center;
+			gap: rem(4);
 		}
 	}
 </style>
