@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { PUBLIC_BASE_URL } from '$env/static/public';
 	import SubscribeIcon from '$lib/components/Icons/SubscribeIcon.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import HeaderNavBar from './HeaderNavBar.svelte';
@@ -12,7 +11,7 @@
 	<HeaderNavBar />
 
 	<div class={bem('subscribe-icon')}>
-		<a href="{PUBLIC_BASE_URL}/subscribe" class={bem('link-rounded')} aria-label={$_('header.subscribe')}>
+		<a href="subscribe" class={bem('link-rounded')} aria-label={$_('header.subscribe')}>
 			<SubscribeIcon />
 		</a>
 	</div>

@@ -6,27 +6,27 @@
 	import LinkCards from '@tcf/lib/components/Organisms/LinkCards.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { _ } from 'svelte-i18n';
-	import { PUBLIC_BASE_URL } from '$env/static/public';
 
 	const bem = createBEM('dashboard');
 
+	const dashboardCardLinksKey = 'dashboard.cardLinks';
 	const cardLinks = [
 		{
-			url: `${PUBLIC_BASE_URL}${$_('dashboard.cardLinks.listeningExams.url')}`,
-			title: $_('dashboard.cardLinks.listeningExams.title'),
-			description: $_('dashboard.cardLinks.listeningExams.description'),
+			url: $_(`${dashboardCardLinksKey}.listeningExams.url`),
+			title: $_(`${dashboardCardLinksKey}.listeningExams.title`),
+			description: $_(`${dashboardCardLinksKey}.listeningExams.description`),
 			Icon: ListeningIcon
 		},
 		{
-			url: `${PUBLIC_BASE_URL}${$_('dashboard.cardLinks.readingExams.url')}`,
-			title: $_('dashboard.cardLinks.readingExams.title'),
-			description: $_('dashboard.cardLinks.readingExams.description'),
+			url: $_(`${dashboardCardLinksKey}.readingExams.url`),
+			title: $_(`${dashboardCardLinksKey}.readingExams.title`),
+			description: $_(`${dashboardCardLinksKey}.readingExams.description`),
 			Icon: ReadingIcon
 		},
 		{
-			url: `${PUBLIC_BASE_URL}${$_('dashboard.cardLinks.writingExams.url')}`,
-			title: $_('dashboard.cardLinks.writingExams.title'),
-			description: $_('dashboard.cardLinks.writingExams.description'),
+			url: $_(`${dashboardCardLinksKey}.writingExams.url`),
+			title: $_(`${dashboardCardLinksKey}.writingExams.title`),
+			description: $_(`${dashboardCardLinksKey}.writingExams.description`),
 			Icon: WritingIcon
 		}
 	];
