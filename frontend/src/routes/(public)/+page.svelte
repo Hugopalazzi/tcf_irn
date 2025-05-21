@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { Envelope, Icon } from 'svelte-hero-icons';
 	import Multiselect from './Multiselect.svelte';
-	import GoogleIcon from './GoogleIcon.svelte';
+	import GoogleIcon from '@tcf/lib/components/Icons/GoogleIcon.svelte';
 </script>
 
 <div class="page-container">

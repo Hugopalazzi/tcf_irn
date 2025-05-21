@@ -61,7 +61,7 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	const allowedPublicRoutes = [
 		'/auth/login/google',
 		'/auth/callback',
-		'/inscription',
+		'/registration',
 		'/login',
 		'/',
 		'/confirmation-email',

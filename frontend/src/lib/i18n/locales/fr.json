@@ -52,5 +52,59 @@
 				"url": "/writing-exams"
 			}
 		}
+	},
+	"presentationCard": {
+		"badge": "Votre clé du succès en français !",
+		"welcome": "Bienvenue sur ",
+		"brand": "Passe ton TEF",
+		"description": "The interactive and fun platform designed to help you succeed in your French exam (TEF). Benefit from intensive practice in listening comprehension, reading comprehension, and written expression, with instant corrections and detailed progress tracking.",
+		"informationBadges": {
+			"comprehensiveExams": {
+				"title": "Préparation à l'examen complet :",
+				"description": "Pratiquez toutes les sections du TEF avec de vraies questions d'examen et des commentaires instantanés."
+			},
+			"gamifiedLearning": {
+				"title": "Progrès gamifiés :",
+				"description": "Suivez vos progrès et célébrez les étapes importantes à mesure que vous vous améliorez."
+			},
+			"corrections": {
+				"title": "Corrections instantanées :",
+				"description": "Recevez des commentaires immédiats pour vous aider à apprendre plus rapidement."
+			}
+		}
+	},
+	"authentificationCard": {
+		"title": "Créer un compte ou se connecter",
+		"description": "Entrez vos informations pour vous connectez",
+		"ariaGoogleIcon": "Connexion avec Google"
+	},
+	"or": "ou",
+	"register": "Créer un compte",
+	"form": {
+		"registration": {
+			"title": "Créer un compte via email"
+		},
+		"email": {
+			"label": "Email",
+			"placeholder": "andreblick@gmail.com",
+			"error": "Veuillez saisir un e-mail valide"
+		},
+		"username": {
+			"label": "Nom d'utilisateur",
+			"placeholder": "Andre Blick"
+		},
+		"password": {
+			"label": "Mot de passe",
+			"placeholder": "••••••••",
+			"minError": "Votre mot de passe doit au minimum contenir 8 caractères",
+			"regexError": "Votre mot de passe doit contenir : 1 majuscule, 1 minuscule, 1 nombre et un caractère spécial",
+			"differentError": "Les mots de passe ne correspondent pas. Veuillez réessayer"
+		},
+		"passwordConfirmation": {
+			"label": "Confirmez votre mot de passe",
+			"placeholder": "••••••••",
+			"error": "Ce champs est requis"
+		},
+		"agreeTerms": { "label": "J'accepte les termes et conditions et la politique de confidentialité" }
 	}
 }

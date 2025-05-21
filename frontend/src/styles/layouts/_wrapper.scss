@@ -1,10 +1,6 @@
 @use '@tcf/styles/utilities/mixins' as *;
 
 .wrapper {
-	&__body {
-		overflow-x: hidden;
-	}
-
 	&__content {
 		&--gradient {
 			padding-top: rem(57);

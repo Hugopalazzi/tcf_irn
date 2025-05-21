@@ -22,7 +22,6 @@
 	}
 
 	main {
-		padding: rem(24);
 		height: 100%;
 		box-sizing: border-box;
 	}
