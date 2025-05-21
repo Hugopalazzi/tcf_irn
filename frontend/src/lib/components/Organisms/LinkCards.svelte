@@ -27,23 +27,11 @@
 		align-items: stretch;
 	}
 
-	.card-item {
-		width: 100%;
-		height: rem(56); 
-		flex-shrink: 0;
-	}
-
 	@media (min-width: $breakpoint-desktop) {
 		.link-cards-container {
 			flex-direction: row; 
 			flex-wrap: nowrap; 
 			justify-content: space-between;
-		}
-
-		.card-item {
-			width: 100%; 
-			flex: 1; 
-			height: rem(76);
 		}
 	}
 

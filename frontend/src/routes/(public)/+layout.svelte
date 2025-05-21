@@ -5,24 +5,13 @@
 	let { children } = $props();
 </script>
 
-<div class="wrapper">
-	<div class="wrapper__body">
-		<main id="contenu-site">
-			<Toaster />
-			{@render children()}
-		</main>
-	</div>
-</div>
+<main id="contenu-site">
+	<Toaster />
+	{@render children()}
+</main>
 
 <style lang="scss">
-	.wrapper {
-		display: flex;
-		min-height: 100vh;
-		justify-content: center;
-	}
-
 	main {
-		height: 100%;
-		box-sizing: border-box;
+		height: 100vh;
 	}
 </style>
