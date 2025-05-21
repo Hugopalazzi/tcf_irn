@@ -27,7 +27,7 @@ export type UserSignUpForm = SuperValidated<z.infer<typeof userCreationAccountSc
 
 export const userLoginSchema = z.object({
 	email: emailSchema,
-	password: z.string().min(1, 'Field must not be empty')
+	password: z.string().min(1, get(_)('form.common.notEmpty'))
 });
 export type UserLoginForm = SuperValidated<z.infer<typeof userLoginSchema>>;
 

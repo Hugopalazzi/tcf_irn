@@ -82,7 +82,19 @@
 	"register": "Créer un compte",
 	"form": {
 		"registration": {
-			"title": "Créer un compte via email"
+			"title": "Créer un compte via email",
+			"redirectLoginLabel": "Vous avez déjà un compte ?",
+			"redirectLoginLink": "Connexion"
+		},
+		"login": {
+			"title": "Se connecter via email",
+			"forgotPasswordLabel": "Mot de passe oublié ?",
+			"submitButton": "Se connecter",
+			"redirectRegisterLabel": "Vous n'avez pas de compte ?",
+			"redirectRegisterLink": "Créer un compte"
+		},
+		"common": {
+			"notEmpty": "Veuillez renseigner ce champ"
 		},
 		"email": {
 			"label": "Email",

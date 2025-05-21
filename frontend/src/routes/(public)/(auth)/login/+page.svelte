@@ -2,9 +2,8 @@
 	import { goto } from '$app/navigation';
 	import LoginForm from '@tcf/lib/components/Organisms/LoginForm.svelte';
 	import { addErrorToast } from '@tcf/lib/helpers/toastHelper.js';
-	import { userEmail } from '@tcf/lib/stores/loginEmailStore.js';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
-	import { emailSchema, userLoginSchema } from '@tcf/models/forms/userSchema';
+	import { userLoginSchema } from '@tcf/models/forms/userSchema';
 	import { _ } from 'svelte-i18n';
 	import { superForm } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
@@ -21,6 +20,9 @@
 			if (type === 'success') {
 				await goto(`/dashboard`);
 			} else if (type === 'failure') {
+				if (result.data?.form.valid === false) {
+					return;
+				}
 				const { data } = result;
 				let message = '';
 
@@ -48,15 +50,6 @@
 			}
 		}
 	});
-	const { form, enhance, errors } = supForm;
-
-	const onForgotPasswordClick = () => {
-		try {
-			const { email } = $form;
-			emailSchema.parse(email);
-			userEmail.set($form.email);
-		} catch {}
-	};
 </script>
 
 <LoginForm {supForm} />
