@@ -1,6 +1,7 @@
 <script lang="ts">
 	import PttNavIcon from '@tcf/lib/components/Icons/PttNavIcon.svelte';
 	import PresentationCard from '@tcf/lib/components/Molecules/PresentationCard.svelte';
+	import AuthenticationCard from '@tcf/lib/components/Organisms/AuthenticationCard.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import '@tcf/styles/styles.scss';
 	const bem = createBEM('auth-page');
@@ -12,7 +13,7 @@
 	<div class={bem('icon')}>
 		<PttNavIcon globalColor="#1E0C5B" vColor="1E0C5B" />
 	</div>
-	<div class={bem('card')}><PresentationCard /> {@render children()}</div>
+	<div class={bem('card')}><PresentationCard /><AuthenticationCard>{@render children()}</AuthenticationCard></div>
 </div>
 
 <style lang="scss">

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import AuthenticationCard from '@tcf/lib/components/Organisms/AuthenticationCard.svelte';
 	import RegisterForm from '@tcf/lib/components/Organisms/RegisterForm.svelte';
 	import { addErrorToast, addSuccessToast } from '@tcf/lib/helpers/toastHelper.js';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema.js';
@@ -54,4 +53,4 @@
 	});
 </script>
 
-<AuthenticationCard><RegisterForm {supForm} /></AuthenticationCard>
+<RegisterForm {supForm} />
