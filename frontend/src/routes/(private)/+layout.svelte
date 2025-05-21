@@ -13,8 +13,18 @@
 </script>
 
 <div class="wrapper">
+	<Header />
 	<main>
-		<Header />
 		{@render children?.()}
 	</main>
 </div>
+
+<style lang="scss">
+	main {
+		padding: rem(16);
+
+		@include min-width(desktop) {
+			padding: rem(60);
+		}
+	}
+</style>
