@@ -93,9 +93,12 @@
 			"redirectRegisterLabel": "Vous n'avez pas de compte ?",
 			"redirectRegisterLink": "Créer un compte"
 		},
-		"common": {
-			"notEmpty": "Veuillez renseigner ce champ"
+		"error": {
+			"common": {
+				"notEmpty": "Veuillez renseigner ce champ"
+			}
 		},
+
 		"email": {
 			"label": "Email",
 			"placeholder": "andreblick@gmail.com",

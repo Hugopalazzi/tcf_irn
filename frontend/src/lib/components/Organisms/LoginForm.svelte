@@ -3,8 +3,8 @@
 	import { _ } from 'svelte-i18n';
 	import type { SuperForm } from 'sveltekit-superforms';
 	import FormError from '@tcf/lib/components/Atoms/FormError.svelte';
-	import InputTextWrapperForm from '../Molecules/InputTextWrapperForm.svelte';
-	import Button from '../Atoms/Button.svelte';
+	import InputTextWrapperForm from '@tcf/lib/components/Molecules/InputTextWrapperForm.svelte';
+	import Button from '@tcf/lib/components/Atoms/Button.svelte';
 
 	interface Props {
 		supForm: SuperForm<any>;
