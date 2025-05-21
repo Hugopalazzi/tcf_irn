@@ -8,7 +8,6 @@
 	import PeopleIcon from '$lib/components/Icons/PeopleIcon.svelte';
 	import HeaderLink from '$lib/components/Atoms/HeaderLink.svelte';
 	import { page } from '$app/state';
-	import { PUBLIC_BASE_URL } from '$env/static/public';
 
 	const bem = createBEM('header-nav-bar');
 
@@ -31,7 +30,7 @@
 	<div class={bem('buttons-list')}>
 		{#each links as { icon: Icon, labelKey, path }}
 			{@const isActive = page.url.pathname.startsWith(path)}
-			<HeaderLink href={`${PUBLIC_BASE_URL}${path}`} {isActive} label={$_(labelKey)}>
+			<HeaderLink href={path} {isActive} label={$_(labelKey)}>
 				<Icon color={getIconColor(isActive)} />
 			</HeaderLink>
 		{/each}

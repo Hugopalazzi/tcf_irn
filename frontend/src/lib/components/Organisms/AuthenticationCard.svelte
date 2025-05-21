@@ -3,7 +3,6 @@
 	import { _ } from 'svelte-i18n';
 	import type { Snippet } from 'svelte';
 	import GoogleIcon from '@tcf/lib/components/Icons/GoogleIcon.svelte';
-	import { PUBLIC_BASE_URL } from '$env/static/public';
 
 	const bem = createBEM('authentification-card');
 
@@ -20,7 +19,7 @@
 		<p class={bem('description')}>{$_('authentificationCard.description')}</p>
 	</div>
 	<a
-		href="{PUBLIC_BASE_URL}/auth/login/google"
+		href="/auth/login/google"
 		class={bem('google-button')}
 		aria-label={$_('authentificationCard.ariaGoogleIcon')}
 		title={$_('authentificationCard.ariaGoogleIcon')}>
