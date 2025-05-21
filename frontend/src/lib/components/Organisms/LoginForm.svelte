@@ -1,10 +1,10 @@
 <script lang="ts">
+	import Button from '@tcf/lib/components/Atoms/Button.svelte';
+	import InputPassword from '@tcf/lib/components/Molecules/InputPassword.svelte';
+	import InputTextWrapperForm from '@tcf/lib/components/Molecules/InputTextWrapperForm.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { _ } from 'svelte-i18n';
 	import type { SuperForm } from 'sveltekit-superforms';
-	import FormError from '@tcf/lib/components/Atoms/FormError.svelte';
-	import InputTextWrapperForm from '@tcf/lib/components/Molecules/InputTextWrapperForm.svelte';
-	import Button from '@tcf/lib/components/Atoms/Button.svelte';
 
 	interface Props {
 		supForm: SuperForm<any>;
@@ -30,19 +30,14 @@
 		bindedError={$errors?.email}
 		autocomplete="email" />
 
-	<div class={bem('input-wrapper')}>
-		<label class={bem('label')} for="password">{$_('form.password.label')}</label>
-		<input
-			class={bem('input')}
-			bind:value={$form.password}
-			type="password"
-			id="password"
-			name="password"
-			placeholder={$_('form.password.placeholder')}
-			autocomplete="current-password"
-			class:error={!!$errors?.password} />
-		<FormError errors={$errors?.password} />
-	</div>
+	<InputPassword
+		inputId="password"
+		name="password"
+		label={$_('form.password.label')}
+		placeholder={$_('form.password.placeholder')}
+		bind:bindedValue={$form.password}
+		bindedError={$errors?.password}
+		autocomplete="current-password" />
 
 	<a href="/mot-de-passe-oublie" onclick={() => {}} class={bem('forgot-password')}>{$_('form.login.forgotPasswordLabel')}</a>
 	<Button
@@ -52,9 +47,9 @@
 		label={$_('form.login.submitButton')}
 		disabled={$submitting}
 		bind:submitting={$submitting} />
-	<span class={bem('redirect-login-register-label')}>
+	<span class={bem('redirect-label')}>
 		{$_('form.login.redirectRegisterLabel')}
-		<a href="/registration" class={bem('redirect-login-register-link')}>{$_('form.login.redirectRegisterLink')}</a>
+		<a href={$_('form.login.registerLink')} class={bem('redirect-link')}>{$_('form.login.redirectRegisterLink')}</a>
 	</span>
 </form>
 

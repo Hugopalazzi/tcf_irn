@@ -83,10 +83,6 @@
 			}
 		}
 
-		&:hover {
-			cursor: pointer;
-		}
-
 		&:disabled {
 			background-color: #f1f1f1;
 			color: gray; //TODO: waiting for color code from designer
