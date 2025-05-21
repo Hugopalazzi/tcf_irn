@@ -1,7 +1,7 @@
-import type { SuperValidated } from 'sveltekit-superforms';
-import { z } from 'zod';
 import { _ } from 'svelte-i18n';
 import { get } from 'svelte/store';
+import { type SuperValidated } from 'sveltekit-superforms';
+import { z } from 'zod';
 
 const emailErrorMessage = get(_)('form.email.error');
 export const emailSchema = z.string().email(emailErrorMessage);
@@ -13,7 +13,7 @@ export const userCreationAccountSchema = z
 		email: emailSchema,
 		password: z.string().min(8, get(_)('form.password.minError')).regex(passwordRegex, get(_)('form.password.regexError')),
 		passwordConfirmation: z.string().min(1, get(_)('form.passwordConfirmation.error')),
-		agreeTerms: z.boolean().default(false)
+		agreeTerms: z.boolean().refine((value) => value, { message: get(_)('form.error.common.agreeTerms') })
 	})
 	.superRefine(({ passwordConfirmation, password }, ctx) => {
 		if (passwordConfirmation !== password) {

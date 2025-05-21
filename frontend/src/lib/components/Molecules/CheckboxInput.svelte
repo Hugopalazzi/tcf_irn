@@ -18,16 +18,23 @@
 	const bem = createBEM('checkbox');
 </script>
 
-<label for={inputId}>
-	<input value={checked} type="checkbox" class={bem('input')} class:error={!!bindedError} id={inputId} {name} {placeholder} {autocomplete} />
+<label for={inputId} class={bem('label')}>
+	<input bind:checked={checked} type="checkbox" class={bem('input')} class:error={!!bindedError} id={inputId} {name} {placeholder} {autocomplete} />
 	<span class={bem('text')}>
 		{label}
 	</span>
+	<FormError errors={bindedError} />
 </label>
-<FormError errors={bindedError} />
 
 <style lang="scss">
 	.checkbox {
+		&__label {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: wrap;
+			align-content: flex-start;
+			gap: rem(4);
+		}
 		&__input {
 			opacity: 0;
 			height: 0;

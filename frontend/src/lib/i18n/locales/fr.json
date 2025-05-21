@@ -95,7 +95,8 @@
 		},
 		"error": {
 			"common": {
-				"notEmpty": "Veuillez renseigner ce champ"
+				"notEmpty": "Veuillez renseigner ce champ",
+				"agreeTerms":"Vous devez accepter les termes et conditions et la politique de confidentialité du site"
 			}
 		},
 
