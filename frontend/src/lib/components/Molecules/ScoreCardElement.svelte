@@ -1,23 +1,23 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
+	import { mergeClassNames } from '@tcf/lib/helpers/mergeClassNames';
 	import type { Component } from 'svelte';
 
 	export type ScoreCardElementProps = {
 		result: string;
 		title: string;
-		color1: string;
-		color2: string;
+		backgroundIconColor: 'blue-gradient' | 'green-gradient' | 'red-gradient';
 		Icon?: Component<any>;
 	};
 
-	const { result, title, color1, color2, Icon }: ScoreCardElementProps = $props();
+	const { result, title, backgroundIconColor, Icon }: ScoreCardElementProps = $props();
 	const uuid = $props.id();
 	const bem = createBEM('score-card');
 </script>
 
 <div class={bem('container')} aria-describedby={uuid}>
 	{#if Icon}
-		<div class={bem('icon-container')} style="background: linear-gradient(135deg, {color1} 0%, {color2} 100%);">
+		<div class={mergeClassNames(bem('icon-container'), backgroundIconColor)}>
 			<Icon />
 		</div>
 	{/if}
@@ -28,6 +28,16 @@
 </div>
 
 <style lang="scss">
+	.blue-gradient {
+		background: linear-gradient(135deg, #a3e7fc 0%, #1a90b4 100%);
+	}
+	.green-gradient {
+		background: linear-gradient(135deg, #9cffb8 0%, #0ead3b 100%);
+	}
+	.red-gradient {
+		background: linear-gradient(135deg, #ffa39c 0%, #cf2f23 100%);
+	}
+
 	.score-card {
 		&__container {
 			display: flex;

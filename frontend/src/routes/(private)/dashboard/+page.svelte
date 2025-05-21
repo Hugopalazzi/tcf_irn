@@ -39,22 +39,19 @@
 		{
 			result: '03',
 			title: 'Exams Taken',
-			color1: '#A3E7FC',
-			color2: '#1A90B4',
+			backgroundIconColor: 'blue-gradient',
 			Icon: CheckListIcon
 		},
 		{
 			result: '89%',
 			title: 'Success Score',
-			color1: '#9CFFB8',
-			color2: '#0EAD3B',
+			backgroundIconColor: 'green-gradient',
 			Icon: SuccessScoreIcon
 		},
 		{
 			result: '19%',
 			title: 'Failure Score',
-			color1: '#FFA39C',
-			color2: '#CF2F23',
+			backgroundIconColor: 'red-gradient',
 			Icon: FailureScoreIcon
 		}
 	];
