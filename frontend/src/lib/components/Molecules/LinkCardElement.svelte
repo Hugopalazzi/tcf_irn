@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import type { Component } from 'svelte';
-	import ChevronRightIcon from '../Icons/ChevronRightIcon.svelte';
 
 	export type LinkCardElementProps = {
 		url: string;
@@ -16,7 +15,7 @@
 </script>
 
 <a href={url} aria-describedby={uuid} class={bem('container')}>
-	<div class={bem("sub-container")}>
+	<div class={bem('sub-container')}>
 		{#if Icon}
 			<div class={bem('icon-container')}><Icon /></div>
 		{/if}
@@ -25,7 +24,6 @@
 			<p class={bem('description')}>{description}</p>
 		</div>
 	</div>
-	<ChevronRightIcon />
 </a>
 
 <style lang="scss">
