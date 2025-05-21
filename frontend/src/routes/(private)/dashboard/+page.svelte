@@ -1,9 +1,13 @@
 <script lang="ts">
+	import CheckListIcon from '@tcf/lib/components/Icons/CheckListIcon.svelte';
+	import FailureScoreIcon from '@tcf/lib/components/Icons/FailureScoreIcon.svelte';
 	import ListeningIcon from '@tcf/lib/components/Icons/ListeningIcon.svelte';
 	import ReadingIcon from '@tcf/lib/components/Icons/ReadingIcon.svelte';
+	import SuccessScoreIcon from '@tcf/lib/components/Icons/SuccessScoreIcon.svelte';
 	import WritingIcon from '@tcf/lib/components/Icons/WritingIcon.svelte';
 	import TitleWithDescription from '@tcf/lib/components/Molecules/TitleWithDescription.svelte';
 	import LinkCards from '@tcf/lib/components/Organisms/LinkCards.svelte';
+	import ScoreCards from '@tcf/lib/components/Organisms/ScoreCards.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { _ } from 'svelte-i18n';
 
@@ -30,6 +34,27 @@
 			Icon: WritingIcon
 		}
 	];
+
+	const cardScores = [
+		{
+			result: '03',
+			title: 'Exams Taken',
+			backgroundIconColor: 'blue-gradient',
+			Icon: CheckListIcon
+		},
+		{
+			result: '89%',
+			title: 'Success Score',
+			backgroundIconColor: 'green-gradient',
+			Icon: SuccessScoreIcon
+		},
+		{
+			result: '19%',
+			title: 'Failure Score',
+			backgroundIconColor: 'red-gradient',
+			Icon: FailureScoreIcon
+		}
+	];
 </script>
 
 <div class={bem('container')}>
@@ -39,6 +64,7 @@
 	</div>
 	<TitleWithDescription title={$_('dashboard.title')} description={$_('dashboard.description')} />
 	<LinkCards links={cardLinks} />
+	<ScoreCards scores={cardScores} />
 </div>
 
 <style lang="scss">
