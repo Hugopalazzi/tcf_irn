@@ -5,7 +5,7 @@
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema.js';
 	import { userCreationAccountSchema } from '@tcf/models/forms/userSchema';
 	import { _ } from 'svelte-i18n';
-	import { superForm } from 'sveltekit-superforms';
+	import { superForm, superValidate } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
 
 	const { data } = $props();
@@ -17,9 +17,10 @@
 
 		async onResult({ result }) {
 			if (result.type === 'success') {
-				await goto(`/`).then(() => addSuccessToast($_('signUp.success'), 'top-center'));
+				await goto(`/login`).then(() => addSuccessToast($_('signUp.success'), 'top-center'));
 			} else if (result.type === 'failure') {
-				if (result.data?.form.valid === false) {
+				const formValidate = await superValidate(result.data?.form.data, zod(userCreationAccountSchema));
+				if (formValidate.valid === false) {
 					return;
 				}
 				const { data } = result;

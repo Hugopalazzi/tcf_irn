@@ -19,7 +19,7 @@ export const userCreationAccountSchema = z
 		if (passwordConfirmation !== password) {
 			ctx.addIssue({
 				code: z.ZodIssueCode.custom,
-				message: get(_)('differentError')
+				message: get(_)('form.password.differentError')
 			});
 		}
 	});

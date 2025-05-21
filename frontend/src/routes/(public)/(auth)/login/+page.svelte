@@ -5,7 +5,7 @@
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
 	import { userLoginSchema } from '@tcf/models/forms/userSchema';
 	import { _ } from 'svelte-i18n';
-	import { superForm } from 'sveltekit-superforms';
+	import { superForm, superValidate } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
 
 	export let data;
@@ -20,9 +20,11 @@
 			if (type === 'success') {
 				await goto(`/dashboard`);
 			} else if (type === 'failure') {
-				if (result.data?.form.valid === false) {
+				const formValidate = await superValidate(result.data?.form.data, zod(userLoginSchema));
+				if (formValidate.valid === false) {
 					return;
 				}
+
 				const { data } = result;
 				let message = '';
 

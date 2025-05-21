@@ -5,15 +5,15 @@
 	import InputTextWrapperForm from '@tcf/lib/components/Molecules/InputTextWrapperForm.svelte';
 	import CheckboxInput from '@tcf/lib/components/Molecules/CheckboxInput.svelte';
 	import Button from '@tcf/lib/components/Atoms/Button.svelte';
-	import FormError from '../Atoms/FormError.svelte';
+	import FormError from '@tcf/lib/components/Atoms/FormError.svelte';
 
 	interface Props {
 		supForm: SuperForm<any>;
 	}
 
-	let { supForm }: Props = $props();
+	const { supForm }: Props = $props();
 
-	const { form, enhance, errors } = supForm;
+	const { form, enhance, errors, submitting } = supForm;
 
 	const bem = createBEM('form');
 </script>
@@ -39,7 +39,7 @@
 		bind:bindedValue={$form.username}
 		bindedError={$errors?.username}
 		autocomplete="username" />
-		
+
 	<div class={bem('input-wrapper')}>
 		<label class={bem('label')} for="password">{$_('form.password.label')}</label>
 		<input
@@ -62,11 +62,11 @@
 			type="password"
 			id="passwordConfirmation"
 			name="passwordConfirmation"
-			placeholder={$_('form.passwordConfirmation.placeholder')} 
+			placeholder={$_('form.passwordConfirmation.placeholder')}
 			autocomplete="new-password" />
 		<FormError errors={!$form?.passwordConfirmation ? $errors?.passwordConfirmation : $errors?._errors} />
 	</div>
-	
+
 	<CheckboxInput
 		inputId="agreeTerms"
 		name="agreeTerms"
@@ -75,5 +75,15 @@
 		bind:checked={$form.agreeTerms}
 		bindedError={$errors?.agreeTerms} />
 
-	<Button onClick={() => {}} extraClass="centered-submit-button" color="primary" label={$_('register')}></Button>
+	<Button
+		onClick={() => {}}
+		extraClass="centered-submit-button"
+		color="primary"
+		label={$_('register')}
+		disabled={$submitting}
+		bind:submitting={$submitting}></Button>
+	<span class={bem('redirect-login-register-label')}>
+		{$_('form.registration.redirectLoginLabel')}
+		<a href="/login" class={bem('redirect-login-register-link')}>{$_('form.registration.redirectLoginLink')}</a>
+	</span>
 </form>

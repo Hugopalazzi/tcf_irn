@@ -10,9 +10,9 @@
 		supForm: SuperForm<any>;
 	}
 
-	let { supForm }: Props = $props();
+	const { supForm }: Props = $props();
 
-	const { form, enhance, errors } = supForm;
+	const { form, enhance, errors, submitting } = supForm;
 
 	const bem = createBEM('form');
 </script>
@@ -45,10 +45,16 @@
 	</div>
 
 	<a href="/mot-de-passe-oublie" onclick={() => {}} class={bem('forgot-password')}>{$_('form.login.forgotPasswordLabel')}</a>
-	<Button onClick={() => {}} extraClass="centered-submit-button" color="primary" label={$_('form.login.submitButton')}></Button>
+	<Button
+		onClick={() => {}}
+		extraClass="centered-submit-button"
+		color="primary"
+		label={$_('form.login.submitButton')}
+		disabled={$submitting}
+		bind:submitting={$submitting} />
 	<span class={bem('redirect-login-register-label')}>
 		{$_('form.login.redirectRegisterLabel')}
-		<a href='/registration' class={bem('redirect-login-register-link')}>{$_('form.login.redirectRegisterLink')}</a>
+		<a href="/registration" class={bem('redirect-login-register-link')}>{$_('form.login.redirectRegisterLink')}</a>
 	</span>
 </form>
 
