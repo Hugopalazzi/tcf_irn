@@ -4,7 +4,7 @@
 	import type { Snippet } from 'svelte';
 	import GoogleIcon from '@tcf/lib/components/Icons/GoogleIcon.svelte';
 
-	const bem = createBEM('authentification-card');
+	const bem = createBEM('authentication-card');
 
 	interface Props {
 		children?: Snippet;
@@ -34,15 +34,13 @@
 </div>
 
 <style lang="scss">
-	.authentification-card {
+	.authentication-card {
 		&__container {
 			display: flex;
 			flex-direction: column;
-			width: 100%;
-			height: 100%;
-			padding: 42px;
-			gap: rem(32);
-			border-radius: 20px;
+			padding: rem(16);
+			gap: rem(20);
+			border-radius: rem(40);
 			background: #fff;
 			box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.06);
 		}
@@ -51,6 +49,7 @@
 			display: flex;
 			flex-direction: column;
 			gap: rem(4);
+			text-align: center;
 		}
 
 		&__title {
@@ -61,7 +60,7 @@
 		}
 
 		&__description {
-			font-size: rem(16);
+			font-size: rem(12);
 			color: rgba(0, 0, 0, 0.5);
 			font-weight: 400;
 			line-height: rem(24);
@@ -103,6 +102,23 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			font-size: rem(16);
+			font-weight: 500;
+		}
+	}
+
+	@media (min-width: $breakpoint-desktop) {
+		.authentication-card {
+			&__container {
+				padding: rem(42);
+				border-radius: rem(20);
+				gap: rem(32);
+			}
+
+			&__description {
+				font-size: rem(16);
+				line-height: rem(20);
+			}
 		}
 	}
 </style>

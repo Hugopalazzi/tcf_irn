@@ -47,11 +47,11 @@
 		label={$_('form.login.submitButton')}
 		disabled={$submitting}
 		bind:submitting={$submitting} />
-	<span class={bem('redirect-label')}>
-		{$_('form.login.redirectRegisterLabel')}
-		<a href={$_('form.login.registerLink')} class={bem('redirect-link')}>{$_('form.login.redirectRegisterLink')}</a>
-	</span>
 </form>
+<span class={bem('redirect-label')}>
+	{$_('form.login.redirectRegisterLabel')}
+	<a href={$_('form.login.registerLink')} class={bem('redirect-link')}>{$_('form.login.redirectRegisterLink')}</a>
+</span>
 
 <style lang="scss">
 	.form {
