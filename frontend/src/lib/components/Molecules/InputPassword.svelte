@@ -37,7 +37,6 @@
 		<button
 			onclick={() => (showPassword = !showPassword)}
 			type="button"
-			class={bem('eye')}
 			aria-label={showPassword ? $_('form.password.hidePassword') : $_('form.password.showPassword')}>
 			{#if showPassword}
 				<EyeSlashIcon />
