@@ -11,19 +11,20 @@
 	};
 
 	const { result, title, backgroundIconColor, Icon }: ScoreCardElementProps = $props();
-	const uuid = $props.id();
 	const bem = createBEM('score-card');
 </script>
 
-<div class={bem('container')} aria-describedby={uuid}>
+<div class={bem('container')}>
 	{#if Icon}
 		<div class={mergeClassNames(bem('icon-container'), backgroundIconColor)}>
 			<Icon />
 		</div>
 	{/if}
 	<div class={bem('text-container')}>
-		<h2 id={uuid} class={bem('result')}>{result}</h2>
-		<p class={bem('title')}>{title}</p>
+		<p class={bem('result-wrapper')}>
+			<span class={bem('result')}>{result}</span>
+			<span class={bem('title')}>{title}</span>
+		</p>
 	</div>
 </div>
 
@@ -57,7 +58,13 @@
 			padding: rem(10);
 		}
 
+		&__result-wrapper {
+			display: flex;
+			flex-direction: column;
+		}
+
 		&__result {
+			font-weight: 600;
 			font-size: rem(20);
 			line-height: rem(20);
 		}
