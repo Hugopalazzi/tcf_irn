@@ -1,4 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="spinning">
+<script lang="ts">
+	interface Props {
+		spinning?: boolean;
+	}
+
+	const { spinning = false }: Props = $props();
+</script>
+
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	fill="none"
+	viewBox="0 0 24 24"
+	stroke-width="1.5"
+	height="16px"
+	stroke="currentColor"
+	class:spinning
+	aria-hidden="true">
 	<path
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -10,16 +26,14 @@
 		animation-name: spin;
 		animation-duration: 2000ms;
 		animation-iteration-count: infinite;
-		height: rem(16);
-		color: gray; //TODO: waiting for color code from designer 
-	}
-
-	@keyframes spin {
-		from {
-			transform: rotate(0deg);
-		}
-		to {
-			transform: rotate(360deg);
+		color: gray; //TODO: waiting for color code from designer
+		@keyframes spin {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(360deg);
+			}
 		}
 	}
 </style>

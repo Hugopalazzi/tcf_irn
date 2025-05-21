@@ -47,7 +47,7 @@
 	{/if}
 	{#if label}
 		<span class={bem('label')}>
-			{#if submitting}<LoadingIcon />{/if}
+			{#if submitting}<LoadingIcon spinning={true} />{/if}
 			{label}
 		</span>
 	{/if}
