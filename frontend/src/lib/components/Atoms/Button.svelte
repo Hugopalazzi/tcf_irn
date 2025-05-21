@@ -3,7 +3,7 @@
 	import { mergeClassNames } from '@tcf/lib/helpers/mergeClassNames';
 	import type { Component } from 'svelte';
 	import type { AriaAttributes, AriaRole } from 'svelte/elements';
-	import ArrowPathIcon from '@tcf/lib/components/Icons/ArrowPathIcon.svelte';
+	import LoadingIcon from '@tcf/lib/components/Icons/LoadingIcon.svelte';
 
 	const ColorsEnum = {
 		PRIMARY: 'primary',
@@ -47,7 +47,7 @@
 	{/if}
 	{#if label}
 		<span class={bem('label')}>
-			{#if submitting}<ArrowPathIcon />{/if}
+			{#if submitting}<LoadingIcon />{/if}
 			{label}
 		</span>
 	{/if}
