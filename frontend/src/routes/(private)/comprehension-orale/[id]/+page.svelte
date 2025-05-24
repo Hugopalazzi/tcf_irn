@@ -1,13 +1,14 @@
 <script lang="ts">
-	import BackButton from '@tcf/lib/components/BackButton.svelte';
-	import type { PageData } from './$types';
-	import MeltProgressBar from '@tcf/lib/components/MeltProgressBar.svelte';
-	import { superForm } from 'sveltekit-superforms/client';
+	import { goto } from '$app/navigation';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
 	import { listeningComprehensionSchema } from '@tcf/models/forms/mcqSchema';
 	import { zod } from 'sveltekit-superforms/adapters';
-	import { goto } from '$app/navigation';
+	import { superForm } from 'sveltekit-superforms/client';
+	import type { PageData } from './$types';
+	import BackButton from '@tcf/lib/components/Atoms/BackButton.svelte';
+	import MeltProgressBar from '@tcf/lib/components/Molecules/MeltProgressBar.svelte';
 	import { page } from '$app/state';
+	import { addErrorToast } from '@tcf/lib/helpers/toastHelper';
 
 	const { data }: { data: PageData } = $props();
 
@@ -20,25 +21,25 @@
 
 		async onResult({ result }) {
 			if (result.type === 'success') {
-				await goto(`${$page.url.pathname}/recapitulatif`);
+				await goto(`${page.url.pathname}/recapitulatif`);
 			}
 		},
-		onError({ result }) {
-			// if (result.error.message) {
-			//     addErrorToast(result.error.message);
-			// } else {
-			//     addErrorToast();
-			// }
+		onError({
+			result: {
+				error: { message }
+			}
+		}) {
+			addErrorToast(message);
 		}
 	});
-	const { form, errors, enhance, isTainted, submitting } = suprForm;
+	const { form, enhance } = suprForm;
 	let selectedResponse = $state(null);
 
 	function goToNextQuestion() {
 		$form.userResponses.push(selectedResponse);
 		$form.userResponses = $form.userResponses;
 
-		if (index+1 < data.exam.length) {
+		if (index + 1 < data.exam.length) {
 			index += 1;
 			selectedResponse = null;
 		}
@@ -65,14 +66,13 @@
 				<div class="options">
 					{#each data.exam[index].responses as responseChoice, responseIndex}
 						<div class="radio">
-							<label for="userResponses[{responseIndex}]"
-								><input
+							<label for="userResponses[{responseIndex}]">
+								<input
 									bind:group={selectedResponse}
 									type="radio"
 									id="userResponses[{responseIndex}]"
 									name="userResponses[{responseIndex}]"
-									value={responseIndex}
-								/>
+									value={responseIndex} />
 								<span>{responseChoice} {responseIndex}</span>
 							</label>
 						</div>
@@ -88,13 +88,9 @@
 				{/if}
 				<span class="question-count">{index + 1}/{data.exam.length}</span>
 				{#if index + 1 === data.exam.length}
-					<button type="submit" onclick={goToNextQuestion} class="btn btn-primary btn-small"
-						>Submit</button
-					>
+					<button type="submit" onclick={goToNextQuestion} class="btn btn-primary btn-small">Submit</button>
 				{:else}
-					<button type="button" onclick={goToNextQuestion} class="btn btn-primary btn-small"
-						>Next</button
-					>
+					<button type="button" onclick={goToNextQuestion} class="btn btn-primary btn-small">Next</button>
 				{/if}
 			</div>
 		</form>
@@ -107,6 +103,7 @@
 		padding-top: rem(24);
 		.card {
 			display: flex;
+			max-width: 100%;
 			flex-direction: column;
 			gap: rem(24);
 			border: rem(1) solid var(--white);

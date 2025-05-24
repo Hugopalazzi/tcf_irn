@@ -12,8 +12,8 @@
 		class="progress-bar"
 		class:low={goodAnwser <= 7}
 		class:medium={goodAnwser <= 13 && goodAnwser > 7}
-		class:good={goodAnwser > 13}
-	></div>
+		class:good={goodAnwser > 13}>
+	</div>
 	<span class="progress-text">{goodAnwser}/20</span>
 </div>
 

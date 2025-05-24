@@ -1,100 +1,104 @@
 <script lang="ts">
-	import { BookOpen, ChatBubbleBottomCenterText, Icon, SpeakerWave } from 'svelte-hero-icons';
-	import Bar from './Bar.svelte';
+	import CheckListIcon from '@tcf/lib/components/Icons/CheckListIcon.svelte';
+	import FailureScoreIcon from '@tcf/lib/components/Icons/FailureScoreIcon.svelte';
+	import ListeningIcon from '@tcf/lib/components/Icons/ListeningIcon.svelte';
+	import ReadingIcon from '@tcf/lib/components/Icons/ReadingIcon.svelte';
+	import SuccessScoreIcon from '@tcf/lib/components/Icons/SuccessScoreIcon.svelte';
+	import WritingIcon from '@tcf/lib/components/Icons/WritingIcon.svelte';
+	import TitleWithDescription from '@tcf/lib/components/Molecules/TitleWithDescription.svelte';
+	import LinkCards from '@tcf/lib/components/Organisms/LinkCards.svelte';
+	import ScoreCards from '@tcf/lib/components/Organisms/ScoreCards.svelte';
+	import { createBEM } from '@tcf/lib/helpers/bemHelper';
+	import { _ } from 'svelte-i18n';
 
-	const mockBar: { libelle: string; valeur: string[] }[] = [
+	const bem = createBEM('dashboard');
+
+	const dashboardCardLinksKey = 'dashboard.cardLinks';
+	const cardLinks = [
 		{
-			libelle: 'Dates',
-			valeur: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
+			url: $_(`${dashboardCardLinksKey}.listeningExams.url`),
+			title: $_(`${dashboardCardLinksKey}.listeningExams.title`),
+			description: $_(`${dashboardCardLinksKey}.listeningExams.description`),
+			Icon: ListeningIcon
 		},
 		{
-			libelle: 'LC',
-			valeur: ['1', '2', '42', '10', '22', '2', '2']
+			url: $_(`${dashboardCardLinksKey}.readingExams.url`),
+			title: $_(`${dashboardCardLinksKey}.readingExams.title`),
+			description: $_(`${dashboardCardLinksKey}.readingExams.description`),
+			Icon: ReadingIcon
 		},
 		{
-			libelle: 'OC',
-			valeur: ['25', '22', '12', '14', '10', '2', '0']
+			url: $_(`${dashboardCardLinksKey}.writingExams.url`),
+			title: $_(`${dashboardCardLinksKey}.writingExams.title`),
+			description: $_(`${dashboardCardLinksKey}.writingExams.description`),
+			Icon: WritingIcon
+		}
+	];
+
+	const cardScores = [
+		{
+			result: '03',
+			title: 'Exams Taken',
+			backgroundIconColor: 'blue-gradient',
+			Icon: CheckListIcon
 		},
 		{
-			libelle: 'WE',
-			valeur: ['4', '2', '1', '7', '0', '22', '15']
+			result: '89%',
+			title: 'Success Score',
+			backgroundIconColor: 'green-gradient',
+			Icon: SuccessScoreIcon
+		},
+		{
+			result: '19%',
+			title: 'Failure Score',
+			backgroundIconColor: 'red-gradient',
+			Icon: FailureScoreIcon
 		}
 	];
 </script>
 
-<h1>Dashboard</h1>
-<h2 class="welcome-msg">Hello, Aryan 👋​</h2>
-<div class="cards-wrapper">
-	<a href="comprehension-orale" class="card">
-		<h5>Listening comprehension</h5>
-		<Icon src={SpeakerWave} size="20" />
-	</a>
-	<a href="comprension-ecrite" class="card">
-		<h3>Written comprehension</h3>
-		<Icon src={BookOpen} size="20" />
-	</a>
-	<a href="expression-ecrite" class="card">
-		<h3>Written expression</h3>
-		<Icon src={ChatBubbleBottomCenterText} size="20" />
-	</a>
-</div>
-<div class="graph-title-wrapper">
-	<span class="graph-title">Tests Completed In Past 7 Days </span>
-	<div class="centered-graph">
-		<Bar dataSet={mockBar} />
+<div class={bem('container')}>
+	<div class={bem('welcome-card')}>
+		<img src="/assets/images/user-profile.jpg" class={bem('user-profile-image')} alt="user profile" />
+		<p class={bem('welcome-label')}>Welcome back, John!</p>
 	</div>
+	<TitleWithDescription title={$_('dashboard.title')} description={$_('dashboard.description')} />
+	<LinkCards links={cardLinks} />
+	<ScoreCards scores={cardScores} />
 </div>
 
 <style lang="scss">
-	h1 {
-		margin-bottom: rem(8);
-	}
-
-	.welcome-msg {
-		margin-bottom: rem(12);
-	}
-
-	.cards-wrapper {
-		display: flex;
-		gap: rem(20);
-		justify-content: center;
-		margin-bottom: rem(12);
-
-		.card {
+	.dashboard {
+		&__container {
 			display: flex;
+			flex-direction: column;
 			align-items: center;
-			gap: rem(8);
-			padding: rem(12) rem(20);
-			border: 1px solid var(--button-primary-color);
-			border-radius: rem(12);
-		}
-	}
-
-	.graph-title-wrapper {
-		display: grid;
-		gap: rem(16);
-		background-color: var(--bg-card-grey);
-		border-radius: rem(20);
-		padding: rem(16) rem(24);
-		justify-items: center;
-		font-weight: 600;
-
-		.graph-title {
-			padding-bottom: rem(8);
-			color: var(--title-card-grey);
+			gap: 16px;
+			padding: 16px 0;
 		}
 
-		.centered-graph {
-			display: flex;
-			width: 100%;
-			overflow-x: auto;
-			overflow-y: hidden;
-			white-space: nowrap;
+		&__welcome-card {
+			border-radius: 60px;
+			background: rgba(30, 12, 91, 0.05);
+			display: inline-flex;
+			padding: 8px 20px 8px 8px;
+			justify-content: center;
+			align-items: center;
+			gap: 16px;
 		}
 
-		@include min-width(desktop-large) {
-			justify-self: center;
-			min-width: rem(1100);
+		&__welcome-label {
+			color: #1e0c5b;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 24px;
+		}
+
+		&__user-profile-image {
+			border-radius: 46px;
+			width: 46px;
+			height: 46px;
 		}
 	}
 </style>

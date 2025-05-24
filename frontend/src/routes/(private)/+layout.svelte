@@ -2,7 +2,8 @@
 	import '@tcf/styles/styles.scss';
 	import type { LayoutData } from './$types';
 	import type { Snippet } from 'svelte';
-	import NavBar from './NavBar.svelte';
+	import Header from '$lib/components/Molecules/Header.svelte';
+
 	interface Props {
 		data: LayoutData;
 		children?: Snippet;
@@ -12,10 +13,8 @@
 </script>
 
 <div class="wrapper">
-	<div class="wrapper__body">
-		<main id="contenu-site">
-			<NavBar />
-			{@render children?.()}
-		</main>
-	</div>
+	<main>
+		<Header />
+		{@render children?.()}
+	</main>
 </div>

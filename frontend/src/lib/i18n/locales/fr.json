@@ -1,0 +1,129 @@
+{
+	"signUp": {
+		"success": "Votre compte a bien été créé. Veuillez verifier votre adresse mail"
+	},
+	"commonErrors": {
+		"defaultError": "Erreur inconnue. Réessayez ou contactez le support.",
+		"overRequestRateLimit": "Vous avez envoyé trop de demandes. Veuillez patienter et réessayer plus tard.",
+		"sessionExpired": "Ce lien de réinitialisation n'est plus valide. Pour continuer, générez un nouveau lien et vérifiez votre boîte mail."
+	},
+	"loginErrors": {
+		"invalidCredentials": "L'adresse email et/ou le mot de passe sont incorrectes.",
+		"emailNotConfirmed": "Votre adresse e-mail n'a pas encore été confirmée. Veuillez vérifier votre boîte de réception et cliquer sur le lien de confirmation.",
+		"userNotFound": "Aucun utilisateur correspondant n'a été trouvé.",
+		"userBanned": "PERMA BAN APEX."
+	},
+	"signUpErrors": {
+		"signupDisabled": "Les inscriptions sont désactivées pour le moment.",
+		"emailAddressInvalid": "L'adresse e-mail que vous avez saisie n'est pas valide.",
+		"emailAddressNotAuthorized": "L'adresse e-mail saisie n'est pas autorisée à accéder à ce site.",
+		"emailProviderDisabled": "Les inscriptions avec une adresse e-mail sont désactivées.",
+		"emailExists": "Cette adresse e-mail est déjà utilisée, essayez de vous connecter"
+	},
+	"resetPasswordErrors": {
+		"weakPassword": "Le nouveau mot de passe n'est pas assez sécurisé.",
+		"reauthenticationNeeded": "Vous devez vous reconnecter pour changer votre mot de passe.",
+		"samePassword": "Le nouveau mot de passe est identique à l'ancien."
+	},
+	"header": {
+		"dashboard": "Dashboard",
+		"exams": "Examens",
+		"leaderboard": "Leaderboard",
+		"profile": "Mon profil",
+		"subscribe": "Lien vers le changement d'offre tarifaire"
+	},
+	"dashboard": {
+		"title": "Dashboard",
+		"description": "Prêt à continuer votre chemin vers la maitrise du français ?",
+		"cardLinks": {
+			"listeningExams": {
+				"title": "Compréhension orale",
+				"description": "Commencez à pratiquer votre compréhension orale.",
+				"url": "/listening-exams"
+			},
+			"readingExams": {
+				"title": "Compréhension écrite",
+				"description": "Commencez à pratiquer votre compréhension écrite.",
+				"url": "/reading-exams"
+			},
+			"writingExams": {
+				"title": "Expression écrite",
+				"description": "Commencez à pratiquer votre expression écrite.",
+				"url": "/writing-exams"
+			}
+		}
+	},
+	"presentationCard": {
+		"badge": "Votre clé du succès en français !",
+		"welcome": "Bienvenue sur ",
+		"brand": "Passe ton TEF",
+		"description": "The interactive and fun platform designed to help you succeed in your French exam (TEF). Benefit from intensive practice in listening comprehension, reading comprehension, and written expression, with instant corrections and detailed progress tracking.",
+		"informationBadges": {
+			"comprehensiveExams": {
+				"title": "Préparation à l'examen complet :",
+				"description": "Pratiquez toutes les sections du TEF avec de vraies questions d'examen et des commentaires instantanés."
+			},
+			"gamifiedLearning": {
+				"title": "Progrès gamifiés :",
+				"description": "Suivez vos progrès et célébrez les étapes importantes à mesure que vous vous améliorez."
+			},
+			"corrections": {
+				"title": "Corrections instantanées :",
+				"description": "Recevez des commentaires immédiats pour vous aider à apprendre plus rapidement."
+			}
+		}
+	},
+	"authentificationCard": {
+		"title": "Créer un compte ou se connecter",
+		"description": "Entrez vos informations pour vous connectez",
+		"ariaGoogleIcon": "Connexion avec Google"
+	},
+	"or": "ou",
+	"register": "Créer un compte",
+	"form": {
+		"registration": {
+			"title": "Créer un compte via email",
+			"redirectLoginLabel": "Vous avez déjà un compte ?",
+			"redirectLoginLink": "Connexion",
+			"loginLink": "/login"
+		},
+		"login": {
+			"title": "Se connecter via email",
+			"forgotPasswordLabel": "Mot de passe oublié ?",
+			"submitButton": "Se connecter",
+			"redirectRegisterLabel": "Vous n'avez pas de compte ?",
+			"redirectRegisterLink": "Créer un compte",
+			"registerLink": "/registration"
+		},
+		"error": {
+			"common": {
+				"notEmpty": "Veuillez renseigner ce champ",
+				"agreeTerms": "Vous devez accepter les termes et conditions et la politique de confidentialité du site"
+			}
+		},
+
+		"email": {
+			"label": "Email",
+			"placeholder": "andreblick@gmail.com",
+			"error": "Veuillez saisir un e-mail valide"
+		},
+		"username": {
+			"label": "Nom d'utilisateur",
+			"placeholder": "Andre Blick"
+		},
+		"password": {
+			"label": "Mot de passe",
+			"placeholder": "••••••••",
+			"showPassword": "Afficher le mot de passe",
+			"hidePassword": "Masquer le mot de passe",
+			"minError": "Votre mot de passe doit au minimum contenir 8 caractères",
+			"regexError": "Votre mot de passe doit contenir : 1 majuscule, 1 minuscule, 1 nombre et un caractère spécial",
+			"differentError": "Les mots de passe ne correspondent pas"
+		},
+		"passwordConfirmation": {
+			"label": "Confirmez votre mot de passe",
+			"placeholder": "••••••••"
+		},
+		"agreeTerms": { "label": "J'accepte les termes et conditions et la politique de confidentialité" }
+	}
+}

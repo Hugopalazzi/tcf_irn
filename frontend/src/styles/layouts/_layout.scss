@@ -1,37 +1,38 @@
 @use '@tcf/styles/utilities/mixins' as *;
 
 .page-container {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: rem(100);
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: rem(100);
 
-    .left-size {
-        max-width: rem(320);
-        right: rem(80);
+	.left-size {
+		max-width: rem(320);
+		right: rem(80);
 
-        img {
-            width: 100%;
-        }
-    }
+		img {
+			width: 100%;
+		}
+	}
 
-    .right-size {
-        border: rem(1) solid var(--dark-purple);
-        border-radius: rem(16);
-        padding: rem(20);
-        display: flex;
-        flex-direction: column;
-        gap: rem(12);
-        background-image: linear-gradient(to bottom right, var(--dark-purple), var(--light-purple));
+	.right-size {
+		border: rem(1) solid var(--dark-purple);
+		border-radius: rem(16);
+		padding: rem(20);
+		display: flex;
+		flex-direction: column;
+		gap: rem(12);
+		background-image: linear-gradient(to bottom right, var(--dark-purple), var(--light-purple));
+		max-width: rem(500);
 
-        .title {
-            margin-bottom: rem(16);
-        }
+		.title {
+			margin-bottom: rem(16);
+		}
 
-        .two-button {
-            display: flex;
-            gap: rem(4);
-        }
-    }
+		.two-button {
+			display: flex;
+			gap: rem(4);
+		}
+	}
 }
