@@ -26,7 +26,7 @@
 			background-image: url('/assets/images/registration/registration_background.svg');
 			background-color: #a3e7fc;
 			padding: 0 rem(20) rem(20) rem(20);
-			height: calc(100% - rem(20));
+			height: calc(100vh - rem(20));
 			overflow-y: auto;
 		}
 
