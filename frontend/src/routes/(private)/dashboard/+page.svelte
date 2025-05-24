@@ -10,8 +10,11 @@
 	import ScoreCards from '@tcf/lib/components/Organisms/ScoreCards.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { _ } from 'svelte-i18n';
+	import type { PageData } from './$types';
 
 	const bem = createBEM('dashboard');
+
+	const { data }: { data: PageData } = $props();
 
 	const dashboardCardLinksKey = 'dashboard.cardLinks';
 	const cardLinks = [
@@ -59,8 +62,8 @@
 
 <div class={bem('container')}>
 	<div class={bem('welcome-card')}>
-		<img src="/assets/images/user-profile.jpg" class={bem('user-profile-image')} alt="user profile" />
-		<p class={bem('welcome-label')}>Welcome back, John!</p>
+		<img src={data.user.user_metadata.avatar_url ?? '/assets/images/user-profile.jpg'} class={bem('user-profile-image')} alt="user profile" />
+		<p class={bem('welcome-label')}>{$_('dashboard.welcome')}{data.user.user_metadata.name} !</p>
 	</div>
 	<TitleWithDescription title={$_('dashboard.title')} description={$_('dashboard.description')} />
 	<LinkCards links={cardLinks} />

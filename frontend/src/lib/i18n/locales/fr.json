@@ -34,6 +34,7 @@
 	},
 	"dashboard": {
 		"title": "Dashboard",
+		"welcome": "Bon retour, ",
 		"description": "Prêt à continuer votre chemin vers la maitrise du français ?",
 		"cardLinks": {
 			"listeningExams": {
