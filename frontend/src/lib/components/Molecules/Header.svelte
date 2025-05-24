@@ -23,7 +23,6 @@
 			display: flex;
 			align-items: center;
 			overflow: hidden;
-			margin-bottom: rem(16);
 			background-color: $primary-color;
 			padding: rem(16);
 			justify-content: space-between;
