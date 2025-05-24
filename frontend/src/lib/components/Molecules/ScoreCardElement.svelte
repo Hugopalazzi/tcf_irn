@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { mergeClassNames } from '@tcf/lib/helpers/mergeClassNames';
+	import type { GradientColorsType } from '@tcf/models/gradientColors';
 	import type { Component } from 'svelte';
 
 	export type ScoreCardElementProps = {

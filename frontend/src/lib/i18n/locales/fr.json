@@ -37,6 +37,10 @@
 		"welcome": "Bon retour, ",
 		"description": "Prêt à continuer votre chemin vers la maitrise du français ?",
 		"altUserImage": "Photo de profil",
+		"cardScores": {
+			"examsTaken":"Examen(s) réalisé(s)",
+			"successScore": "Poucentage de réussite"
+		},
 		"cardLinks": {
 			"listeningExams": {
 				"title": "Compréhension orale",

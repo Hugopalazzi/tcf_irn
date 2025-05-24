@@ -1,6 +1,5 @@
 <script lang="ts">
 	import CheckListIcon from '@tcf/lib/components/Icons/CheckListIcon.svelte';
-	import FailureScoreIcon from '@tcf/lib/components/Icons/FailureScoreIcon.svelte';
 	import ListeningIcon from '@tcf/lib/components/Icons/ListeningIcon.svelte';
 	import ReadingIcon from '@tcf/lib/components/Icons/ReadingIcon.svelte';
 	import SuccessScoreIcon from '@tcf/lib/components/Icons/SuccessScoreIcon.svelte';
@@ -9,6 +8,7 @@
 	import LinkCards from '@tcf/lib/components/Organisms/LinkCards.svelte';
 	import ScoreCards from '@tcf/lib/components/Organisms/ScoreCards.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
+	import { gradientColorsEnum } from '@tcf/models/gradientColors';
 	import { _ } from 'svelte-i18n';
 	import type { PageData } from './$types';
 
@@ -41,21 +41,15 @@
 	const cardScores = [
 		{
 			result: '03',
-			title: 'Exams Taken',
-			backgroundIconColor: 'blue-gradient' as GradientColorsType,
+			title: $_('dashboard.cardScores.examsTaken'),
+			backgroundIconColor: gradientColorsEnum.BLUE,
 			Icon: CheckListIcon
 		},
 		{
 			result: '89%',
-			title: 'Success Score',
-			backgroundIconColor: 'green-gradient' as GradientColorsType,
+			title: $_('dashboard.cardScores.successScore'),
+			backgroundIconColor: gradientColorsEnum.GREEN,
 			Icon: SuccessScoreIcon
-		},
-		{
-			result: '19%',
-			title: 'Failure Score',
-			backgroundIconColor: 'red-gradient' as GradientColorsType,
-			Icon: FailureScoreIcon
 		}
 	];
 </script>
