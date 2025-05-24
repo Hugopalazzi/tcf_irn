@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { mergeClassNames } from '@tcf/lib/helpers/mergeClassNames';
+	import type { GradientColorsType } from '@tcf/models/gradientColors';
 	import type { Component } from 'svelte';
 
 	export type ScoreCardElementProps = {
 		result: string;
 		title: string;
-		backgroundIconColor: 'blue-gradient' | 'green-gradient' | 'red-gradient';
+		backgroundIconColor: GradientColorsType;
 		Icon?: Component<any>;
 	};
 
@@ -34,9 +35,6 @@
 	}
 	.green-gradient {
 		background: linear-gradient(135deg, #9cffb8 0%, #0ead3b 100%);
-	}
-	.red-gradient {
-		background: linear-gradient(135deg, #ffa39c 0%, #cf2f23 100%);
 	}
 
 	.score-card {

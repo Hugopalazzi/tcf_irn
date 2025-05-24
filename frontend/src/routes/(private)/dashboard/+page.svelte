@@ -1,6 +1,5 @@
 <script lang="ts">
 	import CheckListIcon from '@tcf/lib/components/Icons/CheckListIcon.svelte';
-	import FailureScoreIcon from '@tcf/lib/components/Icons/FailureScoreIcon.svelte';
 	import ListeningIcon from '@tcf/lib/components/Icons/ListeningIcon.svelte';
 	import ReadingIcon from '@tcf/lib/components/Icons/ReadingIcon.svelte';
 	import SuccessScoreIcon from '@tcf/lib/components/Icons/SuccessScoreIcon.svelte';
@@ -9,9 +8,19 @@
 	import LinkCards from '@tcf/lib/components/Organisms/LinkCards.svelte';
 	import ScoreCards from '@tcf/lib/components/Organisms/ScoreCards.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
+	import { gradientColorsEnum } from '@tcf/models/gradientColors';
 	import { _ } from 'svelte-i18n';
+	import type { PageData } from './$types';
 
 	const bem = createBEM('dashboard');
+
+	const { data }: { data: PageData } = $props();
+
+	const {
+		user: {
+			user_metadata: { name, avatar_url }
+		}
+	} = data;
 
 	const dashboardCardLinksKey = 'dashboard.cardLinks';
 	const cardLinks = [
@@ -38,29 +47,23 @@
 	const cardScores = [
 		{
 			result: '03',
-			title: 'Exams Taken',
-			backgroundIconColor: 'blue-gradient',
+			title: $_('dashboard.cardScores.examsTaken'),
+			backgroundIconColor: gradientColorsEnum.BLUE,
 			Icon: CheckListIcon
 		},
 		{
 			result: '89%',
-			title: 'Success Score',
-			backgroundIconColor: 'green-gradient',
+			title: $_('dashboard.cardScores.successScore'),
+			backgroundIconColor: gradientColorsEnum.GREEN,
 			Icon: SuccessScoreIcon
-		},
-		{
-			result: '19%',
-			title: 'Failure Score',
-			backgroundIconColor: 'red-gradient',
-			Icon: FailureScoreIcon
 		}
 	];
 </script>
 
 <div class={bem('container')}>
 	<div class={bem('welcome-card')}>
-		<img src="/assets/images/user-profile.jpg" class={bem('user-profile-image')} alt="user profile" />
-		<p class={bem('welcome-label')}>Welcome back, John!</p>
+		<img src={avatar_url || '/assets/images/user-profile.jpg'} class={bem('user-profile-image')} alt={bem('dashboard.altUserImage')} />
+		<p class={bem('welcome-label')}>{$_('dashboard.welcome')}{name} !</p>
 	</div>
 	<TitleWithDescription title={$_('dashboard.title')} description={$_('dashboard.description')} />
 	<LinkCards links={cardLinks} />
