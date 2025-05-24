@@ -36,9 +36,6 @@
 	.green-gradient {
 		background: linear-gradient(135deg, #9cffb8 0%, #0ead3b 100%);
 	}
-	.red-gradient {
-		background: linear-gradient(135deg, #ffa39c 0%, #cf2f23 100%);
-	}
 
 	.score-card {
 		&__container {

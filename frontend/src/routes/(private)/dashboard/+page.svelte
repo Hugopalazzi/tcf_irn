@@ -16,6 +16,12 @@
 
 	const { data }: { data: PageData } = $props();
 
+	const {
+		user: {
+			user_metadata: { name, avatar_url }
+		}
+	} = data;
+
 	const dashboardCardLinksKey = 'dashboard.cardLinks';
 	const cardLinks = [
 		{
@@ -56,11 +62,8 @@
 
 <div class={bem('container')}>
 	<div class={bem('welcome-card')}>
-		<img
-			src={data.user.user_metadata.avatar_url ? data.user.user_metadata.avatar_url : '/assets/images/user-profile.jpg'}
-			class={bem('user-profile-image')}
-			alt={bem('dashboard.altUserImage')} />
-		<p class={bem('welcome-label')}>{$_('dashboard.welcome')}{data.user.user_metadata.name} !</p>
+		<img src={avatar_url || '/assets/images/user-profile.jpg'} class={bem('user-profile-image')} alt={bem('dashboard.altUserImage')} />
+		<p class={bem('welcome-label')}>{$_('dashboard.welcome')}{name} !</p>
 	</div>
 	<TitleWithDescription title={$_('dashboard.title')} description={$_('dashboard.description')} />
 	<LinkCards links={cardLinks} />
