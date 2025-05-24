@@ -6,7 +6,7 @@
 	export type ScoreCardElementProps = {
 		result: string;
 		title: string;
-		backgroundIconColor: 'blue-gradient' | 'green-gradient' | 'red-gradient';
+		backgroundIconColor: GradientColorsType;
 		Icon?: Component<any>;
 	};
 

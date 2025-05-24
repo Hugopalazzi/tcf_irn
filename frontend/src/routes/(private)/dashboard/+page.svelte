@@ -42,19 +42,19 @@
 		{
 			result: '03',
 			title: 'Exams Taken',
-			backgroundIconColor: 'blue-gradient',
+			backgroundIconColor: 'blue-gradient' as GradientColorsType,
 			Icon: CheckListIcon
 		},
 		{
 			result: '89%',
 			title: 'Success Score',
-			backgroundIconColor: 'green-gradient',
+			backgroundIconColor: 'green-gradient' as GradientColorsType,
 			Icon: SuccessScoreIcon
 		},
 		{
 			result: '19%',
 			title: 'Failure Score',
-			backgroundIconColor: 'red-gradient',
+			backgroundIconColor: 'red-gradient' as GradientColorsType,
 			Icon: FailureScoreIcon
 		}
 	];
@@ -62,7 +62,10 @@
 
 <div class={bem('container')}>
 	<div class={bem('welcome-card')}>
-		<img src={data.user.user_metadata.avatar_url ?? '/assets/images/user-profile.jpg'} class={bem('user-profile-image')} alt="user profile" />
+		<img
+			src={data.user.user_metadata.avatar_url ? data.user.user_metadata.avatar_url : '/assets/images/user-profile.jpg'}
+			class={bem('user-profile-image')}
+			alt={bem('dashboard.altUserImage')} />
 		<p class={bem('welcome-label')}>{$_('dashboard.welcome')}{data.user.user_metadata.name} !</p>
 	</div>
 	<TitleWithDescription title={$_('dashboard.title')} description={$_('dashboard.description')} />
