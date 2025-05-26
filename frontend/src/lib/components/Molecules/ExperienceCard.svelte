@@ -26,7 +26,8 @@
 				{title}
 			</span>
 			<span class={bem('level-label')}>
-				level : {level}
+				{$_('component.eperienceCard.level')}
+				{level}
 			</span>
 		</div>
 	</div>
