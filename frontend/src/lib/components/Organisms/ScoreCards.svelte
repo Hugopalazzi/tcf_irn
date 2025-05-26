@@ -20,7 +20,7 @@
 	<div class={bem('vertical-bar')}>
 		<VerticalLineIcon />
 	</div>
-	<ExperienceCard level={1} experience={20} />
+	<ExperienceCard level={1} experience={20} maxExperience={200} />
 </div>
 
 <style lang="scss">

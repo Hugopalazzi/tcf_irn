@@ -2,14 +2,15 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { getLevelInfo } from '@tcf/lib/helpers/levelingHelper';
 	import { _ } from 'svelte-i18n';
-	import ProgressionBar from '@tcf/lib/components/Atoms/ProgressionBar.svelte';
+	import ProgressBar from '@tcf/lib/components/Atoms/ProgressBar.svelte';
 
 	export type ExperienceCardProps = {
 		level: number;
 		experience: number;
+		maxExperience: number;
 	};
 
-	const { level, experience }: ExperienceCardProps = $props();
+	const { level, experience, maxExperience }: ExperienceCardProps = $props();
 	const bem = createBEM('experience-card');
 
 	const { Icon, title } = $derived(getLevelInfo(level, $_));
@@ -33,9 +34,9 @@
 	<div class={bem('label-bar-container')}>
 		<div class={bem('experience-percentage')}>
 			<span>XP</span>
-			<span class={bem('max-percent')}>100</span>
+			<span class={bem('max-percent')}>{maxExperience}</span>
 		</div>
-		<ProgressionBar progress={30} />
+		<ProgressBar progress={(experience / maxExperience) * 100} />
 	</div>
 </div>
 

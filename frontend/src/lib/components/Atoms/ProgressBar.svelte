@@ -10,7 +10,7 @@
 
 	const { progress, filledClass = 'blue', emptyClass = 'opaque-white' }: Props = $props();
 
-	const bem = createBEM('bar');
+	const bem = createBEM('progress-bar');
 </script>
 
 <div
@@ -41,7 +41,7 @@
 		background-color: #d9d9d9;
 	}
 
-	.bar {
+	.progress-bar {
 		&__container {
 			display: flex;
 			width: 100%;
