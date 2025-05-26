@@ -62,7 +62,7 @@
 
 <div class={bem('container')}>
 	<div class={bem('welcome-card')}>
-		<img src={avatar_url || '/assets/images/user-profile.jpg'} class={bem('user-profile-image')} alt={bem('dashboard.altUserImage')} />
+		<img src={avatar_url || '/assets/images/user-profile.jpg'} class={bem('user-profile-image')} alt={$_('dashboard.altUserImage')} />
 		<p class={bem('welcome-label')}>{$_('dashboard.welcome')}{name} !</p>
 	</div>
 	<TitleWithDescription title={$_('dashboard.title')} description={$_('dashboard.description')} />
