@@ -2,7 +2,7 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { getLevelInfo } from '@tcf/lib/helpers/levelingHelper';
 	import { _ } from 'svelte-i18n';
-	import ProgressionBar from '../Atoms/ProgressionBar.svelte';
+	import ProgressionBar from '@tcf/lib/components/Atoms/ProgressionBar.svelte';
 
 	export type ExperienceCardProps = {
 		level: number;
