@@ -37,10 +37,6 @@
 		"welcome": "Bon retour, ",
 		"description": "Prêt à continuer votre chemin vers la maitrise du français ?",
 		"altUserImage": "Photo de profil",
-		"cardScores": {
-			"examsTaken": "Examen(s) réalisé(s)",
-			"successScore": "Poucentage de réussite"
-		},
 		"cardLinks": {
 			"listeningExams": {
 				"title": "Compréhension orale",
@@ -57,7 +53,20 @@
 				"description": "Commencez à pratiquer votre expression écrite.",
 				"url": "/writing-exams"
 			}
+		},
+		"cardScores": {
+			"examsTaken": "Examen(s) réalisé(s)",
+			"successScore": "Poucentage de réussite"
+		},
+		"cardExperience": {
+			"beginer": "Débutant",
+			"intermediate": "Intermédiaire",
+			"advanced": "Avancé",
+			"expert": "Expert"
 		}
+	},
+	"component": {
+		"ariaProgressBar": "Progression d'expérience"
 	},
 	"presentationCard": {
 		"badge": "Votre clé du succès en français !",
