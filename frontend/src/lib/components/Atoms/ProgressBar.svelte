@@ -4,8 +4,8 @@
 
 	type Props = {
 		progress: number;
-		filledClass?: string;
-		emptyClass?: string;
+		filledClass?: 'blue' | 'purple';
+		emptyClass?: 'opaque-white' | 'grey';
 	};
 
 	const { progress, filledClass = 'blue', emptyClass = 'opaque-white' }: Props = $props();
@@ -13,13 +13,7 @@
 	const bem = createBEM('progress-bar');
 </script>
 
-<div
-	class={bem('container')}
-	role="progressbar"
-	aria-valuenow={progress}
-	aria-valuemin="0"
-	aria-valuemax="100"
-	aria-label={$_('component.ariaProgressBar')}>
+<div class={bem('container')} role="progressbar" aria-valuenow={progress} aria-valuemin="0" aria-valuemax="100" aria-label={$_('ariaProgressBar')}>
 	<div class={`${bem('filled')} ${filledClass}`} style="width: {progress}%"></div>
 	<div class={`${bem('empty')} ${emptyClass}`} style="width: {100 - progress}%"></div>
 </div>

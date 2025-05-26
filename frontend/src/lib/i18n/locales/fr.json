@@ -65,11 +65,10 @@
 			"expert": "Expert"
 		}
 	},
-	"component": {
-		"ariaProgressBar": "Progression d'expérience",
-		"eperienceCard": {
-			"level": "level :"
-		}
+	"ariaProgressBar": "Progression d'expérience",
+	"experienceCard": {
+		"level": "level :",
+		"xp":"XP"
 	},
 	"presentationCard": {
 		"badge": "Votre clé du succès en français !",

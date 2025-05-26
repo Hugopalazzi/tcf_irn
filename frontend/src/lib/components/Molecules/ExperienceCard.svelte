@@ -26,7 +26,7 @@
 				{title}
 			</span>
 			<span class={bem('level-label')}>
-				{$_('component.eperienceCard.level')}
+				{$_('experienceCard.level')}
 				{level}
 			</span>
 		</div>
@@ -34,7 +34,7 @@
 
 	<div class={bem('label-bar-container')}>
 		<div class={bem('experience-percentage')}>
-			<span>XP</span>
+			<span>{$_('experienceCard.xp')}</span>
 			<span class={bem('max-percent')}>{maxExperience}</span>
 		</div>
 		<ProgressBar progress={(experience / maxExperience) * 100} />
