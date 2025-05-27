@@ -37,10 +37,6 @@
 		"welcome": "Bon retour, ",
 		"description": "Prêt à continuer votre chemin vers la maitrise du français ?",
 		"altUserImage": "Photo de profil",
-		"cardScores": {
-			"examsTaken":"Examen(s) réalisé(s)",
-			"successScore": "Poucentage de réussite"
-		},
 		"cardLinks": {
 			"listeningExams": {
 				"title": "Compréhension orale",
@@ -57,7 +53,22 @@
 				"description": "Commencez à pratiquer votre expression écrite.",
 				"url": "/writing-exams"
 			}
+		},
+		"cardScores": {
+			"examsTaken": "Examen(s) réalisé(s)",
+			"successScore": "Poucentage de réussite"
+		},
+		"cardExperience": {
+			"beginer": "Débutant",
+			"intermediate": "Intermédiaire",
+			"advanced": "Avancé",
+			"expert": "Expert"
 		}
+	},
+	"ariaProgressBar": "Progression d'expérience",
+	"experienceCard": {
+		"level": "level :",
+		"xp":"XP"
 	},
 	"presentationCard": {
 		"badge": "Votre clé du succès en français !",
@@ -107,7 +118,6 @@
 				"agreeTerms": "Vous devez accepter les termes et conditions et la politique de confidentialité du site"
 			}
 		},
-
 		"email": {
 			"label": "Email",
 			"placeholder": "andreblick@gmail.com",
@@ -130,6 +140,23 @@
 			"label": "Confirmez votre mot de passe",
 			"placeholder": "••••••••"
 		},
-		"agreeTerms": { "label": "J'accepte les termes et conditions et la politique de confidentialité" }
+		"agreeTerms": {
+			"label": "J'accepte les termes et conditions et la politique de confidentialité"
+		}
+	},
+	"recentExams": {
+		"title": "Examens récents",
+		"description": "Résumé rapide de vos derniers examens",
+		"viewExamLabel": "Voir l'examen",
+		"daysAgo": "Il y a {days} jours",
+		"listeningExam": {
+			"title": "Compréhension orale"
+		},
+		"readingExam": {
+			"title": "Compréhension écrite"
+		},
+		"writingExam": {
+			"title": "Expression écrite"
+		}
 	}
 }
