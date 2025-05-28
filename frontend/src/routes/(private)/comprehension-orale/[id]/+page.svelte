@@ -6,7 +6,6 @@
 	import { superForm } from 'sveltekit-superforms/client';
 	import type { PageData } from './$types';
 	import BackButton from '@tcf/lib/components/Atoms/BackButton.svelte';
-	import MeltProgressBar from '@tcf/lib/components/Molecules/MeltProgressBar.svelte';
 	import { page } from '$app/state';
 	import { addErrorToast } from '@tcf/lib/helpers/toastHelper';
 
@@ -55,7 +54,6 @@
 
 		<div class="timer-tips-wrapper">
 			<div class="bar-wrapper">
-				<MeltProgressBar />
 			</div>
 			<div class="tips-wrapper"><button class="btn btn-quaternary">Tips</button></div>
 		</div>
