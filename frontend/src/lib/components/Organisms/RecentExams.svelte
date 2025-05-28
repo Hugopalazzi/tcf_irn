@@ -40,7 +40,6 @@
 				<div class={bem('text-container')}>
 					<h3 class={bem('exam-title')}>{m[`recentExams.${examType}.title`]()}</h3>
 					<div class={bem('info')}>
-						<!-- TODO -->
 						<span class={bem('date')}>{m['recentExams.daysAgo']({ days: exam.daysAgo })}</span>
 						<a class={bem('exam-link')} href={exam.link}>{m['recentExams.viewExamLabel']()}</a>
 					</div>
