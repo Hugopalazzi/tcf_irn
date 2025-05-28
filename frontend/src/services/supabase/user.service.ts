@@ -3,8 +3,8 @@ import type { UserLoginForm, UserSignUpForm, UserModifyPasswordForm } from '@tcf
 import { fail, message } from 'sveltekit-superforms/client';
 
 export class UserService {
-	constructor(private supabaseClient: SupabaseClient) { }
-	
+	constructor(private supabaseClient: SupabaseClient) {}
+
 	login = async (form: UserLoginForm) => {
 		if (!form.valid) {
 			return fail(400, { form });
@@ -77,6 +77,5 @@ export class UserService {
 		} else {
 			return message(form, 'Votre mot de passe a été correctement mis à jour.');
 		}
-
 	};
 }

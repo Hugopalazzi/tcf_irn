@@ -9,7 +9,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
-        "translate": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide",
+		"translate": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide",
 		"test": "npm run test:unit -- --run",
 		"lint": "eslint . && prettier --check .",
 		"format": "prettier --write ."

@@ -13,7 +13,7 @@
 
 <div class={bem('container')}>
 	<h1>{title}</h1>
-    <DescriptionTitle text={description} />
+	<DescriptionTitle text={description} />
 </div>
 
 <style lang="scss">

@@ -29,10 +29,9 @@
 
 	@media (min-width: $breakpoint-desktop) {
 		.link-cards-container {
-			flex-direction: row; 
-			flex-wrap: nowrap; 
+			flex-direction: row;
+			flex-wrap: nowrap;
 			justify-content: space-between;
 		}
 	}
-
 </style>

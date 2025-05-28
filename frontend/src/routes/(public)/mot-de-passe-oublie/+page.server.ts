@@ -31,7 +31,6 @@ export const actions: Actions = {
 			redirectTo: `${url.protocol}//${url.host}/modifier-mot-de-passe`
 		});
 
-
 		if (error && error.status) {
 			const { status, code } = error;
 			return fail(status, { form, code });

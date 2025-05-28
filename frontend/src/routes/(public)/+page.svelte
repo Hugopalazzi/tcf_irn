@@ -16,14 +16,14 @@
 			daysAgo: 5,
 			grade: 3,
 			link: '/exam/reading'
-		},	
+		},
 		writingExam: {
 			title: 'Writing Exam',
 			daysAgo: 1,
 			grade: 5,
 			link: '/exam/writing'
 		}
-	}
+	};
 </script>
 
 <div>
@@ -41,5 +41,5 @@
 		extraClass="centered-submit-button"
 		color="secondary"
 		label="Se connecter"></Button>
-		<RecentExams title={"Recent Exams"} description={"Quick summary "} exams={obj} />
+	<RecentExams title={'Recent Exams'} description={'Quick summary '} exams={obj} />
 </div>
