@@ -2,7 +2,7 @@
 	import SubscribeIcon from '$lib/components/Icons/SubscribeIcon.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import HeaderNavBar from './HeaderNavBar.svelte';
-	import { _ } from 'svelte-i18n';
+	import { m } from '$lib/paraglide/messages.js';
 
 	const bem = createBEM('header');
 </script>
@@ -11,7 +11,7 @@
 	<HeaderNavBar />
 
 	<div class={bem('subscribe-icon')}>
-		<a href="/subscribe" class={bem('link-rounded')} aria-label={$_('header.subscribe')}>
+		<a href="/subscribe" class={bem('link-rounded')} aria-label={m['header.subscribe']()}>
 			<SubscribeIcon />
 		</a>
 	</div>

@@ -4,7 +4,7 @@
 	import InputPassword from '@tcf/lib/components/Molecules/InputPassword.svelte';
 	import InputTextWrapperForm from '@tcf/lib/components/Molecules/InputTextWrapperForm.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { _ } from 'svelte-i18n';
+	import { m } from '$lib/paraglide/messages.js';
 	import type { SuperForm } from 'sveltekit-superforms';
 	import FrameCard from './FrameCard.svelte';
 
@@ -38,10 +38,11 @@
 		{#each Object.entries(exams) as [examType, exam]}
 			<div class={bem('current-exam')}>
 				<div class={bem('text-container')}>
-					<h3 class={bem('exam-title')}>{$_(`recentExams.${examType}.title`)}</h3>
+					<h3 class={bem('exam-title')}>{m[`recentExams.${examType}.title`]()}</h3>
 					<div class={bem('info')}>
-						<span class={bem('date')}>{$_('recentExams.daysAgo', { days: exam.daysAgo })}</span>
-						<a class={bem('exam-link')} href={exam.link}>{$_('recentExams.viewExamLabel')}</a>
+						<!-- TODO -->
+						<!-- <span class={bem('date')}>{m['recentExams.daysAgo', { days: exam.daysAgo }]()}</span> -->
+						<a class={bem('exam-link')} href={exam.link}>{m['recentExams.viewExamLabel']()}</a>
 					</div>
 				</div>
 				<span class={bem('exam-result')}>

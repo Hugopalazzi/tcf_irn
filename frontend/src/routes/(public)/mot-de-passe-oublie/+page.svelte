@@ -6,7 +6,7 @@
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
 	import { userForgotPasswordSchema } from '@tcf/models/forms/userSchema';
 	import { Envelope, Icon } from 'svelte-hero-icons';
-	import { _ } from 'svelte-i18n';
+	import { m } from '$lib/paraglide/messages.js';
 	import { superForm } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
 	import type { PageData } from './$types';
@@ -31,16 +31,16 @@
 
 					switch (data?.code) {
 						case 'user_not_found':
-							message = $_('loginErrors.userNotFound');
+							message = m['loginErrors.userNotFound']();
 							break;
 						case 'user_banned':
-							message = $_('loginErrors.userBanned');
+							message = m['loginErrors.userBanned']();
 							break;
 						case 'over_request_rate_limit':
-							message = $_('commonErrors.overRequestRateLimit');
+							message = m['commonErrors.overRequestRateLimit']();
 							break;
 						default:
-							message = $_('commonErrors.defaultError');
+							message = m['commonErrors.defaultError']();
 							break;
 					}
 					addErrorToast(message);

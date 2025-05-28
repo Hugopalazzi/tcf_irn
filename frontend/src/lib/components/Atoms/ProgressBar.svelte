@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { _ } from 'svelte-i18n';
+	import { m } from '$lib/paraglide/messages.js';
 
 	type Props = {
 		progress: number;
@@ -13,7 +13,7 @@
 	const bem = createBEM('progress-bar');
 </script>
 
-<div class={bem('container')} role="progressbar" aria-valuenow={progress} aria-valuemin="0" aria-valuemax="100" aria-label={$_('ariaProgressBar')}>
+<div class={bem('container')} role="progressbar" aria-valuenow={progress} aria-valuemin="0" aria-valuemax="100" aria-label={m.ariaProgressBar()}>
 	<div class={`${bem('filled')} ${filledClass}`} style="width: {progress}%"></div>
 	<div class={`${bem('empty')} ${emptyClass}`} style="width: {100 - progress}%"></div>
 </div>
