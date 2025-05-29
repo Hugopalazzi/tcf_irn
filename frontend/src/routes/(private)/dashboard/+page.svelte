@@ -11,6 +11,8 @@
 	import { gradientColorsEnum } from '@tcf/models/gradientColors';
 	import { m } from '$lib/paraglide/messages.js';
 	import type { PageData } from './$types';
+	import RecentExams from '@tcf/lib/components/Organisms/RecentExams.svelte';
+	import PerformanceExams from '@tcf/lib/components/Organisms/PerformanceExams.svelte';
 
 	const bem = createBEM('dashboard');
 
@@ -58,6 +60,24 @@
 			Icon: SuccessScoreIcon
 		}
 	];
+
+	const recentExams = {
+		listeningExam: {
+			daysAgo: 2,
+			grade: 4,
+			link: '/exam/listening'
+		},
+		readingExam: {
+			daysAgo: 5,
+			grade: 3,
+			link: '/exam/reading'
+		},
+		writingExam: {
+			daysAgo: 1,
+			grade: 5,
+			link: '/exam/writing'
+		}
+	};
 </script>
 
 <div class={bem('container')}>
@@ -68,6 +88,11 @@
 	<TitleWithDescription title={m['dashboard.title']()} description={m['dashboard.description']()} />
 	<LinkCards links={cardLinks} />
 	<ScoreCards scores={cardScores} />
+
+	<div class={bem('performance-recent')}>
+		<PerformanceExams title={m['performance.title']()} description={m['performance.description']()} />
+		<RecentExams title={m['recentExams.title']()} description={m['recentExams.description']()} exams={recentExams} />
+	</div>
 </div>
 
 <style lang="scss">
@@ -102,6 +127,22 @@
 			border-radius: 46px;
 			width: 46px;
 			height: 46px;
+		}
+
+		&__performance-recent {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			gap: rem(20);
+		}
+	}
+
+	@media (min-width: $breakpoint-desktop) {
+		.dashboard {
+			&__performance-recent {
+				display: grid;
+				grid-template-columns: 1.5fr 1fr;
+			}
 		}
 	}
 </style>

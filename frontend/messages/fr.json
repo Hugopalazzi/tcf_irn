@@ -146,7 +146,7 @@
 	},
 	"recentExams": {
 		"title": "Examens récents",
-		"description": "Résumé rapide de vos derniers examens",
+		"description": "Résumé de vos derniers examens",
 		"viewExamLabel": "Voir l'examen",
 		"daysAgo": "Il y a {days} jours",
 		"listeningExam": {
@@ -158,5 +158,9 @@
 		"writingExam": {
 			"title": "Expression écrite"
 		}
+	},
+	"performance": {
+		"title": "Aperçu des performances",
+		"description": "Progression des examens au cours du temps"
 	}
 }

@@ -1,28 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import Button from '@tcf/lib/components/Atoms/Button.svelte';
-	import RecentExams from '@tcf/lib/components/Organisms/RecentExams.svelte';
 
-	const obj = {
-		listeningExam: {
-			title: 'Listening Exam',
-			daysAgo: 2,
-			grade: 4,
-			link: '/exam/listening'
-		},
-		readingExam: {
-			title: 'Reading Exam',
-			daysAgo: 5,
-			grade: 3,
-			link: '/exam/reading'
-		},
-		writingExam: {
-			title: 'Writing Exam',
-			daysAgo: 1,
-			grade: 5,
-			link: '/exam/writing'
-		}
-	};
+	
 </script>
 
 <div>
@@ -40,5 +20,4 @@
 		extraClass="centered-submit-button"
 		color="secondary"
 		label="Se connecter"></Button>
-	<RecentExams title={'Recent Exams'} description={'Quick summary '} exams={obj} />
 </div>

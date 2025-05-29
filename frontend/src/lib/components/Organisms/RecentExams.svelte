@@ -6,7 +6,6 @@
 	const MAX_GRADE_DEFAULT = 20;
 
 	interface Exam {
-		title: string;
 		daysAgo: number;
 		grade: number;
 		link: string;
@@ -59,6 +58,7 @@
 			display: flex;
 			flex-direction: column;
 			gap: rem(12);
+			width: 100%;
 		}
 
 		&__current-exam {
