@@ -23,11 +23,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		}
 
 		// Get stripe_customer_id from Supabase
-		const { data, error } = await supabaseClient
-			.from('user_payments')
-			.select('stripe_customer_id')
-			.eq('user_id', user_id)
-			.single();
+		const { data, error } = await supabaseClient.from('user_payments').select('stripe_customer_id').eq('user_id', user_id).single();
 
 		if (error || !data?.stripe_customer_id) {
 			throw new Error('Utilisateur introuvable');
@@ -39,8 +35,8 @@ export const POST: RequestHandler = async ({ request }) => {
 			customer: data.stripe_customer_id, // Ensure the customer ID is linked to the user
 			line_items: [{ price: 'price_1QpZtI2KtLRJi0s0QsR6MFhY', quantity: 1 }],
 			mode: 'subscription',
-			success_url: "/payment?session_id={CHECKOUT_SESSION_ID}",
-			cancel_url: "/payment"
+			success_url: '/payment?session_id={CHECKOUT_SESSION_ID}',
+			cancel_url: '/payment'
 		});
 
 		return json({ url: session.url });

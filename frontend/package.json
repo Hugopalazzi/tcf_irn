@@ -4,18 +4,17 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "paraglide-js compile --project ./project.inlang && vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
+		"translate": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide",
 		"test": "npm run test:unit -- --run",
 		"lint": "eslint . && prettier --check .",
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@melt-ui/pp": "^0.3.2",
-		"@melt-ui/svelte": "0.84.0",
 		"@sveltejs/adapter-auto": "^3.3.1",
 		"@sveltejs/kit": "^2.15.2",
 		"@sveltejs/vite-plugin-svelte": "^4.0.1",
@@ -49,8 +48,8 @@
 		"stripe": "^17.6.0",
 		"svelte-french-toast": "^1.2.0",
 		"svelte-hero-icons": "^5.2.0",
-		"svelte-i18n": "^4.0.1",
 		"sveltekit-superforms": "^2.20.1",
-		"zod": "^3.23.8"
+		"zod": "^3.23.8",
+		"@inlang/paraglide-js": "^2.0.0"
 	}
 }

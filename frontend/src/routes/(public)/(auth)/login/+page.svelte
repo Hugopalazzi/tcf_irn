@@ -4,7 +4,7 @@
 	import { addErrorToast } from '@tcf/lib/helpers/toastHelper.js';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
 	import { userLoginSchema } from '@tcf/models/forms/userSchema';
-	import { _ } from 'svelte-i18n';
+	import { m } from '$lib/paraglide/messages.js';
 	import { superForm, superValidate } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
 
@@ -30,22 +30,22 @@
 
 				switch (data?.code) {
 					case 'email_not_confirmed':
-						message = $_('loginErrors.emailNotConfirmed');
+						message = m['loginErrors.emailNotConfirmed']();
 						break;
 					case 'invalid_credentials':
-						message = $_('loginErrors.invalidCredentials');
+						message = m['loginErrors.invalidCredentials']();
 						break;
 					case 'user_not_found':
-						message = $_('loginErrors.userNotFound');
+						message = m['loginErrors.userNotFound']();
 						break;
 					case 'user_banned':
-						message = $_('loginErrors.userBanned');
+						message = m['loginErrors.userBanned']();
 						break;
 					case 'over_request_rate_limit':
-						message = $_('commonErrors.overRequestRateLimit');
+						message = m['commonErrors.overRequestRateLimit']();
 						break;
 					default:
-						message = $_('commonErrors.defaultError');
+						message = m['commonErrors.defaultError']();
 						break;
 				}
 				addErrorToast(message);

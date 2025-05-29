@@ -3,7 +3,7 @@
 	import EyeIcon from '@tcf/lib/components/Icons/EyeIcon.svelte';
 	import EyeSlashIcon from '@tcf/lib/components/Icons/EyeSlashIcon.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { _ } from 'svelte-i18n';
+	import { m } from '$lib/paraglide/messages.js';
 	import type { FullAutoFill } from 'svelte/elements';
 
 	interface Props {
@@ -37,7 +37,7 @@
 		<button
 			onclick={() => (showPassword = !showPassword)}
 			type="button"
-			aria-label={showPassword ? $_('form.password.hidePassword') : $_('form.password.showPassword')}>
+			aria-label={showPassword ? m['form.password.hidePassword']() : m['form.password.showPassword']()}>
 			{#if showPassword}
 				<EyeSlashIcon />
 			{:else}

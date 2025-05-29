@@ -40,17 +40,11 @@ export const POST: RequestHandler = async ({ request }) => {
 		// Handle different event types
 		switch (event.type) {
 			case 'payment_intent.succeeded':
-				await supabaseClient
-					.from('user_payments')
-					.update({ subscription_status: 'active' })
-					.eq('stripe_customer_id', stripeCustomerId);
+				await supabaseClient.from('user_payments').update({ subscription_status: 'active' }).eq('stripe_customer_id', stripeCustomerId);
 				break;
 
 			case 'customer.subscription.deleted': // Handle subscription cancellation
-				await supabaseClient
-					.from('user_payments')
-					.update({ subscription_status: 'canceled' })
-					.eq('stripe_customer_id', stripeCustomerId);
+				await supabaseClient.from('user_payments').update({ subscription_status: 'canceled' }).eq('stripe_customer_id', stripeCustomerId);
 				break;
 
 			default:

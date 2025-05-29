@@ -1,17 +1,11 @@
 <script lang="ts">
-	import Button from '@tcf/lib/components/Atoms/Button.svelte';
-	import CheckboxInput from '@tcf/lib/components/Molecules/CheckboxInput.svelte';
-	import InputPassword from '@tcf/lib/components/Molecules/InputPassword.svelte';
-	import InputTextWrapperForm from '@tcf/lib/components/Molecules/InputTextWrapperForm.svelte';
+	import { m } from '$lib/paraglide/messages.js';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { _ } from 'svelte-i18n';
-	import type { SuperForm } from 'sveltekit-superforms';
-	import FrameCard from './FrameCard.svelte';
+	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
 
 	const MAX_GRADE_DEFAULT = 20;
 
 	interface Exam {
-		title: string;
 		daysAgo: number;
 		grade: number;
 		link: string;
@@ -38,10 +32,16 @@
 		{#each Object.entries(exams) as [examType, exam]}
 			<div class={bem('current-exam')}>
 				<div class={bem('text-container')}>
-					<h3 class={bem('exam-title')}>{$_(`recentExams.${examType}.title`)}</h3>
+					<h3 class={bem('exam-title')}>
+						{m[`recentExams.${examType}.title`]()}
+					</h3>
 					<div class={bem('info')}>
-						<span class={bem('date')}>{$_('recentExams.daysAgo', { days: exam.daysAgo })}</span>
-						<a class={bem('exam-link')} href={exam.link}>{$_('recentExams.viewExamLabel')}</a>
+						<span class={bem('date')}>
+							{m['recentExams.daysAgo']({ days: exam.daysAgo })}
+						</span>
+						<a class={bem('exam-link')} href={exam.link}>
+							{m['recentExams.viewExamLabel']()}
+						</a>
 					</div>
 				</div>
 				<span class={bem('exam-result')}>
@@ -58,6 +58,7 @@
 			display: flex;
 			flex-direction: column;
 			gap: rem(12);
+			width: 100%;
 		}
 
 		&__current-exam {

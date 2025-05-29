@@ -4,7 +4,7 @@ export const GET = async ({ locals: { supabase } }) => {
 	const { data } = await supabase.auth.signInWithOAuth({
 		provider: 'google',
 		options: {
-			redirectTo: "/auth/callback"
+			redirectTo: '/dashboard'
 		}
 	});
 
