@@ -11,7 +11,9 @@
 	<span class={bem('badge')}>{m['presentationCard.badge']()}</span>
 	<h2 class={bem('welcome')}>
 		{m['presentationCard.welcome']()}
-		<span class={bem('additional-welcome')}>{m['presentationCard.brand']()}</span>
+		<span class={bem('additional-welcome')}>
+			{m['presentationCard.brand']()}
+		</span>
 	</h2>
 	<p class={bem('description')}>
 		{m['presentationCard.description']()}

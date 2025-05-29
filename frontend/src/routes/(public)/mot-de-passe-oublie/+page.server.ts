@@ -21,7 +21,9 @@ export const actions: Actions = {
 			return fail(400, { form });
 		}
 
-		const { data: isEmailExist } = await locals.supabase.rpc('is_email_exist', { emailuser: form.data.email });
+		const { data: isEmailExist } = await locals.supabase.rpc('is_email_exist', {
+			emailuser: form.data.email
+		});
 
 		if (!isEmailExist) {
 			return fail(409, { form, code: 'email_exists' });

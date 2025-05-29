@@ -75,5 +75,7 @@
 </form>
 <span class={bem('redirect-label')}>
 	{m['form.registration.redirectLoginLabel']()}
-	<a href={m['form.registration.loginLink']()} class={bem('redirect-link')}>{m['form.registration.redirectLoginLink']()}</a>
+	<a href={m['form.registration.loginLink']()} class={bem('redirect-link')}>
+		{m['form.registration.redirectLoginLink']()}
+	</a>
 </span>

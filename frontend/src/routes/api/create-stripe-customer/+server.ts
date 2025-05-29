@@ -26,7 +26,11 @@ export const POST: RequestHandler = async ({ request }) => {
 		const customer = await stripeClient.customers.create({ email });
 
 		// Save stripe_customer_id in Supabase
-		await supabaseClient.from('user_payments').insert({ user_id, stripe_customer_id: customer.id, subscription_status: 'inactive' });
+		await supabaseClient.from('user_payments').insert({
+			user_id,
+			stripe_customer_id: customer.id,
+			subscription_status: 'inactive'
+		});
 
 		return json({ stripe_customer_id: customer.id });
 	} catch (error) {

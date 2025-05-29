@@ -53,9 +53,10 @@
 		</div>
 
 		<div class="timer-tips-wrapper">
-			<div class="bar-wrapper">
+			<div class="bar-wrapper"></div>
+			<div class="tips-wrapper">
+				<button class="btn btn-quaternary">Tips</button>
 			</div>
-			<div class="tips-wrapper"><button class="btn btn-quaternary">Tips</button></div>
 		</div>
 
 		<form enctype="multipart/form-data" method="POST" autocomplete="off" use:enhance>

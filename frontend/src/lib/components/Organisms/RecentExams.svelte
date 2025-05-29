@@ -38,10 +38,16 @@
 		{#each Object.entries(exams) as [examType, exam]}
 			<div class={bem('current-exam')}>
 				<div class={bem('text-container')}>
-					<h3 class={bem('exam-title')}>{m[`recentExams.${examType}.title`]()}</h3>
+					<h3 class={bem('exam-title')}>
+						{m[`recentExams.${examType}.title`]()}
+					</h3>
 					<div class={bem('info')}>
-						<span class={bem('date')}>{m['recentExams.daysAgo']({ days: exam.daysAgo })}</span>
-						<a class={bem('exam-link')} href={exam.link}>{m['recentExams.viewExamLabel']()}</a>
+						<span class={bem('date')}>
+							{m['recentExams.daysAgo']({ days: exam.daysAgo })}
+						</span>
+						<a class={bem('exam-link')} href={exam.link}>
+							{m['recentExams.viewExamLabel']()}
+						</a>
 					</div>
 				</div>
 				<span class={bem('exam-result')}>

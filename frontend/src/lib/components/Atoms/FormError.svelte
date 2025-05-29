@@ -4,7 +4,9 @@
 </script>
 
 {#if errors}
-	<span class="error-message">{m[Array.isArray(errors) ? errors[0] : errors]()}</span>
+	<span class="error-message">
+		{m[Array.isArray(errors) ? errors[0] : errors]()}
+	</span>
 {/if}
 
 <style lang="scss">

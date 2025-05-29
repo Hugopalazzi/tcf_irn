@@ -7,11 +7,20 @@ import { m } from '$lib/paraglide/messages.js';
 
 export const getLevelInfo = (level: number) => {
 	if (level < maxLevelConfig.beginer) {
-		return { title: m['dashboard.cardExperience.beginer'](), Icon: BronzeMedalIcon };
+		return {
+			title: m['dashboard.cardExperience.beginer'](),
+			Icon: BronzeMedalIcon
+		};
 	} else if (level < maxLevelConfig.intermediate) {
-		return { title: m['dashboard.cardExperience.intermediate'](), Icon: SilverMedalIcon };
+		return {
+			title: m['dashboard.cardExperience.intermediate'](),
+			Icon: SilverMedalIcon
+		};
 	} else if (level < maxLevelConfig.advanced) {
-		return { title: m['dashboard.cardExperience.advanced'](), Icon: GoldMedalIcon };
+		return {
+			title: m['dashboard.cardExperience.advanced'](),
+			Icon: GoldMedalIcon
+		};
 	} else {
 		return { title: m['dashboard.cardExperience.expert'](), Icon: TropheeIcon };
 	}

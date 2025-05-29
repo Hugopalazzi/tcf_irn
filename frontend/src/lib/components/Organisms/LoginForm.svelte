@@ -39,7 +39,9 @@
 		bindedError={$errors?.password}
 		autocomplete="current-password" />
 
-	<a href="/mot-de-passe-oublie" onclick={() => {}} class={bem('forgot-password')}>{m['form.login.forgotPasswordLabel']()}</a>
+	<a href="/mot-de-passe-oublie" onclick={() => {}} class={bem('forgot-password')}>
+		{m['form.login.forgotPasswordLabel']()}
+	</a>
 	<Button
 		onClick={() => {}}
 		extraClass="centered-submit-button"
@@ -50,7 +52,9 @@
 </form>
 <span class={bem('redirect-label')}>
 	{m['form.login.redirectRegisterLabel']()}
-	<a href={m['form.login.registerLink']()} class={bem('redirect-link')}>{m['form.login.redirectRegisterLink']()}</a>
+	<a href={m['form.login.registerLink']()} class={bem('redirect-link')}>
+		{m['form.login.redirectRegisterLink']()}
+	</a>
 </span>
 
 <style lang="scss">

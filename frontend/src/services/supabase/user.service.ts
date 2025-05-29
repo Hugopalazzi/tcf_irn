@@ -55,7 +55,10 @@ export class UserService {
 				return message(form, 'Création du compte réussi.');
 			}
 		} catch (error) {
-			return fail(500, { form, error: 'Une erreur interne inconnue est survenue.' });
+			return fail(500, {
+				form,
+				error: 'Une erreur interne inconnue est survenue.'
+			});
 		}
 	};
 
@@ -67,7 +70,9 @@ export class UserService {
 		const {
 			data: { user },
 			error
-		} = await this.supabaseClient.auth.updateUser({ password: form.data.password });
+		} = await this.supabaseClient.auth.updateUser({
+			password: form.data.password
+		});
 		if (error && error.status) {
 			const { status, code } = error;
 			if (!user) {

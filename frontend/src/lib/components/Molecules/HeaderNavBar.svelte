@@ -18,7 +18,11 @@
 	const links = [
 		{ icon: DashboardIcon, labelKey: 'header.dashboard', path: '/dashboard' },
 		{ icon: ExamsIcon, labelKey: 'header.exams', path: '/exams' },
-		{ icon: LeaderboardIcon, labelKey: 'header.leaderboard', path: '/leaderboard' },
+		{
+			icon: LeaderboardIcon,
+			labelKey: 'header.leaderboard',
+			path: '/leaderboard'
+		},
 		{ icon: PeopleIcon, labelKey: 'header.profile', path: '/profile' }
 	];
 </script>
