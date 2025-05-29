@@ -1,12 +1,7 @@
 <script lang="ts">
-	import Button from '@tcf/lib/components/Atoms/Button.svelte';
-	import CheckboxInput from '@tcf/lib/components/Molecules/CheckboxInput.svelte';
-	import InputPassword from '@tcf/lib/components/Molecules/InputPassword.svelte';
-	import InputTextWrapperForm from '@tcf/lib/components/Molecules/InputTextWrapperForm.svelte';
-	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { m } from '$lib/paraglide/messages.js';
-	import type { SuperForm } from 'sveltekit-superforms';
-	import FrameCard from './FrameCard.svelte';
+	import { createBEM } from '@tcf/lib/helpers/bemHelper';
+	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
 
 	const MAX_GRADE_DEFAULT = 20;
 

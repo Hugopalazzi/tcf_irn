@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { read } from '$app/server';
 	import Button from '@tcf/lib/components/Atoms/Button.svelte';
 	import RecentExams from '@tcf/lib/components/Organisms/RecentExams.svelte';
 

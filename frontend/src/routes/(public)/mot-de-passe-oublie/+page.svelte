@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import BackButton from '@tcf/lib/components/Atoms/BackButton.svelte';
 	import FormError from '@tcf/lib/components/Atoms/FormError.svelte';
 	import { addErrorToast } from '@tcf/lib/helpers/toastHelper';

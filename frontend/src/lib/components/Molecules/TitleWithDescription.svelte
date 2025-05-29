@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import DescriptionTitle from '../Atoms/DescriptionTitle.svelte';
+	import DescriptionTitle from '@tcf/lib/components/Atoms/DescriptionTitle.svelte';
 
 	interface Props {
 		title: string;
