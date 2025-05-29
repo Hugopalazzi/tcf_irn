@@ -34,8 +34,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		return json({ stripe_customer_id: customer.id });
 	} catch (error) {
-		const errorMessage =
-			error instanceof Error ? error.message : 'Unknown error';
+		const errorMessage = error instanceof Error ? error.message : 'Unknown error';
 		errorLogger(400, `Error handling create stripe customer: ${errorMessage}`);
 		return json({ error: errorMessage }, { status: 400 });
 	}

@@ -3,5 +3,4 @@ export const gradientColorsEnum = {
 	GREEN: 'green-gradient'
 } as const;
 
-export type GradientColorsType =
-	(typeof gradientColorsEnum)[keyof typeof gradientColorsEnum];
+export type GradientColorsType = (typeof gradientColorsEnum)[keyof typeof gradientColorsEnum];

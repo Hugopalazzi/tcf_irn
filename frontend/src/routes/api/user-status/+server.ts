@@ -19,8 +19,7 @@ export const GET: RequestHandler = async ({ request }) => {
 
 		const actualToken = tokenParts[1]; // The token part after 'Bearer'
 		// Get user from Supabase auth
-		const { data: authData, error: authError } =
-			await supabaseClient.auth.getUser(actualToken);
+		const { data: authData, error: authError } = await supabaseClient.auth.getUser(actualToken);
 
 		if (authError || !authData?.user) {
 			throw new Error('Invalid or expired token');

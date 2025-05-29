@@ -5,9 +5,7 @@ import type { Handle } from '@sveltejs/kit';
 
 export const buildAuthentification: Handle = (event) => {
 	const auth = SvelteKitAuth({
-		providers: [
-			Google({ clientId: GOOGLE_CLIENT_ID, clientSecret: GOOGLE_CLIENT_SECRET })
-		]
+		providers: [Google({ clientId: GOOGLE_CLIENT_ID, clientSecret: GOOGLE_CLIENT_SECRET })]
 	});
 
 	return auth.handle(event);

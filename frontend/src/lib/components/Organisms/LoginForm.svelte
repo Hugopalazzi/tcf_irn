@@ -39,10 +39,7 @@
 		bindedError={$errors?.password}
 		autocomplete="current-password" />
 
-	<a
-		href="/mot-de-passe-oublie"
-		onclick={() => {}}
-		class={bem('forgot-password')}>
+	<a href="/mot-de-passe-oublie" onclick={() => {}} class={bem('forgot-password')}>
 		{m['form.login.forgotPasswordLabel']()}
 	</a>
 	<Button

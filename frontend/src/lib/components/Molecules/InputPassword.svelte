@@ -16,15 +16,7 @@
 		autocomplete?: FullAutoFill;
 	}
 
-	let {
-		bindedValue = $bindable(''),
-		bindedError,
-		label,
-		inputId,
-		name,
-		placeholder,
-		autocomplete
-	}: Props = $props();
+	let { bindedValue = $bindable(''), bindedError, label, inputId, name, placeholder, autocomplete }: Props = $props();
 	const bem = createBEM('input-wrapper-form');
 
 	let showPassword = $state(false);
@@ -45,9 +37,7 @@
 		<button
 			onclick={() => (showPassword = !showPassword)}
 			type="button"
-			aria-label={showPassword
-				? m['form.password.hidePassword']()
-				: m['form.password.showPassword']()}>
+			aria-label={showPassword ? m['form.password.hidePassword']() : m['form.password.showPassword']()}>
 			{#if showPassword}
 				<EyeSlashIcon />
 			{:else}

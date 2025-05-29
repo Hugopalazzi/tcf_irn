@@ -11,10 +11,7 @@
 	<HeaderNavBar />
 
 	<div class={bem('subscribe-icon')}>
-		<a
-			href="/subscribe"
-			class={bem('link-rounded')}
-			aria-label={m['header.subscribe']()}>
+		<a href="/subscribe" class={bem('link-rounded')} aria-label={m['header.subscribe']()}>
 			<SubscribeIcon />
 		</a>
 	</div>

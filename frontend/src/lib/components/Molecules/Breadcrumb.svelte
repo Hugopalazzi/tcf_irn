@@ -18,10 +18,7 @@
 			{#if i > 0}
 				<ArrowRightIcon />
 			{/if}
-			<a
-				class={bem('link', { last: i === linksLength - 1 })}
-				{href}
-				aria-current={i === linksLength - 1 ? 'page' : undefined}>
+			<a class={bem('link', { last: i === linksLength - 1 })} {href} aria-current={i === linksLength - 1 ? 'page' : undefined}>
 				{label}
 			</a>
 		</div>

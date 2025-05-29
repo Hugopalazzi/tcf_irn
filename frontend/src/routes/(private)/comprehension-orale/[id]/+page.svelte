@@ -59,11 +59,7 @@
 			</div>
 		</div>
 
-		<form
-			enctype="multipart/form-data"
-			method="POST"
-			autocomplete="off"
-			use:enhance>
+		<form enctype="multipart/form-data" method="POST" autocomplete="off" use:enhance>
 			<div class="radios">
 				<span class="question">{data.exam[index].question}</span>
 				<div class="options">
@@ -87,25 +83,13 @@
 				{#if index + 1 === data.exam.length}
 					<button type="submit" class="btn btn-tertiary">Skip</button>
 				{:else}
-					<button onclick={goToNextQuestion} class="btn btn-tertiary">
-						Skip
-					</button>
+					<button onclick={goToNextQuestion} class="btn btn-tertiary">Skip</button>
 				{/if}
 				<span class="question-count">{index + 1}/{data.exam.length}</span>
 				{#if index + 1 === data.exam.length}
-					<button
-						type="submit"
-						onclick={goToNextQuestion}
-						class="btn btn-primary btn-small">
-						Submit
-					</button>
+					<button type="submit" onclick={goToNextQuestion} class="btn btn-primary btn-small">Submit</button>
 				{:else}
-					<button
-						type="button"
-						onclick={goToNextQuestion}
-						class="btn btn-primary btn-small">
-						Next
-					</button>
+					<button type="button" onclick={goToNextQuestion} class="btn btn-primary btn-small">Next</button>
 				{/if}
 			</div>
 		</form>

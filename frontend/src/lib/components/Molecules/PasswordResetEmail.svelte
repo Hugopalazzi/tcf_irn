@@ -11,21 +11,14 @@
 </script>
 
 <div class={bem('container')}>
-	<legend class={bem('legend')}>
-		Nous venons de vous envoyer un email à :
-	</legend>
+	<legend class={bem('legend')}>Nous venons de vous envoyer un email à :</legend>
 	<span class={bem('email')}>
 		{email}
 	</span>
 	<div class={bem('text__wrapper')}>
 		<p class={bem('text')}>Vous le recevrez dans un délai maximum de 20 s.</p>
-		<p class={bem('text')}>
-			Celui-ci contient un lien valide 24 h, permettant de réinitialiser votre
-			mot de passe.
-		</p>
-		<p class={bem('text')}>
-			Pensez à vérifier que l'email ne soit pas dans vos indésirables.
-		</p>
+		<p class={bem('text')}>Celui-ci contient un lien valide 24 h, permettant de réinitialiser votre mot de passe.</p>
+		<p class={bem('text')}>Pensez à vérifier que l'email ne soit pas dans vos indésirables.</p>
 	</div>
 </div>
 

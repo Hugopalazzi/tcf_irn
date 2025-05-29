@@ -7,12 +7,9 @@
 	}[] = [];
 
 	const dates = dataSet.find((data) => data.libelle === 'Dates')?.valeur ?? [];
-	const listeningComprehensionData =
-		dataSet.find((data) => data.libelle === 'LC')?.valeur ?? [];
-	const oralComprehensionData =
-		dataSet.find((data) => data.libelle === 'OC')?.valeur ?? [];
-	const writtenExpressionData =
-		dataSet.find((data) => data.libelle === 'WE')?.valeur ?? [];
+	const listeningComprehensionData = dataSet.find((data) => data.libelle === 'LC')?.valeur ?? [];
+	const oralComprehensionData = dataSet.find((data) => data.libelle === 'OC')?.valeur ?? [];
+	const writtenExpressionData = dataSet.find((data) => data.libelle === 'WE')?.valeur ?? [];
 
 	let dataChart = {
 		labels: dates,
