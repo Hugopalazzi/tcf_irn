@@ -102,7 +102,6 @@
 			flex-direction: column;
 			align-items: center;
 			gap: 16px;
-			padding: 16px 0;
 		}
 
 		&__welcome-card {
