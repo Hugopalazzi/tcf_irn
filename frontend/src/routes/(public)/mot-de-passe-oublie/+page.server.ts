@@ -21,7 +21,9 @@ export const actions: Actions = {
 			return fail(400, { form });
 		}
 
-		const { data: isEmailExist } = await locals.supabase.rpc('is_email_exist', { emailuser: form.data.email });
+		const { data: isEmailExist } = await locals.supabase.rpc('is_email_exist', {
+			emailuser: form.data.email
+		});
 
 		if (!isEmailExist) {
 			return fail(409, { form, code: 'email_exists' });
@@ -30,7 +32,6 @@ export const actions: Actions = {
 		const { error } = await locals.supabase.auth.resetPasswordForEmail(form.data.email, {
 			redirectTo: `${url.protocol}//${url.host}/modifier-mot-de-passe`
 		});
-
 
 		if (error && error.status) {
 			const { status, code } = error;

@@ -6,7 +6,7 @@
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
 	import { userResetPasswordSchema } from '@tcf/models/forms/userSchema';
 	import { Envelope, Icon } from 'svelte-hero-icons';
-	import { _ } from 'svelte-i18n';
+	import { m } from '$lib/paraglide/messages.js';
 	import { superForm } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
 	import type { PageData } from './$types';
@@ -20,7 +20,7 @@
 		async onResult({ result }) {
 			const { type } = result;
 			if (type === 'success') {
-				await goto(`/dashboard`).then(() => addSuccessToast($_('signUp.success'), 'top-center'));
+				await goto(`/dashboard`).then(() => addSuccessToast(m['signUp.success'](), 'top-center'));
 			} else if (type === 'failure') {
 				const { data } = result;
 				const isFormValid = (await validateForm()).valid;
@@ -28,22 +28,22 @@
 					let message = '';
 					switch (data?.code) {
 						case 'reauthentication_needed':
-							message = $_('resetPasswordErrors.reauthenticationNeeded');
+							message = m['resetPasswordErrors.reauthenticationNeeded']();
 							break;
 						case 'same_password':
-							message = $_('resetPasswordErrors.samePassword');
+							message = m['resetPasswordErrors.samePassword']();
 							break;
 						case 'weak_password':
-							message = $_('resetPasswordErrors.weakPassword');
+							message = m['resetPasswordErrors.weakPassword']();
 							break;
 						case 'session_expired':
-							message = $_('commonErrors.sessionExpired');
+							message = m['commonErrors.sessionExpired']();
 							break;
 						case 'over_request_rate_limit':
-							message = $_('commonErrors.overRequestRateLimit');
+							message = m['commonErrors.overRequestRateLimit']();
 							break;
 						default:
-							message = $_('commonErrors.defaultError');
+							message = m['commonErrors.defaultError']();
 							break;
 					}
 					addErrorToast(message);

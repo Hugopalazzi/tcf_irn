@@ -1,5 +1,7 @@
 export async function checkPremiumAccess(supabase: any, fetch: typeof globalThis.fetch) {
-	const { data: { session } } = await supabase.auth.getSession();
+	const {
+		data: { session }
+	} = await supabase.auth.getSession();
 
 	// Check if session exists
 	if (!session || !session.access_token) {

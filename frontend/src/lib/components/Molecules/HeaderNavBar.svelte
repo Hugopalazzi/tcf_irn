@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { _ } from 'svelte-i18n';
+	import { m } from '$lib/paraglide/messages.js';
 	import DashboardIcon from '$lib/components/Icons/DashboardIcon.svelte';
 	import ExamsIcon from '$lib/components/Icons/ExamsIcon.svelte';
 	import LeaderboardIcon from '$lib/components/Icons/LeaderboardIcon.svelte';
@@ -18,7 +18,11 @@
 	const links = [
 		{ icon: DashboardIcon, labelKey: 'header.dashboard', path: '/dashboard' },
 		{ icon: ExamsIcon, labelKey: 'header.exams', path: '/exams' },
-		{ icon: LeaderboardIcon, labelKey: 'header.leaderboard', path: '/leaderboard' },
+		{
+			icon: LeaderboardIcon,
+			labelKey: 'header.leaderboard',
+			path: '/leaderboard'
+		},
 		{ icon: PeopleIcon, labelKey: 'header.profile', path: '/profile' }
 	];
 </script>
@@ -30,7 +34,7 @@
 	<div class={bem('buttons-list')}>
 		{#each links as { icon: Icon, labelKey, path }}
 			{@const isActive = page.url.pathname.startsWith(path)}
-			<HeaderLink href={path} {isActive} label={$_(labelKey)}>
+			<HeaderLink href={path} {isActive} label={m[labelKey]()}>
 				<Icon color={getIconColor(isActive)} />
 			</HeaderLink>
 		{/each}

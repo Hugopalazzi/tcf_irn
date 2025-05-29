@@ -4,7 +4,7 @@
 	import { addErrorToast, addSuccessToast } from '@tcf/lib/helpers/toastHelper.js';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema.js';
 	import { userCreationAccountSchema } from '@tcf/models/forms/userSchema';
-	import { _ } from 'svelte-i18n';
+	import { m } from '$lib/paraglide/messages.js';
 	import { superForm, superValidate } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
 
@@ -17,7 +17,7 @@
 
 		async onResult({ result }) {
 			if (result.type === 'success') {
-				await goto(`/login`).then(() => addSuccessToast($_('signUp.success'), 'top-center'));
+				await goto(`/login`).then(() => addSuccessToast(m['signUp.success'](), 'top-center'));
 			} else if (result.type === 'failure') {
 				const formValidate = await superValidate(result.data?.form.data, zod(userCreationAccountSchema));
 				if (formValidate.valid === false) {
@@ -27,25 +27,25 @@
 				let message = '';
 				switch (data?.code) {
 					case 'signup_disabled':
-						message = $_('signUpErrors.signupDisabled');
+						message = m['signUpErrors.signupDisabled']();
 						break;
 					case 'email_address_invalid':
-						message = $_('signUpErrors.emailAddressInvalid');
+						message = m['signUpErrors.emailAddressInvalid']();
 						break;
 					case 'email_address_not_authorized':
-						message = $_('signUpErrors.emailAddressNotAuthorized');
+						message = m['signUpErrors.emailAddressNotAuthorized']();
 						break;
 					case 'email_provider_disabled':
-						message = $_('signUpErrors.emailProviderDisabled');
+						message = m['signUpErrors.emailProviderDisabled']();
 						break;
 					case 'email_exists':
-						message = $_('signUpErrors.emailExists');
+						message = m['signUpErrors.emailExists']();
 						break;
 					case 'over_request_rate_limit':
-						message = $_('commonErrors.overRequestRateLimit');
+						message = m['commonErrors.overRequestRateLimit']();
 						break;
 					default:
-						message = $_('commonErrors.defaultError');
+						message = m['commonErrors.defaultError']();
 						break;
 				}
 				addErrorToast(message);

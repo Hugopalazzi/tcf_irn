@@ -27,7 +27,7 @@
 		padding: rem(20) rem(16);
 		max-width: calc($breakpoint-mobile - rem(40));
 		margin-left: auto;
-        margin-right: auto;
+		margin-right: auto;
 	}
 
 	@media (min-width: $breakpoint-tablet) {

@@ -3,8 +3,8 @@ import type { UserLoginForm, UserSignUpForm, UserModifyPasswordForm } from '@tcf
 import { fail, message } from 'sveltekit-superforms/client';
 
 export class UserService {
-	constructor(private supabaseClient: SupabaseClient) { }
-	
+	constructor(private supabaseClient: SupabaseClient) {}
+
 	login = async (form: UserLoginForm) => {
 		if (!form.valid) {
 			return fail(400, { form });
@@ -55,7 +55,10 @@ export class UserService {
 				return message(form, 'Création du compte réussi.');
 			}
 		} catch (error) {
-			return fail(500, { form, error: 'Une erreur interne inconnue est survenue.' });
+			return fail(500, {
+				form,
+				error: 'Une erreur interne inconnue est survenue.'
+			});
 		}
 	};
 
@@ -67,7 +70,9 @@ export class UserService {
 		const {
 			data: { user },
 			error
-		} = await this.supabaseClient.auth.updateUser({ password: form.data.password });
+		} = await this.supabaseClient.auth.updateUser({
+			password: form.data.password
+		});
 		if (error && error.status) {
 			const { status, code } = error;
 			if (!user) {
@@ -77,6 +82,5 @@ export class UserService {
 		} else {
 			return message(form, 'Votre mot de passe a été correctement mis à jour.');
 		}
-
 	};
 }

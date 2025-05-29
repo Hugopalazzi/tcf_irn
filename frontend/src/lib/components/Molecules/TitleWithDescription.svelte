@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import DescriptionTitle from '../Atoms/DescriptionTitle.svelte';
+	import DescriptionTitle from '@tcf/lib/components/Atoms/DescriptionTitle.svelte';
 
 	interface Props {
 		title: string;
@@ -13,7 +13,7 @@
 
 <div class={bem('container')}>
 	<h1>{title}</h1>
-    <DescriptionTitle text={description} />
+	<DescriptionTitle text={description} />
 </div>
 
 <style lang="scss">

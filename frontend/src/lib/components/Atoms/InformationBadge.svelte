@@ -13,8 +13,8 @@
 <div class={bem('container')}>
 	<div class={bem('rectangle')}></div>
 	<div class={bem('content')}>
-		<h3 class={bem("title")}>{title}</h3>
-		<p class={bem("description")}>{description}</p>
+		<h3 class={bem('title')}>{title}</h3>
+		<p class={bem('description')}>{description}</p>
 	</div>
 </div>
 
@@ -27,8 +27,8 @@
 			background-color: #1e0c5b0d;
 			border-radius: rem(60);
 			gap: rem(20);
-            align-items: center;
-            width: 80%;
+			align-items: center;
+			width: 80%;
 		}
 
 		&__rectangle {
@@ -44,18 +44,18 @@
 			gap: rem(4);
 		}
 
-        &__title {
-            font-size: rem(14);
-            color: #000000;
-            font-weight: 700;
-            line-height: rem(20);
-        }
+		&__title {
+			font-size: rem(14);
+			color: #000000;
+			font-weight: 700;
+			line-height: rem(20);
+		}
 
-        &__description {
-            font-size: rem(12);
-            color: rgba(0, 0, 0, 0.5);
-            font-weight: 400;
-            line-height: rem(16);
-        }
+		&__description {
+			font-size: rem(12);
+			color: rgba(0, 0, 0, 0.5);
+			font-weight: 400;
+			line-height: rem(16);
+		}
 	}
 </style>

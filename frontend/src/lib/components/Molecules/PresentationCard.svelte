@@ -1,32 +1,31 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { _ } from 'svelte-i18n';
+	import { m } from '$lib/paraglide/messages.js';
 	import InformationBadge from '@tcf/lib/components/Atoms/InformationBadge.svelte';
-	
+
 	const bem = createBEM('presentation-card');
 	const informationBadgesKey = ['comprehensiveExams', 'gamifiedLearning', 'corrections'];
-
 </script>
 
 <div class={bem('container')}>
-    <span class={bem('badge')}>{$_('presentationCard.badge')}</span>
-    <h2 class={bem('welcome')}>
-        {$_('presentationCard.welcome')}
-        <span class={bem('additional-welcome')}>{$_('presentationCard.brand')}</span>
-    </h2>
-    <p class={bem('description')}>
-        {$_('presentationCard.description')}
-    </p>
-    {#if informationBadgesKey.length > 0}
-        {#each informationBadgesKey as key (key)}
-            <InformationBadge
-                title={$_(`presentationCard.informationBadges.${key}.title`)}
-                description={$_(`presentationCard.informationBadges.${key}.description`)} />
-        {/each}
-    {/if}
+	<span class={bem('badge')}>{m['presentationCard.badge']()}</span>
+	<h2 class={bem('welcome')}>
+		{m['presentationCard.welcome']()}
+		<span class={bem('additional-welcome')}>
+			{m['presentationCard.brand']()}
+		</span>
+	</h2>
+	<p class={bem('description')}>
+		{m['presentationCard.description']()}
+	</p>
+	{#if informationBadgesKey.length > 0}
+		{#each informationBadgesKey as key (key)}
+			<InformationBadge
+				title={m[`presentationCard.informationBadges.${key}.title`]()}
+				description={m[`presentationCard.informationBadges.${key}.description`]()} />
+		{/each}
+	{/if}
 </div>
-
-
 
 <style lang="scss">
 	.presentation-card {

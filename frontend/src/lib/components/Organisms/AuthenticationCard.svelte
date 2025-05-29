@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { _ } from 'svelte-i18n';
+	import { m } from '$lib/paraglide/messages.js';
 	import type { Snippet } from 'svelte';
 	import GoogleIcon from '@tcf/lib/components/Icons/GoogleIcon.svelte';
 
@@ -15,19 +15,19 @@
 
 <div class={bem('container')}>
 	<div class={bem('text')}>
-		<h1 class={bem('title')}>{$_('authentificationCard.title')}</h1>
-		<p class={bem('description')}>{$_('authentificationCard.description')}</p>
+		<h1 class={bem('title')}>{m['authentificationCard.title']()}</h1>
+		<p class={bem('description')}>{m['authentificationCard.description']()}</p>
 	</div>
 	<a
 		href="/auth/login/google"
 		class={bem('google-button')}
-		aria-label={$_('authentificationCard.ariaGoogleIcon')}
-		title={$_('authentificationCard.ariaGoogleIcon')}>
+		aria-label={m['authentificationCard.ariaGoogleIcon']()}
+		title={m['authentificationCard.ariaGoogleIcon']()}>
 		<GoogleIcon />
 	</a>
 	<div class={bem('condition')}>
 		<div class={bem('line')}></div>
-		<span class={bem('or')}>{$_('or')}</span>
+		<span class={bem('or')}>{m['or']()}</span>
 		<div class={bem('line')}></div>
 	</div>
 	{@render children?.()}

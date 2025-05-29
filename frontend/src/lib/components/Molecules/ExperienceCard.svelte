@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { getLevelInfo } from '@tcf/lib/helpers/levelingHelper';
-	import { _ } from 'svelte-i18n';
+	import { m } from '$lib/paraglide/messages.js';
 	import ProgressBar from '@tcf/lib/components/Atoms/ProgressBar.svelte';
 
 	export type ExperienceCardProps = {
@@ -13,7 +13,7 @@
 	const { level, experience, maxExperience }: ExperienceCardProps = $props();
 	const bem = createBEM('experience-card');
 
-	const { Icon, title } = $derived(getLevelInfo(level, $_));
+	const { Icon, title } = $derived(getLevelInfo(level));
 </script>
 
 <div class={bem('container')}>
@@ -26,7 +26,7 @@
 				{title}
 			</span>
 			<span class={bem('level-label')}>
-				{$_('experienceCard.level')}
+				{m['experienceCard.level']()}
 				{level}
 			</span>
 		</div>
@@ -34,7 +34,7 @@
 
 	<div class={bem('label-bar-container')}>
 		<div class={bem('experience-percentage')}>
-			<span>{$_('experienceCard.xp')}</span>
+			<span>{m['experienceCard.xp']()}</span>
 			<span class={bem('max-percent')}>{maxExperience}</span>
 		</div>
 		<ProgressBar progress={(experience / maxExperience) * 100} />

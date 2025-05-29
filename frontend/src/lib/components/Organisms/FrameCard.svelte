@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { _ } from 'svelte-i18n';
 	import type { Snippet } from 'svelte';
 	import { mergeClassNames } from '@tcf/lib/helpers/mergeClassNames';
 

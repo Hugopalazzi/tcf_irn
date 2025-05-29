@@ -14,7 +14,9 @@
 		<PttNavIcon globalColor="#1E0C5B" vColor="1E0C5B" />
 	</div>
 	<div class={bem('card')}>
-		<PresentationCard /><AuthenticationCard>{@render children()}</AuthenticationCard>
+		<PresentationCard /><AuthenticationCard>
+			{@render children()}
+		</AuthenticationCard>
 	</div>
 </div>
 
