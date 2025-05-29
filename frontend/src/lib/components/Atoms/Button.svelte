@@ -25,7 +25,17 @@
 		disabled?: boolean;
 	};
 
-	const { color, submitting = $bindable(false), ariaAttributes, label, onClick, icon, role, extraClass, disabled }: Props = $props();
+	const {
+		color,
+		submitting = $bindable(false),
+		ariaAttributes,
+		label,
+		onClick,
+		icon,
+		role,
+		extraClass,
+		disabled
+	}: Props = $props();
 
 	const onKeyDown = (event: KeyboardEvent) => {
 		if (event.code === 'Space' && role === 'link') {

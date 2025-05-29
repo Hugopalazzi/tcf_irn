@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import Button from '@tcf/lib/components/Atoms/Button.svelte';
-
-	
 </script>
 
 <div>

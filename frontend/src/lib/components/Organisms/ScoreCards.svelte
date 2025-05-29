@@ -1,5 +1,7 @@
 <script lang="ts">
-	import ScoreCardElement, { type ScoreCardElementProps } from '@tcf/lib/components/Molecules/ScoreCardElement.svelte';
+	import ScoreCardElement, {
+		type ScoreCardElementProps
+	} from '@tcf/lib/components/Molecules/ScoreCardElement.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import ExperienceCard from '@tcf/lib/components/Molecules/ExperienceCard.svelte';
 	import VerticalLineIcon from '@tcf/lib/components/Icons/VerticalLineIcon.svelte';

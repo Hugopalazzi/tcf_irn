@@ -4,7 +4,11 @@
 	import InformationBadge from '@tcf/lib/components/Atoms/InformationBadge.svelte';
 
 	const bem = createBEM('presentation-card');
-	const informationBadgesKey = ['comprehensiveExams', 'gamifiedLearning', 'corrections'];
+	const informationBadgesKey = [
+		'comprehensiveExams',
+		'gamifiedLearning',
+		'corrections'
+	];
 </script>
 
 <div class={bem('container')}>
@@ -22,7 +26,9 @@
 		{#each informationBadgesKey as key (key)}
 			<InformationBadge
 				title={m[`presentationCard.informationBadges.${key}.title`]()}
-				description={m[`presentationCard.informationBadges.${key}.description`]()} />
+				description={m[
+					`presentationCard.informationBadges.${key}.description`
+				]()} />
 		{/each}
 	{/if}
 </div>

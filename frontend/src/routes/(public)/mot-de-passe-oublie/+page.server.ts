@@ -29,15 +29,21 @@ export const actions: Actions = {
 			return fail(409, { form, code: 'email_exists' });
 		}
 
-		const { error } = await locals.supabase.auth.resetPasswordForEmail(form.data.email, {
-			redirectTo: `${url.protocol}//${url.host}/modifier-mot-de-passe`
-		});
+		const { error } = await locals.supabase.auth.resetPasswordForEmail(
+			form.data.email,
+			{
+				redirectTo: `${url.protocol}//${url.host}/modifier-mot-de-passe`
+			}
+		);
 
 		if (error && error.status) {
 			const { status, code } = error;
 			return fail(status, { form, code });
 		} else {
-			return message(form, 'Un lien vous a été envoyé pour réinitialiser votre mot de passe');
+			return message(
+				form,
+				'Un lien vous a été envoyé pour réinitialiser votre mot de passe'
+			);
 		}
 	}
 };

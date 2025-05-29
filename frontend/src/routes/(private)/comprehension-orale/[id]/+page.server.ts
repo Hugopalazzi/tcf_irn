@@ -39,7 +39,10 @@ export const load = async ({ params }) => {
 export const actions: Actions = {
 	default: async ({ request }) => {
 		const requestFormData = await request.formData();
-		const superForm = await superValidate(requestFormData, zod(listeningComprehensionSchema));
+		const superForm = await superValidate(
+			requestFormData,
+			zod(listeningComprehensionSchema)
+		);
 
 		return {
 			form: superForm,

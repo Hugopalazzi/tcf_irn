@@ -1,6 +1,20 @@
-<svg width="20" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-	<path fill-rule="evenodd" clip-rule="evenodd" d="M0.3125 0L6.8775 10.0084H12.1219L6.8775 0H0.3125Z" fill="#BE3530" />
-	<path fill-rule="evenodd" clip-rule="evenodd" d="M18.6875 0L12.1219 10.0084H6.8775L12.1219 0H18.6875Z" fill="#DB524D" />
+<svg
+	width="20"
+	height="20"
+	viewBox="0 0 19 20"
+	fill="none"
+	xmlns="http://www.w3.org/2000/svg"
+	aria-hidden="true">
+	<path
+		fill-rule="evenodd"
+		clip-rule="evenodd"
+		d="M0.3125 0L6.8775 10.0084H12.1219L6.8775 0H0.3125Z"
+		fill="#BE3530" />
+	<path
+		fill-rule="evenodd"
+		clip-rule="evenodd"
+		d="M18.6875 0L12.1219 10.0084H6.8775L12.1219 0H18.6875Z"
+		fill="#DB524D" />
 	<path
 		fill-rule="evenodd"
 		clip-rule="evenodd"

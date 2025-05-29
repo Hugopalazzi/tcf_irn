@@ -1,5 +1,9 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { UserLoginForm, UserSignUpForm, UserModifyPasswordForm } from '@tcf/models/forms/userSchema';
+import type {
+	UserLoginForm,
+	UserSignUpForm,
+	UserModifyPasswordForm
+} from '@tcf/models/forms/userSchema';
 import { fail, message } from 'sveltekit-superforms/client';
 
 export class UserService {
@@ -31,7 +35,10 @@ export class UserService {
 			data: { email, password, username }
 		} = form;
 		try {
-			const { data: isEmailExist } = await this.supabaseClient.rpc('is_email_exist', { emailuser: email });
+			const { data: isEmailExist } = await this.supabaseClient.rpc(
+				'is_email_exist',
+				{ emailuser: email }
+			);
 
 			if (isEmailExist) {
 				return fail(409, { form, code: 'email_exists' });

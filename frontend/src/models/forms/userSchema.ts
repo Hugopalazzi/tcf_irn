@@ -4,14 +4,20 @@ import { z } from 'zod';
 const emailErrorMessage = 'form.email.error';
 export const emailSchema = z.string().email(emailErrorMessage);
 
-export const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+export const passwordRegex =
+	/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
 export const userCreationAccountSchema = z
 	.object({
 		username: z.string().min(1, 'form.error.common.notEmpty'),
 		email: emailSchema,
-		password: z.string().min(8, 'form.password.minError').regex(passwordRegex, 'form.password.regexError'),
+		password: z
+			.string()
+			.min(8, 'form.password.minError')
+			.regex(passwordRegex, 'form.password.regexError'),
 		passwordConfirmation: z.string().min(1, 'form.error.common.notEmpty'),
-		agreeTerms: z.boolean().refine((value) => value, { message: 'form.error.common.agreeTerms' })
+		agreeTerms: z
+			.boolean()
+			.refine((value) => value, { message: 'form.error.common.agreeTerms' })
 	})
 	.superRefine(({ passwordConfirmation, password }, ctx) => {
 		if (passwordConfirmation !== password) {
@@ -21,7 +27,9 @@ export const userCreationAccountSchema = z
 			});
 		}
 	});
-export type UserSignUpForm = SuperValidated<z.infer<typeof userCreationAccountSchema>>;
+export type UserSignUpForm = SuperValidated<
+	z.infer<typeof userCreationAccountSchema>
+>;
 
 export const userLoginSchema = z.object({
 	email: emailSchema,
@@ -38,7 +46,10 @@ export const userResetPasswordSchema = z
 		password: z
 			.string()
 			.min(8, 'The password must contain at least 8 characters')
-			.regex(passwordRegex, 'The password must contain 1 uppercase, 1 lowercase, 1 number.'),
+			.regex(
+				passwordRegex,
+				'The password must contain 1 uppercase, 1 lowercase, 1 number.'
+			),
 		passwordConfirmation: z.string().min(1, 'Field must not be empty')
 	})
 	.superRefine(({ passwordConfirmation, password }, ctx) => {
@@ -50,4 +61,6 @@ export const userResetPasswordSchema = z
 		}
 	});
 
-export type UserModifyPasswordForm = SuperValidated<z.infer<typeof userResetPasswordSchema>>;
+export type UserModifyPasswordForm = SuperValidated<
+	z.infer<typeof userResetPasswordSchema>
+>;

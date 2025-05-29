@@ -55,7 +55,9 @@
 		label={m['form.passwordConfirmation.label']()}
 		placeholder={m['form.passwordConfirmation.placeholder']()}
 		bind:bindedValue={$form.passwordConfirmation}
-		bindedError={!$form?.passwordConfirmation ? $errors?.passwordConfirmation : $errors?._errors}
+		bindedError={!$form?.passwordConfirmation
+			? $errors?.passwordConfirmation
+			: $errors?._errors}
 		autocomplete="new-password" />
 
 	<CheckboxInput

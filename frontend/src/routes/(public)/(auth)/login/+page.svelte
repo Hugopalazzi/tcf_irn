@@ -20,7 +20,10 @@
 			if (type === 'success') {
 				await goto(`/dashboard`);
 			} else if (type === 'failure') {
-				const formValidate = await superValidate(result.data?.form.data, zod(userLoginSchema));
+				const formValidate = await superValidate(
+					result.data?.form.data,
+					zod(userLoginSchema)
+				);
 				if (formValidate.valid === false) {
 					return;
 				}

@@ -11,7 +11,8 @@
 		Icon?: Component<any>;
 	};
 
-	const { result, title, backgroundIconColor, Icon }: ScoreCardElementProps = $props();
+	const { result, title, backgroundIconColor, Icon }: ScoreCardElementProps =
+		$props();
 	const bem = createBEM('score-card');
 </script>
 

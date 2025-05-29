@@ -13,7 +13,15 @@
 		autocomplete?: FullAutoFill;
 	}
 
-	let { bindedValue = $bindable(''), bindedError, label, inputId, name, placeholder, autocomplete }: Props = $props();
+	let {
+		bindedValue = $bindable(''),
+		bindedError,
+		label,
+		inputId,
+		name,
+		placeholder,
+		autocomplete
+	}: Props = $props();
 	const bem = createBEM('input-wrapper-form');
 </script>
 

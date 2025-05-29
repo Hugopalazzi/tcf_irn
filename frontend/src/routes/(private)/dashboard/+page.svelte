@@ -82,16 +82,26 @@
 
 <div class={bem('container')}>
 	<div class={bem('welcome-card')}>
-		<img src={avatar_url || '/assets/images/user-profile.jpg'} class={bem('user-profile-image')} alt={m['dashboard.altUserImage']()} />
+		<img
+			src={avatar_url || '/assets/images/user-profile.jpg'}
+			class={bem('user-profile-image')}
+			alt={m['dashboard.altUserImage']()} />
 		<p class={bem('welcome-label')}>{m['dashboard.welcome']()}{name} !</p>
 	</div>
-	<TitleWithDescription title={m['dashboard.title']()} description={m['dashboard.description']()} />
+	<TitleWithDescription
+		title={m['dashboard.title']()}
+		description={m['dashboard.description']()} />
 	<LinkCards links={cardLinks} />
 	<ScoreCards scores={cardScores} />
 
 	<div class={bem('performance-recent')}>
-		<PerformanceExams title={m['performance.title']()} description={m['performance.description']()} />
-		<RecentExams title={m['recentExams.title']()} description={m['recentExams.description']()} exams={recentExams} />
+		<PerformanceExams
+			title={m['performance.title']()}
+			description={m['performance.description']()} />
+		<RecentExams
+			title={m['recentExams.title']()}
+			description={m['recentExams.description']()}
+			exams={recentExams} />
 	</div>
 </div>
 

@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import RegisterForm from '@tcf/lib/components/Organisms/RegisterForm.svelte';
-	import { addErrorToast, addSuccessToast } from '@tcf/lib/helpers/toastHelper.js';
+	import {
+		addErrorToast,
+		addSuccessToast
+	} from '@tcf/lib/helpers/toastHelper.js';
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema.js';
 	import { userCreationAccountSchema } from '@tcf/models/forms/userSchema';
 	import { m } from '$lib/paraglide/messages.js';
@@ -17,9 +20,14 @@
 
 		async onResult({ result }) {
 			if (result.type === 'success') {
-				await goto(`/login`).then(() => addSuccessToast(m['signUp.success'](), 'top-center'));
+				await goto(`/login`).then(() =>
+					addSuccessToast(m['signUp.success'](), 'top-center')
+				);
 			} else if (result.type === 'failure') {
-				const formValidate = await superValidate(result.data?.form.data, zod(userCreationAccountSchema));
+				const formValidate = await superValidate(
+					result.data?.form.data,
+					zod(userCreationAccountSchema)
+				);
 				if (formValidate.valid === false) {
 					return;
 				}

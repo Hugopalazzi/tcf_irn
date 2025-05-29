@@ -23,7 +23,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: rem(12);
-		background-image: linear-gradient(to bottom right, var(--dark-purple), var(--light-purple));
+		background-image: linear-gradient(
+			to bottom right,
+			var(--dark-purple),
+			var(--light-purple)
+		);
 		max-width: rem(500);
 
 		.title {

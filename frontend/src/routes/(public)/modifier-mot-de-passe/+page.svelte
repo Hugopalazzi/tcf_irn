@@ -20,7 +20,9 @@
 		async onResult({ result }) {
 			const { type } = result;
 			if (type === 'success') {
-				await goto(`/dashboard`).then(() => addSuccessToast(m['signUp.success'](), 'top-center'));
+				await goto(`/dashboard`).then(() =>
+					addSuccessToast(m['signUp.success'](), 'top-center')
+				);
 			} else if (type === 'failure') {
 				const { data } = result;
 				const isFormValid = (await validateForm()).valid;
@@ -76,7 +78,9 @@
 				<FormError errors={$errors?.password} />
 			</div>
 			<div class="input-wrapper">
-				<label class="uppercase" for="passwordConfirmation">Password confirmation</label>
+				<label class="uppercase" for="passwordConfirmation">
+					Password confirmation
+				</label>
 				<input
 					bind:value={$form.passwordConfirmation}
 					class:error={!!$errors?.passwordConfirmation}
@@ -84,7 +88,10 @@
 					id="passwordConfirmation"
 					name="passwordCconfirmation"
 					placeholder="Confirm your password" />
-				<FormError errors={!$form?.passwordConfirmation ? $errors?.passwordConfirmation : $errors?._errors} />
+				<FormError
+					errors={!$form?.passwordConfirmation
+						? $errors?.passwordConfirmation
+						: $errors?._errors} />
 			</div>
 
 			<div class="link-button-wrapper">

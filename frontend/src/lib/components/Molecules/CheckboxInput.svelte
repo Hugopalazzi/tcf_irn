@@ -12,13 +12,27 @@
 		autocomplete?: FullAutoFill;
 	}
 
-	let { inputId, label, checked = $bindable(false), bindedError, name, autocomplete }: Props = $props();
+	let {
+		inputId,
+		label,
+		checked = $bindable(false),
+		bindedError,
+		name,
+		autocomplete
+	}: Props = $props();
 	const bem = createBEM('checkbox');
 </script>
 
 <label for={inputId} class={bem('label')}>
 	<div class={bem('row')}>
-		<input bind:checked type="checkbox" class={bem('input')} class:error={!!bindedError} id={inputId} {name} {autocomplete} />
+		<input
+			bind:checked
+			type="checkbox"
+			class={bem('input')}
+			class:error={!!bindedError}
+			id={inputId}
+			{name}
+			{autocomplete} />
 		<span class={bem('box')}></span>
 		<span class={bem('text')}>{label}</span>
 	</div>

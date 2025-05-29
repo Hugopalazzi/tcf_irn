@@ -15,7 +15,9 @@
 
 <FrameCard {title} {description}>
 	<div>
-		<p class={bem('bilan-text')}>You improved by 3 points in Listening this week!</p>
+		<p class={bem('bilan-text')}>
+			You improved by 3 points in Listening this week!
+		</p>
 	</div>
 </FrameCard>
 

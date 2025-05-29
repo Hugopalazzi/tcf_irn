@@ -8,11 +8,20 @@
 		displayText?: boolean;
 	}
 
-	let { fallbackUrl = '..', forcedUrl = '', displayText = false }: Props = $props();
+	let {
+		fallbackUrl = '..',
+		forcedUrl = '',
+		displayText = false
+	}: Props = $props();
 </script>
 
 <div>
-	<button type="button" role="link" on:click={() => goto(forcedUrl ?? fallbackUrl)} title="Retour à la page précédente" class="btn btn-tertiary">
+	<button
+		type="button"
+		role="link"
+		on:click={() => goto(forcedUrl ?? fallbackUrl)}
+		title="Retour à la page précédente"
+		class="btn btn-tertiary">
 		<div class="default">
 			<Icon src={ArrowLeft} size="32" />
 			{#if displayText}

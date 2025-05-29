@@ -23,7 +23,11 @@ export const POST: RequestHandler = async ({ request }) => {
 		}
 
 		// Get stripe_customer_id from Supabase
-		const { data, error } = await supabaseClient.from('user_payments').select('stripe_customer_id').eq('user_id', user_id).single();
+		const { data, error } = await supabaseClient
+			.from('user_payments')
+			.select('stripe_customer_id')
+			.eq('user_id', user_id)
+			.single();
 
 		if (error || !data?.stripe_customer_id) {
 			throw new Error('Utilisateur introuvable');
@@ -41,8 +45,12 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		return json({ url: session.url });
 	} catch (error) {
-		const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-		errorLogger(400, `Error handling create subscription session: ${errorMessage}`);
+		const errorMessage =
+			error instanceof Error ? error.message : 'Unknown error';
+		errorLogger(
+			400,
+			`Error handling create subscription session: ${errorMessage}`
+		);
 		return json({ error: errorMessage }, { status: 400 });
 	}
 };

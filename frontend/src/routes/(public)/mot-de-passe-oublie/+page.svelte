@@ -64,7 +64,12 @@
 			<form method="POST" autocomplete="off" use:enhance>
 				<div class="input-wrapper">
 					<label class="uppercase" for="email">Your email</label>
-					<input bind:value={$form.email} class:error={!!$errors?.email} id="email" name="email" placeholder="john.doe@mail.com" />
+					<input
+						bind:value={$form.email}
+						class:error={!!$errors?.email}
+						id="email"
+						name="email"
+						placeholder="john.doe@mail.com" />
 					<FormError errors={$errors?.email} />
 				</div>
 

@@ -1,4 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="5" height="12" viewBox="0 0 5 12" fill="none" aria-hidden="true">
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	width="5"
+	height="12"
+	viewBox="0 0 5 12"
+	fill="none"
+	aria-hidden="true">
 	<path
 		d="M4.48985 5.72765C4.59743 5.89328 4.59743 6.10672 4.48985 6.27235L1.08606 11.5128C0.814907 11.9303 0.166749 11.7383 0.166749 11.2405L0.166749 0.759525C0.166749 0.261721 0.814907 0.0697017 1.08606 0.487174L4.48985 5.72765Z"
 		fill="black" />
