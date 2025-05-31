@@ -1,45 +1,33 @@
 <script lang="ts">
-	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { m } from '$lib/paraglide/messages.js';
-	import DashboardIcon from '$lib/components/Icons/DashboardIcon.svelte';
-	import ExamsIcon from '$lib/components/Icons/ExamsIcon.svelte';
-	import LeaderboardIcon from '$lib/components/Icons/LeaderboardIcon.svelte';
-	import PttNavIcon from '$lib/components/Icons/PttNavIcon.svelte';
-	import PeopleIcon from '$lib/components/Icons/PeopleIcon.svelte';
-	import HeaderLink from '$lib/components/Atoms/HeaderLink.svelte';
 	import { page } from '$app/state';
+	import HeaderLink from '@tcf/lib/components/Atoms/HeaderLink.svelte';
+	import PttNavIcon from '@tcf/lib/components/Icons/PttNavIcon.svelte';
+	import { m } from '@tcf/lib/paraglide/messages.js';
+	import { primaryHeaderLinks } from '@tcf/lib/configs/header-link.config';
+	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 
 	const bem = createBEM('header-nav-bar');
 
 	const getIconColor = (isActive: boolean) => {
 		return isActive ? '#000' : '#fff';
 	};
-
-	const links = [
-		{ icon: DashboardIcon, labelKey: 'header.dashboard', path: '/dashboard' },
-		{ icon: ExamsIcon, labelKey: 'header.exams', path: '/exams' },
-		{
-			icon: LeaderboardIcon,
-			labelKey: 'header.leaderboard',
-			path: '/leaderboard'
-		},
-		{ icon: PeopleIcon, labelKey: 'header.profile', path: '/profile' }
-	];
 </script>
 
-<div class={bem('container')}>
+<nav class={bem('container')}>
 	<PttNavIcon />
 	<div class={bem('vertical-bar')}></div>
 
-	<div class={bem('buttons-list')}>
-		{#each links as { icon: Icon, labelKey, path }}
+	<ul class={bem('buttons-list')}>
+		{#each primaryHeaderLinks as { icon: Icon, labelKey, path }}
 			{@const isActive = page.url.pathname.startsWith(path)}
-			<HeaderLink href={path} {isActive} label={m[labelKey]()}>
-				<Icon color={getIconColor(isActive)} />
-			</HeaderLink>
+			<li>
+				<HeaderLink href={path} {isActive} label={m[labelKey]()}>
+					<Icon color={getIconColor(isActive)} />
+				</HeaderLink>
+			</li>
 		{/each}
-	</div>
-</div>
+	</ul>
+</nav>
 
 <style lang="scss">
 	.header-nav-bar {
@@ -50,14 +38,29 @@
 		}
 
 		&__vertical-bar {
-			border-right: 1px solid white;
+			display: none;
 		}
 
 		&__buttons-list {
-			display: flex;
-			flex-direction: row;
+			display: none;
+		}
+	}
 
-			gap: rem(12);
+	@media (min-width: $breakpoint-desktop) {
+		.header-nav-bar {
+			&__vertical-bar {
+				display: block;
+				border-right: 1px solid white;
+			}
+
+			&__buttons-list {
+				display: flex;
+				flex-direction: row;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				gap: rem(12);
+			}
 		}
 	}
 </style>

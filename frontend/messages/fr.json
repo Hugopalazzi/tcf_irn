@@ -30,7 +30,9 @@
 		"exams": "Examens",
 		"leaderboard": "Leaderboard",
 		"profile": "Mon profil",
-		"subscribe": "Lien vers le changement d'offre tarifaire"
+		"burgerAriaLabel": "Ouvrir le menu",
+		"subscribe": "S'abonner",
+		"logout": "Se déconnecter"
 	},
 	"dashboard": {
 		"title": "Dashboard",
