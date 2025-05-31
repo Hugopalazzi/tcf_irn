@@ -10,11 +10,12 @@
 	}
 
 	let { children }: Props = $props();
+	let burgerOpen = $state(false);
 </script>
 
 <div class="wrapper">
-	<Header />
-	<main class="layout-wrapper">
+	<Header bind:burgerOpen />
+	<main class="layout-wrapper" inert={burgerOpen ? true : undefined}>
 		{@render children?.()}
 	</main>
 </div>
