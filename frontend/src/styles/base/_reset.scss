@@ -12,6 +12,10 @@ body {
 	background-color: #ffffff;
 }
 
+body:has(.burger-menu__overlay) {
+	overflow: hidden;
+}
+
 svg {
 	color: white;
 }

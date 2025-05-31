@@ -16,7 +16,7 @@
 
 <a {href} class={bem('', { active: isActive })}>
 	{@render children()}
-	<span class={bem.mix('link-label')}>
+	<span>
 		{label}
 	</span>
 </a>
