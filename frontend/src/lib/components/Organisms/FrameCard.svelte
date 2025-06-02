@@ -9,17 +9,21 @@
 		title?: string;
 		description?: string;
 		children?: Snippet;
+		button?: Snippet;
 		additionalClass?: string;
 	}
 
-	const { additionalClass, title, description, children }: Props = $props();
+	const { additionalClass, title, description, children, button }: Props = $props();
 </script>
 
 <div class={mergeClassNames(bem('container'), additionalClass)}>
 	{#if title}
-		<div class={bem('heading')}>
-			<h2 class={bem('title')}>{title}</h2>
-			{#if description}<p class={bem('description')}>{description}</p>{/if}
+		<div class={bem('btn-heading-container')}>
+			<div class={bem('heading')}>
+				<h2 class={bem('title')}>{title}</h2>
+				{#if description}<p class={bem('description')}>{description}</p>{/if}
+			</div>
+			{@render button?.()}
 		</div>
 	{/if}
 	{@render children?.()}
@@ -36,6 +40,12 @@
 			border-radius: rem(10);
 			border: 1px solid #dcdcdc;
 			background: #fff;
+		}
+
+		&__btn-heading-container {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
 		}
 
 		&__heading {
