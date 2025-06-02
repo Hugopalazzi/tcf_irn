@@ -13,6 +13,7 @@
 	import type { PageData } from './$types';
 	import RecentExams from '@tcf/lib/components/Organisms/RecentExams.svelte';
 	import PerformanceExams from '@tcf/lib/components/Organisms/PerformanceExams.svelte';
+	import { examsEnum } from '@tcf/models/exams';
 
 	const bem = createBEM('dashboard');
 
@@ -61,23 +62,23 @@
 		}
 	];
 
-	const recentExams = {
-		listeningExam: {
+	const recentExams = [
+		{
+			type: examsEnum.LISTENING_EXAM,
 			daysAgo: 2,
 			grade: 4,
 			link: '/exam/listening'
 		},
-		readingExam: {
-			daysAgo: 5,
-			grade: 3,
-			link: '/exam/reading'
+		{
+			type: examsEnum.READING_EXAM
 		},
-		writingExam: {
-			daysAgo: 1,
+		{
+			type: examsEnum.WRITING_EXAM,
+			daysAgo: 0,
 			grade: 5,
 			link: '/exam/writing'
 		}
-	};
+	];
 </script>
 
 <div class={bem('container')}>
@@ -91,7 +92,9 @@
 
 	<div class={bem('performance-recent')}>
 		<PerformanceExams title={m['performance.title']()} description={m['performance.description']()} />
-		<RecentExams title={m['recentExams.title']()} description={m['recentExams.description']()} exams={recentExams} />
+		{#if recentExams.length > 0}
+			<RecentExams title={m['recentExams.title']()} description={m['recentExams.description']()} exams={recentExams} />
+		{/if}
 	</div>
 </div>
 

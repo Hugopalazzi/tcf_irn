@@ -2,25 +2,29 @@
 	import { m } from '$lib/paraglide/messages.js';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
+	import type { ExamsType } from '@tcf/models/exams';
 
 	const MAX_GRADE_DEFAULT = 20;
 
 	interface Exam {
-		daysAgo: number;
-		grade: number;
-		link: string;
+		type: ExamsType;
+		daysAgo?: number;
+		grade?: number;
+		link?: string;
 		maxGrade?: number;
 	}
 
 	interface Props {
 		title: string;
 		description?: string;
-		exams: {
-			listeningExam: Exam;
-			readingExam: Exam;
-			writingExam: Exam;
-		};
+		exams: Array<Exam>;
 	}
+
+	const examsLinks = {
+		listeningExam: '/listening-exam',
+		readingExam: '/reading-exam',
+		writingExam: '/writing-exam'
+	};
 
 	const { exams, title, description }: Props = $props();
 
@@ -29,24 +33,30 @@
 
 <FrameCard {title} {description}>
 	<div class={bem('container')}>
-		{#each Object.entries(exams) as [examType, exam]}
+		{#each exams as { type, daysAgo, grade, link, maxGrade }}
 			<div class={bem('current-exam')}>
 				<div class={bem('text-container')}>
 					<h3 class={bem('exam-title')}>
-						{m[`recentExams.${examType}.title`]()}
+						{m[`recentExams.${type}.title`]()}
 					</h3>
 					<div class={bem('info')}>
 						<span class={bem('date')}>
-							{m['recentExams.daysAgo']({ days: exam.daysAgo })}
+							{#if Number.isInteger(daysAgo)}
+								{daysAgo === 0 ? m['recentExams.today']() : m['recentExams.daysAgo']({ days: daysAgo })}
+							{:else}
+								{m['recentExams.emptyExam']()}
+							{/if}
 						</span>
-						<a class={bem('exam-link')} href={exam.link}>
-							{m['recentExams.viewExamLabel']()}
+						<a class={bem('exam-link')} href={link || examsLinks[type]}>
+							{link ? m['recentExams.viewExamLabel']() : m['recentExams.startExam']()}
 						</a>
 					</div>
 				</div>
-				<span class={bem('exam-result')}>
-					{`${exam.grade}/${exam.maxGrade || MAX_GRADE_DEFAULT}`}
-				</span>
+				{#if grade}
+					<span class={bem('exam-result')}>
+						{`${grade}/${maxGrade || MAX_GRADE_DEFAULT}`}
+					</span>
+				{/if}
 			</div>
 		{/each}
 	</div>
