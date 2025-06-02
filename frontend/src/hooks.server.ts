@@ -82,6 +82,7 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	];
 	const allowedPrivateRoutes = [
 		'/dashboard',
+		'/exam-history',
 		'/comprehension-orale',
 		'/comprehension-ecrite',
 		'/exams/listening-comprehension',
