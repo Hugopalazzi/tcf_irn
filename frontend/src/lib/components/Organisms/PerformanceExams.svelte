@@ -15,7 +15,7 @@
 
 	const bem = createBEM('performance');
 
-	let chart: Chart<keyof ChartTypeRegistry> | null = $state(null);
+	let chart: Chart<keyof ChartTypeRegistry> | null = null;
 	let canvasElement: HTMLCanvasElement;
 	const xValues = [
 		m['days.monday'](),
@@ -93,7 +93,7 @@
 			chart.update();
 		}
 	};
-	
+
 	let dropdownButtonLabel = $state(m['recentExams.listeningExam.title']());
 </script>
 
