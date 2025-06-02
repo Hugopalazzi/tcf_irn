@@ -150,7 +150,10 @@
 		"title": "Examens récents",
 		"description": "Résumé de vos derniers examens",
 		"viewExamLabel": "Voir l'examen",
-		"daysAgo": "Il y a {days} jours",
+		"daysAgo": "Il y a {days} jour(s)",
+		"today"	: "Aujourd'hui",
+		"emptyExam": "Vous n'avez pas encore passé d'examen",
+		"startExam": "Commencer un examen",
 		"listeningExam": {
 			"title": "Compréhension orale"
 		},
