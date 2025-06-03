@@ -84,6 +84,8 @@ const authGuard: Handle = async ({ event, resolve }) => {
 		'/dashboard',
 		'/comprehension-orale',
 		'/comprehension-ecrite',
+		'/exams/listening-comprehension',
+		'/exams/listening-comprehension/[uuid]',
 		'/expression-ecrite',
 		'/logout',
 		'/confirmation-email',
