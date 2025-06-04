@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PolygonBottomIcon from '@tcf/lib/components/Icons/PolygonBottomIcon.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import type { AriaAttributes, AriaRole } from 'svelte/elements';
+	import type { AriaAttributes } from 'svelte/elements';
 	import Button from './Button.svelte';
 
 	const ColorsEnum = {
@@ -16,17 +16,15 @@
 	type Props = {
 		color: ColorType;
 		items: { label: string; onClick: () => void }[];
-		submitting?: boolean;
 		label?: string;
-		role?: AriaRole;
 		ariaAttributes?: AriaAttributes;
 		extraClass?: string;
 		disabled?: boolean;
 	};
 
-	const { color, submitting = $bindable(false), ariaAttributes, label, items, role, extraClass, disabled }: Props = $props();
+	const { color, ariaAttributes, label, items, extraClass, disabled }: Props = $props();
 
-	const bem = createBEM('dropdown-button');
+	const bem = createBEM('dropdown');
 
 	let open = $state(false);
 
@@ -49,7 +47,6 @@
 		{label}
 		onClick={() => toggle()}
 		{disabled}
-		{role}
 		{extraClass}
 		Icon={PolygonBottomIcon} />
 	{#if open}
@@ -64,20 +61,13 @@
 </div>
 
 <style lang="scss">
-	.dropdown-button {
-		padding: rem(12) rem(20);
-		border-radius: rem(174);
-		justify-content: center;
-		align-items: center;
-		gap: rem(8);
-		display: flex;
-		background-color: none;
-		font-size: rem(12);
-		font-weight: 700;
-		line-height: rem(20);
-
+	.dropdown {
 		&__wrapper {
 			position: relative;
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+			max-height: 44px;
 		}
 
 		&--color {
@@ -113,10 +103,10 @@
 			gap: rem(4);
 		}
 		&__menu {
-			position: absolute;
-			right: 0;
-			top: 100%;
-			margin-top: rem(4);
+			position: relative;
+			z-index: 2;
+			margin: 0;
+			text-align: center;
 			background-color: white;
 			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 			border-radius: rem(6);
@@ -127,7 +117,15 @@
 		&__item {
 			white-space: nowrap;
 			font-weight: 600;
-			padding: 0.5rem;
+			padding: rem(12) rem(20);
+		}
+	}
+
+	@media (min-width: $breakpoint-tablet) {
+		.dropdown {
+			&__menu {
+				text-align: left;
+			}
 		}
 	}
 </style>
