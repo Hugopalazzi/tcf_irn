@@ -3,7 +3,7 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
 	import { Chart, type ChartTypeRegistry } from 'chart.js/auto';
-	import DropdownButton from '@tcf/lib/components/Atoms/DropdownButton.svelte';
+	import Dropdown from '@tcf/lib/components/Atoms/Dropdown.svelte';
 
 	interface Props {
 		title: string;
@@ -118,7 +118,7 @@
 
 <FrameCard {title} {description}>
 	{#snippet button()}
-		<DropdownButton color="tertiary" label={dropdownButtonLabel} {items} />
+		<Dropdown color="tertiary" label={dropdownButtonLabel} {items} />
 	{/snippet}
 	<div class={bem('chart-container')}>
 		<canvas bind:this={canvasElement} class={bem('chart')}></canvas>

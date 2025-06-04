@@ -44,7 +44,9 @@
 
 		&__btn-heading-container {
 			display: flex;
+			flex-direction: column;
 			justify-content: space-between;
+			gap: 8px;
 			width: 100%;
 		}
 
@@ -84,6 +86,14 @@
 			&__title {
 				font-size: rem(20);
 				line-height: rem(24);
+			}
+		}
+	}
+
+	@media (min-width: $breakpoint-tablet) {
+		.frame {
+			&__btn-heading-container {
+				flex-direction: row;
 			}
 		}
 	}

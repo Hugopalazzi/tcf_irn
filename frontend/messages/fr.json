@@ -173,7 +173,7 @@
 	},
 	"performance": {
 		"title": "Aperçu des performances",
-		"description": "Progression des examens au cours du temps"
+		"description": "Progression au cours du temps"
 	},
 	"days": {
 		"monday": "Lundi",
