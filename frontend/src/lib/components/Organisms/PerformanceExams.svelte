@@ -2,7 +2,6 @@
 	import { m } from '$lib/paraglide/messages.js';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
-	import { onMount } from 'svelte';
 	import { Chart, type ChartTypeRegistry } from 'chart.js/auto';
 	import DropdownButton from '@tcf/lib/components/Atoms/DropdownButton.svelte';
 
