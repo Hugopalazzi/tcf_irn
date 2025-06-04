@@ -11,14 +11,14 @@
 		color: ColorsType;
 		submitting?: boolean;
 		label?: string;
-		icon?: Component;
+		Icon?: Component<any>;
 		role?: AriaRole;
 		ariaAttributes?: AriaAttributes;
 		extraClass?: string;
 		disabled?: boolean;
 	};
 
-	const { color, submitting = $bindable(false), ariaAttributes, label, onClick, icon, role, extraClass, disabled }: Props = $props();
+	const { color, submitting = $bindable(false), ariaAttributes, label, onClick, Icon, role, extraClass, disabled }: Props = $props();
 
 	const onKeyDown = (event: KeyboardEvent) => {
 		if (event.code === 'Space' && role === 'link') {
@@ -35,14 +35,14 @@
 	onclick={onClick}
 	onkeydown={onKeyDown}
 	{disabled}>
-	{#if icon}
-		{icon}
-	{/if}
 	{#if label}
-		<span class={bem('label')}>
-			{#if submitting}<LoadingIcon spinning={true} />{/if}
-			{label}
-		</span>
+	<span class={bem('label')}>
+		{#if submitting}<LoadingIcon spinning={true} />{/if}
+		{label}
+	</span>
+	{/if}
+	{#if Icon}
+		<Icon />
 	{/if}
 </button>
 
@@ -68,6 +68,11 @@
 			&_secondary {
 				background-color: #e9e7ef;
 				color: #1e0c5b;
+			}
+
+			&_tertiary {
+				background: #a3e7fc;
+				color: #000;
 			}
 
 			&_error {

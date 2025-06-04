@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { mergeClassNames } from '@tcf/lib/helpers/mergeClassNames';
-	import type { Component } from 'svelte';
-	import type { AriaAttributes, AriaRole } from 'svelte/elements';
-	import LoadingIcon from '@tcf/lib/components/Icons/LoadingIcon.svelte';
 	import PolygonBottomIcon from '@tcf/lib/components/Icons/PolygonBottomIcon.svelte';
+	import { createBEM } from '@tcf/lib/helpers/bemHelper';
+	import type { AriaAttributes, AriaRole } from 'svelte/elements';
+	import Button from './Button.svelte';
 
 	const ColorsEnum = {
 		PRIMARY: 'primary',
@@ -20,20 +18,14 @@
 		items: { label: string; onClick: () => void }[];
 		submitting?: boolean;
 		label?: string;
-		icon?: Component;
 		role?: AriaRole;
 		ariaAttributes?: AriaAttributes;
 		extraClass?: string;
 		disabled?: boolean;
 	};
 
-	const { color, submitting = $bindable(false), ariaAttributes, label, items, icon, role, extraClass, disabled }: Props = $props();
+	const { color, submitting = $bindable(false), ariaAttributes, label, items, role, extraClass, disabled }: Props = $props();
 
-	const onKeyDown = (event: KeyboardEvent) => {
-		if (event.code === 'Space' && role === 'link') {
-			event.preventDefault();
-		}
-	};
 	const bem = createBEM('dropdown-button');
 
 	let open = $state(false);
@@ -46,29 +38,22 @@
 		action();
 		open = false;
 	};
+
+	const uuid = $props.id();
 </script>
 
 <div class={bem('wrapper')}>
-	<button
-		class={mergeClassNames(bem('', { color }), extraClass)}
-		role={role ?? 'button'}
-		{...ariaAttributes}
-		onclick={toggle}
-		onkeydown={onKeyDown}
-		{disabled}>
-		{#if icon}
-			{icon}
-		{/if}
-		{#if label}
-			<span class={bem('label')}>
-				{#if submitting}<LoadingIcon spinning={true} />{/if}
-				{label}
-			</span>
-			<PolygonBottomIcon />
-		{/if}
-	</button>
+	<Button
+		{color}
+		ariaAttributes={{ 'aria-expanded': open, 'aria-controls': `dropdown-menu-${uuid}`, ...ariaAttributes }}
+		{label}
+		onClick={() => toggle()}
+		{disabled}
+		{role}
+		{extraClass}
+		Icon={PolygonBottomIcon} />
 	{#if open}
-		<ul class={bem('menu')}>
+		<ul id="dropdown-menu-{uuid}" class={bem('menu')}>
 			{#each items as item}
 				<li>
 					<button onclick={() => handleItemClick(item.onClick)} class={bem('item')}>{item.label}</button>
