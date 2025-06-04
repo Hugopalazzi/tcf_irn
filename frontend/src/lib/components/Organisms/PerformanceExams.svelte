@@ -17,7 +17,7 @@
 
 	let chart: Chart<keyof ChartTypeRegistry> | null = null;
 	let canvasElement: HTMLCanvasElement;
-	const xValues = [
+	const days = [
 		m['days.monday'](),
 		m['days.tuesday'](),
 		m['days.wednesday'](),
@@ -39,7 +39,7 @@
 		chart = new Chart(canvasElement, {
 			type: 'line',
 			data: {
-				labels: xValues,
+				labels: days,
 				datasets: [
 					{
 						data: mockLastWeekResult.listening,
