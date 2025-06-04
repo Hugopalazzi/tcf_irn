@@ -1,9 +1,14 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import Link from '@tcf/lib/components/Atoms/Link.svelte';
+	import ProgressBar from '@tcf/lib/components/Atoms/ProgressBar.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { m } from '$lib/paraglide/messages.js';
 	import { t } from '@tcf/lib/helpers/tHelper';
+	import { ColorsEnum } from '@tcf/models/colors';
+	import { statusCodeEnum } from '@tcf/models/exams';
 
 	type Exam = {
+		id: string;
 		type: string;
 		date: string;
 		score: string;
@@ -11,7 +16,6 @@
 		duration: string;
 		statusCode: string;
 		progress: number;
-		actions: string[];
 	};
 
 	interface ExamsTableProps {
@@ -21,24 +25,30 @@
 	const { examData }: ExamsTableProps = $props();
 
 	const bem = createBEM('exams-table');
+
+	const onClickRetake = (event: MouseEvent | undefined, examType: string, examId: string) => {
+		event?.preventDefault();
+		//TODO: Remove all answers on these exam for the current user
+		goto(`/exams/${examType}/${examId}`);
+	};
 </script>
 
 <div class="table-wrapper">
-	<table summary={m['examHistoryPage.card.description']()} class={bem()}>
+	<table summary={t('examHistoryPage.card.description')} class={bem()}>
 		<thead class={bem('head')}>
 			<tr>
-				<th scope="col" class={bem('head-cell')}>Examen</th>
-				<th scope="col" class={bem('head-cell')}>Date</th>
-				<th scope="col" class={bem('head-cell')}>Score</th>
-				<th scope="col" class={bem('head-cell')}>Catégorie</th>
-				<th scope="col" class={bem('head-cell')}>Temps</th>
-				<th scope="col" class={bem('head-cell')}>Status</th>
-				<th scope="col" class={bem('head-cell')}>Progrès</th>
+				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.examLabel')}</th>
+				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.dateLabel')}</th>
+				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.scoreLabel')}</th>
+				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.categoryLabel')}</th>
+				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.timeLabel')}</th>
+				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.statusLabel')}</th>
+				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.progressLabel')}</th>
 				<th scope="col" class={bem('head-cell')}></th>
 			</tr>
 		</thead>
 		<tbody class={bem('body')}>
-			{#each examData as { type, date, score, level, duration, statusCode, progress, actions }, i}
+			{#each examData as { id, type, date, score, level, duration, statusCode, progress }, i}
 				{@const isPair = i % 2 == 0}
 				<tr class={bem('row')}>
 					<th scope="row" class={bem('cell', { shadowed: isPair })}>{t(type)}</th>
@@ -48,12 +58,25 @@
 					<td class={bem('cell', { shadowed: isPair })}>{duration}</td>
 					<td class={bem('cell', { shadowed: isPair })}>{t(`status.${statusCode}`)}</td>
 					<td class={bem('cell', { shadowed: isPair })}>
-						<div class="progress-bar" style="width: {progress}%;">{progress}%</div>
+						<div class={bem('progress-bar-container')}>
+							<ProgressBar {progress} />
+							<div class="progress-bar" style="width: {progress}%;">{progress}%</div>
+						</div>
 					</td>
 					<td class={bem('cell', { shadowed: isPair })}>
-						{#each actions as action}
-							<button class="action-button">{action}</button>
-						{/each}
+						{#if statusCode === statusCodeEnum.COMPLETED}
+							<div class={bem('links-container')}>
+								<Link color={ColorsEnum.PRIMARY} url={`/exams/${type}/${id}`} label={t('examHistoryPage.links.results')} extraClass={bem('link')} />
+								<Link
+									color={ColorsEnum.SECONDARY}
+									url={`/exams/${type}/${id}`}
+									label={t('examHistoryPage.links.retry')}
+									extraClass={bem('link')}
+									onClick={(event) => onClickRetake(event, type, id)} />
+							</div>
+						{:else if statusCode === statusCodeEnum.PENDING}
+							<Link color={ColorsEnum.PRIMARY} url={`/exams/${type}/${id}`} label={t('examHistoryPage.links.continue')} extraClass={bem('link')} />
+						{/if}
 					</td>
 				</tr>
 			{/each}
@@ -95,6 +118,10 @@
 
 		&__head-cell {
 			padding: 12px;
+			color: #121926;
+			font-size: 12px;
+			font-weight: 500;
+			line-height: 16px;
 		}
 
 		&__row {
@@ -120,6 +147,17 @@
 			&--shadowed {
 				box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.08);
 			}
+		}
+
+		&__links-container {
+			display: flex;
+			gap: 4px;
+		}
+
+		&__progress-bar-container {
+			display: flex;
+			align-items: center;
+			gap: 12px;
 		}
 	}
 

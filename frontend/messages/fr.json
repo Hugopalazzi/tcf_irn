@@ -182,6 +182,22 @@
 		"card": {
 			"title": "Historique des examens ({number})",
 			"description": "Consultez vos résultats d'examen passés, regardez vos bonne réponses et vos erreurs, et recommencez les examens pour vous améliorer"
+		},
+		"links": {
+			"results": "Résultats",
+			"retry": "Recommencer",
+			"continue": "Reprendre"
+		}
+	},
+	"examsTable": {
+		"head": {
+			"examLabel": "Examen",
+			"dateLabel": "Date",
+			"scoreLabel": "Score",
+			"categoryLabel": "Catégorie",
+			"timeLabel": "Temps",
+			"statusLabel": "Status",
+			"progressLabel": "Progrès"
 		}
 	},
 	"experience": {

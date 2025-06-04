@@ -1,53 +1,38 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { mergeClassNames } from '@tcf/lib/helpers/mergeClassNames';
+	import type { ColorsType } from '@tcf/models/colors';
 	import type { Component } from 'svelte';
 	import type { AriaAttributes, AriaRole } from 'svelte/elements';
-	import LoadingIcon from '@tcf/lib/components/Icons/LoadingIcon.svelte';
-	import type { ColorsType } from '@tcf/models/colors';
 
 	type Props = {
-		onClick: () => void;
 		color: ColorsType;
+		url: string;
 		submitting?: boolean;
 		label?: string;
 		icon?: Component;
 		role?: AriaRole;
 		ariaAttributes?: AriaAttributes;
 		extraClass?: string;
-		disabled?: boolean;
+		onClick?: (event?: MouseEvent | undefined) => void;
 	};
 
-	const { color, submitting = $bindable(false), ariaAttributes, label, onClick, icon, role, extraClass, disabled }: Props = $props();
+	const { color, submitting = $bindable(false), ariaAttributes, label, onClick, icon, extraClass, url }: Props = $props();
 
-	const onKeyDown = (event: KeyboardEvent) => {
-		if (event.code === 'Space' && role === 'link') {
-			event.preventDefault();
-		}
-	};
-	const bem = createBEM('button');
+	const bem = createBEM('link');
 </script>
 
-<button
-	class={mergeClassNames(bem('', { color }), extraClass)}
-	role={role ?? 'button'}
-	{...ariaAttributes}
-	onclick={onClick}
-	onkeydown={onKeyDown}
-	{disabled}>
+<a class={mergeClassNames(bem('', { color }), extraClass)} {...ariaAttributes} onclick={onClick} href={url}>
 	{#if icon}
 		{icon}
 	{/if}
 	{#if label}
-		<span class={bem('label')}>
-			{#if submitting}<LoadingIcon spinning={true} />{/if}
-			{label}
-		</span>
+		{label}
 	{/if}
-</button>
+</a>
 
 <style lang="scss">
-	.button {
+	.link {
 		padding: rem(12) rem(20);
 		border-radius: rem(174);
 		justify-content: center;
@@ -58,6 +43,15 @@
 		font-size: rem(14);
 		font-weight: 700;
 		line-height: rem(20);
+		width: fit-content;
+
+		&.exams-table__link {
+			padding: rem(8) rem(16);
+			max-height: rem(32);
+			font-size: rem(12);
+			font-weight: 700;
+			line-height: rem(12);
+		}
 
 		&--color {
 			&_primary {
@@ -74,17 +68,11 @@
 				background-color: #f14336;
 				color: #ffffff;
 			}
-		}
 
-		&:disabled {
-			background-color: #f1f1f1;
-			color: gray; //TODO: waiting for color code from designer
-		}
-
-		&__label {
-			display: flex;
-			place-items: center;
-			gap: rem(4);
+			&_green{
+				background: #9CFFB8;
+				color: #000000;
+			}
 		}
 	}
 </style>

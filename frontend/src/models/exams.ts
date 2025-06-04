@@ -6,6 +6,11 @@ export const examsEnum = {
     WRITING_EXAM: 'writing-exam',
 } as const;
 
+export const statusCodeEnum = {
+	PENDING : 'pending',
+	COMPLETED : 'completed'
+} as const;
+
 export type ExamsType = (typeof examsEnum)[keyof typeof examsEnum];
 
 export const examLevelEnum = {
