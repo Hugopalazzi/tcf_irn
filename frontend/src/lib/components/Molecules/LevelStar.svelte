@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { examComplexityLabels, examStarNumber, type ExamComplexityType } from '@tcf/models/exams';
+	import { examStarNumber, type ExamLevelType } from '@tcf/models/exams';
 	import StarIcon from '@tcf/lib/components/Icons/StarIcon.svelte';
 	import { m } from '$lib/paraglide/messages.js';
 
-	let { difficulty }: { difficulty: ExamComplexityType } = $props();
+	let { difficulty }: { difficulty: ExamLevelType } = $props();
 	const bem = createBEM('level-star');
 </script>
 
 <div class={bem()}>
 	<div>
-		<p class="{bem('level')} level--{difficulty}">{examComplexityLabels[difficulty]}</p>
+		<p class="{bem('level')} level--{difficulty}">{m[`experience.${difficulty}`]()}</p>
 		{#each { length: examStarNumber[difficulty] } as _}
 			<StarIcon />
 		{/each}

@@ -8,24 +8,16 @@ export const examsEnum = {
 
 export type ExamsType = (typeof examsEnum)[keyof typeof examsEnum];
 
-export const examComplexityEnum = {
+export const examLevelEnum = {
 	EASY: 'easy',
 	INTERMEDIATE: 'intermediate',
 	ADVANCED: 'advanced',
 	HARD: 'hard',
 	EXPERT: 'expert'
 } as const;
-export type ExamComplexityType = (typeof examComplexityEnum)[keyof typeof examComplexityEnum];
+export type ExamLevelType = (typeof examLevelEnum)[keyof typeof examLevelEnum];
 
-export const examComplexityLabels: Record<ExamComplexityType, string> = {
-	easy: m['experience.easy'](),
-	intermediate: m['experience.intermediate'](),
-	advanced: m['experience.advanced'](),
-	hard: m['experience.hard'](),
-	expert: m['experience.expert']()
-};
-
-export const examStarNumber: Record<ExamComplexityType, number> = {
+export const examStarNumber: Record<ExamLevelType, number> = {
 	easy: 1,
 	intermediate: 2,
 	advanced: 3,
@@ -33,4 +25,4 @@ export const examStarNumber: Record<ExamComplexityType, number> = {
 	expert: 5
 };
 
-export type Exam = { uuid: string; title: string; difficulty: ExamComplexityType };
+export type Exam = { uuid: string; title: string; difficulty: ExamLevelType };
