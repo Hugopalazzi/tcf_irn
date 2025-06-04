@@ -33,58 +33,58 @@
 		writing: [9, 10, 14, 2, 8, 13, 0]
 	};
 
-	onMount(() => {
-		if (chart) chart.destroy();
-
-		chart = new Chart(canvasElement, {
-			type: 'line',
-			data: {
-				labels: days,
-				datasets: [
-					{
-						data: mockLastWeekResult.listening,
-						borderColor: '#1E0C5B',
-						borderWidth: 5,
-						pointRadius: 0,
-						fill: false,
-						tension: 0.4
-					}
-				]
-			},
-			options: {
-				responsive: true,
-				maintainAspectRatio: false,
-				scales: {
-					y: {
-						min: 0,
-						max: 20,
-						ticks: {
-							stepSize: 5,
-							font: {
-								weight: 'bold'
+	$effect(() => {
+		if (canvasElement && !chart) {
+			chart = new Chart(canvasElement, {
+				type: 'line',
+				data: {
+					labels: days,
+					datasets: [
+						{
+							data: mockLastWeekResult.listening,
+							borderColor: '#1E0C5B',
+							borderWidth: 5,
+							pointRadius: 0,
+							fill: false,
+							tension: 0.4
+						}
+					]
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					scales: {
+						y: {
+							min: 0,
+							max: 20,
+							ticks: {
+								stepSize: 5,
+								font: {
+									weight: 'bold'
+								},
+								color: '#000'
+							}
+						},
+						x: {
+							grid: {
+								display: false
 							},
-							color: '#000'
+							ticks: {
+								font: {
+									weight: 'bold'
+								},
+								color: '#000'
+							}
 						}
 					},
-					x: {
-						grid: {
+					plugins: {
+						legend: {
 							display: false
-						},
-						ticks: {
-							font: {
-								weight: 'bold'
-							},
-							color: '#000'
 						}
 					}
-				},
-				plugins: {
-					legend: {
-						display: false
-					}
 				}
-			}
-		});
+			});
+		}
 	});
 
 	const updateChart = (data: number[]) => {
