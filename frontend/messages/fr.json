@@ -151,7 +151,7 @@
 		"description": "Résumé de vos derniers examens",
 		"viewExamLabel": "Voir l'examen",
 		"daysAgo": "Il y a {days} jour(s)",
-		"today"	: "Aujourd'hui",
+		"today": "Aujourd'hui",
 		"emptyExam": "Vous n'avez pas encore passé d'examen",
 		"startExam": "Commencer un examen",
 		"listeningExam": {
@@ -167,5 +167,13 @@
 	"performance": {
 		"title": "Aperçu des performances",
 		"description": "Progression des examens au cours du temps"
-	}
+	},
+	"experience": {
+		"easy": "Facile",
+		"intermediate": "Intermédiaire",
+		"advanced": "Avancé",
+		"hard": "Difficile",
+		"expert": "Expert"
+	},
+	"start": "commencer"
 }
