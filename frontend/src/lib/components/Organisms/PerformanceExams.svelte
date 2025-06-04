@@ -26,10 +26,10 @@
 		m['days.sunday']()
 	];
 
-	const mockLastWeekResult: Record<'reading' | 'listening' | 'writing', number[]> = {
-		reading: [12, 14.5, 15, 0, 0, 10, 14],
-		listening: [2, 1, 19, 2, 1, 3, 5],
-		writing: [9, 10, 14, 2, 8, 13, 0]
+	const mockLastWeekResult: Record<'readingExam' | 'listeningExam' | 'writingExam', number[]> = {
+		readingExam: [12, 14.5, 15, 0, 0, 10, 14],
+		listeningExam: [2, 1, 19, 2, 1, 3, 5],
+		writingExam: [9, 10, 14, 2, 8, 13, 0]
 	};
 
 	$effect(() => {
@@ -40,7 +40,7 @@
 					labels: days,
 					datasets: [
 						{
-							data: mockLastWeekResult.listening,
+							data: mockLastWeekResult.listeningExam,
 							borderColor: '#1E0C5B',
 							borderWidth: 5,
 							pointRadius: 0,
@@ -94,36 +94,31 @@
 	};
 
 	let dropdownButtonLabel = $state(m['recentExams.listeningExam.title']());
+
+	const onClick = (examType: 'listeningExam' | 'readingExam' | 'writingExam') => {
+		dropdownButtonLabel = m[`recentExams.${examType}.title`]();
+		updateChart(mockLastWeekResult[examType]);
+	};
+
+	const items = [
+		{
+			label: m['recentExams.listeningExam.title'](),
+			onClick: () => onClick('listeningExam')
+		},
+		{
+			label: m['recentExams.readingExam.title'](),
+			onClick: () => onClick('readingExam')
+		},
+		{
+			label: m['recentExams.writingExam.title'](),
+			onClick: () => onClick('writingExam')
+		}
+	];
 </script>
 
 <FrameCard {title} {description}>
 	{#snippet button()}
-		<DropdownButton
-			color="tertiary"
-			label={dropdownButtonLabel}
-			items={[
-				{
-					label: m['recentExams.listeningExam.title'](),
-					onClick: () => {
-						dropdownButtonLabel = m['recentExams.listeningExam.title']();
-						updateChart(mockLastWeekResult.listening);
-					}
-				},
-				{
-					label: m['recentExams.readingExam.title'](),
-					onClick: () => {
-						dropdownButtonLabel = m['recentExams.readingExam.title']();
-						updateChart(mockLastWeekResult.reading);
-					}
-				},
-				{
-					label: m['recentExams.writingExam.title'](),
-					onClick: () => {
-						dropdownButtonLabel = m['recentExams.writingExam.title']();
-						updateChart(mockLastWeekResult.writing);
-					}
-				}
-			]} />
+		<DropdownButton color="tertiary" label={dropdownButtonLabel} {items} />
 	{/snippet}
 	<div class={bem('chart-container')}>
 		<canvas bind:this={canvasElement} class={bem('chart')}></canvas>
