@@ -97,28 +97,34 @@
 
 	const onClick = (examType: 'listeningExam' | 'readingExam' | 'writingExam') => {
 		dropdownButtonLabel = m[`recentExams.${examType}.title`]();
+		selectedItemId = examType;
 		updateChart(mockLastWeekResult[examType]);
 	};
 
 	const items = [
 		{
+			id: 'listeningExam',
 			label: m['recentExams.listeningExam.title'](),
 			onClick: () => onClick('listeningExam')
 		},
 		{
+			id: 'readingExam',
 			label: m['recentExams.readingExam.title'](),
 			onClick: () => onClick('readingExam')
 		},
 		{
+			id: 'writingExam',
 			label: m['recentExams.writingExam.title'](),
 			onClick: () => onClick('writingExam')
 		}
 	];
+
+	let selectedItemId = $state('listeningExam');
 </script>
 
 <FrameCard {title} {description}>
 	{#snippet button()}
-		<Dropdown color="tertiary" label={dropdownButtonLabel} {items} />
+		<Dropdown color="tertiary" bind:selectedItemId label={dropdownButtonLabel} {items} />
 	{/snippet}
 	<div class={bem('chart-container')}>
 		<canvas bind:this={canvasElement} class={bem('chart')}></canvas>

@@ -15,14 +15,15 @@
 
 	type Props = {
 		color: ColorType;
-		items: { label: string; onClick: () => void }[];
+		items: { id: string; label: string; onClick: () => void }[];
+		selectedItemId: string;
 		label?: string;
 		ariaAttributes?: AriaAttributes;
 		extraClass?: string;
 		disabled?: boolean;
 	};
 
-	const { color, ariaAttributes, label, items, extraClass, disabled }: Props = $props();
+	const { color, ariaAttributes, label, items, selectedItemId = $bindable(), extraClass, disabled }: Props = $props();
 
 	const bem = createBEM('dropdown');
 
@@ -48,10 +49,11 @@
 		onClick={() => toggle()}
 		{disabled}
 		{extraClass}
+		iconClass={open ? 'icon-rotate' : ''}
 		Icon={PolygonBottomIcon} />
 	{#if open}
 		<ul id="dropdown-menu-{uuid}" class={bem('menu')}>
-			{#each items as item}
+			{#each items.filter((item) => item.id !== selectedItemId) as item}
 				<li>
 					<button onclick={() => handleItemClick(item.onClick)} class={bem('item')}>{item.label}</button>
 				</li>

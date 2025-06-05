@@ -12,13 +12,14 @@
 		submitting?: boolean;
 		label?: string;
 		Icon?: Component<any>;
+		iconClass?: string;
 		role?: AriaRole;
 		ariaAttributes?: AriaAttributes;
 		extraClass?: string;
 		disabled?: boolean;
 	};
 
-	const { color, submitting = $bindable(false), ariaAttributes, label, onClick, Icon, role, extraClass, disabled }: Props = $props();
+	const { color, submitting = $bindable(false), ariaAttributes, label, onClick, Icon, iconClass, role, extraClass, disabled }: Props = $props();
 
 	const onKeyDown = (event: KeyboardEvent) => {
 		if (event.code === 'Space' && role === 'link') {
@@ -36,13 +37,15 @@
 	onkeydown={onKeyDown}
 	{disabled}>
 	{#if label}
-	<span class={bem('label')}>
-		{#if submitting}<LoadingIcon spinning={true} />{/if}
-		{label}
-	</span>
+		<span class={bem('label')}>
+			{#if submitting}<LoadingIcon spinning={true} />{/if}
+			{label}
+		</span>
 	{/if}
 	{#if Icon}
-		<Icon />
+		<div class="{bem('icon-wrapper')} {iconClass}">
+			<Icon />
+		</div>
 	{/if}
 </button>
 
@@ -90,6 +93,10 @@
 			display: flex;
 			place-items: center;
 			gap: rem(4);
+		}
+
+		&__icon-wrapper {
+			display: flex;
 		}
 	}
 </style>
