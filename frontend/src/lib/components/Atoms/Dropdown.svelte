@@ -3,27 +3,20 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import type { AriaAttributes } from 'svelte/elements';
 	import Button from './Button.svelte';
-
-	const ColorsEnum = {
-		PRIMARY: 'primary',
-		SECONDARY: 'secondary',
-		TERTIARY: 'tertiary',
-		ERROR: 'error'
-	} as const;
-
-	type ColorType = (typeof ColorsEnum)[keyof typeof ColorsEnum];
+	import type { ExamsType } from '@tcf/models/exams';
+	import { t } from '@tcf/lib/helpers/tHelper';
+	import type { ColorsType } from '@tcf/models/colors';
 
 	type Props = {
-		color: ColorType;
-		items: { id: string; label: string; onClick: () => void }[];
-		selectedItemId: string;
-		label?: string;
+		color: ColorsType;
+		items: { id: ExamsType; label: string; onClick: () => void }[];
+		selectedItemId: ExamsType;
 		ariaAttributes?: AriaAttributes;
 		extraClass?: string;
 		disabled?: boolean;
 	};
 
-	const { color, ariaAttributes, label, items, selectedItemId = $bindable(), extraClass, disabled }: Props = $props();
+	const { color, ariaAttributes, items, selectedItemId = $bindable(), extraClass, disabled }: Props = $props();
 
 	const bem = createBEM('dropdown');
 
@@ -45,7 +38,7 @@
 	<Button
 		{color}
 		ariaAttributes={{ 'aria-expanded': open, 'aria-controls': `dropdown-menu-${uuid}`, ...ariaAttributes }}
-		{label}
+		label={t(selectedItemId)}
 		onClick={() => toggle()}
 		{disabled}
 		{extraClass}
