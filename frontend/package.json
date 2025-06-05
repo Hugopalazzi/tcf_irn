@@ -2,6 +2,9 @@
 	"name": "frontend",
 	"version": "0.0.1",
 	"type": "module",
+	"engines": {
+		"node": ">=18"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "paraglide-js compile --project ./project.inlang && vite build",
@@ -48,8 +51,8 @@
 		"stripe": "^17.6.0",
 		"svelte-french-toast": "^1.2.0",
 		"svelte-hero-icons": "^5.2.0",
-		"sveltekit-superforms": "^2.20.1",
-		"zod": "^3.23.8",
+		"sveltekit-superforms": "^2.26.1",
+		"zod": "^3.25.51",
 		"@inlang/paraglide-js": "^2.0.0"
 	}
 }
