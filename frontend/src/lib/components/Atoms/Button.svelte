@@ -43,7 +43,7 @@
 		</span>
 	{/if}
 	{#if Icon}
-		<div class="{bem('icon-wrapper')} {iconClass}">
+		<div class={mergeClassNames(bem('icon-wrapper'), iconClass)}>
 			<Icon />
 		</div>
 	{/if}

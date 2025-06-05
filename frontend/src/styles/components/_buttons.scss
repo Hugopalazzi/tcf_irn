@@ -6,5 +6,9 @@
 }
 
 .icon-rotate {
+	transition: all 0.5s ease;
+}
+
+.icon-reverse {
 	rotate: 180deg;
 }
