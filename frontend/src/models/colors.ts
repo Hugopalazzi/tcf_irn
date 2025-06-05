@@ -1,6 +1,7 @@
 export const ColorsEnum = {
     PRIMARY: 'primary',
     SECONDARY: 'secondary',
+    TERTIARY: 'tertiary',
     GREEN: 'green',
     ERROR: 'error'
 } as const;

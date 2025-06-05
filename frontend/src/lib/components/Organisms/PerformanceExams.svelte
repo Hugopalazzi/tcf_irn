@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { m } from '$lib/paraglide/messages.js';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
 	import { Chart, type ChartTypeRegistry } from 'chart.js/auto';
 	import Dropdown from '@tcf/lib/components/Atoms/Dropdown.svelte';
+	import type { ExamsType } from '@tcf/models/exams';
+	import { t } from '@tcf/lib/helpers/tHelper';
 
 	interface Props {
 		title: string;
@@ -16,20 +17,12 @@
 
 	let chart: Chart<keyof ChartTypeRegistry> | null = null;
 	let canvasElement: HTMLCanvasElement;
-	const days = [
-		m['days.monday'](),
-		m['days.tuesday'](),
-		m['days.wednesday'](),
-		m['days.thursday'](),
-		m['days.friday'](),
-		m['days.saturday'](),
-		m['days.sunday']()
-	];
+	const days = [t('days.monday'), t('days.tuesday'), t('days.wednesday'), t('days.thursday'), t('days.friday'), t('days.saturday'), t('days.sunday')];
 
-	const mockLastWeekResult: Record<'readingExam' | 'listeningExam' | 'writingExam', number[]> = {
-		readingExam: [12, 14.5, 15, 0, 0, 10, 14],
-		listeningExam: [2, 1, 19, 2, 1, 3, 5],
-		writingExam: [9, 10, 14, 2, 8, 13, 0]
+	const mockLastWeekResult: Record<ExamsType, number[]> = {
+		'reading-exam': [12, 14.5, 15, 0, 0, 10, 14],
+		'listening-exam': [2, 1, 19, 2, 1, 3, 5],
+		'writing-exam': [9, 10, 14, 2, 8, 13, 0]
 	};
 
 	$effect(() => {
@@ -40,7 +33,7 @@
 					labels: days,
 					datasets: [
 						{
-							data: mockLastWeekResult.listeningExam,
+							data: mockLastWeekResult['listening-exam'],
 							borderColor: '#1E0C5B',
 							borderWidth: 5,
 							pointRadius: 0,
@@ -93,38 +86,35 @@
 		}
 	};
 
-	let dropdownButtonLabel = $state(m['recentExams.listeningExam.title']());
-
-	const onClick = (examType: 'listeningExam' | 'readingExam' | 'writingExam') => {
-		dropdownButtonLabel = m[`recentExams.${examType}.title`]();
+	const onClick = (examType: ExamsType) => {
 		selectedItemId = examType;
 		updateChart(mockLastWeekResult[examType]);
 	};
 
-	const items = [
+	const items: { id: ExamsType; label: string; onClick: () => void }[] = [
 		{
-			id: 'listeningExam',
-			label: m['recentExams.listeningExam.title'](),
-			onClick: () => onClick('listeningExam')
+			id: 'listening-exam' as ExamsType,
+			label: t('listening-exam'),
+			onClick: () => onClick('listening-exam')
 		},
 		{
-			id: 'readingExam',
-			label: m['recentExams.readingExam.title'](),
-			onClick: () => onClick('readingExam')
+			id: 'reading-exam' as ExamsType,
+			label: t('reading-exam'),
+			onClick: () => onClick('reading-exam')
 		},
 		{
-			id: 'writingExam',
-			label: m['recentExams.writingExam.title'](),
-			onClick: () => onClick('writingExam')
+			id: 'writing-exam' as ExamsType,
+			label: t('writing-exam'),
+			onClick: () => onClick('writing-exam')
 		}
 	];
 
-	let selectedItemId = $state('listeningExam');
+	let selectedItemId: ExamsType = $state('listening-exam');
 </script>
 
 <FrameCard {title} {description}>
 	{#snippet button()}
-		<Dropdown color="tertiary" bind:selectedItemId label={dropdownButtonLabel} {items} />
+		<Dropdown color="tertiary" bind:selectedItemId {items} />
 	{/snippet}
 	<div class={bem('chart-container')}>
 		<canvas bind:this={canvasElement} class={bem('chart')}></canvas>
