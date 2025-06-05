@@ -4,18 +4,11 @@
 	import type { Component } from 'svelte';
 	import type { AriaAttributes, AriaRole } from 'svelte/elements';
 	import LoadingIcon from '@tcf/lib/components/Icons/LoadingIcon.svelte';
-
-	const ColorsEnum = {
-		PRIMARY: 'primary',
-		SECONDARY: 'secondary',
-		ERROR: 'error'
-	} as const;
-
-	type ColorType = (typeof ColorsEnum)[keyof typeof ColorsEnum];
+	import type { ColorsType } from '@tcf/models/colors';
 
 	type Props = {
 		onClick: () => void;
-		color: ColorType;
+		color: ColorsType;
 		submitting?: boolean;
 		label?: string;
 		icon?: Component;

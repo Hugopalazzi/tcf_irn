@@ -37,7 +37,7 @@
 			<span>{m['experienceCard.xp']()}</span>
 			<span class={bem('max-percent')}>{maxExperience}</span>
 		</div>
-		<ProgressBar progress={(experience / maxExperience) * 100} />
+		<ProgressBar filledClass="secondary" emptyClass="opaque-white" progress={(experience / maxExperience) * 100} />
 	</div>
 </div>
 
