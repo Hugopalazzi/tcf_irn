@@ -50,20 +50,20 @@
 		<tbody class={bem('body')}>
 			{#each examData as { id, type, date, score, level, duration, statusCode, progress }, i}
 				{@const isPair = i % 2 == 0}
-				<tr class={bem('row')}>
-					<th scope="row" class={bem('cell', { shadowed: isPair })}>{t(type)}</th>
-					<td class={bem('cell', { shadowed: isPair })}>{date}</td>
-					<td class={bem('cell', { shadowed: isPair })}>{score}</td>
-					<td class={bem('cell', { shadowed: isPair })}>{level}</td>
-					<td class={bem('cell', { shadowed: isPair })}>{duration}</td>
-					<td class={bem('cell', { shadowed: isPair })}>{t(`status.${statusCode}`)}</td>
-					<td class={bem('cell', { shadowed: isPair })}>
+				<tr class={bem('row', { shadowed: isPair })}>
+					<th scope="row" class={bem('cell')}>{t(type)}</th>
+					<td class={bem('cell')}>{date}</td>
+					<td class={bem('cell')}>{score}</td>
+					<td class={bem('cell')}>{level}</td>
+					<td class={bem('cell')}>{duration}</td>
+					<td class={bem('cell')}>{t(`status.${statusCode}`)}</td>
+					<td class={bem('cell')}>
 						<div class={bem('progress-bar-container')}>
 							<ProgressBar {progress} />
 							<div class="progress-bar" style="width: {progress}%;">{progress}%</div>
 						</div>
 					</td>
-					<td class={bem('cell', { shadowed: isPair })}>
+					<td class={bem('cell')}>
 						{#if statusCode === statusCodeEnum.COMPLETED}
 							<div class={bem('links-container')}>
 								<Link color={ColorsEnum.PRIMARY} url={`/exams/${type}/${id}`} label={t('examHistoryPage.links.results')} extraClass={bem('link')} />
@@ -88,6 +88,8 @@
 	.table-wrapper {
 		overflow-x: auto;
 		width: 100%;
+		box-sizing: border-box;
+		padding: 0 12px;
 	}
 	.exams-table {
 		border-collapse: separate;
@@ -128,6 +130,9 @@
 			th,
 			td {
 				font-weight: 600;
+			}
+			&--shadowed {
+				box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.08);
 			}
 		}
 
