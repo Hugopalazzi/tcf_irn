@@ -13,7 +13,6 @@
 		date: string;
 		score: string;
 		level: string;
-		duration: string;
 		statusCode: string;
 		progress: number;
 	};
@@ -41,21 +40,19 @@
 				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.dateLabel')}</th>
 				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.scoreLabel')}</th>
 				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.categoryLabel')}</th>
-				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.timeLabel')}</th>
 				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.statusLabel')}</th>
 				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.progressLabel')}</th>
 				<th scope="col" class={bem('head-cell')}></th>
 			</tr>
 		</thead>
 		<tbody class={bem('body')}>
-			{#each examData as { id, type, date, score, level, duration, statusCode, progress }, i}
+			{#each examData as { id, type, date, score, level, statusCode, progress }, i}
 				{@const isPair = i % 2 == 0}
 				<tr class={bem('row', { shadowed: isPair })}>
 					<th scope="row" class={bem('cell')}>{t(type)}</th>
 					<td class={bem('cell')}>{date}</td>
 					<td class={bem('cell')}>{score}</td>
 					<td class={bem('cell')}>{level}</td>
-					<td class={bem('cell')}>{duration}</td>
 					<td class={bem('cell')}>{t(`status.${statusCode}`)}</td>
 					<td class={bem('cell')}>
 						<div class={bem('progress-bar-container')}>
@@ -119,7 +116,7 @@
 		}
 
 		&__head-cell {
-			padding: 12px;
+			padding: 8px;
 			color: #121926;
 			font-size: 12px;
 			font-weight: 500;
@@ -153,8 +150,12 @@
 		}
 	}
 
-	@media (min-width: 768px) {
+	@media (min-width: $breakpoint-desktop) {
 		.exams-table {
+			&__head-cell {
+				padding: 12px;
+			}
+
 			&__cell {
 				padding: 12px;
 			}

@@ -3,21 +3,19 @@
 	import { mergeClassNames } from '@tcf/lib/helpers/mergeClassNames';
 	import type { ColorsType } from '@tcf/models/colors';
 	import type { Component } from 'svelte';
-	import type { AriaAttributes, AriaRole } from 'svelte/elements';
+	import type { AriaAttributes } from 'svelte/elements';
 
 	type Props = {
 		color: ColorsType;
 		url: string;
-		submitting?: boolean;
 		label?: string;
 		icon?: Component;
-		role?: AriaRole;
 		ariaAttributes?: AriaAttributes;
 		extraClass?: string;
 		onClick?: (event?: MouseEvent | undefined) => void;
 	};
 
-	const { color, submitting = $bindable(false), ariaAttributes, label, onClick, icon, extraClass, url }: Props = $props();
+	const { color, ariaAttributes, label, onClick, icon, extraClass, url }: Props = $props();
 
 	const bem = createBEM('link');
 </script>
