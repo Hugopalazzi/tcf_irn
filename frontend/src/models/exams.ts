@@ -1,9 +1,14 @@
 import { m } from '$lib/paraglide/messages.js';
 
 export const examsEnum = {
-	LISTENING_EXAM: 'listeningExam',
-	READING_EXAM: 'readingExam',
-	WRITING_EXAM: 'writingExam'
+	LISTENING_EXAM: 'listening-exam',
+	READING_EXAM: 'reading-exam',
+    WRITING_EXAM: 'writing-exam',
+} as const;
+
+export const statusCodeEnum = {
+	PENDING : 'pending',
+	COMPLETED : 'completed'
 } as const;
 
 export type ExamsType = (typeof examsEnum)[keyof typeof examsEnum];

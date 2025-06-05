@@ -3,7 +3,7 @@
 	import { superFormDefaultConfig } from '@tcf/models/forms/commonSchema';
 	import { listeningComprehensionSchema } from '@tcf/models/forms/mcqSchema';
 	import { zod } from 'sveltekit-superforms/adapters';
-	import { superForm } from 'sveltekit-superforms/client';
+	import { superForm } from 'sveltekit-superforms';
 	import type { PageData } from './$types';
 	import BackButton from '@tcf/lib/components/Atoms/BackButton.svelte';
 	import { page } from '$app/state';

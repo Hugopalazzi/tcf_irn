@@ -1,4 +1,11 @@
 {
+	"listening-exam": "Compréhension orale",
+	"reading-exam": "Compréhension écrite",
+	"writing-exam": "Expression écrite",
+	"status": {
+		"pending": "En cours",
+		"completed": "Terminé"
+	},
 	"signUp": {
 		"success": "Votre compte a bien été créé. Veuillez verifier votre adresse mail"
 	},
@@ -152,21 +159,46 @@
 		"viewExamLabel": "Voir l'examen",
 		"daysAgo": "Il y a {days} jour(s)",
 		"today": "Aujourd'hui",
+		"today": "Aujourd'hui",
 		"emptyExam": "Vous n'avez pas encore passé d'examen",
 		"startExam": "Commencer un examen",
-		"listeningExam": {
+		"listening-exam": {
 			"title": "Compréhension orale"
 		},
-		"readingExam": {
+		"reading-exam": {
 			"title": "Compréhension écrite"
 		},
-		"writingExam": {
+		"writing-exam": {
 			"title": "Expression écrite"
 		}
 	},
 	"performance": {
 		"title": "Aperçu des performances",
 		"description": "Progression des examens au cours du temps"
+	},
+	"examHistoryPage": {
+		"title": "Examens",
+		"description": "Prépare toi pour le TEF - C'est parti !",
+		"card": {
+			"title": "Historique des examens ({number})",
+			"description": "Consultez vos résultats d'examen passés, regardez vos bonne réponses et vos erreurs, et recommencez les examens pour vous améliorer"
+		},
+		"links": {
+			"results": "Résultats",
+			"retry": "Recommencer",
+			"continue": "Reprendre"
+		}
+	},
+	"examsTable": {
+		"head": {
+			"examLabel": "Examen",
+			"dateLabel": "Date",
+			"scoreLabel": "Score",
+			"categoryLabel": "Catégorie",
+			"timeLabel": "Temps",
+			"statusLabel": "Status",
+			"progressLabel": "Progrès"
+		}
 	},
 	"experience": {
 		"easy": "Facile",
