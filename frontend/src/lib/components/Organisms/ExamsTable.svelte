@@ -132,26 +132,13 @@
 				font-weight: 600;
 			}
 			&--shadowed {
+				border-radius: 10px;
 				box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.08);
 			}
 		}
 
 		&__cell {
 			padding: 8px;
-
-			&:first-child {
-				border-top-left-radius: 10px;
-				border-bottom-left-radius: 10px;
-			}
-
-			&:last-child {
-				border-top-right-radius: 10px;
-				border-bottom-right-radius: 10px;
-			}
-
-			&--shadowed {
-				box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.08);
-			}
 		}
 
 		&__links-container {
