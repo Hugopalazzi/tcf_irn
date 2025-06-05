@@ -3,20 +3,21 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import type { AriaAttributes } from 'svelte/elements';
 	import Button from './Button.svelte';
-	import type { ExamsType } from '@tcf/models/exams';
 	import { t } from '@tcf/lib/helpers/tHelper';
 	import type { ColorsType } from '@tcf/models/colors';
+	import { mergeClassNames } from '@tcf/lib/helpers/mergeClassNames';
 
 	type Props = {
 		color: ColorsType;
-		items: { id: ExamsType; label: string; onClick: () => void }[];
-		selectedItemId: ExamsType;
+		items: string[];
+		identifier: string;
+		onChange: (identifier: string) => void;
 		ariaAttributes?: AriaAttributes;
 		extraClass?: string;
 		disabled?: boolean;
 	};
 
-	const { color, ariaAttributes, items, selectedItemId = $bindable(), extraClass, disabled }: Props = $props();
+	const { color, ariaAttributes, items, identifier = $bindable(), onChange, extraClass, disabled }: Props = $props();
 
 	const bem = createBEM('dropdown');
 
@@ -26,11 +27,6 @@
 		open = !open;
 	};
 
-	const handleItemClick = (action: () => void) => {
-		action();
-		open = false;
-	};
-
 	const uuid = $props.id();
 </script>
 
@@ -38,17 +34,24 @@
 	<Button
 		{color}
 		ariaAttributes={{ 'aria-expanded': open, 'aria-controls': `dropdown-menu-${uuid}`, ...ariaAttributes }}
-		label={t(selectedItemId)}
+		label={t(identifier)}
 		onClick={() => toggle()}
 		{disabled}
 		{extraClass}
-		iconClass={open ? 'icon-rotate' : ''}
+		iconClass={mergeClassNames('icon-rotate', open ? 'icon-reverse' : '')}
 		Icon={PolygonBottomIcon} />
 	{#if open}
 		<ul id="dropdown-menu-{uuid}" class={bem('menu')}>
-			{#each items.filter((item) => item.id !== selectedItemId) as item}
+			{#each items.filter((item) => item !== identifier) as item}
 				<li>
-					<button onclick={() => handleItemClick(item.onClick)} class={bem('item')}>{item.label}</button>
+					<button
+						onclick={() => {
+							onChange(item);
+							open = false;
+						}}
+						class={bem('item')}>
+						{t(item)}
+					</button>
 				</li>
 			{/each}
 		</ul>
