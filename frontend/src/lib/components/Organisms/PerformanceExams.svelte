@@ -2,8 +2,8 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
 	import { Chart, type ChartTypeRegistry } from 'chart.js/auto';
-	import Dropdown from '@tcf/lib/components/Atoms/Dropdown.svelte';
-	import type { ExamsType } from '@tcf/models/exams';
+	import Dropdown from '@tcf/lib/components/Molecules/Dropdown.svelte';
+	import { examsEnum, type ExamsType } from '@tcf/models/exams';
 	import { t } from '@tcf/lib/helpers/tHelper';
 
 	interface Props {
@@ -20,9 +20,9 @@
 	const days = [t('days.monday'), t('days.tuesday'), t('days.wednesday'), t('days.thursday'), t('days.friday'), t('days.saturday'), t('days.sunday')];
 
 	const mockLastWeekResult: Record<ExamsType, number[]> = {
-		'reading-exam': [12, 14.5, 15, 0, 0, 10, 14],
-		'listening-exam': [2, 1, 19, 2, 1, 3, 5],
-		'writing-exam': [9, 10, 14, 2, 8, 13, 0]
+		[examsEnum.READING_EXAM]: [12, 14.5, 15, 0, 0, 10, 14],
+		[examsEnum.LISTENING_EXAM]: [2, 1, 19, 2, 1, 3, 5],
+		[examsEnum.WRITING_EXAM]: [9, 10, 14, 2, 8, 13, 0]
 	};
 
 	$effect(() => {
@@ -86,19 +86,16 @@
 		}
 	};
 
-	const onChange = (examType: string) => {
-		identifier = examType as ExamsType;
-		updateChart(mockLastWeekResult[examType as ExamsType]);
+	const onChange = (examCode: string) => {
+		updateChart(mockLastWeekResult[examCode as ExamsType]);
 	};
 
-	const items: ExamsType[] = ['listening-exam', 'reading-exam', 'writing-exam'];
-
-	let identifier: ExamsType = $state('listening-exam');
+	const examCodes: ExamsType[] = [examsEnum.LISTENING_EXAM, examsEnum.READING_EXAM, examsEnum.WRITING_EXAM];
 </script>
 
 <FrameCard {title} {description}>
 	{#snippet button()}
-		<Dropdown {onChange} color="tertiary" bind:identifier {items} />
+		<Dropdown {onChange} color="tertiary" optionCodes={examCodes} initialSelectedOptionCode={examsEnum.LISTENING_EXAM} />
 	{/snippet}
 	<div class={bem('chart-container')}>
 		<canvas bind:this={canvasElement} class={bem('chart')}></canvas>
