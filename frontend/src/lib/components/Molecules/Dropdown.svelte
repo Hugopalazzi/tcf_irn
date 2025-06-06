@@ -2,55 +2,81 @@
 	import PolygonBottomIcon from '@tcf/lib/components/Icons/PolygonBottomIcon.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import type { AriaAttributes } from 'svelte/elements';
-	import Button from './Button.svelte';
+	import Button from '../Atoms/Button.svelte';
 	import { t } from '@tcf/lib/helpers/tHelper';
 	import type { ColorsType } from '@tcf/models/colors';
 	import { mergeClassNames } from '@tcf/lib/helpers/mergeClassNames';
+	import { useClickOutside } from '@tcf/lib/hooks/useClickOutside';
 
 	type Props = {
 		color: ColorsType;
-		items: string[];
-		identifier: string;
+		optionCodes: string[];
 		onChange: (identifier: string) => void;
+		initialSelectedOptionCode: string;
+		identifier?: string;
 		ariaAttributes?: AriaAttributes;
 		extraClass?: string;
 		disabled?: boolean;
+		displayDefaultValue?: boolean;
 	};
 
-	const { color, ariaAttributes, items, identifier = $bindable(), onChange, extraClass, disabled }: Props = $props();
+	const { color, ariaAttributes, optionCodes, identifier, initialSelectedOptionCode, onChange, extraClass, disabled, displayDefaultValue }: Props =
+		$props();
 
 	const bem = createBEM('dropdown');
 
-	let open = $state(false);
-
-	const toggle = () => {
-		open = !open;
-	};
+	let isOpen = $state(false);
 
 	const uuid = $props.id();
+
+	let selectedOptionCode = $state(initialSelectedOptionCode);
+
+	const optionsCodeFiltered = $derived(optionCodes.filter((code: string) => code !== selectedOptionCode));
+
+	let title = $derived(identifier ? `${identifier}.${selectedOptionCode}` : selectedOptionCode);
+	if (displayDefaultValue) {
+		title = `${identifier}.title`;
+	}
+
+	const onOptionClick = (code: string) => {
+		selectedOptionCode = code;
+		isOpen = false;
+		onChange(code);
+	};
+
+	const onButtonClick = () => {
+		isOpen = !isOpen;
+	};
+
+	const handleKeyDown = (event: KeyboardEvent) => {
+		if (event.key === 'Escape') {
+			isOpen = false;
+		}
+	};
+
+	const onClickOutside = () => {
+		if (isOpen) {
+			isOpen = false;
+		}
+	};
 </script>
 
-<div class={bem('wrapper')}>
+<div class={bem('wrapper')} onkeydown={handleKeyDown} use:useClickOutside={onClickOutside}>
 	<Button
 		{color}
-		ariaAttributes={{ 'aria-expanded': open, 'aria-controls': `dropdown-menu-${uuid}`, ...ariaAttributes }}
-		label={t(identifier)}
-		onClick={() => toggle()}
+		ariaAttributes={{ 'aria-expanded': isOpen, 'aria-controls': `dropdown-menu-${uuid}`, ...ariaAttributes }}
+		label={t(title)}
+		onClick={onButtonClick}
 		{disabled}
 		{extraClass}
-		iconClass={mergeClassNames('icon-rotate', open ? 'icon-reverse' : '')}
+		iconClass={mergeClassNames('icon-rotate', isOpen ? 'icon-reverse' : '')}
 		Icon={PolygonBottomIcon} />
-	{#if open}
+	{#if isOpen}
 		<ul id="dropdown-menu-{uuid}" class={bem('menu')}>
-			{#each items.filter((item) => item !== identifier) as item}
+			{#each optionsCodeFiltered as code}
 				<li>
-					<button
-						onclick={() => {
-							onChange(item);
-							open = false;
-						}}
-						class={bem('item')}>
-						{t(item)}
+					<button onclick={() => onOptionClick(code)} class={bem('item')}>
+						{t(identifier ? `${identifier}.${code}` : code)}
 					</button>
 				</li>
 			{/each}
