@@ -11,14 +11,15 @@
 		color: ColorsType;
 		submitting?: boolean;
 		label?: string;
-		icon?: Component;
+		Icon?: Component<any>;
+		iconClass?: string;
 		role?: AriaRole;
 		ariaAttributes?: AriaAttributes;
 		extraClass?: string;
 		disabled?: boolean;
 	};
 
-	const { color, submitting = $bindable(false), ariaAttributes, label, onClick, icon, role, extraClass, disabled }: Props = $props();
+	const { color, submitting = $bindable(false), ariaAttributes, label, onClick, Icon, iconClass, role, extraClass, disabled }: Props = $props();
 
 	const onKeyDown = (event: KeyboardEvent) => {
 		if (event.code === 'Space' && role === 'link') {
@@ -35,14 +36,16 @@
 	onclick={onClick}
 	onkeydown={onKeyDown}
 	{disabled}>
-	{#if icon}
-		{icon}
-	{/if}
 	{#if label}
 		<span class={bem('label')}>
 			{#if submitting}<LoadingIcon spinning={true} />{/if}
 			{label}
 		</span>
+	{/if}
+	{#if Icon}
+		<div class={mergeClassNames(bem('icon-wrapper'), iconClass)}>
+			<Icon />
+		</div>
 	{/if}
 </button>
 
@@ -70,6 +73,11 @@
 				color: #1e0c5b;
 			}
 
+			&_tertiary {
+				background: #a3e7fc;
+				color: #000;
+			}
+
 			&_error {
 				background-color: #f14336;
 				color: #ffffff;
@@ -85,6 +93,10 @@
 			display: flex;
 			place-items: center;
 			gap: rem(4);
+		}
+
+		&__icon-wrapper {
+			display: flex;
 		}
 	}
 </style>

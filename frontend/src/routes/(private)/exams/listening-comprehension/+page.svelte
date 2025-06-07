@@ -2,7 +2,7 @@
 	import LevelStar from '@tcf/lib/components/Molecules/LevelStar.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { type Exam, type ExamLevelType } from '@tcf/models/exams.js';
-	import { m } from '$lib/paraglide/messages.js';
+	import { t } from '@tcf/lib/helpers/tHelper.js';
 
 	let { data } = $props();
 
@@ -10,12 +10,12 @@
 	const entries = Object.entries(data.listeningComprehensionExams) as [ExamLevelType, Exam[]][];
 </script>
 
-<h1 class={bem('title')}>{m['recentExams.listeningExam.title']()}</h1>
+<h1 class={bem('title')}>{t('listening-exam')}</h1>
 
 <section class={bem()}>
 	{#each entries as [difficulty, exams] (difficulty)}
 		{#if exams.length}
-			<h2 class={bem('difficulty-title')}>{m[`experience.${difficulty}`]()}</h2>
+			<h2 class={bem('difficulty-title')}>{t(`experience.${difficulty}`)}</h2>
 			<div class={bem('exam-grid')}>
 				{#each exams as exam}
 					<a href={`listening-comprehension/${exam.uuid}`} class={bem('exam-card')}>
