@@ -83,8 +83,8 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	const allowedPrivateRoutes = [
 		'/dashboard',
 		'/exams',
-		'/exams/listening-exam',
 		'/exams/listening-exam/[id]',
+		'/exam-proxy',
 		'/logout',
 		'/confirmation-email',
 		'/modifier-mot-de-passe',

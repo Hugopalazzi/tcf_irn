@@ -50,17 +50,17 @@
 			"listeningExams": {
 				"title": "Compréhension orale",
 				"description": "Commencez à pratiquer votre compréhension orale.",
-				"url": "/exams/listening-exam"
+				"url": "/exam-proxy?type=listening-exam"
 			},
 			"readingExams": {
 				"title": "Compréhension écrite",
 				"description": "Commencez à pratiquer votre compréhension écrite.",
-				"url": "/exams/reading-exam"
+				"url": "/exam-proxy?type=reading-exam"
 			},
 			"writingExams": {
 				"title": "Expression écrite",
 				"description": "Commencez à pratiquer votre expression écrite.",
-				"url": "/exams/writing-exam"
+				"url": "/exam-proxy?type=writing-exam"
 			}
 		},
 		"cardScores": {
