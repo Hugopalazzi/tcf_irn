@@ -50,17 +50,17 @@
 			"listeningExams": {
 				"title": "Compréhension orale",
 				"description": "Commencez à pratiquer votre compréhension orale.",
-				"url": "/listening-exams"
+				"url": "/exam-proxy?type=listening-exam"
 			},
 			"readingExams": {
 				"title": "Compréhension écrite",
 				"description": "Commencez à pratiquer votre compréhension écrite.",
-				"url": "/reading-exams"
+				"url": "/exam-proxy?type=reading-exam"
 			},
 			"writingExams": {
 				"title": "Expression écrite",
 				"description": "Commencez à pratiquer votre expression écrite.",
-				"url": "/writing-exams"
+				"url": "/exam-proxy?type=writing-exam"
 			}
 		},
 		"cardScores": {
@@ -159,7 +159,6 @@
 		"viewExamLabel": "Voir l'examen",
 		"daysAgo": "Il y a {days} jour(s)",
 		"today": "Aujourd'hui",
-		"today": "Aujourd'hui",
 		"emptyExam": "Vous n'avez pas encore passé d'examen",
 		"startExam": "Commencer un examen",
 		"listening-exam": {
@@ -174,7 +173,16 @@
 	},
 	"performance": {
 		"title": "Aperçu des performances",
-		"description": "Progression des examens au cours du temps"
+		"description": "Progression au cours du temps"
+	},
+	"days": {
+		"monday": "Lundi",
+		"tuesday": "Mardi",
+		"wednesday": "Mercredi",
+		"thursday": "Jeudi",
+		"friday": "Vendredi",
+		"saturday": "Samedi",
+		"sunday": "Dimanche"
 	},
 	"examHistoryPage": {
 		"title": "Examens",
@@ -209,3 +217,4 @@
 	},
 	"start": "commencer"
 }
+
