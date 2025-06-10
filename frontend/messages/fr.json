@@ -159,7 +159,6 @@
 		"viewExamLabel": "Voir l'examen",
 		"daysAgo": "Il y a {days} jour(s)",
 		"today": "Aujourd'hui",
-		"today": "Aujourd'hui",
 		"emptyExam": "Vous n'avez pas encore passé d'examen",
 		"startExam": "Commencer un examen",
 		"listening-exam": {
@@ -174,7 +173,16 @@
 	},
 	"performance": {
 		"title": "Aperçu des performances",
-		"description": "Progression des examens au cours du temps"
+		"description": "Progression au cours du temps"
+	},
+	"days": {
+		"monday": "Lundi",
+		"tuesday": "Mardi",
+		"wednesday": "Mercredi",
+		"thursday": "Jeudi",
+		"friday": "Vendredi",
+		"saturday": "Samedi",
+		"sunday": "Dimanche"
 	},
 	"examHistoryPage": {
 		"title": "Examens",
@@ -209,3 +217,4 @@
 	},
 	"start": "commencer"
 }
+
