@@ -22,7 +22,7 @@ TODO :
 	links={[
 		{ label: t('header.dashboard'), href: '/dashboard' },
 		{ label: t('header.exams'), href: '/exams' },
-		{ label: t('listening-exam'), href: '/exams/listening-comprehension' }
+		{ label: t('listening-exam'), href: '' }
 	]} />
 
 <h1 class="head-title">{t('listening-exam')}</h1>
