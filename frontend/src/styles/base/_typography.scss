@@ -5,11 +5,17 @@
 }
 
 h1 {
-	font-size: rem(40);
+	font-size: 24px;
 	font-weight: 700;
 	line-height: rem(48);
 	color: #000000;
 	margin: 0;
+}
+
+@media (min-width: $breakpoint-tablet) {
+	h1 {
+		font-size: 40px;
+	}
 }
 
 .head-title {

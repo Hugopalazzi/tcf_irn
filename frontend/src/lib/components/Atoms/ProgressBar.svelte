@@ -4,17 +4,24 @@
 
 	type Props = {
 		progress: number;
+		largeProgressBar?: boolean;
 		filledClass?: 'secondary' | 'primary';
 		emptyClass?: 'opaque-white' | 'grey';
 	};
 
-	const { progress, filledClass = 'primary', emptyClass = 'grey' }: Props = $props();
+	const { progress, largeProgressBar = false, filledClass = 'primary', emptyClass = 'grey' }: Props = $props();
 
 	const bem = createBEM('progress-bar');
 	const emptyBarWidth = 100 - progress;
 </script>
 
-<div class={bem('container')} role="progressbar" aria-valuenow={progress} aria-valuemin="0" aria-valuemax="100" aria-label={m.ariaProgressBar()}>
+<div
+	class={bem('container', { large: largeProgressBar })}
+	role="progressbar"
+	aria-valuenow={progress}
+	aria-valuemin="0"
+	aria-valuemax="100"
+	aria-label={m.ariaProgressBar()}>
 	<div class={`${bem('filled')} ${filledClass}`} style="width: {progress}%"></div>
 	{#if emptyBarWidth !== 0}
 		<div class={`${bem('empty')} ${emptyClass}`} style="width: {emptyBarWidth}%"></div>
@@ -47,13 +54,21 @@
 			height: rem(8);
 			border-radius: 10px;
 			overflow: hidden;
+
+			&--large {
+				min-width: 230px;
+			}
 		}
 	}
 
-	@media (min-width: $breakpoint-desktop) {
+	@media (min-width: $breakpoint-tablet) {
 		.progress-bar {
 			&__container {
 				min-width: 156px;
+
+				&--large {
+					min-width: 550px;
+				}
 			}
 		}
 	}
