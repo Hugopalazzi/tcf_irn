@@ -215,6 +215,9 @@
 		"hard": "Difficile",
 		"expert": "Expert"
 	},
+	"questionList": {
+		"q": "Q {count}"
+	},
 	"start": "commencer"
 }
 
