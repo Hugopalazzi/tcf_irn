@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import Button from '@tcf/lib/components/Atoms/Button.svelte';
+	import ChoiceButton from '@tcf/lib/components/Atoms/ChoiceButton.svelte';
+	import ChoicesGroup from '@tcf/lib/components/Molecules/ChoicesGroup.svelte';
+	import { statusEnum } from '@tcf/models/global';
 </script>
 
 <div>
@@ -18,4 +21,11 @@
 		extraClass="centered-submit-button"
 		color="secondary"
 		label="Se connecter"></Button>
+	<ChoicesGroup
+		choices={[
+			{ label: 'Madrid', optionPrefix: 'A', status: statusEnum.SUCCESS },
+			{ label: 'Paris', optionPrefix: 'B' },
+			{ label: 'Paris', optionPrefix: 'C' },
+			{ label: 'Paris', optionPrefix: 'D' }
+		]} />
 </div>
