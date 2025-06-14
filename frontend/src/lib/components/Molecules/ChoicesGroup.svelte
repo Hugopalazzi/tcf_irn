@@ -3,7 +3,6 @@
 	import ChoiceButton from '../Atoms/ChoiceButton.svelte';
 
 	type Choice = {
-		optionPrefix: string;
 		label: string;
 		status?: StatusType;
 	};
@@ -37,8 +36,9 @@
 </script>
 
 <div class="choices-group">
-	{#each choices as { optionPrefix, label }, i}
-		<ChoiceButton {label} {optionPrefix} onClick={() => onClickButton(i)} status={choicesStatus[i]} />
+	{#each choices as { label }, i}
+		{@const calcultedPrefix = String.fromCharCode(65 + i)}
+		<ChoiceButton {label} optionPrefix={calcultedPrefix} onClick={() => onClickButton(i)} status={choicesStatus[i]} />
 	{/each}
 </div>
 

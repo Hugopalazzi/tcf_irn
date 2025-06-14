@@ -45,7 +45,9 @@
 		padding: rem(8);
 		gap: rem(20);
 		flex: 1 0 0;
-
+		transition:
+			background-color 400ms cubic-bezier(0.4, 0, 0.2, 1),
+			color 400ms cubic-bezier(0.4, 0, 0.2, 1);
 		&--status {
 			&_selected {
 				background: #a3e7fc;
