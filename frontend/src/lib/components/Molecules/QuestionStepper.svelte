@@ -1,44 +1,43 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import { m } from '@tcf/lib/paraglide/messages';
 
-	interface QuestionListProps {
+	interface QuestionStepperProps {
 		actualQuestion: number;
-		questionNumber?: number;
+		questionLength?: number;
 	}
-	let { actualQuestion = $bindable(), questionNumber = 20 }: QuestionListProps = $props();
+	let { actualQuestion = $bindable(), questionLength = 20 }: QuestionStepperProps = $props();
 
-	const bem = createBEM('question-list');
+	const bem = createBEM('question-stepper');
 
 	let questionRefs: (HTMLDivElement | null)[] = [];
 
 	$effect(() => {
-		const activeEl = questionRefs[actualQuestion];
-		activeEl?.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+		const activeElement = questionRefs[actualQuestion];
+		activeElement?.scrollIntoView({ behavior: 'smooth', inline: 'center' });
 	});
 
-	function setQuestionRef(el: HTMLDivElement, index: number) {
-		questionRefs[index] = el;
-	}
+	const setQuestionRef = (element: HTMLDivElement, index: number) => {
+		questionRefs[index] = element;
+	};
 
-	function setRef(node: HTMLDivElement, index: number) {
+	const setRef = (node: HTMLDivElement, index: number) => {
 		setQuestionRef(node, index);
 		return {
 			destroy() {
 				questionRefs[index] = null;
 			}
 		};
-	}
+	};
 </script>
 
 <div class={bem('wrapper')}>
-	{#each { length: questionNumber } as _, i}
-		<div use:setRef={i} class={bem('question', { active: actualQuestion >= i })}>{m['questionList.q']({ count: i + 1 })}</div>
+	{#each { length: questionLength } as _, i}
+		<div use:setRef={i} class={bem('question', { active: actualQuestion >= i })}>{String(i + 1).padStart(2, '0')}</div>
 	{/each}
 </div>
 
 <style lang="scss">
-	.question-list {
+	.question-stepper {
 		&__wrapper {
 			display: inline-flex;
 			align-items: center;

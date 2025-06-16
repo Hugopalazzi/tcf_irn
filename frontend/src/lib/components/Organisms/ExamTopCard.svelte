@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import ProgressBar from '@tcf/lib/components/Atoms/ProgressBar.svelte';
+	import { t } from '@tcf/lib/helpers/tHelper';
 
 	interface ExamTopCardProps {
 		actualQuestion: number;
@@ -9,14 +10,16 @@
 	let { actualQuestion = $bindable(), questionNumber = 20 }: ExamTopCardProps = $props();
 
 	const bem = createBEM('exam-top-card');
+
+	const progressPercentage = (actualQuestion / questionNumber) * 100;
 </script>
 
 <div class={bem('container')}>
-	<span class={bem('question-number')}>Question 1</span>
+	<span class={bem('question-number')}>{t('examTopCard.questionNumber', { number: actualQuestion + 1 })}</span>
 	<div class={bem('progress-bar-wrapper')}>
-		<ProgressBar progress={12} largeProgressBar={true} />
+		<ProgressBar progress={progressPercentage} />
 	</div>
-	<span class={bem('percentage')}>10%</span>
+	<span class={bem('percentage')}>{t('examTopCard.questionPercentage', { percent: progressPercentage })}</span>
 </div>
 
 <style lang="scss">

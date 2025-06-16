@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Breadcrumb from '@tcf/lib/components/Molecules/Breadcrumb.svelte';
-	import QuestionList from '@tcf/lib/components/Molecules/QuestionList.svelte';
+	import QuestionStepper from '@tcf/lib/components/Molecules/QuestionStepper.svelte';
+	import BreadcrumbWrapper from '@tcf/lib/components/Organisms/BreadcrumbWrapper.svelte';
 	import ExamTopCard from '@tcf/lib/components/Organisms/ExamTopCard.svelte';
 	import ExamWrapper from '@tcf/lib/components/Organisms/ExamWrapper.svelte';
 	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
@@ -8,8 +8,25 @@
 
 	const { data } = $props();
 
-	let actualQuestion = $state(12);
+	let actualQuestion = $state(1); // TODO: recup user last answer
 </script>
+
+<BreadcrumbWrapper
+	links={[
+		{ label: t('header.dashboard'), href: '/dashboard' },
+		{ label: t('header.exams'), href: '/exams' },
+		{ label: t('listening-exam'), href: '' }
+	]}>
+	<h1 class="head-title">{t('listening-exam')}</h1>
+</BreadcrumbWrapper>
+
+<QuestionStepper {actualQuestion} questionLength={data.questions.length} />
+
+<FrameCard>
+	<ExamWrapper>
+		<ExamTopCard {actualQuestion} />
+	</ExamWrapper>
+</FrameCard>
 
 TODO :
 {#each data.questions as question}
@@ -17,20 +34,3 @@ TODO :
 		{JSON.stringify(question, null, 2)}
 	</div>
 {/each}
-
-<Breadcrumb
-	links={[
-		{ label: t('header.dashboard'), href: '/dashboard' },
-		{ label: t('header.exams'), href: '/exams' },
-		{ label: t('listening-exam'), href: '' }
-	]} />
-
-<h1 class="head-title">{t('listening-exam')}</h1>
-
-<QuestionList {actualQuestion} />
-
-<FrameCard>
-	<ExamWrapper>
-		<ExamTopCard {actualQuestion} />
-	</ExamWrapper>
-</FrameCard>

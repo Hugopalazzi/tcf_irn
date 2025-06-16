@@ -218,6 +218,10 @@
 	},
 	"choiceButton": {
 		"correctAnswer" : "Bonne réponse"
-	}
+	},
+	"examTopCard": {
+		"questionNumber": "Question {number}",
+		"questionPercentage": "{percent} %"
+	},
+	"start": "commencer"
 }
-
