@@ -4,18 +4,18 @@
 	import { t } from '@tcf/lib/helpers/tHelper';
 
 	interface ExamHeadingProps {
-		currentQuestion: number;
-		questionsLength?: number;
+		currentQuestionIndex: number;
+		questionsLength: number;
 	}
-	let { currentQuestion = $bindable(), questionsLength = 20 }: ExamHeadingProps = $props();
+	let { currentQuestionIndex = $bindable(), questionsLength }: ExamHeadingProps = $props();
 
 	const bem = createBEM('exam-heading');
 
-	const progressPercentage = (currentQuestion / questionsLength) * 100;
+	const progressPercentage = (currentQuestionIndex / questionsLength) * 100;
 </script>
 
 <div class={bem('container')}>
-	<span class={bem('question-number')}>{t('examHeading.questionNumber', { number: currentQuestion + 1 })}</span>
+	<span class={bem('question-number')}>{t('examHeading.questionNumber', { number: currentQuestionIndex + 1 })}</span>
 	<div class={bem('progress-bar-wrapper')}>
 		<ProgressBar progress={progressPercentage} />
 	</div>

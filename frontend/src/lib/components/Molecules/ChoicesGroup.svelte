@@ -2,7 +2,7 @@
 	import { statusEnum, type StatusType } from '@tcf/models/global';
 	import ChoiceButton from '../Atoms/ChoiceButton.svelte';
 
-	type Choice = {
+	export type Choice = {
 		label: string;
 		status?: StatusType;
 	};

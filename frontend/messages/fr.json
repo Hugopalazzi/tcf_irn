@@ -223,5 +223,10 @@
 		"questionNumber": "Question {number}",
 		"questionPercentage": "{percent} %"
 	},
+	"examCard": 
+	{
+		"nextQuestionLabel": "Question suivante",
+		"submitLabel": "Soumettre l'examen"
+	},
 	"start": "commencer"
 }
