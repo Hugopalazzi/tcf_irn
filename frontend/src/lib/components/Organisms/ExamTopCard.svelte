@@ -5,13 +5,13 @@
 
 	interface ExamTopCardProps {
 		actualQuestion: number;
-		questionNumber?: number;
+		questionLength?: number;
 	}
-	let { actualQuestion = $bindable(), questionNumber = 20 }: ExamTopCardProps = $props();
+	let { actualQuestion = $bindable(), questionLength = 20 }: ExamTopCardProps = $props();
 
 	const bem = createBEM('exam-top-card');
 
-	const progressPercentage = (actualQuestion / questionNumber) * 100;
+	const progressPercentage = (actualQuestion / questionLength) * 100;
 </script>
 
 <div class={bem('container')}>
