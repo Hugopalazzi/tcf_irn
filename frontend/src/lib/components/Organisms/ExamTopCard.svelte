@@ -4,18 +4,18 @@
 	import { t } from '@tcf/lib/helpers/tHelper';
 
 	interface ExamTopCardProps {
-		actualQuestion: number;
-		questionLength?: number;
+		currentQuestion: number;
+		questionsLength?: number;
 	}
-	let { actualQuestion = $bindable(), questionLength = 20 }: ExamTopCardProps = $props();
+	let { currentQuestion = $bindable(), questionsLength = 20 }: ExamTopCardProps = $props();
 
 	const bem = createBEM('exam-top-card');
 
-	const progressPercentage = (actualQuestion / questionLength) * 100;
+	const progressPercentage = (currentQuestion / questionsLength) * 100;
 </script>
 
 <div class={bem('container')}>
-	<span class={bem('question-number')}>{t('examTopCard.questionNumber', { number: actualQuestion + 1 })}</span>
+	<span class={bem('question-number')}>{t('examTopCard.questionNumber', { number: currentQuestion + 1 })}</span>
 	<div class={bem('progress-bar-wrapper')}>
 		<ProgressBar progress={progressPercentage} />
 	</div>

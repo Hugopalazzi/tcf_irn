@@ -2,17 +2,17 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 
 	interface QuestionStepperProps {
-		actualQuestion: number;
-		questionLength?: number;
+		currentQuestion: number;
+		questionsLength?: number;
 	}
-	let { actualQuestion = $bindable(), questionLength = 20 }: QuestionStepperProps = $props();
+	let { currentQuestion = $bindable(), questionsLength = 20 }: QuestionStepperProps = $props();
 
 	const bem = createBEM('question-stepper');
 
 	let questionRefs: (HTMLDivElement | null)[] = [];
 
 	$effect(() => {
-		const activeElement = questionRefs[actualQuestion];
+		const activeElement = questionRefs[currentQuestion];
 		activeElement?.scrollIntoView({ behavior: 'smooth', inline: 'center' });
 	});
 
@@ -31,8 +31,8 @@
 </script>
 
 <div class={bem('wrapper')}>
-	{#each { length: questionLength } as _, i}
-		<div use:setRef={i} class={bem('question', { active: actualQuestion >= i })}>{String(i + 1).padStart(2, '0')}</div>
+	{#each { length: questionsLength } as _, i}
+		<div use:setRef={i} class={bem('question', { active: currentQuestion >= i })}>{String(i + 1).padStart(2, '0')}</div>
 	{/each}
 </div>
 
