@@ -217,9 +217,9 @@
 		"expert": "Expert"
 	},
 	"choiceButton": {
-		"correctAnswer" : "Bonne réponse"
+		"correctAnswer": "Bonne réponse"
 	},
-	"examTopCard": {
+	"examHeading": {
 		"questionNumber": "Question {number}",
 		"questionPercentage": "{percent} %"
 	},

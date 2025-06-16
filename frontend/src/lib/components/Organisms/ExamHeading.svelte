@@ -3,27 +3,27 @@
 	import ProgressBar from '@tcf/lib/components/Atoms/ProgressBar.svelte';
 	import { t } from '@tcf/lib/helpers/tHelper';
 
-	interface ExamTopCardProps {
+	interface ExamHeadingProps {
 		currentQuestion: number;
 		questionsLength?: number;
 	}
-	let { currentQuestion = $bindable(), questionsLength = 20 }: ExamTopCardProps = $props();
+	let { currentQuestion = $bindable(), questionsLength = 20 }: ExamHeadingProps = $props();
 
-	const bem = createBEM('exam-top-card');
+	const bem = createBEM('exam-heading');
 
 	const progressPercentage = (currentQuestion / questionsLength) * 100;
 </script>
 
 <div class={bem('container')}>
-	<span class={bem('question-number')}>{t('examTopCard.questionNumber', { number: currentQuestion + 1 })}</span>
+	<span class={bem('question-number')}>{t('examHeading.questionNumber', { number: currentQuestion + 1 })}</span>
 	<div class={bem('progress-bar-wrapper')}>
 		<ProgressBar progress={progressPercentage} />
 	</div>
-	<span class={bem('percentage')}>{t('examTopCard.questionPercentage', { percent: progressPercentage })}</span>
+	<span class={bem('percentage')}>{t('examHeading.questionPercentage', { percent: progressPercentage })}</span>
 </div>
 
 <style lang="scss">
-	.exam-top-card {
+	.exam-heading {
 		&__container {
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
@@ -59,7 +59,7 @@
 	}
 
 	@media (min-width: $breakpoint-tablet) {
-		.exam-top-card {
+		.exam-heading {
 			&__container {
 				display: flex;
 				flex-direction: row;

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import QuestionStepper from '@tcf/lib/components/Molecules/QuestionStepper.svelte';
 	import BreadcrumbWrapper from '@tcf/lib/components/Organisms/BreadcrumbWrapper.svelte';
-	import ExamTopCard from '@tcf/lib/components/Organisms/ExamTopCard.svelte';
+	import ExamHeading from '@tcf/lib/components/Organisms/ExamHeading.svelte';
 	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
 	import { t } from '@tcf/lib/helpers/tHelper.js';
 
@@ -22,12 +22,12 @@
 <QuestionStepper {currentQuestion} questionsLength={data.questions.length} />
 
 <FrameCard additionalClass="frame--items-centered">
-	<ExamTopCard {currentQuestion} />
+	<ExamHeading {currentQuestion} />
 </FrameCard>
 
-TODO :
+<!-- TODO :
 {#each data.questions as question}
 	<div>
 		{JSON.stringify(question, null, 2)}
 	</div>
-{/each}
+{/each} -->
