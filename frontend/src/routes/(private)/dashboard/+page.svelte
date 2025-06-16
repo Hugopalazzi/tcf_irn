@@ -4,7 +4,7 @@
 	import ReadingIcon from '@tcf/lib/components/Icons/ReadingIcon.svelte';
 	import SuccessScoreIcon from '@tcf/lib/components/Icons/SuccessScoreIcon.svelte';
 	import WritingIcon from '@tcf/lib/components/Icons/WritingIcon.svelte';
-	import TitleWithDescription from '@tcf/lib/components/Molecules/TitleWithDescription.svelte';
+	import HeadingPage from '@tcf/lib/components/Organisms/HeadingPage.svelte';
 	import LinkCards from '@tcf/lib/components/Organisms/LinkCards.svelte';
 	import ScoreCards from '@tcf/lib/components/Organisms/ScoreCards.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
@@ -86,7 +86,7 @@
 		<img src={avatar_url || '/assets/images/user-profile.jpg'} class={bem('user-profile-image')} alt={m['dashboard.altUserImage']()} />
 		<p class={bem('welcome-label')}>{m['dashboard.welcome']()}{name} !</p>
 	</div>
-	<TitleWithDescription title={m['dashboard.title']()} description={m['dashboard.description']()} />
+	<HeadingPage title={m['dashboard.title']()} description={m['dashboard.description']()} additionalClass="heading-page--items-centered" />
 	<LinkCards links={cardLinks} />
 	<ScoreCards scores={cardScores} />
 

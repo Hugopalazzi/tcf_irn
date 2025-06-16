@@ -26,6 +26,7 @@
 		flex-direction: column;
 		width: 100%;
 		padding: rem(20) rem(16);
+		gap: rem(20);
 		margin-left: auto;
 		margin-right: auto;
 	}
@@ -33,6 +34,7 @@
 	@media (min-width: $breakpoint-tablet) {
 		.layout-wrapper {
 			padding: rem(40) rem(32);
+			gap: rem(32);
 		}
 	}
 

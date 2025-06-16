@@ -28,9 +28,19 @@
 			}
 		};
 	};
+	let wrapperRef: HTMLDivElement | null = null;
+
+	const handleWheel = (event: WheelEvent) => {
+		if (wrapperRef) {
+			if (event.deltaY !== 0) {
+				event.preventDefault();
+				wrapperRef.scrollLeft += 1.5 * event.deltaY;
+			}
+		}
+	};
 </script>
 
-<div class={bem('wrapper')}>
+<div bind:this={wrapperRef} class={bem('wrapper')} onwheel={handleWheel}>
 	{#each { length: questionsLength } as _, i}
 		<div use:setRef={i} class={bem('question', { active: currentQuestion >= i })}>{String(i + 1).padStart(2, '0')}</div>
 	{/each}
@@ -45,7 +55,6 @@
 			overflow-x: auto;
 			scroll-behavior: smooth;
 			scrollbar-width: none;
-			margin-bottom: rem(20);
 		}
 
 		&__question {
