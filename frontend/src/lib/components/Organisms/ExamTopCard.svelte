@@ -45,6 +45,7 @@
 
 		&__progress-bar-wrapper {
 			grid-area: 1 / 1 / 2 / 3;
+			width: 220px;
 		}
 
 		&__percentage {
@@ -61,6 +62,10 @@
 				flex-direction: row;
 				align-items: center;
 				gap: 20px;
+			}
+
+			&__progress-bar-wrapper {
+				width: 550px;
 			}
 		}
 	}

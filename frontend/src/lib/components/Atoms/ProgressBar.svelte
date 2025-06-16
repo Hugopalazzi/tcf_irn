@@ -54,21 +54,13 @@
 			height: rem(8);
 			border-radius: 10px;
 			overflow: hidden;
-
-			&--large {
-				min-width: 230px;
-			}
 		}
 	}
 
-	@media (min-width: $breakpoint-tablet) {
+	@media (min-width: $breakpoint-desktop) {
 		.progress-bar {
 			&__container {
 				min-width: 156px;
-
-				&--large {
-					min-width: 550px;
-				}
 			}
 		}
 	}
