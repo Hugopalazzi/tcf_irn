@@ -1,14 +1,13 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages.js';
-	import TitleWithDescription from '@tcf/lib/components/Molecules/TitleWithDescription.svelte';
-	import ExamsTable from "@tcf/lib/components/Organisms/ExamsTable.svelte";
+	import HeadingPage from '@tcf/lib/components/Organisms/HeadingPage.svelte';
+	import ExamsTable from '@tcf/lib/components/Organisms/ExamsTable.svelte';
 	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
 	import { examsEnum } from '@tcf/models/exams.js';
-	const { data: user } = $props();
 
 	const examData = [
 		{
-			id: "1",
+			id: '1',
 			type: examsEnum.WRITING_EXAM,
 			date: 'April 10, 2025',
 			score: '18/20',
@@ -19,7 +18,7 @@
 			actions: ['View Results', 'Download', 'Retake']
 		},
 		{
-			id: "2",
+			id: '2',
 			type: examsEnum.WRITING_EXAM,
 			date: 'March 25, 2025',
 			score: '20/20',
@@ -30,7 +29,7 @@
 			actions: ['View Results', 'Download', 'Retake']
 		},
 		{
-			id: "3",
+			id: '3',
 			type: examsEnum.WRITING_EXAM,
 			date: 'March 25, 2025',
 			score: '16/20',
@@ -41,7 +40,7 @@
 			actions: ['Continue Exam']
 		},
 		{
-			id: "4",
+			id: '4',
 			type: examsEnum.WRITING_EXAM,
 			date: 'April 2, 2025',
 			score: '19/20',
@@ -52,7 +51,7 @@
 			actions: ['View Results', 'Download', 'Retake']
 		},
 		{
-			id: "5",
+			id: '5',
 			type: examsEnum.WRITING_EXAM,
 			date: 'April 2, 2025',
 			score: '19/20',
@@ -66,7 +65,7 @@
 </script>
 
 <div>
-	<TitleWithDescription title={m['examHistoryPage.title']()} description={m['examHistoryPage.description']()} />
+	<HeadingPage title={m['examHistoryPage.title']()} description={m['examHistoryPage.description']()} />
 	<FrameCard title={m['examHistoryPage.card.title']({ number: examData.length })} description={m['examHistoryPage.card.description']()}>
 		<ExamsTable {examData} />
 	</FrameCard>

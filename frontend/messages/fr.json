@@ -2,6 +2,7 @@
 	"listening-exam": "Compréhension orale",
 	"reading-exam": "Compréhension écrite",
 	"writing-exam": "Expression écrite",
+	"start": "commencer",
 	"status": {
 		"pending": "En cours",
 		"completed": "Terminé"
@@ -215,6 +216,12 @@
 		"hard": "Difficile",
 		"expert": "Expert"
 	},
+	"choiceButton": {
+		"correctAnswer": "Bonne réponse"
+	},
+	"examHeading": {
+		"questionNumber": "Question {number}",
+		"questionPercentage": "{percent} %"
+	},
 	"start": "commencer"
 }
-

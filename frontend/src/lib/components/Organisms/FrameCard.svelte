@@ -42,6 +42,10 @@
 			background: #fff;
 		}
 
+		&--items-centered {
+			align-items: center;
+		}
+
 		&__btn-heading-container {
 			display: flex;
 			flex-direction: column;
