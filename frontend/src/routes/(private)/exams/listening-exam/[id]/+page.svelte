@@ -5,8 +5,8 @@
 	import { t } from '@tcf/lib/helpers/tHelper.js';
 
 	const { data } = $props();
-	const { questions } = data;
-	let currentQuestionIndex = $state(0); // TODO: recup user last answer
+	const { questions, currentQuestionIndex } = data;
+	let currentQuestionIndexState = $state(currentQuestionIndex);
 
 	const questionData = $derived(() => {
 		const currentQuestion = questions[currentQuestionIndex].question;
@@ -20,9 +20,9 @@
 
 	const onClickNext = () => {
 		const questionsLength = questions.length - 1;
-		if (currentQuestionIndex < questionsLength) {
-			currentQuestionIndex += 1;
-		} else if (currentQuestionIndex === questionsLength) {
+		if (currentQuestionIndexState < questionsLength) {
+			currentQuestionIndexState += 1;
+		} else if (currentQuestionIndexState === questionsLength) {
 			console.log('Submit exam');
 		}
 	};
@@ -35,12 +35,8 @@
 		{ label: t('header.exams'), href: '/exams' },
 		{ label: t('listening-exam'), href: '' }
 	]} />
-<QuestionStepper {currentQuestionIndex} questionsLength={data.questions.length} />
-<ExamCard
-	questionData={questionData()}
-	{currentQuestionIndex}
-	questionsLength={questions.length}
-	onClick={onClickNext} />
+<QuestionStepper currentQuestionIndex={currentQuestionIndexState} questionsLength={questions.length} />
+<ExamCard questionData={questionData()} currentQuestionIndex={currentQuestionIndexState} questionsLength={questions.length} onClick={onClickNext} />
 
 <!-- {#each data.questions as question}
 	<div>
