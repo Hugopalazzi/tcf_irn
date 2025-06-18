@@ -19,6 +19,15 @@
 			}))
 		};
 	});
+
+	const onClickNext = () => {
+		const questionsLength = questions.length - 1;
+		if (currentQuestionIndex < questionsLength) {
+			currentQuestionIndex += 1;
+		} else if (currentQuestionIndex === questionsLength) {
+			console.log('Submit exam');
+		}
+	};
 </script>
 
 <HeadingPage
@@ -33,9 +42,7 @@
 	questionData={questionData()}
 	{currentQuestionIndex}
 	questionsLength={questions.length}
-	onClick={() => {
-		currentQuestionIndex += 1;
-	}} />
+	onClick={onClickNext} />
 
 <!-- {#each data.questions as question}
 	<div>

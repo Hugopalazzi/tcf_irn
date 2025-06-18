@@ -9,9 +9,10 @@
 		label: string;
 		onClick: (...args: any[]) => void;
 		status?: StatusType;
+		disableAnimation?: boolean;
 	};
 
-	const { optionPrefix, label, status, onClick }: Props = $props();
+	const { optionPrefix, label, status, onClick, disableAnimation }: Props = $props();
 
 	const onKeyDown = (event: KeyboardEvent) => {
 		if (event.code === 'Space') {
@@ -21,7 +22,7 @@
 	const bem = createBEM('choice-button');
 </script>
 
-<button onclick={onClick} class={bem('', { status: status })}>
+<button onclick={onClick} class={bem('', { status: status, disableAnimation: disableAnimation })}>
 	<span class={bem('prefix')}>{optionPrefix}</span>
 	<div class={bem('label-wrapper')}>
 		<span class={bem('label')}>{label}</span>
@@ -48,6 +49,10 @@
 		transition:
 			background-color 400ms cubic-bezier(0.4, 0, 0.2, 1),
 			color 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+		&--disableAnimation {
+			transition: none;
+		}
 		&--status {
 			&_selected {
 				background: #a3e7fc;
@@ -111,6 +116,8 @@
 
 	@media (min-width: $breakpoint-desktop) {
 		.choice-button {
+			min-width: 400px;
+
 			gap: rem(12);
 			padding: rem(12);
 
