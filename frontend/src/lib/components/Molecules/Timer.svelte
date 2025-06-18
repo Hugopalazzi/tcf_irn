@@ -7,7 +7,7 @@
 		warningThreshold: number;
 	};
 
-	const { totalTime, warningThreshold = 10000 }: TimerProps = $props();
+	const { totalTime, warningThreshold }: TimerProps = $props();
 	const bem = createBEM('timer');
 
 	let remaining = $state(totalTime);
