@@ -5,9 +5,10 @@
 	export type TimerProps = {
 		totalTime: number;
 		warningThreshold: number;
+		onTimerEnd: () => void;
 	};
 
-	const { totalTime, warningThreshold }: TimerProps = $props();
+	const { totalTime, warningThreshold, onTimerEnd }: TimerProps = $props();
 	const bem = createBEM('timer');
 
 	let remaining = $state(totalTime);
@@ -22,6 +23,7 @@
 	});
 
 	let isInWarning = $derived(remaining <= warningThreshold && remaining > 0);
+	let timerEnded = false;
 
 	$effect(() => {
 		let start = performance.now();
@@ -32,6 +34,9 @@
 
 			if (remaining > 0) {
 				frame = requestAnimationFrame(update);
+			} else if (!timerEnded) {
+				timerEnded = true;
+				onTimerEnd?.();
 			}
 		});
 
