@@ -1,8 +1,6 @@
 <script lang="ts">
 	import QuestionStepper from '@tcf/lib/components/Molecules/QuestionStepper.svelte';
 	import ExamCard from '@tcf/lib/components/Organisms/ExamCard.svelte';
-	import ExamHeading from '@tcf/lib/components/Organisms/ExamHeading.svelte';
-	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
 	import HeadingPage from '@tcf/lib/components/Organisms/HeadingPage.svelte';
 	import { t } from '@tcf/lib/helpers/tHelper.js';
 

@@ -1,13 +1,11 @@
 <script lang="ts">
-	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import type { Snippet } from 'svelte';
-	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
-	import ExamHeading from '@tcf/lib/components/Organisms/ExamHeading.svelte';
 	import ChoicesGroup, { type Choice } from '@tcf/lib/components/Molecules/ChoicesGroup.svelte';
-	import Button from '../Atoms/Button.svelte';
-	import { ColorsEnum } from '@tcf/models/colors';
+	import ExamHeading from '@tcf/lib/components/Organisms/ExamHeading.svelte';
+	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
+	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { t } from '@tcf/lib/helpers/tHelper';
-	import { derived } from 'svelte/store';
+	import { ColorsEnum } from '@tcf/models/colors';
+	import Button from '../Atoms/Button.svelte';
 
 	const bem = createBEM('exam-card');
 
