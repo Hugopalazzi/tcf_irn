@@ -5,7 +5,7 @@
 	import { t } from '@tcf/lib/helpers/tHelper.js';
 
 	const { data } = $props();
-	const { questions, currentQuestionIndex } = data;
+	const { questions, currentQuestionIndex, userExamId, sessionAccessToken } = data;
 	let currentQuestionIndexState = $state(currentQuestionIndex);
 
 	const questionData = $derived(() => {
@@ -18,10 +18,27 @@
 		};
 	});
 
-	const onClickNext = () => {
+	const onClickNext = async () => {
 		const questionsLength = questions.length - 1;
 		if (currentQuestionIndexState < questionsLength) {
 			currentQuestionIndexState += 1;
+
+			await fetch('/api/update-user-exam', {
+				method: 'POST',
+				body: JSON.stringify({
+					currentQuestionIndex: currentQuestionIndexState,
+					userExamId: userExamId
+				}),
+				headers: { Authorization: `Bearer ${sessionAccessToken}`, 'Content-Type': 'application/json' }
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					console.log(data);
+				})
+				.catch((error) => {
+					console.log(error);
+					return [];
+				});
 		} else if (currentQuestionIndexState === questionsLength) {
 			console.log('Submit exam');
 		}
