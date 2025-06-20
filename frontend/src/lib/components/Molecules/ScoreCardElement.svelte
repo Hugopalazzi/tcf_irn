@@ -27,6 +27,7 @@
 			border: 1px solid #dcdcdc;
 			background: #f9f9f9;
 		}
+
 		&__label {
 			color: #7f7f7f;
 			text-align: center;
@@ -43,6 +44,24 @@
 			font-style: normal;
 			font-weight: 700;
 			line-height: rem(20);
+		}
+	}
+
+	@media (min-width: $breakpoint-desktop) {
+		.score-card {
+			&__container {
+				padding: rem(16);
+			}
+
+			&__label {
+				font-size: rem(14);
+				line-height: rem(20);
+			}
+
+			&__value {
+				font-size: rem(20);
+				line-height: rem(24);
+			}
 		}
 	}
 </style>
