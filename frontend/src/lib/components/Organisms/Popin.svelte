@@ -2,6 +2,7 @@
 	import { type Component, type Snippet } from 'svelte';
 	import Button from '@tcf/lib/components/Atoms/Button.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
+	import { focusTrap } from '@tcf/lib/helpers/focusTrapHelper';
 
 	interface Props {
 		isOpen: boolean;
@@ -39,8 +40,11 @@
 	});
 
 	const handleKeyDown = (event: KeyboardEvent) => {
-		if (!isClosable && event.key === 'Escape') {
-			event.preventDefault();
+		if (dialog) {
+			focusTrap(event, dialog);
+			if (!isClosable && event.key === 'Escape') {
+				event.preventDefault();
+			}
 		}
 	};
 
