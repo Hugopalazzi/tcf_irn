@@ -4,8 +4,7 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 
 	interface Props {
-		opened: boolean;
-		dialog: HTMLDialogElement | undefined;
+		isOpen: boolean;
 		title: string;
 		description?: string;
 		children?: Snippet;
@@ -14,12 +13,11 @@
 		secondaryButtonLabel?: string;
 		onPrimaryBtnClick?: () => void;
 		onSecondaryBtnClick?: () => void;
-		preventEscapeClose?: boolean;
+		isClosable?: boolean;
 	}
 
 	let {
-		opened = $bindable(),
-		dialog = $bindable<HTMLDialogElement | undefined>(),
+		isOpen = $bindable(),
 		title,
 		description,
 		children,
@@ -28,45 +26,54 @@
 		primaryButtonLabel,
 		onPrimaryBtnClick,
 		onSecondaryBtnClick,
-		preventEscapeClose = false
+		isClosable = true
 	}: Props = $props();
 
+	let dialog: HTMLDialogElement | undefined;
+
 	$effect(() => {
-		if (opened && dialog) {
+		if (isOpen && dialog) {
 			dialog.addEventListener('keydown', handleKeyDown);
 			dialog.showModal();
 		}
 	});
 
 	const handleKeyDown = (event: KeyboardEvent) => {
-		if (preventEscapeClose && event.key === 'Escape') {
+		if (!isClosable && event.key === 'Escape') {
 			event.preventDefault();
 		}
 	};
 
 	// If parent decide to close popin update opened state to close popin
 	$effect(() => {
-		if (!opened) {
+		if (!isOpen) {
 			closePopin();
 		}
 	});
 
 	const onPopinClose = () => {
-		opened = false;
+		isOpen = false;
 		closePopin();
 	};
 
 	const closePopin = () => {
-		if (preventEscapeClose) {
+		if (isClosable) {
 			dialog?.removeEventListener('keydown', handleKeyDown);
 		}
 		dialog?.close();
 	};
 
+	const handleOutsideClick = (event: MouseEvent) => {
+		if (event.target === dialog && isClosable) {
+			isOpen = false;
+			closePopin();
+		}
+	};
+
 	const bem = createBEM('popin');
 </script>
 
-<dialog aria-modal="true" aria-labelledby={title} bind:this={dialog} class={bem('')} onclose={onPopinClose}>
+<dialog aria-modal="true" aria-labelledby={title} bind:this={dialog} class={bem('')} onclose={onPopinClose} onclick={handleOutsideClick}>
 	<div class={bem('container')}>
 		{#if Icon}
 			<Icon />
@@ -78,6 +85,7 @@
 				{description}
 			</span>
 		</div>
+
 		{@render children?.()}
 
 		{#if primaryButtonLabel || secondaryButtonLabel}
