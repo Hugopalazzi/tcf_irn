@@ -95,26 +95,22 @@
 		{#if primaryButtonLabel || secondaryButtonLabel}
 			<div class={bem('btn-wrapper')}>
 				{#if secondaryButtonLabel}
-					<div class={bem('secondary-btn-wrapper')}>
-						<Button
-							onClick={() => {
-								onSecondaryBtnClick?.();
-							}}
-							color="secondary"
-							label={secondaryButtonLabel}
-							extraClass="button--full-width" />
-					</div>
+					<Button
+						onClick={() => {
+							onSecondaryBtnClick?.();
+						}}
+						color="secondary"
+						label={secondaryButtonLabel}
+						extraClass="button--full-width" />
 				{/if}
 				{#if primaryButtonLabel}
-					<div class={bem('primary-btn-wrapper')}>
-						<Button
-							onClick={() => {
-								onPrimaryBtnClick?.();
-							}}
-							color="primary"
-							label={primaryButtonLabel}
-							extraClass="button--full-width" />
-					</div>
+					<Button
+						onClick={() => {
+							onPrimaryBtnClick?.();
+						}}
+						color="primary"
+						label={primaryButtonLabel}
+						extraClass="button--full-width" />
 				{/if}
 			</div>
 		{/if}
@@ -191,14 +187,6 @@
 			&__btn-wrapper {
 				flex-direction: row;
 				gap: rem(20);
-			}
-
-			&__secondary-btn-wrapper {
-				flex: 1;
-			}
-
-			&__primary-btn-wrapper {
-				flex: 2;
 			}
 		}
 	}
