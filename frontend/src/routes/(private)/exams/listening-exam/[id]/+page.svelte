@@ -5,11 +5,11 @@
 	import { t } from '@tcf/lib/helpers/tHelper.js';
 
 	const { data } = $props();
-	const { questions, currentQuestionIndex, userExamId, sessionAccessToken } = data;
+	const { questions, currentQuestionIndex, userExamId } = data;
 	let currentQuestionIndexState = $state(currentQuestionIndex);
 
 	const questionData = $derived(() => {
-		const currentQuestion = questions[currentQuestionIndex].question;
+		const currentQuestion = questions[currentQuestionIndexState].question;
 		return {
 			title: currentQuestion.title,
 			choices: currentQuestion.choices.map((choice: string) => ({
@@ -23,22 +23,19 @@
 		if (currentQuestionIndexState < questionsLength) {
 			currentQuestionIndexState += 1;
 
-			await fetch('/api/update-user-exam', {
+			fetch('/api/update-user-exam', {
 				method: 'POST',
 				body: JSON.stringify({
 					currentQuestionIndex: currentQuestionIndexState,
 					userExamId: userExamId
 				}),
-				headers: { Authorization: `Bearer ${sessionAccessToken}`, 'Content-Type': 'application/json' }
+				headers: { 'Content-Type': 'application/json' }
 			})
-				.then((response) => response.json())
-				.then((data) => {
-					console.log(data);
-				})
-				.catch((error) => {
-					console.log(error);
-					return [];
-				});
+			.then((response) => response.json())
+			.catch((error) => {
+				console.log(error);
+				return [];
+			});
 		} else if (currentQuestionIndexState === questionsLength) {
 			console.log('Submit exam');
 		}

@@ -75,7 +75,6 @@ const authGuard: Handle = async ({ event, resolve }) => {
 		'/confirmation-email',
 		'/mot-de-passe-oublie',
 		'/modifier-mot-de-passe',
-		'/api/update-user-exam',
 		'/api/create-subscription-session',
 		'/api/create-stripe-customer',
 		'/api/user-status',

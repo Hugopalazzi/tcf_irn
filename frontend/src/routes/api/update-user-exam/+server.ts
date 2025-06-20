@@ -1,17 +1,8 @@
 import { json, type RequestHandler } from '@sveltejs/kit';
-import { stripeClient } from '@tcf/lib/configs/stripe.config';
-import { getSupabaseClient } from '@tcf/lib/configs/supabase.config';
 import { errorLogger } from '@tcf/lib/helpers/errorHelper';
 
-export const POST: RequestHandler = async ({ request }) => {
+export const POST: RequestHandler = async ({ request, locals : {supabase} }) => {
     try {
-        const authHeader = request.headers.get('Authorization');
-        const token = authHeader?.split(' ')[1];
-
-        if (!token) {
-            return json({ error: 'No token provided' }, { status: 401 });
-        }
-
         // Ensure request has a body before parsing
         if (!request.body) {
             throw new Error('Request body is empty');
@@ -29,10 +20,9 @@ export const POST: RequestHandler = async ({ request }) => {
             throw new Error('Missing required field: currentQuestionIndex or userExamId');
         }
 
-        const supabaseClient = getSupabaseClient(token);
-        const { error } = await supabaseClient
+        const { error } = await supabase
             .from('user_exams')
-            .update({ current_question_index: currentQuestionIndex }) // 👈 pass an object here
+            .update({ current_question_index: currentQuestionIndex })
             .eq('id', userExamId);
 
         if (error) {

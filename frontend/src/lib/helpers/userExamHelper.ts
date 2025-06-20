@@ -2,7 +2,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { error } from '@sveltejs/kit';
 import type { Database } from '@tcf/models/database.model';
 
-export const getUserExamById = async (supabase: SupabaseClient<Database>, id: string): Promise<{ questions: any[], currentQuestionIndex: number, userExamId: string, sessionAccessToken: string }> => {
+export const getUserExamById = async (supabase: SupabaseClient<Database>, id: string): Promise<{ questions: any[], currentQuestionIndex: number, userExamId: string }> => {
 	const { data, error: userExamError } = await supabase
 		.from('user_exam_questions')
 		.select(`
@@ -29,7 +29,6 @@ export const getUserExamById = async (supabase: SupabaseClient<Database>, id: st
 	return {
 		questions,
 		currentQuestionIndex,
-		userExamId: id,
-		sessionAccessToken: session?.access_token || ""
+		userExamId: id
 	}
 };
