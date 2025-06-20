@@ -10,19 +10,48 @@
 		description?: string;
 		children?: Snippet;
 		Icon?: Component<any>;
-		buttonList?: Component<any>[];
+		primaryButtonLabel?: string;
+		secondaryButtonLabel?: string;
+		onPrimaryBtnClick?: () => void;
+		onSecondaryBtnClick?: () => void;
+		preventEscapeClose?: boolean;
 	}
 
-	let { opened = $bindable(), dialog = $bindable<HTMLDialogElement | undefined>(), title, description, children, Icon, buttonList }: Props = $props();
+	let {
+		opened = $bindable(),
+		dialog = $bindable<HTMLDialogElement | undefined>(),
+		title,
+		description,
+		children,
+		Icon,
+		secondaryButtonLabel,
+		primaryButtonLabel,
+		onPrimaryBtnClick,
+		onSecondaryBtnClick,
+		preventEscapeClose = false
+	}: Props = $props();
 
 	$effect(() => {
 		if (opened && dialog) {
+			dialog.addEventListener('keydown', handleKeyDown);
 			dialog.showModal();
 		}
 	});
-	function onPopClose() {
-		opened = false;
+
+	function handleKeyDown(event: KeyboardEvent) {
+		if (preventEscapeClose && event.key === 'Escape') {
+			event.preventDefault();
+			event.stopPropagation();
+		}
 	}
+
+	const onPopClose = () => {
+		opened = false;
+		if (preventEscapeClose) {
+			dialog?.removeEventListener('keydown', handleKeyDown);
+		}
+		dialog?.close();
+	};
 
 	const bem = createBEM('popin');
 </script>
@@ -41,10 +70,31 @@
 		</div>
 		{@render children?.()}
 
-		{#if buttonList}
-			{#each buttonList as Button}
-				<Button />
-			{/each}
+		{#if primaryButtonLabel || secondaryButtonLabel}
+			<div class={bem('btn-wrapper')}>
+				{#if secondaryButtonLabel}
+					<div class={bem('secondary-btn-wrapper')}>
+						<Button
+							onClick={() => {
+								onSecondaryBtnClick?.();
+							}}
+							color="secondary"
+							label={secondaryButtonLabel}
+							extraClass="button--full-width" />
+					</div>
+				{/if}
+				{#if primaryButtonLabel}
+					<div class={bem('primary-btn-wrapper')}>
+						<Button
+							onClick={() => {
+								onPrimaryBtnClick?.();
+							}}
+							color="primary"
+							label={primaryButtonLabel}
+							extraClass="button--full-width" />
+					</div>
+				{/if}
+			</div>
 		{/if}
 	</div>
 </dialog>
@@ -86,6 +136,13 @@
 			font-size: rem(14);
 			line-height: rem(20);
 		}
+
+		&__btn-wrapper {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			gap: rem(12);
+		}
 	}
 
 	@media (min-width: $breakpoint-desktop) {
@@ -107,6 +164,19 @@
 			&__description {
 				font-size: rem(20);
 				line-height: rem(24);
+			}
+
+			&__btn-wrapper {
+				flex-direction: row;
+				gap: rem(20);
+			}
+
+			&__secondary-btn-wrapper {
+				flex: 1;
+			}
+
+			&__primary-btn-wrapper {
+				flex: 2;
 			}
 		}
 	}
