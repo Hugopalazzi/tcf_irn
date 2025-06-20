@@ -64,7 +64,7 @@
 				"url": "/exam-proxy?type=writing-exam"
 			}
 		},
-		"cardScores": {
+		"userStatsCards": {
 			"examsTaken": "Examen(s) réalisé(s)",
 			"successScore": "Poucentage de réussite"
 		},

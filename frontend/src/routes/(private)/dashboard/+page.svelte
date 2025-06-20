@@ -6,7 +6,7 @@
 	import WritingIcon from '@tcf/lib/components/Icons/WritingIcon.svelte';
 	import HeadingPage from '@tcf/lib/components/Organisms/HeadingPage.svelte';
 	import LinkCards from '@tcf/lib/components/Organisms/LinkCards.svelte';
-	import ScoreCards from '@tcf/lib/components/Organisms/ScoreCards.svelte';
+	import UserStatsCards from '@tcf/lib/components/Organisms/UserStatsCards.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { gradientColorsEnum } from '@tcf/models/gradientColors';
 	import { m } from '$lib/paraglide/messages.js';
@@ -47,16 +47,16 @@
 		}
 	];
 
-	const cardScores = [
+	const statsCards = [
 		{
 			result: '03',
-			title: m['dashboard.cardScores.examsTaken'](),
+			title: m['dashboard.userStatsCards.examsTaken'](),
 			backgroundIconColor: gradientColorsEnum.BLUE,
 			Icon: CheckListIcon
 		},
 		{
 			result: '89%',
-			title: m['dashboard.cardScores.successScore'](),
+			title: m['dashboard.userStatsCards.successScore'](),
 			backgroundIconColor: gradientColorsEnum.GREEN,
 			Icon: SuccessScoreIcon
 		}
@@ -88,7 +88,7 @@
 	</div>
 	<HeadingPage title={m['dashboard.title']()} description={m['dashboard.description']()} additionalClass="heading-page--items-centered" />
 	<LinkCards links={cardLinks} />
-	<ScoreCards scores={cardScores} />
+	<UserStatsCards stats={statsCards} />
 
 	<div class={bem('performance-recent')}>
 		<PerformanceExams title={m['performance.title']()} description={m['performance.description']()} />
