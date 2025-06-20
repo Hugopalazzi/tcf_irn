@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { type Component, type Snippet } from 'svelte';
-	import Button from '../Atoms/Button.svelte';
+	import Button from '@tcf/lib/components/Atoms/Button.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 
 	interface Props {
@@ -38,15 +38,25 @@
 		}
 	});
 
-	function handleKeyDown(event: KeyboardEvent) {
+	const handleKeyDown = (event: KeyboardEvent) => {
 		if (preventEscapeClose && event.key === 'Escape') {
 			event.preventDefault();
-			event.stopPropagation();
 		}
-	}
+	};
 
-	const onPopClose = () => {
+	// If parent decide to close popin update opened state to close popin
+	$effect(() => {
+		if (!opened) {
+			closePopin();
+		}
+	});
+
+	const onPopinClose = () => {
 		opened = false;
+		closePopin();
+	};
+
+	const closePopin = () => {
 		if (preventEscapeClose) {
 			dialog?.removeEventListener('keydown', handleKeyDown);
 		}
@@ -56,7 +66,7 @@
 	const bem = createBEM('popin');
 </script>
 
-<dialog aria-modal="true" aria-labelledby={title} bind:this={dialog} class={bem('')} onclose={onPopClose}>
+<dialog aria-modal="true" aria-labelledby={title} bind:this={dialog} class={bem('')} onclose={onPopinClose}>
 	<div class={bem('container')}>
 		{#if Icon}
 			<Icon />
