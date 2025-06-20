@@ -1,13 +1,45 @@
 <script lang="ts">
 	import QuestionStepper from '@tcf/lib/components/Molecules/QuestionStepper.svelte';
-	import ExamHeading from '@tcf/lib/components/Organisms/ExamHeading.svelte';
-	import FrameCard from '@tcf/lib/components/Organisms/FrameCard.svelte';
+	import ExamCard from '@tcf/lib/components/Organisms/ExamCard.svelte';
 	import HeadingPage from '@tcf/lib/components/Organisms/HeadingPage.svelte';
 	import { t } from '@tcf/lib/helpers/tHelper.js';
 
 	const { data } = $props();
+	const { questions, currentQuestionIndex, userExamId } = data;
+	let currentQuestionIndexState = $state(currentQuestionIndex);
 
-	let currentQuestion = $state(1); // TODO: recup user last answer
+	const questionData = $derived(() => {
+		const currentQuestion = questions[currentQuestionIndexState].question;
+		return {
+			title: currentQuestion.title,
+			choices: currentQuestion.choices.map((choice: string) => ({
+				label: choice
+			}))
+		};
+	});
+
+	const onClickNext = async () => {
+		const questionsLength = questions.length - 1;
+		if (currentQuestionIndexState < questionsLength) {
+			currentQuestionIndexState += 1;
+
+			fetch('/api/update-user-exam', {
+				method: 'POST',
+				body: JSON.stringify({
+					currentQuestionIndex: currentQuestionIndexState,
+					userExamId: userExamId
+				}),
+				headers: { 'Content-Type': 'application/json' }
+			})
+			.then((response) => response.json())
+			.catch((error) => {
+				console.log(error);
+				return [];
+			});
+		} else if (currentQuestionIndexState === questionsLength) {
+			console.log('Submit exam');
+		}
+	};
 </script>
 
 <HeadingPage
@@ -17,12 +49,8 @@
 		{ label: t('header.exams'), href: '/exams' },
 		{ label: t('listening-exam'), href: '' }
 	]} />
-
-<QuestionStepper {currentQuestion} questionsLength={data.questions.length} />
-
-<FrameCard additionalClass="frame--items-centered">
-	<ExamHeading {currentQuestion} />
-</FrameCard>
+<QuestionStepper currentQuestionIndex={currentQuestionIndexState} questionsLength={questions.length} />
+<ExamCard questionData={questionData()} currentQuestionIndex={currentQuestionIndexState} questionsLength={questions.length} onClick={onClickNext} />
 
 <!-- {#each data.questions as question}
 	<div>
