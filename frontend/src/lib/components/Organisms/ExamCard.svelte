@@ -14,11 +14,12 @@
 		currentQuestionIndex: number;
 		questionsLength: number;
 		questionData: { title: string; choices: Choice[] };
-		onClick: () => void;
+		onChoiceClick: (label: string) => void;
+		onNextClick: () => void;
 		timerProps: TimerProps;
 	}
 
-	const { questionData, currentQuestionIndex, questionsLength, onClick, timerProps }: ExamCardProps = $props();
+	const { questionData, currentQuestionIndex, questionsLength, onNextClick, onChoiceClick, timerProps }: ExamCardProps = $props();
 </script>
 
 <FrameCard additionalClass="frame--items-centered">
@@ -26,10 +27,10 @@
 	<div class={bem('content')}>
 		<h2 class={bem('question-title')}>{questionData.title}</h2>
 		{#if questionData.choices?.length > 0}
-			<ChoicesGroup choices={questionData.choices} />
+			<ChoicesGroup choices={questionData.choices} onClick={onChoiceClick} />
 		{/if}
 		<Button
-			{onClick}
+			onClick={onNextClick}
 			color={ColorsEnum.PRIMARY}
 			label={currentQuestionIndex < questionsLength - 1 ? t('examCard.nextQuestionLabel') : t('examCard.submitLabel')} />
 	</div>

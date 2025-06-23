@@ -9,11 +9,13 @@
 
 	interface Props {
 		choices: Choice[];
+		onClick: (label: string) => void;
 	}
 
-	let { choices }: Props = $props();
+	let { choices, onClick }: Props = $props();
 	let choicesStatus = $derived(choices.map((choice) => choice.status || statusEnum.NONE));
-	const onClickButton = (i: number) => {
+	
+	const onClickButton = (label: string, i: number) => {
 		const currentStatus = choicesStatus[i];
 		//Unclikable for results question
 		if (currentStatus === statusEnum.UNCLICKABLE) {
@@ -27,13 +29,14 @@
 			});
 			choicesStatus[i] = statusEnum.SELECTED;
 		}
+		onClick(label);
 	};
 </script>
 
 <div class="choices-group">
 	{#each choices as { label }, i}
 		{@const calcultedPrefix = String.fromCharCode(65 + i)}
-		<ChoiceButton {label} optionPrefix={calcultedPrefix} onClick={() => onClickButton(i)} status={choicesStatus[i]} />
+		<ChoiceButton {label} optionPrefix={calcultedPrefix} onClick={() => onClickButton(label, i)} status={choicesStatus[i]} />
 	{/each}
 </div>
 

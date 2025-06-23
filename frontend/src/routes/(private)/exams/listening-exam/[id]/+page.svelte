@@ -7,28 +7,36 @@
 	const { data } = $props();
 	const { questions, currentQuestionIndex, userExamId } = data;
 	let currentQuestionIndexState = $state(currentQuestionIndex);
+	let currentAnswer: string = '';
 
 	const questionData = $derived(() => {
 		const currentQuestion = questions[currentQuestionIndexState].question;
 		return {
+			id: questions[currentQuestionIndexState].id,
 			title: currentQuestion.title,
 			choices:
 				currentQuestion.choices?.map((choice: string) => ({
 					label: choice
-				})) || []
+				})) || [],
+			correctAnswer: currentQuestion.correct_answer
 		};
 	});
 
-	const onClickNext = async () => {
+	const onNextClick = async () => {
 		const questionsLength = questions.length - 1;
 		if (currentQuestionIndexState < questionsLength) {
+			const currentQuestion = questionData();
+			const { correctAnswer, id: questionId } = currentQuestion;
+			const isCorrectAnwser = currentAnswer === correctAnswer;
 			currentQuestionIndexState += 1;
-
 			fetch('/api/update-user-exam', {
 				method: 'POST',
 				body: JSON.stringify({
 					currentQuestionIndex: currentQuestionIndexState,
-					userExamId: userExamId
+					userExamId: userExamId,
+					isCorrectAnswer: isCorrectAnwser,
+					answer: currentAnswer || '',
+					questionId: questionId
 				}),
 				headers: { 'Content-Type': 'application/json' }
 			})
@@ -39,6 +47,10 @@
 		} else if (currentQuestionIndexState === questionsLength) {
 			console.log('Submit exam');
 		}
+	};
+
+	const onChoiceClick = (label: string) => {
+		currentAnswer = label;
 	};
 
 	const onTimerEnd = () => {
@@ -60,5 +72,6 @@
 	questionData={questionData()}
 	currentQuestionIndex={currentQuestionIndexState}
 	questionsLength={questions.length}
-	onClick={onClickNext}
+	{onChoiceClick}
+	{onNextClick}
 	timerProps={{ totalTime: 60, warningThreshold: 10, onTimerEnd }} />

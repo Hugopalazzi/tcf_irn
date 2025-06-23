@@ -6,6 +6,7 @@ export const getUserExamById = async (supabase: SupabaseClient<Database>, id: st
 	const { data, error: userExamError } = await supabase
 		.from('user_exam_questions')
 		.select(`
+		id,
 		position,
 		question:questions(title, choices, audio_url, question_type, correct_answer),
 		user_exam:user_exam_id(current_question_index, question_count)
