@@ -13,11 +13,6 @@
 
 	const { optionPrefix, label, status, onClick }: Props = $props();
 
-	const onKeyDown = (event: KeyboardEvent) => {
-		if (event.code === 'Space') {
-			event.preventDefault();
-		}
-	};
 	const bem = createBEM('choice-button');
 </script>
 
@@ -111,6 +106,8 @@
 
 	@media (min-width: $breakpoint-desktop) {
 		.choice-button {
+			min-width: 400px;
+
 			gap: rem(12);
 			padding: rem(12);
 

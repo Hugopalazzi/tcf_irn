@@ -64,7 +64,7 @@
 				"url": "/exam-proxy?type=writing-exam"
 			}
 		},
-		"cardScores": {
+		"userStatsCards": {
 			"examsTaken": "Examen(s) réalisé(s)",
 			"successScore": "Poucentage de réussite"
 		},
@@ -222,6 +222,11 @@
 	"examHeading": {
 		"questionNumber": "Question {number}",
 		"questionPercentage": "{percent} %"
+	},
+	"examCard": 
+	{
+		"nextQuestionLabel": "Question suivante",
+		"submitLabel": "Soumettre l'examen"
 	},
 	"start": "commencer"
 }

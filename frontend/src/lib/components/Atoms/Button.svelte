@@ -83,6 +83,10 @@
 				color: #ffffff;
 			}
 		}
+		
+		&--full-width {
+			width: 100%;
+		}
 
 		&:disabled {
 			background-color: #f1f1f1;

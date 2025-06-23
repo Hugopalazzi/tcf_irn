@@ -11,7 +11,7 @@
 	const { progress, filledClass = 'primary', emptyClass = 'grey' }: Props = $props();
 
 	const bem = createBEM('progress-bar');
-	const emptyBarWidth = 100 - progress;
+	const emptyBarWidth = $derived(100 - progress);
 </script>
 
 <div class={bem('container')} role="progressbar" aria-valuenow={progress} aria-valuemin="0" aria-valuemax="100" aria-label={m.ariaProgressBar()}>
