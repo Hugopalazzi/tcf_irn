@@ -12,9 +12,10 @@
 		const currentQuestion = questions[currentQuestionIndexState].question;
 		return {
 			title: currentQuestion.title,
-			choices: currentQuestion.choices.map((choice: string) => ({
-				label: choice
-			}))
+			choices:
+				currentQuestion.choices?.map((choice: string) => ({
+					label: choice
+				})) || []
 		};
 	});
 
@@ -31,14 +32,19 @@
 				}),
 				headers: { 'Content-Type': 'application/json' }
 			})
-			.then((response) => response.json())
-			.catch((error) => {
-				console.log(error);
-				return [];
-			});
+				.then((response) => response.json())
+				.catch((error) => {
+					console.log(error);
+				});
 		} else if (currentQuestionIndexState === questionsLength) {
 			console.log('Submit exam');
 		}
+	};
+
+	const onTimerEnd = () => {
+		setTimeout(() => {
+			currentQuestionIndexState += 1;
+		}, 1000);
 	};
 </script>
 
@@ -50,10 +56,9 @@
 		{ label: t('listening-exam'), href: '' }
 	]} />
 <QuestionStepper currentQuestionIndex={currentQuestionIndexState} questionsLength={questions.length} />
-<ExamCard questionData={questionData()} currentQuestionIndex={currentQuestionIndexState} questionsLength={questions.length} onClick={onClickNext} />
-
-<!-- {#each data.questions as question}
-	<div>
-		{JSON.stringify(question, null, 2)}
-	</div>
-{/each} -->
+<ExamCard
+	questionData={questionData()}
+	currentQuestionIndex={currentQuestionIndexState}
+	questionsLength={questions.length}
+	onClick={onClickNext}
+	timerProps={{ totalTime: 60, warningThreshold: 10, onTimerEnd }} />

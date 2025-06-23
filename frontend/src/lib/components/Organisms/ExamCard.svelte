@@ -6,6 +6,7 @@
 	import { t } from '@tcf/lib/helpers/tHelper';
 	import { ColorsEnum } from '@tcf/models/colors';
 	import Button from '../Atoms/Button.svelte';
+	import { type TimerProps } from '@tcf/lib/components/Molecules/Timer.svelte';
 
 	const bem = createBEM('exam-card');
 
@@ -14,16 +15,19 @@
 		questionsLength: number;
 		questionData: { title: string; choices: Choice[] };
 		onClick: () => void;
+		timerProps: TimerProps;
 	}
 
-	const { questionData, currentQuestionIndex = $bindable(), questionsLength, onClick }: ExamCardProps = $props();
+	const { questionData, currentQuestionIndex, questionsLength, onClick, timerProps }: ExamCardProps = $props();
 </script>
 
 <FrameCard additionalClass="frame--items-centered">
-	<ExamHeading {currentQuestionIndex} {questionsLength} />
+	<ExamHeading {currentQuestionIndex} {questionsLength} {timerProps} />
 	<div class={bem('content')}>
 		<h2 class={bem('question-title')}>{questionData.title}</h2>
-		<ChoicesGroup choices={questionData.choices} />
+		{#if questionData.choices?.length > 0}
+			<ChoicesGroup choices={questionData.choices} />
+		{/if}
 		<Button
 			{onClick}
 			color={ColorsEnum.PRIMARY}

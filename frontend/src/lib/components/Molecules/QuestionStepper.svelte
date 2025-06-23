@@ -5,7 +5,7 @@
 		currentQuestionIndex: number;
 		questionsLength?: number;
 	}
-	let { currentQuestionIndex = $bindable(), questionsLength = 20 }: QuestionStepperProps = $props();
+	let { currentQuestionIndex, questionsLength = 20 }: QuestionStepperProps = $props();
 
 	const bem = createBEM('question-stepper');
 
