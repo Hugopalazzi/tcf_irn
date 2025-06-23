@@ -20,9 +20,7 @@
 	<div class={bem('content')}>
 		<span class={bem('question-number')}>{t('examHeading.questionNumber', { number: currentQuestionIndex + 1 })}</span>
 		<div class={bem('progress-bar-wrapper')}>
-			{#key currentQuestionIndex}
 				<ProgressBar progress={progressPercentage} />
-			{/key}
 		</div>
 		<span class={bem('percentage')}>{t('examHeading.questionPercentage', { percent: progressPercentage })}</span>
 	</div>
