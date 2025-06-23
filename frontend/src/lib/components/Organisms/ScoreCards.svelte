@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import ScoreCardElement, { type ScoreCardElementProps } from '@tcf/lib/components/Molecules/ScoreCardElement.svelte';
 
 	type Props = {
@@ -7,8 +6,6 @@
 	};
 
 	const { scores }: Props = $props();
-
-	const bem = createBEM('score-cards');
 </script>
 
 <div class="score-cards-container">
