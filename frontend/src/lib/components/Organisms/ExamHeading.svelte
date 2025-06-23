@@ -1,30 +1,45 @@
 <script lang="ts">
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import ProgressBar from '@tcf/lib/components/Atoms/ProgressBar.svelte';
+	import Timer, { type TimerProps } from '@tcf/lib/components/Molecules/Timer.svelte';
 	import { t } from '@tcf/lib/helpers/tHelper';
 
 	interface ExamHeadingProps {
 		currentQuestionIndex: number;
 		questionsLength: number;
+		timerProps: TimerProps;
 	}
-	let { currentQuestionIndex = $bindable(), questionsLength }: ExamHeadingProps = $props();
+	let { currentQuestionIndex, questionsLength, timerProps }: ExamHeadingProps = $props();
 
 	const bem = createBEM('exam-heading');
 
-	const progressPercentage = (currentQuestionIndex / questionsLength) * 100;
+	const progressPercentage = $derived(Math.floor((currentQuestionIndex / questionsLength) * 100));
 </script>
 
 <div class={bem('container')}>
-	<span class={bem('question-number')}>{t('examHeading.questionNumber', { number: currentQuestionIndex + 1 })}</span>
-	<div class={bem('progress-bar-wrapper')}>
-		<ProgressBar progress={progressPercentage} />
+	<div class={bem('content')}>
+		<span class={bem('question-number')}>{t('examHeading.questionNumber', { number: currentQuestionIndex + 1 })}</span>
+		<div class={bem('progress-bar-wrapper')}>
+			<ProgressBar progress={progressPercentage} />
+		</div>
+		<span class={bem('percentage')}>{t('examHeading.questionPercentage', { percent: progressPercentage })}</span>
 	</div>
-	<span class={bem('percentage')}>{t('examHeading.questionPercentage', { percent: progressPercentage })}</span>
+	{#key currentQuestionIndex}
+		<Timer {...timerProps} additionalClass="align-right" />
+	{/key}
 </div>
 
 <style lang="scss">
 	.exam-heading {
 		&__container {
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+		}
+
+		&__content {
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
 			grid-template-rows: repeat(2, 1fr);
@@ -60,7 +75,7 @@
 
 	@media (min-width: $breakpoint-tablet) {
 		.exam-heading {
-			&__container {
+			&__content {
 				display: flex;
 				flex-direction: row;
 				align-items: center;
