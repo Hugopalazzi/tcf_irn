@@ -17,7 +17,7 @@ export const POST: RequestHandler = async ({ request, locals: { supabase } }) =>
 
         const { currentQuestionIndex, userExamId, isCorrectAnswer, answer, questionId } = requestData;
         if (!currentQuestionIndex || !userExamId || !questionId) {
-            throw new Error('Missing required field: currentQuestionIndex, userExamId, questionId, isCorrectAnswer');
+            throw new Error('Missing required field: currentQuestionIndex, userExamId or questionId');
         }
 
         const updates: Record<string, any> = {
