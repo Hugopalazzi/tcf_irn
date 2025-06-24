@@ -3,14 +3,25 @@
 	import ExamCard from '@tcf/lib/components/Organisms/ExamCard.svelte';
 	import HeadingPage from '@tcf/lib/components/Organisms/HeadingPage.svelte';
 	import { t } from '@tcf/lib/helpers/tHelper.js';
+	import { createUserExamStepper } from '@tcf/lib/helpers/createUserExamStepperHelper.js';
 
 	const { data } = $props();
 	const { questions, currentQuestionIndex, userExamId } = data;
+
 	let currentQuestionIndexState = $state(currentQuestionIndex);
 	let currentAnswer: string = '';
 
 	const questionData = $derived(() => {
-		const currentQuestion = questions[currentQuestionIndexState].question;
+		const currentQuestion = questions[currentQuestionIndexState]?.question;
+		if (!currentQuestion) {
+			return {
+				id: '',
+				title: '',
+				choices: [],
+				correctAnswer: ''
+			};
+		}
+
 		return {
 			id: questions[currentQuestionIndexState].id,
 			title: currentQuestion.title,
@@ -21,41 +32,19 @@
 			correctAnswer: currentQuestion.correct_answer
 		};
 	});
+	const stepToNext = createUserExamStepper({ questions, userExamId });
 
 	const onNextClick = async () => {
-		const questionsLength = questions.length - 1;
-		if (currentQuestionIndexState < questionsLength) {
-			const currentQuestion = questionData();
-			const { correctAnswer, id: questionId } = currentQuestion;
-			const isCorrectAnwser = currentAnswer === correctAnswer;
-			currentQuestionIndexState += 1;
-			fetch('/api/update-user-exam', {
-				method: 'POST',
-				body: JSON.stringify({
-					currentQuestionIndex: currentQuestionIndexState,
-					userExamId: userExamId,
-					isCorrectAnswer: isCorrectAnwser,
-					answer: currentAnswer || '',
-					questionId: questionId
-				}),
-				headers: { 'Content-Type': 'application/json' }
-			})
-				.then((response) => response.json())
-				.catch((error) => {
-					console.log(error);
-				});
-		} else if (currentQuestionIndexState === questionsLength) {
-			console.log('Submit exam');
-		}
+		currentQuestionIndexState = stepToNext(currentQuestionIndexState, currentAnswer);
 	};
 
 	const onChoiceClick = (label: string) => {
 		currentAnswer = label;
 	};
 
-	const onTimerEnd = () => {
+	const onTimerEnd = async () => {
 		setTimeout(() => {
-			currentQuestionIndexState += 1;
+			currentQuestionIndexState = stepToNext(currentQuestionIndexState, currentAnswer);
 		}, 1000);
 	};
 </script>
