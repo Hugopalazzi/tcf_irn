@@ -4,7 +4,7 @@
 	import PlayIcon from '@tcf/lib/components/Icons/PlayIcon.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import SoundIcon from '@tcf/lib/components/Icons/SoundIcon.svelte';
-	import MuteSoundIcon from '@tcf/lib/components/Icons/MuteSoundIcon.svelte';
+	import SoundMutedIcon from '@tcf/lib/components/Icons/SoundMutedIcon.svelte';
 
 	let {
 		audioUrl
@@ -113,7 +113,7 @@
 		{#if volume}
 			<SoundIcon />
 		{:else}
-			<MuteSoundIcon />
+			<SoundMutedIcon />
 		{/if}
 	</button>
 </div>
