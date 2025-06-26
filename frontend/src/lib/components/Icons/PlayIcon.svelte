@@ -1,4 +1,12 @@
-<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<script lang="ts">
+	interface Props {
+		responsive?: boolean;
+	}
+
+	const { responsive = false }: Props = $props();
+</script>
+
+<svg width="20" height="20" class:responsive viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 	<g clip-path="url(#clip0_1_27)">
 		<path
 			fill-rule="evenodd"
@@ -12,3 +20,17 @@
 		</clipPath>
 	</defs>
 </svg>
+
+<style lang="scss">
+	.responsive {
+		width: 14px !important;
+		height: 14px !important;
+	}
+
+	@media (min-width: $breakpoint-mobile) {
+		.responsive {
+			width: 24px !important;
+			height: 24px !important;
+		}
+	}
+</style>

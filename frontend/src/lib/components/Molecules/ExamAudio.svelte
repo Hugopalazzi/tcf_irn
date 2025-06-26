@@ -84,9 +84,9 @@
 
 	<button class={bem('pause')} aria-label={paused ? 'play' : 'pause'} onclick={() => (paused = !paused)}>
 		{#if paused}
-			<PlayIcon />
+			<PlayIcon responsive={true} />
 		{:else}
-			<PauseIcon />
+			<PauseIcon responsive={true} />
 		{/if}
 	</button>
 
@@ -97,7 +97,7 @@
 					class={bem('bar-fill')}
 					style="
 					width: {getBarColor(index) * 100}%;
-					height: {Math.max(level * 40, 4)}px;
+					height: {Math.max(level * 24, 4)}px;
 					background-color: {getBarColor(index) > 0 ? '#1e0c5b' : '#D9D9D9'};
 				">
 				</div>
@@ -106,14 +106,14 @@
 	</div>
 
 	<button
-		class={bem('mute-icon')}
+		class={bem('sound-icon')}
 		onclick={() => {
 			volume = !volume;
 		}}>
 		{#if volume}
-			<SoundIcon />
+			<SoundIcon responsive={true} />
 		{:else}
-			<SoundMutedIcon />
+			<SoundMutedIcon responsive={true} />
 		{/if}
 	</button>
 </div>
@@ -126,12 +126,14 @@
 			justify-content: space-between;
 			align-items: center;
 			border-radius: rem(12);
+			width: 100%;
 			border: 1px solid #dcdcdc;
+			gap: 4px;
+			box-sizing: border-box;
 			background: #fff;
-			gap: rem(32);
 		}
 
-		&__mute-icon {
+		&__sound-icon {
 			border-radius: rem(12);
 			background: #1e0c5b;
 			padding: rem(12);
@@ -139,9 +141,9 @@
 
 		&__volume-bar-wrapper {
 			display: flex;
-			gap: rem(4);
 			align-items: center;
-			height: 48px;
+			gap: 0.125rem;
+			height: rem(24);
 		}
 
 		&__bar {
@@ -159,6 +161,15 @@
 				background-color 0.2s;
 
 			border-radius: rem(28);
+		}
+	}
+
+	@media (min-width: $breakpoint-mobile) {
+		.exam-audio {
+			&__container {
+				gap: rem(32);
+				width: max-content;
+			}
 		}
 	}
 </style>

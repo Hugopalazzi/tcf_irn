@@ -1,5 +1,27 @@
-<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<script lang="ts">
+	interface Props {
+		responsive?: boolean;
+	}
+
+	const { responsive = false }: Props = $props();
+</script>
+
+<svg width="20" height="20" class:responsive viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 	<path
 		d="M8.125 3.125V16.875C8.125 17.3723 7.92746 17.8492 7.57583 18.2008C7.22419 18.5525 6.74728 18.75 6.25 18.75H5.625C5.12772 18.75 4.65081 18.5525 4.29917 18.2008C3.94754 17.8492 3.75 17.3723 3.75 16.875V3.125C3.75 2.62772 3.94754 2.15081 4.29917 1.79917C4.65081 1.44754 5.12772 1.25 5.625 1.25H6.25C6.74728 1.25 7.22419 1.44754 7.57583 1.79917C7.92746 2.15081 8.125 2.62772 8.125 3.125ZM14.375 1.25H13.75C13.2527 1.25 12.7758 1.44754 12.4242 1.79917C12.0725 2.15081 11.875 2.62772 11.875 3.125V16.875C11.875 17.3723 12.0725 17.8492 12.4242 18.2008C12.7758 18.5525 13.2527 18.75 13.75 18.75H14.375C14.8723 18.75 15.3492 18.5525 15.7008 18.2008C16.0525 17.8492 16.25 17.3723 16.25 16.875V3.125C16.25 2.62772 16.0525 2.15081 15.7008 1.79917C15.3492 1.44754 14.8723 1.25 14.375 1.25Z"
 		fill="black" />
 </svg>
+
+<style lang="scss">
+	.responsive {
+		width: 14px !important;
+		height: 14px !important;
+	}
+
+	@media (min-width: $breakpoint-mobile) {
+		.responsive {
+			width: 24px !important;
+			height: 24px !important;
+		}
+	}
+</style>
