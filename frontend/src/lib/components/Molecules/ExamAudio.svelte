@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import PauseIcon from '../Icons/PauseIcon.svelte';
-	import PlayIcon from '../Icons/PlayIcon.svelte';
+	import PauseIcon from '@tcf/lib/components/Icons/PauseIcon.svelte';
+	import PlayIcon from '@tcf/lib/components/Icons/PlayIcon.svelte';
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
-	import SoundIcon from '../Icons/SoundIcon.svelte';
+	import SoundIcon from '@tcf/lib/components/Icons/SoundIcon.svelte';
+	import MuteSoundIcon from '@tcf/lib/components/Icons/MuteSoundIcon.svelte';
 
 	let {
 		audioUrl
@@ -31,7 +32,7 @@
 		const arrayBuffer = await response.arrayBuffer();
 		const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
 
-		const channelData = audioBuffer.getChannelData(0); 
+		const channelData = audioBuffer.getChannelData(0);
 		const sampleRate = audioBuffer.sampleRate;
 		const duration = audioBuffer.duration;
 
@@ -55,6 +56,17 @@
 
 		return volumePerSlice.map((val) => val / max);
 	};
+
+	function getBarColor(index: number): number {
+		const barDuration = duration / normalizedAudioLevels.length;
+		const barStartTime = index * barDuration;
+		const barEndTime = barStartTime + barDuration;
+
+		if (currentTime >= barEndTime) return 1;
+		if (currentTime < barStartTime) return 0;
+
+		return (currentTime - barStartTime) / barDuration;
+	}
 </script>
 
 <div class={bem('container')}>
@@ -79,8 +91,17 @@
 	</button>
 
 	<div class={bem('volume-bar-wrapper')}>
-		{#each normalizedAudioLevels as level}
-			<div class={bem('bar')} style="height: {Math.max(level * 40, 4)}px;"></div>
+		{#each normalizedAudioLevels as level, index}
+			<div class={bem('bar')}>
+				<div
+					class={bem('bar-fill')}
+					style="
+					width: {getBarColor(index) * 100}%;
+					height: {Math.max(level * 40, 4)}px;
+					background-color: {getBarColor(index) > 0 ? '#1e0c5b' : '#D9D9D9'};
+				">
+				</div>
+			</div>
 		{/each}
 	</div>
 
@@ -89,7 +110,11 @@
 		onclick={() => {
 			volume = !volume;
 		}}>
-		<SoundIcon />
+		{#if volume}
+			<SoundIcon />
+		{:else}
+			<MuteSoundIcon />
+		{/if}
 	</button>
 </div>
 
@@ -120,13 +145,20 @@
 		}
 
 		&__bar {
-			border-radius: 28px;
-			background: #1e0c5b;
-			width: 4px;
-			min-height: 4px;
+			border-radius: rem(28);
+			background-color: #d9d9d9;
+			width: rem(4);
+			min-height: rem(4);
 			transition:
 				height 0.2s,
 				background-color 0.2s;
+		}
+		&__bar-fill {
+			transition:
+				width 0.01s linear,
+				background-color 0.2s;
+
+			border-radius: rem(28);
 		}
 	}
 </style>
