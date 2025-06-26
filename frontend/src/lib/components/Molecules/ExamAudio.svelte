@@ -130,6 +130,7 @@
 			border: 1px solid #dcdcdc;
 			gap: 4px;
 			box-sizing: border-box;
+			max-width: 300px;
 			background: #fff;
 		}
 
