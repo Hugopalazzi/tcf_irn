@@ -57,7 +57,7 @@
 		return volumePerSlice.map((val) => val / max);
 	};
 
-	function getBarColor(index: number): number {
+	const getBarColor = (index: number): number => {
 		const barDuration = duration / normalizedAudioLevels.length;
 		const barStartTime = index * barDuration;
 		const barEndTime = barStartTime + barDuration;
@@ -66,7 +66,7 @@
 		if (currentTime < barStartTime) return 0;
 
 		return (currentTime - barStartTime) / barDuration;
-	}
+	};
 </script>
 
 <div class={bem('container')}>
