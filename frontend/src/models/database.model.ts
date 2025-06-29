@@ -53,25 +53,28 @@ export type Database = {
           answer_text: string
           answered_at: string | null
           id: string
+          is_correct: boolean
           user_exam_question_id: string
         }
         Insert: {
           answer_text: string
           answered_at?: string | null
           id?: string
+          is_correct?: boolean
           user_exam_question_id: string
         }
         Update: {
           answer_text?: string
           answered_at?: string | null
           id?: string
+          is_correct?: boolean
           user_exam_question_id?: string
         }
         Relationships: [
           {
             foreignKeyName: "user_exam_answers_user_exam_question_id_fkey"
             columns: ["user_exam_question_id"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "user_exam_questions"
             referencedColumns: ["id"]
           },
@@ -119,6 +122,7 @@ export type Database = {
           current_question_index: number
           id: string
           question_count: number
+          score: number
           status: string
           updated_at: string | null
           user_id: string
@@ -128,6 +132,7 @@ export type Database = {
           current_question_index?: number
           id?: string
           question_count?: number
+          score?: number
           status?: string
           updated_at?: string | null
           user_id: string
@@ -137,6 +142,7 @@ export type Database = {
           current_question_index?: number
           id?: string
           question_count?: number
+          score?: number
           status?: string
           updated_at?: string | null
           user_id?: string
@@ -173,9 +179,11 @@ export type Database = {
     }
     Functions: {
       create_user_exam: {
-        Args:
-          | { user_id: string; question_count: number }
-          | { user_id: string; question_count: number; p_question_type: string }
+        Args: {
+          user_id: string
+          question_count: number
+          p_question_type: string
+        }
         Returns: string
       }
       is_email_exist: {

@@ -3,47 +3,50 @@
 	import ExamCard from '@tcf/lib/components/Organisms/ExamCard.svelte';
 	import HeadingPage from '@tcf/lib/components/Organisms/HeadingPage.svelte';
 	import { t } from '@tcf/lib/helpers/tHelper.js';
+	import { createUserExamStepper } from '@tcf/lib/helpers/createUserExamStepperHelper.js';
 
 	const { data } = $props();
-	const { questions, currentQuestionIndex, userExamId } = data;
-	let currentQuestionIndexState = $state(currentQuestionIndex);
+	const { questionsData, currentQuestionIndex, userExamId } = data;
 
-	const questionData = $derived(() => {
-		const currentQuestion = questions[currentQuestionIndexState].question;
+	let currentQuestionIndexState = $state(currentQuestionIndex);
+	let currentAnswer: string = '';
+
+	const calculatedQuestionData = $derived(() => {
+		const currentQuestion = questionsData[currentQuestionIndexState];
+		if (!currentQuestion) {
+			return {
+				id: '',
+				title: '',
+				choices: [],
+				correctAnswer: ''
+			};
+		}
+
+		const { id, title, choices, correct_answer } = currentQuestion;
+
 		return {
-			title: currentQuestion.title,
+			id,
+			title,
 			choices:
-				currentQuestion.choices?.map((choice: string) => ({
+				choices?.map((choice: string) => ({
 					label: choice
-				})) || []
+				})) || [],
+			correctAnswer: correct_answer
 		};
 	});
+	const stepToNext = createUserExamStepper({ questionsData, userExamId });
 
-	const onClickNext = async () => {
-		const questionsLength = questions.length - 1;
-		if (currentQuestionIndexState < questionsLength) {
-			currentQuestionIndexState += 1;
-
-			fetch('/api/update-user-exam', {
-				method: 'POST',
-				body: JSON.stringify({
-					currentQuestionIndex: currentQuestionIndexState,
-					userExamId: userExamId
-				}),
-				headers: { 'Content-Type': 'application/json' }
-			})
-				.then((response) => response.json())
-				.catch((error) => {
-					console.log(error);
-				});
-		} else if (currentQuestionIndexState === questionsLength) {
-			console.log('Submit exam');
-		}
+	const onNextClick = async () => {
+		currentQuestionIndexState = stepToNext(currentQuestionIndexState, currentAnswer);
 	};
 
-	const onTimerEnd = () => {
+	const onChoiceClick = (label: string) => {
+		currentAnswer = label;
+	};
+
+	const onTimerEnd = async () => {
 		setTimeout(() => {
-			currentQuestionIndexState += 1;
+			currentQuestionIndexState = stepToNext(currentQuestionIndexState, currentAnswer);
 		}, 1000);
 	};
 </script>
@@ -55,10 +58,12 @@
 		{ label: t('header.exams'), href: '/exams' },
 		{ label: t('listening-exam'), href: '' }
 	]} />
-<QuestionStepper currentQuestionIndex={currentQuestionIndexState} questionsLength={questions.length} />
+<QuestionStepper currentQuestionIndex={currentQuestionIndexState} questionsLength={questionsData.length} />
 <ExamCard
-	questionData={questionData()}
+	questionData={calculatedQuestionData()}
 	currentQuestionIndex={currentQuestionIndexState}
-	questionsLength={questions.length}
-	onClick={onClickNext}
-	timerProps={{ totalTime: 60, warningThreshold: 10, onTimerEnd }} />
+	questionsLength={questionsData.length}
+	{onChoiceClick}
+	{onNextClick}
+	timerProps={{ totalTime: 60, warningThreshold: 10, onTimerEnd }} 
+/>
