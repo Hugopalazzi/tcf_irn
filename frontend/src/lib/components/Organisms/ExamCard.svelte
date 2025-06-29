@@ -7,13 +7,14 @@
 	import { ColorsEnum } from '@tcf/models/colors';
 	import Button from '../Atoms/Button.svelte';
 	import { type TimerProps } from '@tcf/lib/components/Molecules/Timer.svelte';
+	import ExamAudio from '../Molecules/ExamAudio.svelte';
 
 	const bem = createBEM('exam-card');
 
 	interface ExamCardProps {
 		currentQuestionIndex: number;
 		questionsLength: number;
-		questionData: { title: string; choices: Choice[] };
+		questionData: { title: string; choices: Choice[]; audioUrl?: string };
 		onClick: () => void;
 		timerProps: TimerProps;
 	}
@@ -23,6 +24,9 @@
 
 <FrameCard additionalClass="frame--items-centered">
 	<ExamHeading {currentQuestionIndex} {questionsLength} {timerProps} />
+	{#if questionData.audioUrl}
+		<ExamAudio audioUrl={"https://qiqdradhiqihrqinbzzf.supabase.co/storage/v1/object/sign/listening-exams-audios/happy-days-bgm-50sec-224758.mp3?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hMDFkMzllMi0yNmZjLTQyYTUtYmI2OC04YjA1YTdiNzc0YTMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJsaXN0ZW5pbmctZXhhbXMtYXVkaW9zL2hhcHB5LWRheXMtYmdtLTUwc2VjLTIyNDc1OC5tcDMiLCJpYXQiOjE3NTA5NjIxMDksImV4cCI6MzE3MTEwOTYyMTA5fQ.mWGsQdYewyYcdhc1fJLSCWg9JAfmI9ai5gZSvNy6JhA"} />
+	{/if}
 	<div class={bem('content')}>
 		<h2 class={bem('question-title')}>{questionData.title}</h2>
 		{#if questionData.choices?.length > 0}
