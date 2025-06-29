@@ -20,6 +20,19 @@
 	}
 
 	const { questionData, currentQuestionIndex, questionsLength, onNextClick, onChoiceClick, timerProps }: ExamCardProps = $props();
+
+	let isAlreadyClicked = $state(false);
+
+	const onButtonClick = () => {
+		if (isAlreadyClicked) return;
+		isAlreadyClicked = true;
+		onNextClick();
+	};
+
+	$effect(() => {
+		currentQuestionIndex;
+		isAlreadyClicked = false;
+	});
 </script>
 
 <FrameCard additionalClass="frame--items-centered">
@@ -30,8 +43,9 @@
 			<ChoicesGroup choices={questionData.choices} onClick={onChoiceClick} />
 		{/if}
 		<Button
-			onClick={onNextClick}
+			onClick={onButtonClick}
 			color={ColorsEnum.PRIMARY}
+			disabled={isAlreadyClicked && currentQuestionIndex === questionsLength - 1}
 			label={currentQuestionIndex < questionsLength - 1 ? t('examCard.nextQuestionLabel') : t('examCard.submitLabel')} />
 	</div>
 </FrameCard>

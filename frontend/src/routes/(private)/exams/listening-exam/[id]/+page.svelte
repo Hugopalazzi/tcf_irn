@@ -6,13 +6,13 @@
 	import { createUserExamStepper } from '@tcf/lib/helpers/createUserExamStepperHelper.js';
 
 	const { data } = $props();
-	const { questions, currentQuestionIndex, userExamId } = data;
+	const { questionsData, currentQuestionIndex, userExamId } = data;
 
 	let currentQuestionIndexState = $state(currentQuestionIndex);
 	let currentAnswer: string = '';
 
-	const questionData = $derived(() => {
-		const currentQuestion = questions[currentQuestionIndexState]?.question;
+	const calculatedQuestionData = $derived(() => {
+		const currentQuestion = questionsData[currentQuestionIndexState];
 		if (!currentQuestion) {
 			return {
 				id: '',
@@ -22,17 +22,19 @@
 			};
 		}
 
+		const { id, title, choices, correct_answer } = currentQuestion;
+
 		return {
-			id: questions[currentQuestionIndexState].id,
-			title: currentQuestion.title,
+			id,
+			title,
 			choices:
-				currentQuestion.choices?.map((choice: string) => ({
+				choices?.map((choice: string) => ({
 					label: choice
 				})) || [],
-			correctAnswer: currentQuestion.correct_answer
+			correctAnswer: correct_answer
 		};
 	});
-	const stepToNext = createUserExamStepper({ questions, userExamId });
+	const stepToNext = createUserExamStepper({ questionsData, userExamId });
 
 	const onNextClick = async () => {
 		currentQuestionIndexState = stepToNext(currentQuestionIndexState, currentAnswer);
@@ -56,11 +58,12 @@
 		{ label: t('header.exams'), href: '/exams' },
 		{ label: t('listening-exam'), href: '' }
 	]} />
-<QuestionStepper currentQuestionIndex={currentQuestionIndexState} questionsLength={questions.length} />
+<QuestionStepper currentQuestionIndex={currentQuestionIndexState} questionsLength={questionsData.length} />
 <ExamCard
-	questionData={questionData()}
+	questionData={calculatedQuestionData()}
 	currentQuestionIndex={currentQuestionIndexState}
-	questionsLength={questions.length}
+	questionsLength={questionsData.length}
 	{onChoiceClick}
 	{onNextClick}
-	timerProps={{ totalTime: 60, warningThreshold: 10, onTimerEnd }} />
+	timerProps={{ totalTime: 60, warningThreshold: 10, onTimerEnd }} 
+/>

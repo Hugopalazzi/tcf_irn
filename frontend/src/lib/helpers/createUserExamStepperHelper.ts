@@ -2,25 +2,26 @@ import { UserExamService } from '@tcf/services/api/userExam.service';
 
 export function createUserExamStepper({
 	userExamId,
-	questions
+	questionsData
 }: {
 	userExamId: string;
-	questions: any[];
+	questionsData: any[];
 }) {
 	const userExamService = new UserExamService();
 
 	return function getNextQuestionIndex(currentIndex: number, currentAnswer: string): number {
-		if (currentIndex >= questions.length - 1) return currentIndex;
+		const isLastQuestion = currentIndex >= questionsData.length - 1;
 
-		const nextIndex = currentIndex + 1;
+		if (currentIndex > questionsData.length - 1) return currentIndex;
 
-		const questionRow = questions[currentIndex];
-		const correctAnswer = questionRow.question.correct_answer;
+		const calculatedIndex = isLastQuestion ? currentIndex : currentIndex + 1;
+
+		const questionRow = questionsData[currentIndex];
+		const correctAnswer = questionRow.correct_answer;
 		const questionId = questionRow.id;
 		const isCorrect = currentAnswer === correctAnswer;
+		userExamService.updateUserExam(calculatedIndex, userExamId, questionId, currentAnswer, isCorrect);
 
-		userExamService.updateUserExam(nextIndex, userExamId, questionId, currentAnswer, isCorrect);
-
-		return nextIndex;
+		return calculatedIndex;
 	};
 }
