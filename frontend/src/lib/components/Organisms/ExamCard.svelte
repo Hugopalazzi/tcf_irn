@@ -7,7 +7,6 @@
 	import { ColorsEnum } from '@tcf/models/colors';
 	import Button from '../Atoms/Button.svelte';
 	import { type TimerProps } from '@tcf/lib/components/Molecules/Timer.svelte';
-	import ExamAudio from '../Molecules/ExamAudio.svelte';
 
 	const bem = createBEM('exam-card');
 
@@ -18,7 +17,7 @@
 		onClick: () => void;
 		timerProps: TimerProps;
 	}
-	
+
 	const { questionData, currentQuestionIndex, questionsLength, onClick, timerProps }: ExamCardProps = $props();
 </script>
 
