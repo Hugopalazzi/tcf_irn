@@ -1,14 +1,7 @@
 import { UserExamService } from '@tcf/services/api/userExam.service';
 
-export function createUserExamStepper({
-	userExamId,
-	questionsData
-}: {
-	userExamId: string;
-	questionsData: any[];
-}) {
-	const userExamService = new UserExamService();
-
+const userExamService = new UserExamService();
+export const createUserExamStepper = ({ userExamId, questionsData }: { userExamId: string; questionsData: any[] }) => {
 	return function getNextQuestionIndex(currentIndex: number, currentAnswer: string): number {
 		const isLastQuestion = currentIndex >= questionsData.length - 1;
 
@@ -24,4 +17,8 @@ export function createUserExamStepper({
 
 		return calculatedIndex;
 	};
-}
+};
+
+export const finishExam = (userExamId: string): Promise<{ score: number }> => {
+	return userExamService.submitUserExam(userExamId);
+};

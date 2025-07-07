@@ -221,10 +221,18 @@
 		"questionNumber": "Question {number}",
 		"questionPercentage": "{percent} %"
 	},
-	"examCard": 
-	{
+	"examCard": {
 		"nextQuestionLabel": "Question suivante",
 		"submitLabel": "Soumettre l'examen"
 	},
-	"start": "commencer"
+	"finalExamPopin": {
+		"title": "Félicitations !",
+		"description": "Vous avez terminé votre examen, vous pouvez accéder à la correction.",
+		"dashboardBtnLabel": "Retourner au dashboard",
+		"correctionBtnLabel": "Accéder à la correction",
+		"scoreCard" :{
+			"correct": "Bonnes réponses",
+			"bad": "Mauvaises réponses"
+		}
+	}
 }

@@ -2,7 +2,7 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	export type ScoreCardElementProps = {
 		label: string;
-		value: string;
+		value: number;
 	};
 
 	const { label, value }: ScoreCardElementProps = $props();
