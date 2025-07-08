@@ -49,6 +49,12 @@
 			currentQuestionIndexState = stepToNext(currentQuestionIndexState, currentAnswer);
 		}, 1000);
 	};
+
+	$effect(() => {
+		if (typeof currentQuestionIndexState === 'number') {
+			currentAnswer = '';
+		}
+	});
 </script>
 
 <HeadingPage
@@ -65,5 +71,4 @@
 	questionsLength={questionsData.length}
 	{onChoiceClick}
 	{onNextClick}
-	timerProps={{ totalTime: 60, warningThreshold: 10, onTimerEnd }} 
-/>
+	timerProps={{ totalTime: 60, warningThreshold: 10, onTimerEnd }} />

@@ -5,14 +5,13 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { t } from '@tcf/lib/helpers/tHelper';
 	import { ColorsEnum } from '@tcf/models/colors';
-	import { statusCodeEnum } from '@tcf/models/exams';
+	import { statusCodeEnum, type ExamsType } from '@tcf/models/exams';
 
-	type Exam = {
+	export type Exam = {
 		id: string;
-		type: string;
-		date: string;
+		type: ExamsType;
+		date: string | null;
 		score: string;
-		level: string;
 		statusCode: string;
 		progress: number;
 	};
@@ -39,7 +38,6 @@
 				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.examLabel')}</th>
 				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.dateLabel')}</th>
 				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.scoreLabel')}</th>
-				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.categoryLabel')}</th>
 				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.statusLabel')}</th>
 				<th scope="col" class={bem('head-cell')}>{t('examsTable.head.progressLabel')}</th>
 				<th scope="col" class={bem('head-cell')}></th>
@@ -52,7 +50,6 @@
 					<th scope="row" class={bem('cell')}>{t(type)}</th>
 					<td class={bem('cell')}>{date}</td>
 					<td class={bem('cell')}>{score}</td>
-					<td class={bem('cell')}>{level}</td>
 					<td class={bem('cell')}>{t(`status.${statusCode}`)}</td>
 					<td class={bem('cell')}>
 						<div class={bem('progress-bar-container')}>
