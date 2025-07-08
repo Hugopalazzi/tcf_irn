@@ -23,6 +23,7 @@ export const load = async ({ locals: { supabase }, parent, url }) => {
 
 const createAndRedirectExam = async (type: ExamsType, userId: string, questionType: QuestionType, supabase: SupabaseClient<any, 'public', any>) => {
 	const { data: examId, error: createExamError } = await supabase.rpc('create_user_exam', {
+		p_type: type,
 		user_id: userId,
 		question_count: 20,
 		p_question_type: questionType

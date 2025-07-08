@@ -4,8 +4,8 @@
 	"writing-exam": "Expression écrite",
 	"start": "commencer",
 	"status": {
-		"pending": "En cours",
-		"completed": "Terminé"
+		"in_progress": "En cours",
+		"finished": "Terminé"
 	},
 	"signUp": {
 		"success": "Votre compte a bien été créé. Veuillez verifier votre adresse mail"
