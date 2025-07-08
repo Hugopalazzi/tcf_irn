@@ -17,8 +17,12 @@ export const POST: RequestHandler = async ({ request, locals: { supabase, user }
 
 		const { data: examData } = await supabase.from('user_exams').select('score').eq('id', userExamId).single();
 
+		if (!user) {
+			throw new Error('User disconnected');
+		}
+		
 		await supabase.rpc('add_experience', {
-			uid: user!.id,
+			uid: user.id,
 			xp_to_add: examData?.score ? examData.score * 10 : 0
 		});
 

@@ -43,22 +43,24 @@
 
 	let openFinalExamPopin = $state(false);
 
-	let cards: ScoreCardElementProps[] = $state([]);
+	let scoreState = $state(0);
+	let scoreCards = $derived([
+		{
+			label: t('finalExamPopin.scoreCard.correct'),
+			value: scoreState
+		},
+		{
+			label: t('finalExamPopin.scoreCard.bad'),
+			value: questionsLength - scoreState
+		}
+	]);
+
 	const onNextClick = async () => {
 		currentQuestionIndexState = stepToNext(currentQuestionIndexState, currentAnswer);
 
 		if (currentQuestionIndexState === questionsLength - 1) {
 			const { score } = await finishExam(userExamId);
-			cards = [
-				{
-					label: t('finalExamPopin.scoreCard.correct'),
-					value: score
-				},
-				{
-					label: t('finalExamPopin.scoreCard.bad'),
-					value: questionsLength - score
-				}
-			];
+			scoreState = score;
 			openFinalExamPopin = true;
 		}
 	};
@@ -109,5 +111,5 @@
 	onSecondaryBtnClick={() => {
 		console.log('TODO: Redirect to correction');
 	}}>
-	<ScoreCards scores={cards}></ScoreCards>
+	<ScoreCards scores={scoreCards}></ScoreCards>
 </Popin>
