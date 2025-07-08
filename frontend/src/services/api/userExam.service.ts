@@ -3,7 +3,7 @@ export class UserExamService {
 	constructor() {
 		this.baseUrl = '/api';
 	}
-	public submitUserExam = async (userExamId: string) => {
+	public submitUserExam = async (userExamId: string): Promise<{ score: number }> => {
 		return fetch(`${this.baseUrl}/submit-user-exam`, {
 			method: 'POST',
 			body: JSON.stringify({
