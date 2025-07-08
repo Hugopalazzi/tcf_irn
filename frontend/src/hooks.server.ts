@@ -90,6 +90,7 @@ const authGuard: Handle = async ({ event, resolve }) => {
 		'/modifier-mot-de-passe',
 		'/payment',
 		'/api/update-user-exam',
+		'/api/submit-user-exam',
 		'/api/create-subscription-session',
 		'/api/create-stripe-customer',
 		'/api/user-status',

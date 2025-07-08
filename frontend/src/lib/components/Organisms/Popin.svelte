@@ -18,7 +18,7 @@
 	}
 
 	let {
-		isOpen = $bindable(),
+		isOpen,
 		title,
 		description,
 		children,
@@ -124,6 +124,10 @@
 		animation-name: scale;
 		animation-duration: 200ms;
 		padding: rem(24) rem(16);
+
+		&::backdrop {
+			background: rgba(0, 0, 0, 0.7);
+		}
 
 		&__container {
 			display: flex;

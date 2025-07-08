@@ -5,7 +5,7 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { t } from '@tcf/lib/helpers/tHelper';
 	import { ColorsEnum } from '@tcf/models/colors';
-	import Button from '../Atoms/Button.svelte';
+	import Button from '@tcf/lib/components/Atoms/Button.svelte';
 	import { type TimerProps } from '@tcf/lib/components/Molecules/Timer.svelte';
 
 	const bem = createBEM('exam-card');
