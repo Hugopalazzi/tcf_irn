@@ -18,7 +18,3 @@ export const createUserExamStepper = ({ userExamId, questionsData }: { userExamI
 		return calculatedIndex;
 	};
 };
-
-export const finishExam = (userExamId: string): Promise<{ score: number }> => {
-	return userExamService.submitUserExam(userExamId);
-};

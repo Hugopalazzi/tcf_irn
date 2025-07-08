@@ -3,11 +3,11 @@
 	import ExamCard from '@tcf/lib/components/Organisms/ExamCard.svelte';
 	import HeadingPage from '@tcf/lib/components/Organisms/HeadingPage.svelte';
 	import { t } from '@tcf/lib/helpers/tHelper.js';
-	import { createUserExamStepper, finishExam } from '@tcf/lib/helpers/createUserExamStepperHelper.js';
+	import { createUserExamStepper } from '@tcf/lib/helpers/createUserExamStepperHelper.js';
 	import Popin from '@tcf/lib/components/Organisms/Popin.svelte';
 	import ScoreCards from '@tcf/lib/components/Organisms/ScoreCards.svelte';
-	import type { ScoreCardElementProps } from '@tcf/lib/components/Molecules/ScoreCardElement.svelte';
 	import { goto } from '$app/navigation';
+	import { UserExamService } from '@tcf/services/api/userExam.service.js';
 
 	const { data } = $props();
 	const { questionsData, currentQuestionIndex, userExamId } = data;
@@ -59,7 +59,8 @@
 		currentQuestionIndexState = stepToNext(currentQuestionIndexState, currentAnswer);
 
 		if (currentQuestionIndexState === questionsLength - 1) {
-			const { score } = await finishExam(userExamId);
+			const userExamService = new UserExamService();
+			const { score } = await userExamService.submitUserExam(userExamId);
 			scoreState = score;
 			openFinalExamPopin = true;
 		}
