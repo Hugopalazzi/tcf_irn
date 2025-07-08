@@ -203,8 +203,6 @@
 			"examLabel": "Examen",
 			"dateLabel": "Date",
 			"scoreLabel": "Score",
-			"categoryLabel": "Catégorie",
-			"timeLabel": "Temps",
 			"statusLabel": "Status",
 			"progressLabel": "Progrès"
 		}
