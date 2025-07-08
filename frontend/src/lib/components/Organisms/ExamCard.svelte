@@ -5,7 +5,7 @@
 	import { createBEM } from '@tcf/lib/helpers/bemHelper';
 	import { t } from '@tcf/lib/helpers/tHelper';
 	import { ColorsEnum } from '@tcf/models/colors';
-	import Button from '../Atoms/Button.svelte';
+	import Button from '@tcf/lib/components/Atoms/Button.svelte';
 	import { type TimerProps } from '@tcf/lib/components/Molecules/Timer.svelte';
 
 	const bem = createBEM('exam-card');
@@ -14,11 +14,25 @@
 		currentQuestionIndex: number;
 		questionsLength: number;
 		questionData: { title: string; choices: Choice[] };
-		onClick: () => void;
+		onChoiceClick: (label: string) => void;
+		onNextClick: () => void;
 		timerProps: TimerProps;
 	}
 
-	const { questionData, currentQuestionIndex, questionsLength, onClick, timerProps }: ExamCardProps = $props();
+	const { questionData, currentQuestionIndex, questionsLength, onNextClick, onChoiceClick, timerProps }: ExamCardProps = $props();
+
+	let isAlreadyClicked = $state(false);
+
+	const onButtonClick = () => {
+		if (isAlreadyClicked) return;
+		isAlreadyClicked = true;
+		onNextClick();
+	};
+
+	$effect(() => {
+		currentQuestionIndex;
+		isAlreadyClicked = false;
+	});
 </script>
 
 <FrameCard additionalClass="frame--items-centered">
@@ -26,11 +40,12 @@
 	<div class={bem('content')}>
 		<h2 class={bem('question-title')}>{questionData.title}</h2>
 		{#if questionData.choices?.length > 0}
-			<ChoicesGroup choices={questionData.choices} />
+			<ChoicesGroup choices={questionData.choices} onClick={onChoiceClick} />
 		{/if}
 		<Button
-			{onClick}
+			onClick={onButtonClick}
 			color={ColorsEnum.PRIMARY}
+			disabled={isAlreadyClicked && currentQuestionIndex === questionsLength - 1}
 			label={currentQuestionIndex < questionsLength - 1 ? t('examCard.nextQuestionLabel') : t('examCard.submitLabel')} />
 	</div>
 </FrameCard>

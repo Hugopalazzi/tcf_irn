@@ -62,6 +62,10 @@
 		font-weight: 700;
 		line-height: rem(20);
 
+		&:disabled {
+			cursor: not-allowed;
+		}
+		
 		&--color {
 			&_primary {
 				background-color: #1e0c5b;
